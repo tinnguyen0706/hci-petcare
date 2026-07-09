@@ -3,7 +3,7 @@
 ## 1) Tổng quan dự án
 
 - **Dự án này là gì:**  
-  Dự án xây dựng hệ thống thang máy thông minh nhận diện quá tải bằng camera, kết hợp dữ liệu tải trọng và dữ liệu không gian trong cabin để hỗ trợ điều phối lệnh gọi tầng hiệu quả hơn.
+  HỆ THỐNG THÔNG TIN QUẢN LÝ TRẠNG THÁI VÀ ĐIỀU PHỐI SỬ DỤNG THANG MÁY TRONG TRƯỜNG HỌC
 
 - **Làm cho ai dùng:**  
   Hệ thống hướng đến người sử dụng thang máy trong môi trường trường học giờ cao điểm, đồng thời hỗ trợ ban quản lý vận hành thang máy theo dữ liệu thời gian thực.

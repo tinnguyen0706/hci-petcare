@@ -74,7 +74,7 @@ abstract: |
 
 \newpage
 
-# Xem xét tài liệu liên quan
+# Tổng quan tài liệu
 
 ## Các nghiên cứu trước đây
 

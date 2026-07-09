@@ -40,15 +40,11 @@ Các mục tiêu cụ thể gồm:
 
 1. Nhận diện mật độ người và mức độ chiếm dụng không gian trong cabin bằng camera AI.
 2. Kết hợp dữ liệu cảm biến tải trọng với dữ liệu thị giác máy tính để quyết định nhận hoặc từ chối lệnh gọi bên ngoài.
-3. Cung cấp thông tin trạng thái dễ hiểu cho người chờ thang, bao gồm mức tải hiện tại, hướng di chuyển, điểm dừng dự kiến và khả năng tiếp nhận thêm.
+3. Cung cấp thông báo trạng thái rõ ràng cho người chờ thang về việc cabin còn chỗ trống hay không còn chỗ trống.
 
 ## Đối tượng liên quan
 
-Đề tài hướng đến ba nhóm đối tượng chính:
-
-1. Người sử dụng thang máy trong khuôn viên trường học (sinh viên, giảng viên, nhân viên), là nhóm chịu tác động trực tiếp bởi thời gian chờ và chất lượng phục vụ.
-2. Ban quản lý vận hành tòa nhà, là nhóm cần dữ liệu trạng thái theo thời gian thực để giám sát hiệu quả vận hành.
-3. Kỹ thuật viên bảo trì và triển khai hệ thống, là nhóm sử dụng thông tin kỹ thuật để theo dõi và tinh chỉnh hệ thống.
+Đề tài chỉ hướng đến một đối tượng chính là **người sử dụng thang máy trong khuôn viên trường học**, gồm **sinh viên, giảng viên và nhân viên**. Đây là nhóm chịu tác động trực tiếp bởi thời gian chờ, số lần dừng không hiệu quả và mức độ rõ ràng của thông báo trạng thái cabin.
 
 ## Phạm vi và ràng buộc
 
@@ -84,7 +80,7 @@ Khoảng trống chính của các giải pháp hiện tại là thiếu cơ ch�
 
 1. Xây dựng chỉ số trạng thái cabin từ hai nguồn dữ liệu: cảm biến tải trọng và nhận diện mật độ từ camera.
 2. Thiết kế luật điều phối động để ưu tiên lệnh hợp lý theo tình trạng cabin và các điểm dừng sắp tới.
-3. Trình bày thông tin theo ngữ nghĩa rõ ràng (xanh, vàng, đỏ) để hỗ trợ người dùng ra quyết định nhanh.
+3. Trình bày thông tin bằng thông báo rõ ràng cho người chờ thang rằng **cabin còn chỗ trống** hay **cabin không còn chỗ trống**, từ đó hỗ trợ quyết định tiếp tục chờ hoặc chọn phương án di chuyển khác.
 
 \newpage
 
@@ -113,12 +109,22 @@ Quy trình thực hiện gồm bốn giai đoạn chính:
 
 ### Dữ liệu cần thu thập
 
-Đề tài sử dụng các nhóm dữ liệu sau:
+Đề tài cần thu thập dữ liệu theo hai phần: dữ liệu hệ thống và dữ liệu người dùng.
 
-1. Dữ liệu hình ảnh/video trong cabin để nhận diện mật độ người và mức độ chiếm dụng không gian.
-2. Dữ liệu tải trọng từ cảm biến để xác định trạng thái gần quá tải hoặc quá tải.
-3. Dữ liệu sự kiện vận hành (lệnh gọi tầng, điểm dừng, thời điểm mở/đóng cửa) để đánh giá hiệu quả điều phối.
-4. Dữ liệu khảo sát người dùng về mức độ dễ hiểu của thông tin hiển thị và cảm nhận thời gian chờ.
+1. **Dữ liệu hệ thống**
+   - Dữ liệu hình ảnh/video trong cabin để nhận diện mật độ người và mức độ chiếm dụng không gian.
+   - Dữ liệu tải trọng từ cảm biến để xác định trạng thái gần quá tải hoặc quá tải.
+   - Dữ liệu sự kiện vận hành (lệnh gọi tầng, điểm dừng, thời điểm mở/đóng cửa) để đánh giá hiệu quả điều phối.
+
+2. **Dữ liệu người dùng**
+   - **Khảo sát bảng hỏi** dành cho đúng đối tượng sử dụng chính: sinh viên, giảng viên, nhân viên.
+   - Nội dung khảo sát tập trung vào: mức độ dễ hiểu của thông báo "cabin còn chỗ/không còn chỗ", cảm nhận thời gian chờ, và mức độ tin tưởng vào thông báo hệ thống.
+   - Hình thức trả lời gồm câu hỏi thang đo mức độ (Likert) kết hợp câu hỏi mở để ghi nhận góp ý.
+
+3. **Thiết kế phỏng vấn bán cấu trúc**
+   - Người tham gia phỏng vấn gồm ba nhóm: **sinh viên, giảng viên, nhân viên** (đều là người sử dụng thang máy thường xuyên trong trường).
+   - Mục tiêu phỏng vấn là làm rõ hành vi chờ thang, cách họ hiểu thông báo trạng thái cabin, và kỳ vọng khi hệ thống báo không còn chỗ trống.
+   - Kết quả phỏng vấn được dùng để điều chỉnh nội dung thông báo trên giao diện cho ngắn gọn, rõ nghĩa và dễ ra quyết định.
 
 ## Kế hoạch thời gian
 
@@ -144,10 +150,16 @@ Quy trình thực hiện gồm bốn giai đoạn chính:
 
 | Hạng mục | Chi phí (VNĐ) | Ghi chú |
 |----------|---------------|---------|
-| Công cụ phát triển phần mềm mã nguồn mở | 0 | Sử dụng Python, FastAPI, PostgreSQL, React (miễn phí) |
-| Thiết kế giao diện (Figma bản miễn phí) | 0 | Dùng gói miễn phí phục vụ prototype |
-| Hạ tầng chạy thử nội bộ | Tận dụng sẵn có | Sử dụng máy cá nhân hoặc máy phòng lab |
-| In ấn tài liệu, chuẩn bị báo cáo | Theo nhu cầu thực tế | Phát sinh khi nộp cuối kỳ |
+| Raspberry Pi 5 (8GB) | 2.550.000 | Giá tham khảo thị trường Việt Nam, mức phổ biến 2,45-2,70 triệu |
+| Nguồn chính hãng USB-C 27W cho Pi 5 | 405.000 | Nguồn 5.1V-5A, tham khảo mức bán lẻ phổ biến 388.000-430.000 |
+| Thẻ nhớ microSD 128GB | 299.000 | Mức phổ biến cho dòng chính hãng U1/U3 dùng cho prototype |
+| Webcam Logitech C270 | 420.000 | Mức phổ biến 399.000-499.000 tại các nhà bán lẻ lớn |
+| Màn hình 24 inch IPS (hiển thị thông báo) | 2.190.000 | Chọn phân khúc phổ thông cho mục tiêu hiển thị trạng thái |
+| Công cụ phần mềm (Python, FastAPI, PostgreSQL, React, Figma Free) | 0 | Sử dụng bản miễn phí/mã nguồn mở |
+| In báo cáo màu + đóng gáy (01 bản) | 100.000 | Mức thường gặp khoảng 60.000-150.000 tùy chất lượng in |
+| **Tổng chi phí ước tính** | **5.964.000** | Chưa bao gồm chi phí phát sinh nhỏ (dây cáp, phụ kiện lắp đặt) |
+
+Chi phí trên được tổng hợp theo giá bán lẻ phổ biến tại Việt Nam (thời điểm tham khảo: tháng 07/2026) để phục vụ prototype học kỳ.
 
 \newpage
 
@@ -158,3 +170,11 @@ Quy trình thực hiện gồm bốn giai đoạn chính:
 3. FastAPI Documentation. https://fastapi.tiangolo.com/
 4. PostgreSQL Documentation. https://www.postgresql.org/docs/
 5. React Documentation. https://react.dev/
+6. Phúc Anh. Webcam Logitech C270. https://www.phucanh.vn/webcam-logitech-c270.html
+7. HACOM. Webcam Logitech HD C270. https://hacom.vn/webcam-logitech-hd-270
+8. Raspberry Pi Việt Nam. Mạch máy tính Raspberry Pi 5. https://raspberrypi.vn/san-pham/mach-may-tinh-raspberry-pi-5
+9. Hshop. Nguồn chính hãng Raspberry Pi 5 Power Supply 27W USB-C. https://hshop.vn/nguon-chinh-hang-official-raspberry-pi-5-power-supply-5vdc-5a-27w-usb-c
+10. An Phát Computer. Màn hình Samsung LS24D300GAEXXV. https://www.anphatpc.com.vn/man-hinh-samsung-ls24d300gaexxv.html
+11. Hoàng Hà Mobile. Thẻ nhớ 128GB: Bảng giá tham khảo. https://hoanghamobile.com/tin-tuc/the-nho-128gb/
+12. In Hoa Hồng. Báo giá in màu 2025 tại Hà Nội & TP.HCM. https://inhoahong.vn/gia-in-mau
+13. In Hoàng Nam. In tài liệu màu A4 giá rẻ tại TP.HCM. https://inanhoangnam.com/in-tai-lieu-mau-tai-lieu-a4-gia-re-chat-luong-cao-in-nhanh-tphcm.html
