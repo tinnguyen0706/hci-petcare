@@ -1,0 +1,20 @@
+id: TASK-RES-001
+title: Chuẩn bị giao thức nghiên cứu năm chủ nuôi thú cưng
+status: review
+owner_tool: codex
+owner_role: user-researcher
+branch: agent/codex/TASK-RES-001
+worktree: .worktrees/codex-TASK-RES-001
+write_scope:
+  - deliverables/01-user-research/
+  - coordination/tasks/TASK-RES-001.yml
+  - coordination/handoffs/TASK-RES-001.md
+dependencies:
+  - TASK-KNOW-001
+acceptance_criteria:
+  - Giao thức xác định mục tiêu câu hỏi phương pháp tiêu chí tuyển và tối thiểu năm end-users
+  - Có kịch bản đồng thuận phỏng vấn quan sát và quy tắc ẩn danh không thu thập dữ liệu thừa
+  - Có biểu mẫu ghi chép từng phiên và ma trận bằng chứng tách quan sát phát ngôn diễn giải
+  - Giả thuyết từ proposal được phân biệt rõ với kết quả nghiên cứu chưa tồn tại
+  - Tài liệu đủ để ba thành viên thực hiện nhất quán mà không cần tự quyết định thêm
+handoff: coordination/handoffs/TASK-RES-001.md
