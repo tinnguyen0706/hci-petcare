@@ -27,6 +27,28 @@ Hệ thống hỗ trợ một hành trình liền mạch: chọn dịch vụ và
 
 Không làm việc trực tiếp trên `main`; `.worktrees/` chỉ là vùng làm việc cục bộ và không được theo dõi bởi Git.
 
+## Cài đặt trên Windows
+
+Script trong `scripts/coordination/` là bash script. Thành viên dùng Windows cần một trong hai cách sau:
+
+### Cách 1: Git Bash (khuyến nghị)
+
+1. Cài [Git for Windows](https://gitforwindows.org/) — Git Bash được kèm sẵn.
+2. Cài [Python 3.10+](https://www.python.org/downloads/) — chọn **"Add Python to PATH"** khi cài.
+3. Mở **Git Bash**, clone repository và chạy script bình thường:
+   ```bash
+   git clone <url> && cd HCI
+   scripts/coordination/validate-task coordination/tasks/TASK-RES-001.yml
+   ```
+
+### Cách 2: WSL (Windows Subsystem for Linux)
+
+1. Cài WSL theo [hướng dẫn chính thức](https://learn.microsoft.com/en-us/windows/wsl/install).
+2. Trong WSL terminal, cài Git và Python: `sudo apt install git python3`.
+3. Clone repository trong WSL filesystem và làm việc bình thường.
+
+> **Lưu ý**: Nếu Python trên máy chỉ có lệnh `python` (không có `python3`), script sẽ tự fallback. Hoặc set biến: `export PYTHON=python`.
+
 ## Thêm tài liệu tham khảo
 
 Đặt hướng dẫn đồ án trong `references/project-guidelines/` và kiến thức môn học trong `references/course-materials/`. Sau khi thêm tệp, cập nhật bảng mục lục trong `references/README.md` để agent biết nội dung, nguồn và task nào cần sử dụng tài liệu đó.
