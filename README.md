@@ -85,7 +85,7 @@ THƯ MỤC NƠI CON NGƯỜI ĐIỀU KHIỂN & CHỈNH SỬA (Human-Controlled C
 
 THƯ MỤC CẤU HÌNH TỰ ĐỘNG ADAPTER (Hệ thống/Agent quản lý, Con người KHÔNG NÊN sửa tay)
 ├── .agents/agents/<role>/agent.md     <-- Adapter cho Antigravity CLI (agy)
-├── .codex/config.toml & agents/*.toml <-- Adapter cho OpenAI Codex CLI
+├── .codex/config.toml & .codex/agents/*.toml <-- Adapter cho OpenAI Codex CLI
 ├── .github/copilot-instructions.md    <-- Adapter cho GitHub Copilot
 └── opencode.json & .opencode/         <-- Adapter cho OpenCode AI
 ```
@@ -98,7 +98,7 @@ THƯ MỤC CẤU HÌNH TỰ ĐỘNG ADAPTER (Hệ thống/Agent quản lý, Con 
 | **`.agents/skills/<skill>/`** | **CON NGƯỜI** (ở `human-editing`) | **Skill & Plan chung**: Chứa `SKILL.md` (hướng dẫn thực thi) và `PLAN.md` (kế hoạch & cổng duyệt). Mọi Adapter Config của 4 công cụ AI đều trỏ về đây để Agent thực thi đúng workflow. |
 | **`rules/*.md`** | **CON NGƯỜI** (ở `human-editing`) | **Bộ luật kiểm soát**: Định nghĩa các quy tắc kiểm thử, văn phong (giữ thuật ngữ tiếng Anh), nghiệp vụ petcare. Agent đọc để không vi phạm quy chuẩn. |
 | **`docs/proposal.md`** | **CON NGƯỜI** (ở `human-editing`) | **Nguồn sự thật nghiệp vụ**: Agent đối chiếu để giữ đúng 4 tính năng cốt lõi và không tự mở rộng scope. |
-| **`.codex/`, `.agents/agents/`, `.github/`, `.opencode/`** | **Cấu hình Adapter kỹ thuật** | **Cầu nối kỹ thuật**: Đã được thiết lập sẵn để tự động khai báo danh sách 6 subagent cho từng phần mềm AI. Con người không cần chỉnh sửa các file này trừ khi muốn thêm role mới. |
+| **`.codex/`, `.agents/agents/`, `.github/agents/`, `.opencode/agents/`** | **Cấu hình Adapter kỹ thuật** | **Cầu nối kỹ thuật**: Đã được thiết lập sẵn để tự động khai báo danh sách 6 subagent cho từng phần mềm AI. Con người không cần chỉnh sửa các file này trừ khi muốn thêm role mới. |
 
 ## Cấu trúc làm việc
 
