@@ -1,6 +1,6 @@
 id: TASK-LIFE-001
 title: Mở lifecycle cho khung nghiên cứu người dùng
-status: in-progress
+status: review
 owner_tool: codex
 owner_role: orchestrator
 branch: agent/codex/TASK-LIFE-001
