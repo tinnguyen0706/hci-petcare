@@ -54,8 +54,7 @@
 
 ## Review
 
-- Kết luận: `approved`
-- Bằng chứng: diff `main...HEAD` chỉ có đúng bốn tệp trong `write_scope`; hai protected artifact có exact-file scope và vẫn ở `agent-draft`. `SKILL.md` chỉ thêm một chỉ dẫn bắt buộc đọc `[PLAN.md](PLAN.md)`, link phân giải được, xuất hiện đúng một lần và frontmatter không đổi.
-- Bằng chứng: `PLAN.md` là lộ trình tái sử dụng, không nhận là bằng chứng hoàn tất; có đủ khi dùng, đầu vào, đầu ra, bốn workflow gate, điều kiện dừng/thất bại và nguồn quyết định. Nội dung chốt gói Figma đã duyệt/ghim cùng acceptance matrix; React + TypeScript/Vite, Testing Library/Vitest, Playwright; fixture cục bộ xác định, browser state/reset, không backend/live API/“real-time” giả; đủ bốn năng lực, trạng thái biên, accessibility/responsive và cổng kết quả thật cùng human acceptance.
-- Bằng chứng kiểm tra độc lập: task validator, integration gate, `quick_validate.py`, link/frontmatter/exact-diff checks và `git diff --check main...HEAD` đều đạt; implementation SHA `c74a2105bc88b0a31f52adbfe88dca6e4cd3356d` tồn tại trên branch.
-- Ngoại lệ đã xác minh: `tests/coordination-smoke.sh` vẫn dừng tại fixture lifecycle vì phép thay `needs-interview → agent-draft` cho `AGENTS.md` không còn khớp registry hiện hành (`human-editing`), sau đó validator từ chối đúng trạng thái. Đây là giả định cũ trong smoke test, nằm ngoài diff và `write_scope` của task; lỗi được tái hiện, không che giấu và không làm sai các gate trực tiếp của `TASK-DRAFT-004`.
+- Kết luận: `changes-requested`
+- Mục cần sửa: tại Cổng B bước 3, bỏ khả năng dùng “storage cục bộ”. Cụm này cho phép cơ chế lưu bền như `localStorage`, trái quyết định người dùng chọn fixture cục bộ xác định và state trong bộ nhớ trình duyệt thay cho phương án `localStorage`. Khóa hướng dẫn vào React/in-memory browser state có thao tác reset; không cho phép `localStorage`, `sessionStorage`, IndexedDB hoặc cơ chế persistence tương đương nếu chưa có quyết định mới của người dùng.
+- Phạm vi review lại: sau khi sửa, xác minh `PLAN.md` nhất quán ở phần Đầu ra, Cổng B và điều kiện dừng; giữ nguyên các yêu cầu đã đạt về Figma/acceptance matrix, toolchain, bốn năng lực, accessibility/responsive, kết quả kiểm thử thật và human acceptance.
+- Ngoại lệ không đổi: `tests/coordination-smoke.sh` dừng do fixture giả định lifecycle cũ của `AGENTS.md`; lỗi đã được tái hiện và không phải nguyên nhân của kết luận `changes-requested` này.
