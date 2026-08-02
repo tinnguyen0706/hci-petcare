@@ -23,7 +23,7 @@ Worker làm việc trong `.worktrees/<tool>-<task-id>/` trên branch `agent/<too
 `needs-interview → agent-draft → human-editing → locked`
 
 1. Orchestrator phỏng vấn người dùng khi artifact ở `needs-interview`, rồi ghi nhận rõ quyết định và chuyển sang `agent-draft`.
-2. Task agent chỉ được khai báo đúng đường dẫn tệp trong `write_scope`; không được dùng scope thư mục hoặc ancestor. Agent tạo draft và gửi review trong khi registry vẫn là `agent-draft`.
+2. Khi task viết một artifact được bảo vệ, agent phải khai báo đúng đường dẫn tệp trong `write_scope`; không được thay bằng scope thư mục hoặc ancestor của artifact đó. Scope thư mục không liên quan như `src/` hoặc `deliverables/` vẫn hợp lệ, nhưng không cấp quyền tạo `PLAN.md`/`SKILL.md` chưa đăng ký bên trong. Agent tạo draft và gửi review trong khi registry vẫn là `agent-draft`.
 3. Sau khi review được duyệt, orchestrator kiểm tra diff thật của branch, merge draft, rồi chuyển registry sang `human-editing` trong commit tích hợp riêng.
 4. Ở `human-editing`, người dùng trực tiếp chỉnh nội dung. Agent chỉ được góp ý, không được sửa tệp.
 5. Chỉ sau xác nhận rõ ràng của người dùng, orchestrator mới chuyển artifact sang `locked`. Không có thao tác mở khóa, chuyển lùi hoặc bỏ qua trạng thái.

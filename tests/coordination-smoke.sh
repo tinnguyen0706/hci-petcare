@@ -56,6 +56,8 @@ sed -i 's#.agents/new/SKILL.md#.agents/#' coordination/tasks/TASK-098.yml
 if scripts/coordination/validate-task coordination/tasks/TASK-098.yml >/dev/null 2>&1; then
   echo "Scope rộng vẫn được phép bao phủ artifact" >&2; exit 1
 fi
+sed -i 's#.agents/#x/#' coordination/tasks/TASK-098.yml
+scripts/coordination/validate-task coordination/tasks/TASK-098.yml >/dev/null
 rm coordination/tasks/TASK-098.yml
 
 # Registry chỉ cho phép chuyển tiến đúng một trạng thái.
@@ -95,6 +97,17 @@ git -C .worktrees/opencode-TASK-004 commit -qm "test: unauthorized diff"
 if python3 scripts/coordination/tasklib.py --validate-integration coordination/tasks/TASK-004.yml main agent/opencode/TASK-004 >/dev/null 2>&1; then
   echo "Diff ngoài write_scope vẫn được tích hợp" >&2; exit 1
 fi
+
+# Scope thư mục thông thường hợp lệ nhưng không cho tạo PLAN.md chưa đăng ký.
+sed -i 's#work/two/#x/#' coordination/tasks/TASK-002.yml
+mkdir -p .worktrees/agy-TASK-002/x
+touch .worktrees/agy-TASK-002/x/PLAN.md
+git -C .worktrees/agy-TASK-002 add x/PLAN.md
+git -C .worktrees/agy-TASK-002 commit -qm "test: unregistered protected artifact"
+if python3 scripts/coordination/tasklib.py --validate-integration coordination/tasks/TASK-002.yml main agent/agy/TASK-002 >/dev/null 2>&1; then
+  echo "PLAN.md chưa đăng ký trong scope thư mục vẫn được tích hợp" >&2; exit 1
+fi
+sed -i 's#x/#work/two/#' coordination/tasks/TASK-002.yml
 
 # Luồng đầy đủ của TASK-001.
 task=coordination/tasks/TASK-001.yml

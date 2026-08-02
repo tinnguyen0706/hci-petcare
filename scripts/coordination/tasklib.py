@@ -136,10 +136,12 @@ def protected_scope_errors(scopes: list[object], registry: dict[str, str]) -> li
         scope = normalize_repo_path(str(raw_scope).rstrip("/"))
         exact_protected = is_protected_path(scope)
         covered = sorted(path for path in registry if overlaps(scope, path) and scope != path)
-        # Một thư mục bất kỳ có thể chứa PLAN.md/SKILL.md; rules/templates còn có
-        # thể chứa Markdown mới. Artifact phải luôn được cấp quyền bằng đúng tệp.
+        protected_roots = (".agents/skills", "rules", "templates")
+        protected_specific = scope == "." or any(overlaps(scope, root) for root in protected_roots)
+        # Scope thư mục thông thường vẫn cần cho src/deliverables. Chỉ ancestor
+        # của artifact đã đăng ký hoặc vùng chuyên chứa artifact phải dùng exact file.
         broad = str(raw_scope).endswith("/") or not Path(scope).suffix
-        if broad and (covered or scope in {"rules", "templates"}):
+        if broad and (covered or protected_specific):
             errors.append(f"write_scope rộng có thể bao phủ artifact được bảo vệ: {raw_scope}")
         if exact_protected:
             if scope not in registry:
