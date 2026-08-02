@@ -1,6 +1,6 @@
 # Ghi chép phiên Pxx
 
-> Sao chép tệp, đổi mọi `Pxx` thành mã phiên (ví dụ P01). Không ghi tên thật hoặc dữ liệu nhạy cảm. Đây là dữ liệu thô đã ẩn danh, chưa phải finding.
+> Sao chép tệp, đổi mọi `Pxx` thành mã phiên (ví dụ P01). Đây là Markdown đã ẩn danh, chưa phải finding và có thể được commit vào repository có thể công khai. Không ghi identifier/contact, mapping, chữ ký, media, screenshot, dữ liệu nhạy cảm hoặc dữ liệu nhận diện cơ sở/người thứ ba.
 
 ## Metadata tối thiểu
 
@@ -10,9 +10,11 @@
 - Vai trò: Điều phối `[Thành viên 1/2/3]`; Ghi chép `[...]`; Quan sát `[...]`
 - Điều kiện sàng lọc đã đạt: `Có / Không`
 - Consent tham gia: `Có / Không`; ghi chép: `Có / Không`; quote ẩn danh: `Có / Không`
+- Đã hiểu repository có thể public và Markdown Pxx có thể vào Git: `Có / Không`
 - Ghi âm: `Không đề nghị / Không / Có`; chụp ảnh: `Không đề nghị / Không / Có`
 - Consent cuối phiên còn hiệu lực: `Có / Không`; yêu cầu rút/bỏ phần nào:
 - Đã nói rõ kênh rút và hạn trước khi chốt synthesis cho final submission: `Có / Không`
+- Đã nói rõ khi rút sẽ xóa current tree/chạy lại derivative nhưng không hứa xóa Git history: `Có / Không`
 - Trạng thái withdrawal: `không yêu cầu / đã yêu cầu—ngừng dùng dữ liệu`; chi tiết nhận diện chỉ ghi trong withdrawal log ngoài Git:
 - Chất lượng/giới hạn phiên (nhớ lại, tái hiện, gián đoạn…):
 
@@ -48,5 +50,5 @@ Quy tắc loại:
 - Khác biệt giữa lời kể và quan sát:
 - Giải thích cạnh tranh (không kết luận):
 - Dữ liệu cần loại/che:
-- Nếu có withdrawal: đã báo research lead để xóa toàn bộ dữ liệu/dẫn xuất và chạy lại tổng hợp: `Không áp dụng / Đã báo`
+- Nếu có withdrawal: đã báo research lead để xóa dữ liệu khỏi current tree/nơi tạm và chạy lại mọi derivative: `Không áp dụng / Đã báo`
 - Đã rà mã bằng chứng và consent: `Có / Không`
