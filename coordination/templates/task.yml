@@ -1,0 +1,13 @@
+id: TASK-001
+title: Mô tả ngắn gọn kết quả cần đạt
+status: ready
+owner_tool: unassigned
+owner_role: software-implementer
+branch: agent/unassigned/TASK-001
+worktree: .worktrees/unassigned-TASK-001
+write_scope:
+  - src/example/
+dependencies: []
+acceptance_criteria:
+  - Kết quả có thể kiểm chứng
+handoff: coordination/handoffs/TASK-001.md

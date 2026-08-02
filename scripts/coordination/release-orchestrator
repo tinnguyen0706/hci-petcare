@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ $# -ne 2 ]]; then echo "usage: release-orchestrator TOOL SESSION" >&2; exit 2; fi
+lock="$(git rev-parse --git-common-dir)/hci-orchestrator.lock"
+[[ -f "$lock/owner" ]] || { echo "Không có khóa orchestrator." >&2; exit 1; }
+grep -Fxq "tool=$1" "$lock/owner" && grep -Fxq "session=$2" "$lock/owner" || { echo "Không phải chủ khóa." >&2; exit 1; }
+rm -rf "$lock"
+echo "Đã trả khóa orchestrator."

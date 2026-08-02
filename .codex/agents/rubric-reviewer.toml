@@ -1,0 +1,2 @@
+sandbox_mode = "read-only"
+developer_instructions = "Đọc AGENTS.md, agents/roles/rubric-reviewer.md và coordination/PROTOCOL.md. Chỉ đọc diff và trả kết luận approved hoặc changes-requested; không chỉnh source/deliverable."

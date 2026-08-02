@@ -1,0 +1,29 @@
+[features]
+multi_agent = true
+
+[agents]
+max_threads = 4
+
+[agents.orchestrator]
+description = "Điều phối task và tích hợp thay đổi đã duyệt."
+config_file = "agents/orchestrator.toml"
+
+[agents.user_researcher]
+description = "Nghiên cứu người dùng và artifact khám phá."
+config_file = "agents/user-researcher.toml"
+
+[agents.interaction_designer]
+description = "Thiết kế luồng và giao diện tương tác."
+config_file = "agents/interaction-designer.toml"
+
+[agents.software_implementer]
+description = "Hiện thực và kiểm thử prototype."
+config_file = "agents/software-implementer.toml"
+
+[agents.documentation_agent]
+description = "Chuẩn bị proposal, báo cáo và trình bày."
+config_file = "agents/documentation-agent.toml"
+
+[agents.rubric_reviewer]
+description = "Review chỉ đọc theo rubric."
+config_file = "agents/rubric-reviewer.toml"

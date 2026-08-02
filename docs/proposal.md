@@ -1,35 +1,67 @@
-# **Hệ thống thang máy thông minh nhận diện quá tải bằng camera**
+# Thiết kế hệ thống hỗ trợ đặt lịch, gửi yêu cầu và theo dõi quá trình chăm sóc thú cưng
 
-## **1\. Vấn đề**
+Đồ án môn Tương tác Người–Máy (CSC12106), Nhóm 4. Tài liệu này là bản Markdown tự chứa của proposal; bản trình bày gốc được lưu tại `docs/proposal.pdf`.
 
-Trong bối cảnh sử dụng thang máy tại trường học vào các khung giờ cao điểm (đầu giờ, giờ giải lao, giờ tan học), tình trạng thang máy đã đầy nhưng vẫn dừng ở các tầng trung gian khi có lệnh gọi từ bên ngoài diễn ra thường xuyên. Hiện tượng này gây ra ba hệ quả chính: (1) kéo dài thời gian di chuyển của hành khách trong cabin, (2) tạo cảm giác chờ đợi không hiệu quả cho người ở ngoài thang, và (3) làm giảm năng lực phục vụ tổng thể của hệ thống.
+## 1. Vấn đề
 
-Khó khăn cốt lõi nằm ở chỗ hệ thống hiện tại gần như chỉ dựa vào tín hiệu gọi tầng và ngưỡng tải trọng, trong khi “độ đầy” thực tế còn phụ thuộc vào không gian sử dụng trong cabin. Ví dụ, một số hành khách mang vật dụng cồng kềnh có thể chưa vượt ngưỡng khối lượng nhưng vẫn khiến thang không thể tiếp nhận thêm người.
+### 1.1. Người dùng cuối
 
-Do đó, điểm chưa được giải quyết là thiếu cơ chế đánh giá đồng thời cả tải trọng và mật độ không gian theo thời gian thực để ra quyết định dừng tầng một cách hợp lý.
+Người dùng cuối là chủ nuôi thú cưng, trực tiếp đặt lịch, gửi yêu cầu chăm sóc và theo dõi tình trạng thú cưng. Persona đại diện là chị Lan, 28 tuổi, nhân viên văn phòng tại Thành phố Hồ Chí Minh, nuôi một chó Poodle có tiền sử dị ứng nhẹ với một số loại sữa tắm. Chị thường đặt dịch vụ tắm, cắt tỉa vào cuối tuần hoặc gửi thú cưng cả ngày và không có nhiều thời gian gọi điện hay chờ tại cơ sở.
 
-## **2\. Ý tưởng**
+### 1.2. Khó khăn trong quy trình hiện tại
 
-Đề xuất xây dựng hệ thống điều phối thang máy thông minh tích hợp camera AI nhằm ước lượng trạng thái đầy của cabin theo thời gian thực. Trạng thái đầy được xác định dựa trên hai điều kiện kết hợp:
+- Đặt lịch qua điện thoại hoặc tin nhắn cần chờ cơ sở phản hồi, khiến người dùng khó chủ động thời gian.
+- Xác nhận thủ công có thể không rõ ràng hoặc bị ghi nhận sai.
+- Thông tin dị ứng và yêu cầu đặc biệt phải nhắc lại; thông tin có thể không đến đúng nhân viên phụ trách.
+- Trong thời gian chăm sóc, người dùng không biết tiến độ nếu không chủ động gọi điện.
+- Nội dung của các lượt chăm sóc không được tổng hợp thành lịch sử dễ tra cứu.
 
-**1\. Ngưỡng tải trọng** (theo cảm biến hiện có của thang máy).
+Hệ quả là chủ nuôi phải liên hệ nhiều lần và luôn ở trạng thái chờ đợi, thiếu an tâm. Hệ thống cần tập trung vào đặt lịch có xác nhận rõ ràng, lưu yêu cầu không thất lạc và cung cấp tiến độ mà không cần gọi hỏi.
 
-**2\. Ngưỡng không gian khả dụng** (ước lượng bằng thị giác máy tính từ hình ảnh trong cabin).
+### 1.3. Khoảng trống cần giải quyết
 
-Trên cơ sở đó, hệ thống sẽ điều chỉnh chiến lược nhận lệnh:
+Đối chiếu trong proposal gốc cho thấy các giải pháp quản lý và đặt lịch đã hỗ trợ ở những mức độ khác nhau việc đặt lịch trực tuyến, xác nhận và lưu lịch sử. Khoảng trống trọng tâm của đồ án là trải nghiệm theo dõi từng mốc trong lúc thú cưng đang được chăm sóc. Đồ án không nhằm xây lại toàn bộ phần mềm quản lý cơ sở mà kết nối các chức năng nền tảng thành một hành trình nhất quán cho chủ nuôi.
 
-1\. Khi cabin đang đầy và chưa có dự báo chỗ trống ở các tầng kế tiếp, thang máy tạm thời ưu tiên lệnh bên trong, từ chối lệnh gọi mới từ bên ngoài trên cùng hành trình.
+## 2. Ý tưởng
 
-2\. Khi hệ thống dự báo sẽ có hành khách rời cabin ở tầng sắp tới, lệnh gọi ở các tầng tiếp theo vẫn có thể được chấp nhận.
+Hệ thống web/di động lấy chủ nuôi làm trung tâm và hỗ trợ bốn nhóm chức năng:
 
-Ngoài ra, một màn hình thông tin tại mỗi tầng sẽ hiển thị các dữ liệu quan trọng cho người chờ thang: trạng thái đầy/không đầy, hướng di chuyển, các điểm dừng dự kiến, và ước lượng khả năng tiếp nhận thêm hành khách. Đây là điểm mới giúp người dùng chủ động quyết định tiếp tục chờ hay chuyển sang phương án khác.
+### 2.1. Đặt lịch có xác nhận tức thì
 
-## **3\. Quy trình**
+Người dùng chọn dịch vụ và khung giờ còn trống; khung giờ đã kín không thể chọn. Sau khi đặt, hệ thống xác nhận ngay trong ứng dụng và có thể gửi thông báo, giảm thời gian chờ phản hồi thủ công.
 
-**Thu nhận dữ liệu:** Camera AI lắp đặt trong cabin liên tục giám sát và phân tích không gian chiếm dụng (dựa trên hình ảnh và thuật toán xử lý chiều sâu/phân đoạn đối tượng), kết hợp dữ liệu cảm biến trọng lượng để đưa ra đánh giá tổng hợp về sức chứa hiệu quả còn lại.
+### 2.2. Hồ sơ thú cưng và yêu cầu đặc biệt
 
-**Ra quyết định động:** Hệ thống điều khiển trung tâm xử lý yêu cầu gọi từ bên ngoài dựa trên ba yếu tố: (a) tình trạng tải hiện tại, (b) danh sách các điểm dừng còn lại trên hành trình, và (c) số lượng hành khách dự kiến xuống tại mỗi điểm dừng đó.
+Thông tin như dị ứng, thuốc hoặc đặc điểm hành vi được nhập vào hồ sơ và tự động đính kèm lịch hẹn. Yêu cầu cần hiển thị rõ khi cơ sở tiếp nhận thú cưng để giảm phụ thuộc vào tin nhắn cũ hoặc trí nhớ của từng nhân viên.
 
-**Truyền thông tin đến người dùng bên ngoài:** Màn hình tại các tầng hiển thị định dạng thông báo hai trạng thái – thông báo từ chối rõ ràng nếu không đủ chỗ sau tất cả điểm dừng trung gian, hoặc thông báo xác nhận chấp nhận kèm theo con số dự báo cụ thể về số lượng người còn có thể lên, giúp người đứng chờ sắp xếp thứ tự ưu tiên hợp lý.
+### 2.3. Theo dõi tiến độ theo thời gian thực
 
-**Cập nhật liên tục:** Sau mỗi lần đóng/mở cửa và mỗi điểm dừng, camera AI thực hiện tính toán lại, đảm bảo thông tin hiển thị luôn bám sát hiện trạng cabin theo thời gian thực.
+Tiến độ được cập nhật theo các mốc: đã nhận thú cưng, đang thực hiện dịch vụ, hoàn tất và chờ khách đón. Chủ nuôi xem trạng thái trên điện thoại và nhận thông báo khi trạng thái thay đổi, không cần gọi điện làm gián đoạn công việc của hai bên.
+
+### 2.4. Lịch sử chăm sóc cá nhân hóa
+
+Mỗi lượt chăm sóc lưu dịch vụ, ghi chú và sản phẩm đã sử dụng trong hồ sơ thú cưng. Chủ nuôi có thể tra cứu lại khi cần. Giá trị cải tiến nằm ở hành trình liên tục từ đặt lịch đến đón thú cưng, trong đó người dùng được chủ động thông báo thay vì phải chủ động hỏi.
+
+## 3. Quy trình
+
+### 3.1. Quy trình hiện tại
+
+1. Chủ nuôi gọi điện hoặc nhắn tin để hỏi lịch trống.
+2. Chủ nuôi chờ phản hồi và chưa biết chắc lịch đã được ghi nhận.
+3. Chủ nuôi khai báo lại dị ứng hoặc yêu cầu đặc biệt.
+4. Chủ nuôi bàn giao thú cưng tại cơ sở.
+5. Trong thời gian chờ, chủ nuôi không có cập nhật và phải gọi nếu muốn biết tiến độ.
+6. Cơ sở thông báo khi hoàn tất; thông tin lượt chăm sóc không được tập hợp thành lịch sử nhất quán.
+
+### 3.2. Quy trình đề xuất
+
+1. Chủ nuôi đăng nhập, chọn thú cưng, dịch vụ và khung giờ đang khả dụng.
+2. Hệ thống ghi nhận và xác nhận lịch ngay; yêu cầu đặc biệt từ hồ sơ được đính kèm tự động.
+3. Khi bàn giao, chủ nuôi kiểm tra lại lịch và yêu cầu đã ghi nhận.
+4. Trong quá trình chăm sóc, hệ thống hiển thị mốc trạng thái mới nhất và gửi thông báo khi có thay đổi.
+5. Khi hoàn tất, chủ nuôi nhận thông báo đến đón.
+6. Dịch vụ, sản phẩm và ghi chú được lưu vào lịch sử của thú cưng để tham khảo ở lần sau.
+
+### 3.3. So sánh
+
+Quy trình mới thay thế việc hỏi lịch và chờ xác nhận bằng thao tác trực tiếp; thay việc nhắc lại yêu cầu bằng hồ sơ tái sử dụng; thay khoảng thời gian không có thông tin bằng tiến độ theo mốc; và thay các trao đổi rời rạc bằng lịch sử chăm sóc có cấu trúc. Phạm vi thiết kế vẫn tập trung vào trải nghiệm của chủ nuôi.

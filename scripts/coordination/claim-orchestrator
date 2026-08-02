@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+if [[ $# -lt 2 || $# -gt 3 ]]; then
+  echo "usage: claim-orchestrator TOOL SESSION [--force]" >&2; exit 2
+fi
+tool=$1; session=$2; force=${3:-}
+common=$(git rev-parse --git-common-dir)
+lock="$common/hci-orchestrator.lock"
+if ! mkdir "$lock" 2>/dev/null; then
+  if [[ "$force" != "--force" ]]; then
+    echo "Orchestrator đang bị khóa:" >&2; sed -n '1,20p' "$lock/owner" >&2; exit 1
+  fi
+  echo "CẢNH BÁO: cưỡng chế khóa sau khi đã kiểm tra chủ sở hữu." >&2
+  rm -rf "$lock"; mkdir "$lock"
+fi
+{
+  echo "tool=$tool"
+  echo "session=$session"
+  echo "timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  echo "worktree=$(pwd -P)"
+} > "$lock/owner"
+cat "$lock/owner"

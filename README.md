@@ -1,15 +1,27 @@
-# Hệ thống thang máy thông minh nhận diện quá tải bằng camera
+# Hệ thống hỗ trợ chăm sóc thú cưng
 
-Đồ án môn **CSC12106 — Tương tác Người-Máy (HCI)**  
-Khoa Công nghệ Thông tin — Đại học Khoa học Tự nhiên TPHCM  
-Giảng viên: Lê Thị Nhàn
+Đồ án môn **CSC12106 — Tương tác Người–Máy**, tập trung vào trải nghiệm của chủ nuôi khi đặt lịch, gửi yêu cầu đặc biệt và theo dõi tiến độ chăm sóc thú cưng theo thời gian thực.
 
-## Giới thiệu
+## Phạm vi sản phẩm
 
-Hệ thống điều phối thang máy thông minh tích hợp camera AI nhằm ước lượng trạng thái đầy của cabin theo thời gian thực, kết hợp dữ liệu tải trọng và dữ liệu thị giác máy tính để ra quyết định nhận/từ chối lệnh gọi tầng hợp lý.
+Hệ thống hỗ trợ một hành trình liền mạch: chọn dịch vụ và khung giờ, nhận xác nhận tức thì, tự động đính kèm yêu cầu đặc biệt từ hồ sơ thú cưng, theo dõi các mốc chăm sóc và xem lại lịch sử. Nguồn nghiệp vụ đầy đủ nằm tại [docs/proposal.md](docs/proposal.md).
 
-## Tài liệu
+## Cấu trúc làm việc
 
-- [Đề xuất đồ án](proposal.md) — vấn đề, ý tưởng, quy trình
-- [Hướng dẫn đồ án](Guide4Project_2026.md) — cột mốc, yêu cầu, tiêu chí đánh giá
-- [AGENTS.md](AGENTS.md) — hướng dẫn cho AI agent khi làm việc với repo
+- `docs/`: proposal và rubric chính thức.
+- `deliverables/`: sản phẩm theo bốn nhóm user research, interaction design, software product và final submission.
+- `agents/roles/`: sáu vai trò trung lập dùng chung.
+- `.agents/skills/`: bốn workflow chuẩn dùng chung.
+- `coordination/`: task, handoff, template và protocol cộng tác.
+- `scripts/coordination/`: công cụ khóa orchestrator, worktree, kiểm tra task, handoff và tích hợp.
+- `.codex/`, `.agents/agents/`, `.github/agents/`, `.opencode/agents/`: adapter cho từng công cụ.
+
+## Bắt đầu
+
+1. Đọc `AGENTS.md`, `coordination/PROTOCOL.md` và role được giao.
+2. Orchestrator nhận khóa bằng `scripts/coordination/claim-orchestrator`.
+3. Tạo một task từ `coordination/templates/task.yml`, kiểm tra bằng `scripts/coordination/validate-task`, rồi tạo worktree riêng.
+4. Worker commit và tạo handoff; reviewer ghi `approved` hoặc `changes-requested`.
+5. Orchestrator tích hợp task đã duyệt và dọn worktree.
+
+Không làm việc trực tiếp trên `main`; `.worktrees/` chỉ là vùng làm việc cục bộ và không được theo dõi bởi Git.

@@ -1,0 +1,2 @@
+sandbox_mode = "workspace-write"
+developer_instructions = "Đọc AGENTS.md, agents/roles/software-implementer.md, coordination/PROTOCOL.md và skill build-prototype. Chỉ sửa write_scope trong worktree task."

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+[[ $# -eq 1 ]] || { echo "usage: cleanup-worktree TASK_FILE" >&2; exit 2; }
+status=$(sed -n 's/^status:[[:space:]]*//p' "$1" | head -n1); [[ "$status" == done ]] || { echo "Chỉ dọn task done." >&2; exit 1; }
+target=$(sed -n 's/^worktree:[[:space:]]*//p' "$1" | head -n1)
+[[ -n "$target" && "$target" == .worktrees/* ]] || { echo "Đường dẫn worktree không an toàn." >&2; exit 1; }
+git worktree remove "$target"
