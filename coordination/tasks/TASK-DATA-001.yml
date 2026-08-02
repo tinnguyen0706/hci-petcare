@@ -1,6 +1,6 @@
 id: TASK-DATA-001
 title: Đồng bộ giao thức thực địa với policy Git ẩn danh
-status: review
+status: done
 owner_tool: codex
 owner_role: user-researcher
 branch: agent/codex/TASK-DATA-001
