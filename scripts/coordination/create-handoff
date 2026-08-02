@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 [[ $# -eq 2 ]] || { echo "usage: create-handoff TASK_FILE COMMIT_SHA" >&2; exit 2; }
-script_dir=$(cd "$(dirname "$0")" && pwd); python3 "$script_dir/tasklib.py" "$1"
+script_dir=$(cd "$(dirname "$0")" && pwd)
+PYTHON=${PYTHON:-$(command -v python3 || command -v python)}
+[[ -n "$PYTHON" ]] || { echo "Không tìm thấy python3 hoặc python." >&2; exit 1; }
+"$PYTHON" "$script_dir/tasklib.py" "$1"
 task_id=$(sed -n 's/^id:[[:space:]]*//p' "$1" | head -n1); handoff=$(sed -n 's/^handoff:[[:space:]]*//p' "$1" | head -n1)
 sha=$(git rev-parse "$2^{commit}"); [[ ${#sha} -eq 40 ]] || exit 1
 [[ ! -e "$handoff" ]] || { echo "Handoff đã tồn tại: $handoff" >&2; exit 1; }

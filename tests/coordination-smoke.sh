@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
+PYTHON=${PYTHON:-$(command -v python3 || command -v python)}
+[[ -n "$PYTHON" ]] || { echo "Không tìm thấy python3 hoặc python." >&2; exit 1; }
+export PYTHON
 
 source_root=$(git rev-parse --show-toplevel)
 fixture=$(mktemp -d /tmp/hci-coordination-test.XXXXXX)
@@ -64,12 +67,12 @@ rm coordination/tasks/TASK-098.yml
 cp coordination/human-artifacts.yml "$fixture/registry-old.yml"
 cp coordination/human-artifacts.yml "$fixture/registry-new.yml"
 sed -i '/path: AGENTS.md/{n;s/locked/human-editing/;}' "$fixture/registry-new.yml"
-if python3 scripts/coordination/tasklib.py --validate-registry-transition "$fixture/registry-old.yml" "$fixture/registry-new.yml" >/dev/null 2>&1; then
+if "$PYTHON" scripts/coordination/tasklib.py --validate-registry-transition "$fixture/registry-old.yml" "$fixture/registry-new.yml" >/dev/null 2>&1; then
   echo "Registry cho phép chuyển lùi" >&2; exit 1
 fi
 sed -i '/path: AGENTS.md/{n;s/locked/needs-interview/;}' "$fixture/registry-old.yml"
 sed -i '/path: AGENTS.md/{n;s/human-editing/locked/;}' "$fixture/registry-new.yml"
-if python3 scripts/coordination/tasklib.py --validate-registry-transition "$fixture/registry-old.yml" "$fixture/registry-new.yml" >/dev/null 2>&1; then
+if "$PYTHON" scripts/coordination/tasklib.py --validate-registry-transition "$fixture/registry-old.yml" "$fixture/registry-new.yml" >/dev/null 2>&1; then
   echo "Registry cho phép bỏ qua trạng thái" >&2; exit 1
 fi
 for task in coordination/tasks/*.yml; do scripts/coordination/create-agent-worktree "$task" >/dev/null; done
@@ -94,7 +97,7 @@ sed -i 's/status: claimed/status: ready/; s#work/shared/child/#work/three/#' coo
 touch .worktrees/opencode-TASK-004/outside.txt
 git -C .worktrees/opencode-TASK-004 add outside.txt
 git -C .worktrees/opencode-TASK-004 commit -qm "test: unauthorized diff"
-if python3 scripts/coordination/tasklib.py --validate-integration coordination/tasks/TASK-004.yml main agent/opencode/TASK-004 >/dev/null 2>&1; then
+if "$PYTHON" scripts/coordination/tasklib.py --validate-integration coordination/tasks/TASK-004.yml main agent/opencode/TASK-004 >/dev/null 2>&1; then
   echo "Diff ngoài write_scope vẫn được tích hợp" >&2; exit 1
 fi
 
@@ -104,7 +107,7 @@ mkdir -p .worktrees/agy-TASK-002/x
 touch .worktrees/agy-TASK-002/x/PLAN.md
 git -C .worktrees/agy-TASK-002 add x/PLAN.md
 git -C .worktrees/agy-TASK-002 commit -qm "test: unregistered protected artifact"
-if python3 scripts/coordination/tasklib.py --validate-integration coordination/tasks/TASK-002.yml main agent/agy/TASK-002 >/dev/null 2>&1; then
+if "$PYTHON" scripts/coordination/tasklib.py --validate-integration coordination/tasks/TASK-002.yml main agent/agy/TASK-002 >/dev/null 2>&1; then
   echo "PLAN.md chưa đăng ký trong scope thư mục vẫn được tích hợp" >&2; exit 1
 fi
 sed -i 's#x/#work/two/#' coordination/tasks/TASK-002.yml
