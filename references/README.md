@@ -15,7 +15,19 @@ Khi thêm tài liệu, bổ sung một dòng vào bảng sau để agent xác đ
 
 | Tên tài liệu | Đường dẫn | Loại | Nguồn | Phạm vi áp dụng |
 |---|---|---|---|---|
-| Chưa có | — | — | — | — |
+| Giới thiệu môn học CSC12106 | `course-materials/lectures/00_Welcome_23HTTT.pdf` · [Markdown](course-materials/notes/00-welcome-23httt.md) | Bài giảng | CSC12106, Lê Thị Nhàn | Mục tiêu môn, phạm vi đồ án và thông tin tổ chức lớp |
+| Nhập môn HCI | `course-materials/lectures/01_Introduction.pdf` · [Markdown](course-materials/notes/01-introduction.md) | Bài giảng | CSC12106, Lê Thị Nhàn | Khái niệm HCI, interaction design, UI/UX và HCI trong hệ thống thông tin |
+| Nền tảng HCI | `course-materials/lectures/02_Foundation.pdf` · [Markdown](course-materials/notes/02-foundation.md) | Bài giảng | CSC12106, Lê Thị Nhàn | Thiết bị tương tác, nhận thức, trí nhớ, lỗi và mô hình tương tác |
+| Tổng quan quy trình thiết kế | `course-materials/lectures/03_DesignProcess_Overview.pdf` · [Markdown](course-materials/notes/03-design-process-overview.md) | Bài giảng | CSC12106, Lê Thị Nhàn | Thiết kế lặp, nguyên lý usability và heuristic |
+| Kỹ thuật khám phá người dùng | `course-materials/lectures/04_UserDiscovery_Technique.pdf` · [Markdown](course-materials/notes/04-user-discovery-technique.md) | Bài giảng | CSC12106, Lê Thị Nhàn | Chọn người dùng, hỏi, quan sát, ethnography, shadowing và think-aloud |
+| Persona và Value Proposition | `course-materials/lectures/05_UserDiscovery_Persona_ValueProposition.pdf` · [Markdown](course-materials/notes/05-persona-value-proposition.md) | Bài giảng | CSC12106, Lê Thị Nhàn | Persona dựa trên nghiên cứu và Value Proposition Canvas |
+| Scenario và Sketching | `course-materials/lectures/06_Conception_Scenario_Sketching.pdf` · [Markdown](course-materials/notes/06-scenario-sketching.md) | Bài giảng | CSC12106, Lê Thị Nhàn | Scenario hiện tại/tương lai, mô hình nhiệm vụ và phác thảo giải pháp |
+| Storyboard | `course-materials/lectures/07_Conception_Storyboard.pdf` · [Markdown](course-materials/notes/07-storyboard.md) | Bài giảng | CSC12106, Lê Thị Nhàn | Storyboard, context of use, UI/usability/UX |
+| Hướng dẫn đồ án 2026 | `project-guidelines/original/Guide4Project_2026.pdf` · [Markdown](project-guidelines/notes/guide-project-2026.md) | Hướng dẫn đồ án | CSC12106, Lê Thị Nhàn | Nhóm, đề tài, mốc nộp, proposal và phương pháp |
+| Hướng dẫn OpenCode và vibecoding | `project-guidelines/original/Guide4Project_OpenCode.pdf` · [Markdown](project-guidelines/notes/guide-opencode.md) | Hướng dẫn công cụ | CSC12106, Lê Thị Nhàn | Agent/skill/rule/template/tool và vòng build–kiểm chứng |
+| Hướng dẫn wireframe/mockup | `project-guidelines/original/Guide4Project_Wireframe.pdf` · [Markdown](project-guidelines/notes/guide-wireframe.md) | Hướng dẫn đồ án | CSC12106, Lê Thị Nhàn | Khảo sát, đánh giá và chọn công cụ wireframe/mockup |
+| Rubric đồ án cuối kỳ | `project-guidelines/original/CSC12106_Rubric_Project_Final.xlsx` · [Markdown](project-guidelines/notes/rubric-project-final.md) | Rubric chính thức | CSC12106, Bộ môn Hệ thống Thông tin | 11 deliverable, trọng số và mức mô tả cuối kỳ |
+| Rubric proposal giữa kỳ | `project-guidelines/original/CSC12106_Rubric_Project_Proposal.xlsx` · [Markdown](project-guidelines/notes/rubric-project-proposal.md) | Rubric chính thức | CSC12106, Bộ môn Hệ thống Thông tin | Vấn đề–Ý tưởng–Quy trình và trình bày proposal |
 
 Nếu tài liệu có cả bản gốc và bản Markdown, liệt kê cả hai trên cùng một dòng và ưu tiên bản Markdown để tìm kiếm nội dung. Bản gốc được dùng để đối chiếu khi bản chuyển đổi thiếu hoặc không rõ nghĩa.
 

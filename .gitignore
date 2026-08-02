@@ -4,5 +4,8 @@
 *~
 *.bak
 *.tmp
-*.docx
+references/**/*.pdf
+references/**/*.xlsx
+references/**/*.docx
+references/**/*.pptx
 .worktrees/
