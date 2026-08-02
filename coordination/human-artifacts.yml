@@ -24,6 +24,6 @@ artifacts:
   - path: rules/quality-rules.md
     status: needs-interview
   - path: rules/style-rules.md
-    status: needs-interview
+    status: agent-draft
   - path: rules/task-rules.md
     status: needs-interview
