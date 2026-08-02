@@ -72,6 +72,34 @@ Vòng đời của các file này trải qua 4 trạng thái một chiều:
 
 > 📌 **Nguyên tắc hoạt động**: Con người giữ quyền chỉnh sửa nội dung các file Markdown trên ở giai đoạn `human-editing`. Agent luôn luôn đọc (view/search) các file này trước mỗi hành động để đảm bảo mọi mã nguồn, tài liệu và giao diện tạo ra đều tuân thủ chính xác 100% chỉ dẫn của con người.
 
+#### Sơ đồ Phân vùng Thư mục (Con người Chỉnh sửa vs. Adapter Kỹ thuật)
+
+```
+THƯ MỤC NƠI CON NGƯỜI ĐIỀU KHIỂN & CHỈNH SỬA (Human-Controlled Content)
+├── AGENTS.md                          <-- Quy tắc hệ thống tối cao
+├── rules/*.md                         <-- Bộ luật kiểm soát chất lượng (style, domain, quality, task, assessment)
+├── .agents/skills/<skill>/SKILL.md    <-- Quy trình thực thi kỹ năng dùng chung
+├── .agents/skills/<skill>/PLAN.md     <-- Lộ trình kế hoạch & Cổng duyệt dùng chung
+├── docs/proposal.md                   <-- Đề xuất nghiệp vụ chính thức
+└── templates/*.md                     <-- Các mẫu báo cáo & handoff
+
+THƯ MỤC CẤU HÌNH TỰ ĐỘNG ADAPTER (Hệ thống/Agent quản lý, Con người KHÔNG NÊN sửa tay)
+├── .agents/agents/<role>/agent.md     <-- Adapter cho Antigravity CLI (agy)
+├── .codex/config.toml & agents/*.toml <-- Adapter cho OpenAI Codex CLI
+├── .github/copilot-instructions.md    <-- Adapter cho GitHub Copilot
+└── opencode.json & .opencode/         <-- Adapter cho OpenCode AI
+```
+
+#### Phân biệt Chi tiết các Vùng Thư mục
+
+| Vùng Thư mục | Ai trực tiếp quản lý/sửa? | Chức năng & Cách Agent sử dụng |
+|---|---|---|
+| **`/AGENTS.md`** | **CON NGƯỜI** (ở `human-editing`) | **Luật tối cao chung**: Tất cả Agent (`agy`, `codex`, `copilot`, `opencode`) đọc file này trước tiên để tuân thủ thứ tự ưu tiên nguồn, ngôn ngữ tiếng Việt và ranh giới `write_scope`. |
+| **`.agents/skills/<skill>/`** | **CON NGƯỜI** (ở `human-editing`) | **Skill & Plan chung**: Chứa `SKILL.md` (hướng dẫn thực thi) và `PLAN.md` (kế hoạch & cổng duyệt). Mọi Adapter Config của 4 công cụ AI đều trỏ về đây để Agent thực thi đúng workflow. |
+| **`rules/*.md`** | **CON NGƯỜI** (ở `human-editing`) | **Bộ luật kiểm soát**: Định nghĩa các quy tắc kiểm thử, văn phong (giữ thuật ngữ tiếng Anh), nghiệp vụ petcare. Agent đọc để không vi phạm quy chuẩn. |
+| **`docs/proposal.md`** | **CON NGƯỜI** (ở `human-editing`) | **Nguồn sự thật nghiệp vụ**: Agent đối chiếu để giữ đúng 4 tính năng cốt lõi và không tự mở rộng scope. |
+| **`.codex/`, `.agents/agents/`, `.github/`, `.opencode/`** | **Cấu hình Adapter kỹ thuật** | **Cầu nối kỹ thuật**: Đã được thiết lập sẵn để tự động khai báo danh sách 6 subagent cho từng phần mềm AI. Con người không cần chỉnh sửa các file này trừ khi muốn thêm role mới. |
+
 ## Cấu trúc làm việc
 
 - `docs/`: proposal và rubric chính thức.
