@@ -1,0 +1,20 @@
+id: TASK-REF-001
+title: Tạo thư viện tài liệu tham khảo và quy tắc sử dụng cho agent
+status: in-progress
+owner_tool: codex
+owner_role: documentation-agent
+branch: agent/codex/TASK-REF-001
+worktree: .worktrees/codex-TASK-REF-001
+write_scope:
+  - references/
+  - AGENTS.md
+  - README.md
+  - coordination/tasks/TASK-REF-001.yml
+  - coordination/handoffs/TASK-REF-001.md
+dependencies: []
+acceptance_criteria:
+  - Cấu trúc references tồn tại sau khi clone mới và có hướng dẫn phân loại tài liệu
+  - Agent bắt buộc đọc mục lục và áp dụng tài liệu liên quan cho từng task
+  - Thứ tự ưu tiên giữa nguồn chuẩn và tài liệu tham khảo được quy định rõ
+  - README mô tả cách thêm tài liệu mới và các liên kết đều hợp lệ
+handoff: coordination/handoffs/TASK-REF-001.md

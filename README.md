@@ -9,6 +9,7 @@ Hệ thống hỗ trợ một hành trình liền mạch: chọn dịch vụ và
 ## Cấu trúc làm việc
 
 - `docs/`: proposal và rubric chính thức.
+- `references/`: mục lục hướng dẫn đồ án và kiến thức môn học dùng để hỗ trợ từng task.
 - `deliverables/`: sản phẩm theo bốn nhóm user research, interaction design, software product và final submission.
 - `agents/roles/`: sáu vai trò trung lập dùng chung.
 - `.agents/skills/`: bốn workflow chuẩn dùng chung.
@@ -18,10 +19,14 @@ Hệ thống hỗ trợ một hành trình liền mạch: chọn dịch vụ và
 
 ## Bắt đầu
 
-1. Đọc `AGENTS.md`, `coordination/PROTOCOL.md` và role được giao.
+1. Đọc `AGENTS.md`, `coordination/PROTOCOL.md`, [mục lục tài liệu tham khảo](references/README.md) và role được giao.
 2. Orchestrator nhận khóa bằng `scripts/coordination/claim-orchestrator`.
 3. Tạo một task từ `coordination/templates/task.yml`, kiểm tra bằng `scripts/coordination/validate-task`, rồi tạo worktree riêng.
 4. Worker commit và tạo handoff; reviewer ghi `approved` hoặc `changes-requested`.
 5. Orchestrator tích hợp task đã duyệt và dọn worktree.
 
 Không làm việc trực tiếp trên `main`; `.worktrees/` chỉ là vùng làm việc cục bộ và không được theo dõi bởi Git.
+
+## Thêm tài liệu tham khảo
+
+Đặt hướng dẫn đồ án trong `references/project-guidelines/` và kiến thức môn học trong `references/course-materials/`. Sau khi thêm tệp, cập nhật bảng mục lục trong `references/README.md` để agent biết nội dung, nguồn và task nào cần sử dụng tài liệu đó.
