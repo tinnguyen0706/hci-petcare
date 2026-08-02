@@ -33,6 +33,10 @@
 - Kết quả: đủ 13 ghi chú, 13 dòng mục lục và 13 metadata `Tệp gốc`.
 - Lệnh: `git check-ignore -v` cho một PDF và một XLSX trong `references/`; `git ls-files docs/proposal.pdf`.
 - Kết quả: nhị phân trong `references/` khớp quy tắc ignore; `docs/proposal.pdf` vẫn được theo dõi.
+- Lệnh sau changes-requested: `rg -n 'năm mức' references/project-guidelines/notes/rubric-project-final.md` và kiểm tra không còn cụm `bốn mức`/`4 mức` trong toàn bộ notes cùng mục lục.
+- Kết quả: ghi chú rubric cuối kỳ nêu đủ năm mức `0`, `0,25`, `0,5`, `0,75`, `1`; không còn mô tả sai số mức.
+- Lệnh sau changes-requested: `scripts/coordination/validate-task coordination/tasks/TASK-KNOW-001.yml`; `git diff --check`.
+- Kết quả: task hợp lệ và không có lỗi whitespace.
 
 ## Vấn đề còn lại
 
@@ -40,9 +44,10 @@
 
 ## Commit
 
-- SHA: `1e34e88a06b46055d0e273302750d527c66bc231`
+- SHA implementation ban đầu: `1e34e88a06b46055d0e273302750d527c66bc231`
+- SHA sửa changes-requested: `6c1e2de13e46151d3b9b17394ced7aa5ffd55ce2`
 
 ## Review
 
 - Kết luận: `pending`
-- Ghi chú: chưa review.
+- Ghi chú: Đã sửa yêu cầu review về đủ năm mức rubric trong commit `6c1e2de13e46151d3b9b17394ced7aa5ffd55ce2`; chờ reviewer kiểm tra lại.
