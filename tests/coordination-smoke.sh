@@ -8,6 +8,9 @@ trap 'rm -rf "$fixture"' EXIT
 mkdir -p "$fixture/scripts" "$fixture/coordination/tasks" "$fixture/coordination/handoffs" "$fixture/coordination/templates" "$fixture/.worktrees"
 cp -R "$source_root/scripts/coordination" "$fixture/scripts/"
 cp "$source_root/coordination/human-artifacts.yml" "$fixture/coordination/human-artifacts.yml"
+# Fixture luôn bắt đầu vòng đời AGENTS từ needs-interview, không phụ thuộc
+# trạng thái thật của artifact trong repository nguồn.
+sed -i '/path: AGENTS.md/{n;s/status: .*/status: needs-interview/;}' "$fixture/coordination/human-artifacts.yml"
 cp "$source_root/coordination/templates/task.yml" "$fixture/coordination/templates/task.yml"
 cp "$source_root/coordination/templates/handoff.md" "$fixture/coordination/templates/handoff.md"
 cd "$fixture"

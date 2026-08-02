@@ -1,0 +1,18 @@
+id: TASK-AUTH-003
+title: Tách smoke test khỏi trạng thái artifact thực tế
+status: in-progress
+owner_tool: codex
+owner_role: software-implementer
+branch: agent/codex/TASK-AUTH-003
+worktree: .worktrees/codex-TASK-AUTH-003
+write_scope:
+  - tests/coordination-smoke.sh
+  - coordination/tasks/TASK-AUTH-003.yml
+  - coordination/handoffs/TASK-AUTH-003.md
+dependencies:
+  - TASK-AUTH-001
+acceptance_criteria:
+  - Fixture smoke test tự đặt AGENTS.md về needs-interview bất kể registry dự án đang ở trạng thái nào
+  - Ma trận lifecycle tiếp tục kiểm tra đủ agent-draft human-editing locked reverse skip và integration guard
+  - Smoke test đạt khi registry nguồn có AGENTS.md ở agent-draft hoặc human-editing
+handoff: coordination/handoffs/TASK-AUTH-003.md
