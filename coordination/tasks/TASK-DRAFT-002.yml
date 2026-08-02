@@ -1,6 +1,6 @@
 id: TASK-DRAFT-002
 title: Hoàn thiện khung nghiên cứu với dữ liệu ẩn danh trong Git
-status: in-progress
+status: review
 owner_tool: codex
 owner_role: user-researcher
 branch: agent/codex/TASK-DRAFT-002
