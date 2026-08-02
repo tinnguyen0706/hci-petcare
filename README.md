@@ -49,6 +49,29 @@ Vòng đời của các file này trải qua 4 trạng thái một chiều:
 
 > **Tóm lại**: Sau khi Agent tạo xong bản nháp (`agent-draft`) và được tích hợp, mọi việc đọc, chỉnh sửa nội dung chi tiết của `AGENTS.md`, `PLAN.md`, `SKILL.md`, các file trong `rules/` và `templates/` **hoàn toàn thuộc về CON NGƯỜI** (`human-editing`). Agent không được phép tự ý đè/sửa các file này.
 
+#### Chi tiết các File Markdown do Con người trực tiếp chỉnh sửa (`human-editing`)
+
+| Thư mục | Các file Markdown Con người chỉnh sửa | Mục đích chỉnh sửa của Con người |
+|---|---|---|
+| Gốc (`/`) | **`AGENTS.md`** | Chỉnh sửa quy tắc chung, nguyên tắc làm việc, thứ tự ưu tiên nguồn và bổ sung lưu ý từ người dùng. |
+| `.agents/skills/<skill>/` | **`SKILL.md`** (trong 4 skill: `research-users`, `design-interactions`, `build-prototype`, `prepare-final-delivery`) | Chỉnh sửa hướng dẫn quy trình từng bước, phương pháp thực hiện nhiệm vụ của từng kỹ năng. |
+| `.agents/skills/<skill>/` | **`PLAN.md`** (kế hoạch thực hiện từng skill) | Chỉnh sửa kế hoạch hành động, phạm vi công việc và các mốc chốt của skill đó. |
+| `rules/` | **`assessment-rules.md`**, **`domain-rules.md`**, **`quality-rules.md`**, **`style-rules.md`**, **`task-rules.md`** | Điều chỉnh các quy định về tiêu chí đánh giá, nghiệp vụ thú cưng, chất lượng kiểm thử, văn phong và quy định task. |
+| `templates/` | Mọi tệp `.md` khuôn mẫu | Chỉnh sửa định dạng khung mẫu cho báo cáo, handoff, session notes. |
+| `docs/` | **`proposal.md`** | Hoàn thiện nội dung nghiệp vụ Vấn đề - Ý tưởng - Quy trình. |
+
+#### Cách các Agent dựa vào các File Markdown trên để làm việc
+
+| File Markdown | Cách Agent đọc & tuân thủ khi thực thi Task |
+|---|---|
+| **`AGENTS.md`** | **Quy tắc bắt buộc hàng đầu**: Tất cả Agent đều đọc file này trước tiên để biết ranh giới quyền hạn, thứ tự ưu tiên nguồn, ngôn ngữ (tiếng Việt), và không vi phạm `write_scope`. |
+| **`SKILL.md` & `PLAN.md`** | **Hướng dẫn thực thi kỹ năng**: Khi Agent đảm nhận vai trò tương ứng (ví dụ `user-researcher`), Agent sẽ đọc `SKILL.md` để làm đúng các bước và đọc `PLAN.md` để bám sát kế hoạch đã duyệt. |
+| **`rules/*.md`** | **Bộ lọc kiểm tra chất lượng**: Agent áp dụng `domain-rules` để không làm sai nghiệp vụ, `style-rules` để không dịch thuật ngữ tiếng Anh, `quality-rules` để chạy kiểm thử thật, `task-rules` để tuân thủ branch/worktree. |
+| **`templates/*.md`** | **Khuôn mẫu xuất đầu ra**: Agent sao chép đúng định dạng mẫu khi lập `handoff.md`, `session-notes-Pxx.md`, v.v. |
+| **`docs/proposal.md`** | **Nguồn sự thật nghiệp vụ**: Agent đối chiếu để giữ đúng 4 tính năng cốt lõi (xác nhận tức thì, yêu cầu đặc biệt, mốc tiến độ real-time, lịch sử) và không tự ý thêm backend/tính năng ngoài scope. |
+
+> 📌 **Nguyên tắc hoạt động**: Con người giữ quyền chỉnh sửa nội dung các file Markdown trên ở giai đoạn `human-editing`. Agent luôn luôn đọc (view/search) các file này trước mỗi hành động để đảm bảo mọi mã nguồn, tài liệu và giao diện tạo ra đều tuân thủ chính xác 100% chỉ dẫn của con người.
+
 ## Cấu trúc làm việc
 
 - `docs/`: proposal và rubric chính thức.
