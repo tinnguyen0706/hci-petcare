@@ -1,6 +1,6 @@
 id: TASK-AUTH-002
 title: Ghi nhận phỏng vấn AGENTS và mở trạng thái tạo draft
-status: review
+status: done
 owner_tool: codex
 owner_role: documentation-agent
 branch: agent/codex/TASK-AUTH-002
