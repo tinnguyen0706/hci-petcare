@@ -37,7 +37,7 @@ Chỉ dùng lộ trình sau khi con người đã duyệt gói thiết kế tron
 
 1. Dùng React + TypeScript với Vite. Dùng Testing Library/Vitest cho component và integration test; dùng Playwright cho luồng trình duyệt, responsive và visual comparison. Ghim dependency bằng lockfile phù hợp khi task hiện thực được giao.
 2. Định nghĩa fixture cục bộ có ID, thời điểm, khung giờ, hồ sơ, yêu cầu, mốc tiến độ và lịch sử ổn định. Không phụ thuộc đồng hồ ngẫu nhiên, dữ liệu mạng hoặc thứ tự không xác định trong kiểm thử.
-3. Giữ state trong trình duyệt, chẳng hạn React state và storage cục bộ, với một thao tác reset rõ ràng để khôi phục fixture gốc cho demo và kiểm thử.
+3. Chỉ giữ state trong bộ nhớ của phiên chạy (ví dụ React state); reload trang hoặc thao tác Reset phải khôi phục fixture gốc. Không dùng `localStorage`, `sessionStorage`, IndexedDB hay bất kỳ cơ chế persistence qua phiên nào.
 4. Không tạo backend, không gọi live API và không giả vờ đồng bộ ngoài thiết bị. Mọi thay đổi tiến độ/thông báo là mô phỏng cục bộ, phải được diễn đạt là dữ liệu prototype; không tuyên bố cập nhật “real-time” thật.
 5. Thiết lập mobile-first, semantic landmarks, heading/label/control đúng vai trò, thứ tự focus dự kiến và vùng thông báo trạng thái dễ tiếp cận ngay từ cấu trúc nền.
 
