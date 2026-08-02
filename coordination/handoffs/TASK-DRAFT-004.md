@@ -19,7 +19,7 @@
 ## Kiểm thử
 
 - Lệnh: `python -X utf8 scripts/coordination/tasklib.py coordination/tasks/TASK-DRAFT-004.yml`.
-- Kết quả: `OK` ở `claimed` và `in-progress`; sẽ chạy lại ở revision review-ready.
+- Kết quả: `OK` ở `claimed`, `in-progress` và revision `review`.
 - Lệnh: `python -X utf8 C:/Users/Asus/.codex/skills/.system/skill-creator/scripts/quick_validate.py .agents/skills/build-prototype`.
 - Kết quả: `Skill is valid!`.
 - Lệnh: PowerShell `Test-Path` cho đích tương đối `PLAN.md`, đếm đúng một `[PLAN.md](PLAN.md)` và so sánh bốn dòng frontmatter với `main`.
@@ -28,6 +28,10 @@
 - Kết quả: mọi nhóm yêu cầu đều hiện diện; không có tuyên bố rằng mã sản phẩm hoặc kiểm thử sản phẩm đã hoàn tất.
 - Lệnh: `git diff --cached --check` và `git diff --cached --name-only` trước commit implementation.
 - Kết quả: không có lỗi whitespace; danh sách chỉ gồm đúng bốn tệp trong `write_scope`.
+- Lệnh: `python -X utf8 scripts/coordination/tasklib.py --validate-integration coordination/tasks/TASK-DRAFT-004.yml main HEAD`.
+- Kết quả: đạt; gate xác nhận đúng hai protected artifact ở `agent-draft` và toàn bộ diff nằm trong `write_scope`.
+- Lệnh: `git diff --check main...HEAD` và `git diff --name-only main...HEAD`.
+- Kết quả: không có lỗi whitespace; danh sách diff chỉ gồm đúng bốn tệp trong `write_scope`.
 - Lệnh: `C:/Program Files/Git/bin/bash.exe -lc './tests/coordination-smoke.sh'`.
 - Kết quả: Git Bash chạy được nhưng smoke test dừng ở fixture lifecycle vì script giả định `AGENTS.md` đang `needs-interview`, trong khi registry hiện hành là `human-editing`; validator báo `artifact AGENTS.md đang ở trạng thái human-editing, không phải agent-draft`. Không sửa test ngoài `write_scope`; các validator trực tiếp liên quan task được chạy riêng.
 
@@ -46,7 +50,7 @@
 
 ## Commit
 
-- SHA: `PENDING`
+- SHA: `c74a2105bc88b0a31f52adbfe88dca6e4cd3356d`
 
 ## Review
 
