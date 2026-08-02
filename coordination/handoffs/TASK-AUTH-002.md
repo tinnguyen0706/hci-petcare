@@ -27,5 +27,5 @@
 
 ## Review
 
-- Kết luận: `pending`
-- Ghi chú: chưa review.
+- Kết luận: `approved`
+- Ghi chú: Diff `main...agent/codex/TASK-AUTH-002` chỉ đổi registry và metadata task/handoff; `AGENTS.md` chuyển đúng một bước `needs-interview` → `agent-draft`, không artifact được bảo vệ nào bị sửa. Handoff ghi đủ ba quyết định của người dùng: agent tự hoàn thành task; protocol áp dụng đầy đủ; thứ tự ưu tiên yêu cầu người dùng → rubric/proposal → hướng dẫn/bài giảng. `validate-task`, kiểm tra integration `main...branch` và `git diff --check` đều đạt.
