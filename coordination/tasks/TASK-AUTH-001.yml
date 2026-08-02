@@ -1,6 +1,6 @@
 id: TASK-AUTH-001
 title: Bảo vệ vòng đời artifact được tạo qua hỏi đáp người dùng
-status: in-progress
+status: review
 owner_tool: codex
 owner_role: software-implementer
 branch: agent/codex/TASK-AUTH-001
