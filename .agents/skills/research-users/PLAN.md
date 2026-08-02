@@ -32,7 +32,6 @@ Sau Cổng C, agent đề xuất persona dựa trên mẫu hành vi/mục tiêu,
 - Không commit tên/identifier, thông tin liên hệ, bảng nối danh tính–Pxx, chữ ký, withdrawal log nhận diện được, media, screenshot, dữ liệu nhạy cảm hoặc dữ liệu về cơ sở/người thứ ba.
 - Trước phiên, phải báo rõ repository có thể công khai. Media mặc định không thu; nếu thật sự cần thì xin consent riêng và chỉ lưu tạm ngoài Git trong nơi riêng tư.
 - Khi rút đúng hạn, xóa dữ liệu tương ứng khỏi current tree và nguồn tạm ngoài Git, rồi chạy lại mọi derivative/synthesis. Không hứa xóa khỏi lịch sử Git; tránh commit dữ liệu chưa đủ điều kiện ngay từ đầu.
-- `deliverables/01-user-research/consent-script.md` và một số wording quản trị dữ liệu hiện chưa nói rõ repository có thể công khai hoặc giới hạn xóa lịch sử Git. Chúng ngoài write scope của task này; trước thực địa, con người cần đồng bộ giao thức với policy trên. Cho đến lúc đó, Cổng A chưa đạt.
 
 ## Nguồn quyết định
 
