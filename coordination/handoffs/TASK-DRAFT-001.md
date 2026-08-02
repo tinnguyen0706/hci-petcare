@@ -44,5 +44,5 @@
 
 ## Review
 
-- Kết luận: `pending`
-- Ghi chú: chưa review.
+- Kết luận: `approved`
+- Ghi chú: Diff `main...agent/codex/TASK-DRAFT-001` chỉ sửa `AGENTS.md` và thêm metadata task/handoff, đều nằm đúng `write_scope`; không sửa registry hoặc artifact được bảo vệ nào khác. Bản nháp giữ đúng phạm vi chủ nuôi thú cưng, tiếng Việt, tính trung thực, cấu trúc proposal, mobile-first/Figma/React TypeScript và ràng buộc không tự thêm backend, đổi công nghệ hay mở rộng phạm vi. Quyền tự chủ chỉ áp dụng cho task hợp lệ trong scope/quyền đã giao; protocol vẫn yêu cầu đầy đủ owner, branch, worktree, handoff, review, tích hợp và khóa orchestrator. Thứ tự nguồn đúng yêu cầu người dùng → rubric/proposal → hướng dẫn đồ án → bài giảng; reference routing và lifecycle `needs-interview → agent-draft → human-editing → locked` được mô tả nhất quán, không tự tuyên bố đã chốt. `validate-task`, cổng `--validate-integration`, kiểm tra SHA, `git diff --check` và diff phạm vi đều đạt.
