@@ -26,6 +26,29 @@ Hệ thống tuân thủ mô hình cộng tác **Human-in-the-Loop**. Agent đó
 | 10 | **Báo cáo** | Đọc soát, hoàn thiện văn phong, duyệt và xuất báo cáo cuối kỳ. | Tổng hợp toàn bộ tài liệu từ `01` đến `03` thành báo cáo Markdown hoàn chỉnh (>6 trang). |
 | 11 | **Team work** | Phân công giữa 3 thành viên, thực địa, ký duyệt các task & artifact. | Đóng vai các agent (Orchestrator, Researcher, Designer, Implementer, Reviewer) theo đúng `PROTOCOL.md`. |
 
+### Nhiệm vụ của Con người đối với Protected Artifacts
+
+Theo `AGENTS.md` (Mục 6) và `coordination/PROTOCOL.md`, các tài liệu sau là **Protected Artifacts** (Artifacts được bảo vệ):
+1. `AGENTS.md` ở thư mục gốc.
+2. Mọi tệp `PLAN.md` và `SKILL.md` (trong `.agents/skills/` hoặc bất kỳ đâu).
+3. Mọi tệp Markdown bên dưới `rules/` (các quy tắc hệ thống).
+4. Mọi tệp Markdown bên dưới `templates/`.
+
+#### Vòng đời Artifact & Nhiệm vụ của Con người
+
+Vòng đời của các file này trải qua 4 trạng thái một chiều:
+
+`needs-interview` ➔ `agent-draft` ➔ `human-editing` ➔ `locked`
+
+| Trạng thái | Nhiệm vụ của Con người (Human) | Hành vi của Agent (AI) |
+|---|---|---|
+| **1. `needs-interview`** | Trả lời phỏng vấn / đưa ra các quyết định thiết kế ban đầu khi Agent hỏi. | Orchestrator đặt câu hỏi, ghi nhận quyết định của người dùng và tạo task giao draft. |
+| **2. `agent-draft`** | Xem bản nháp do Agent khởi tạo, duyệt PR tích hợp. | Worker tạo bản nháp đầu tiên đúng theo chỉ đạo của người dùng. |
+| **3. `human-editing`** | **Nhiệm vụ chính của Con người**: Trực tiếp đọc, chỉnh sửa, bổ sung và hoàn thiện nội dung file Markdown theo ý mình. | **Agent CHỈ ĐƯỢC ĐỌC VÀ GÓP Ý**, tuyệt đối không được tự ý sửa nội dung file. |
+| **4. `locked`** | Xác nhận chốt file hoàn toàn. Khi cần thay đổi, người dùng chỉ đạo để mở lại quy trình. | Agent chỉ đọc tệp để tuân thủ quy tắc, không được tự mở khóa hay chuyển lùi trạng thái. |
+
+> **Tóm lại**: Sau khi Agent tạo xong bản nháp (`agent-draft`) và được tích hợp, mọi việc đọc, chỉnh sửa nội dung chi tiết của `AGENTS.md`, `PLAN.md`, `SKILL.md`, các file trong `rules/` và `templates/` **hoàn toàn thuộc về CON NGƯỜI** (`human-editing`). Agent không được phép tự ý đè/sửa các file này.
+
 ## Cấu trúc làm việc
 
 - `docs/`: proposal và rubric chính thức.
