@@ -1,0 +1,29 @@
+artifacts:
+  - path: AGENTS.md
+    status: needs-interview
+  - path: .agents/skills/build-prototype/SKILL.md
+    status: needs-interview
+  - path: .agents/skills/design-interactions/SKILL.md
+    status: needs-interview
+  - path: .agents/skills/prepare-final-delivery/SKILL.md
+    status: needs-interview
+  - path: .agents/skills/research-users/SKILL.md
+    status: needs-interview
+  - path: .agents/skills/build-prototype/PLAN.md
+    status: needs-interview
+  - path: .agents/skills/design-interactions/PLAN.md
+    status: needs-interview
+  - path: .agents/skills/prepare-final-delivery/PLAN.md
+    status: needs-interview
+  - path: .agents/skills/research-users/PLAN.md
+    status: needs-interview
+  - path: rules/assessment-rules.md
+    status: needs-interview
+  - path: rules/domain-rules.md
+    status: needs-interview
+  - path: rules/quality-rules.md
+    status: needs-interview
+  - path: rules/style-rules.md
+    status: needs-interview
+  - path: rules/task-rules.md
+    status: needs-interview
