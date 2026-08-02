@@ -6,7 +6,7 @@
 
 ## Cấu trúc và trọng số
 
-Rubric có bốn mức mô tả tương ứng 0,25; 0,5; 0,75; 1 của trọng số từng mục:
+Rubric có năm mức mô tả tương ứng `0`, `0,25`, `0,5`, `0,75` và `1` của trọng số từng mục. Mỗi deliverable đều có mô tả riêng cho cả năm mức: mức `0` thể hiện thiếu hoặc không đạt yêu cầu nền tảng; các mức `0,25` đến `0,75` thể hiện mức hoàn thiện tăng dần; mức `1` thể hiện dấu hiệu đầy đủ nhất được tóm lược trong bảng dưới đây.
 
 | Mục | Trọng số | Dấu hiệu mức đầy đủ theo rubric |
 |---|---:|---|
