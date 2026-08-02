@@ -9,7 +9,7 @@
 - Quy định Figma là nguồn chỉnh sửa được, phải ghi link/ngày hoặc phiên bản và export khớp bản duyệt; cấm commit media hoặc dữ liệu nhận diện participant.
 - Trong `SKILL.md`, chỉ thêm một chỉ dẫn bắt buộc đọc `[PLAN.md](PLAN.md)`; giữ nguyên frontmatter và nội dung nghiệp vụ còn lại.
 - PLAN chỉ mô tả lộ trình; task này không tạo hoặc tuyên bố đã có thiết kế, kết quả review, usability test hay deliverable đạt rubric.
-- Đi đúng trạng thái `ready → claimed → in-progress`; sẽ chuyển `review` sau commit implementation và kiểm tra cuối.
+- Đi đúng trạng thái `ready → claimed → in-progress → review`; worker không tự review.
 
 ## Tệp đã sửa
 
@@ -21,7 +21,7 @@
 ## Kiểm thử
 
 - Lệnh: `python -X utf8 scripts/coordination/tasklib.py coordination/tasks/TASK-DRAFT-003.yml`.
-- Kết quả: `OK` sau từng bước `claimed` và `in-progress`; sẽ chạy lại ở commit review-ready.
+- Kết quả: `OK` sau từng bước `claimed`, `in-progress` và `review`.
 - Lệnh: `python -X utf8 C:\Users\Asus\.codex\skills\.system\skill-creator\scripts\quick_validate.py .agents\skills\design-interactions`.
 - Kết quả: `Skill is valid!`.
 - Lệnh: PowerShell kiểm tra mọi liên kết Markdown tương đối trong `SKILL.md` và `PLAN.md` bằng `Test-Path`.
@@ -31,7 +31,7 @@
 - Lệnh: `bash tests/coordination-smoke.sh`.
 - Kết quả: không thể khởi chạy trong môi trường Windows hiện tại do `Bash/Service/CreateInstance/E_ACCESSDENIED`; tasklib Python trực tiếp vẫn đạt.
 - Lệnh: `python -X utf8 scripts/coordination/tasklib.py --validate-integration coordination/tasks/TASK-DRAFT-003.yml main HEAD`; `git diff --check main...HEAD`; `git diff --name-only main...HEAD`.
-- Kết quả: chờ commit implementation để kiểm tra diff thật.
+- Kết quả: đạt trên commit implementation `4000c5d3c388abab83a1b79f1926ae458b277462`; integration gate liệt kê đúng hai protected artifact, không báo lỗi; diff không có lỗi whitespace và chỉ gồm đúng bốn tệp trong `write_scope`.
 
 ## Tài liệu đã ảnh hưởng
 
@@ -49,7 +49,7 @@
 
 ## Commit
 
-- SHA: sẽ cập nhật sau commit implementation.
+- SHA: `4000c5d3c388abab83a1b79f1926ae458b277462`
 
 ## Review
 
