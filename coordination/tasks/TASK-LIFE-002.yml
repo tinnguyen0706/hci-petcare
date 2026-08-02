@@ -1,6 +1,6 @@
 id: TASK-LIFE-002
 title: Mở lifecycle cho ba cặp PLAN và SKILL còn thiếu
-status: review
+status: done
 owner_tool: codex
 owner_role: orchestrator
 branch: agent/codex/TASK-LIFE-002

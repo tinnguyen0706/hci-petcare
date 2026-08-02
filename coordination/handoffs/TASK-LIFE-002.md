@@ -82,7 +82,7 @@
 
 ## Commit
 
-- SHA implementation: `0a9c14d914145ae606523409617869d264fef917`
+- SHA: `0a9c14d914145ae606523409617869d264fef917`
 
 ## Review
 
