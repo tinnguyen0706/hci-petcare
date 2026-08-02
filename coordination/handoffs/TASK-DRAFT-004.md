@@ -4,10 +4,17 @@
 
 - Tạo `PLAN.md` như một lộ trình tái sử dụng có cảnh báo trạng thái, điều kiện kích hoạt, đầu vào/đầu ra, bốn cổng thực hiện, điều kiện dừng/thất bại và nguồn quyết định.
 - Chốt cổng Figma đã duyệt/ghim cùng acceptance matrix; toolchain React + TypeScript/Vite, Testing Library/Vitest và Playwright; fixture cục bộ xác định, state trong trình duyệt có reset và giới hạn không backend/live API/tuyên bố “real-time” thật.
+- Sau feedback review, khóa state vào bộ nhớ phiên chạy: reload hoặc Reset khôi phục fixture gốc; cấm `localStorage`, `sessionStorage`, IndexedDB và persistence qua phiên.
 - Bao phủ trọn bốn năng lực của proposal, trạng thái tải/rỗng/lỗi, accessibility, responsive mobile-first và cổng kết quả thật cho typecheck/test/build/visual comparison cùng human acceptance.
 - Chỉ thêm một câu bắt buộc đọc `[PLAN.md](PLAN.md)` vào `SKILL.md`; giữ nguyên frontmatter và toàn bộ nội dung nghiệp vụ cũ.
 - Không scaffold hoặc sửa mã sản phẩm; PLAN không được trình bày như bằng chứng rằng phần mềm hay kiểm thử đã hoàn tất.
 - Đi đúng chuỗi trạng thái `ready → claimed → in-progress → review`; worker không tự review.
+
+## Xử lý review
+
+- Reviewer yêu cầu bỏ khả năng hiểu “storage cục bộ” là lưu bền tại commit `2b045bc204735bd781d66f01dbea279897e21242` và trả task về `in-progress`.
+- Đã thay đúng Cổng B bước 3 trong PLAN, không đổi phần khác của PLAN hoặc `SKILL.md`: chỉ dùng state trong bộ nhớ phiên chạy (ví dụ React state), reload/Reset trả fixture về gốc và cấm mọi persistence qua phiên.
+- Commit sửa nội dung: `6b66b60ed5363da7f46613c074fe85c62cd4babf`.
 
 ## Tệp đã sửa
 
@@ -34,6 +41,8 @@
 - Kết quả: không có lỗi whitespace; danh sách diff chỉ gồm đúng bốn tệp trong `write_scope`.
 - Lệnh: `C:/Program Files/Git/bin/bash.exe -lc './tests/coordination-smoke.sh'`.
 - Kết quả: Git Bash chạy được nhưng smoke test dừng ở fixture lifecycle vì script giả định `AGENTS.md` đang `needs-interview`, trong khi registry hiện hành là `human-editing`; validator báo `artifact AGENTS.md đang ở trạng thái human-editing, không phải agent-draft`. Không sửa test ngoài `write_scope`; các validator trực tiếp liên quan task được chạy riêng.
+- Lệnh tái kiểm sau sửa: tasklib; integration gate `main...HEAD`; `quick_validate.py`; kiểm tra link/frontmatter; `git diff --check main...HEAD` và `git diff --name-only main...HEAD`.
+- Kết quả tái kiểm: tasklib `OK` ở `in-progress` và revision `review`; integration gate đạt và xác nhận đúng hai protected artifact; skill hợp lệ; link phân giải đúng một lần và frontmatter không đổi; diff không có lỗi whitespace và vẫn chỉ gồm bốn tệp trong `write_scope`.
 
 ## Tài liệu đã ảnh hưởng
 
@@ -50,11 +59,9 @@
 
 ## Commit
 
-- SHA: `c74a2105bc88b0a31f52adbfe88dca6e4cd3356d`
+- SHA: `6b66b60ed5363da7f46613c074fe85c62cd4babf`
 
 ## Review
 
-- Kết luận: `changes-requested`
-- Mục cần sửa: tại Cổng B bước 3, bỏ khả năng dùng “storage cục bộ”. Cụm này cho phép cơ chế lưu bền như `localStorage`, trái quyết định người dùng chọn fixture cục bộ xác định và state trong bộ nhớ trình duyệt thay cho phương án `localStorage`. Khóa hướng dẫn vào React/in-memory browser state có thao tác reset; không cho phép `localStorage`, `sessionStorage`, IndexedDB hoặc cơ chế persistence tương đương nếu chưa có quyết định mới của người dùng.
-- Phạm vi review lại: sau khi sửa, xác minh `PLAN.md` nhất quán ở phần Đầu ra, Cổng B và điều kiện dừng; giữ nguyên các yêu cầu đã đạt về Figma/acceptance matrix, toolchain, bốn năng lực, accessibility/responsive, kết quả kiểm thử thật và human acceptance.
-- Ngoại lệ không đổi: `tests/coordination-smoke.sh` dừng do fixture giả định lifecycle cũ của `AGENTS.md`; lỗi đã được tái hiện và không phải nguyên nhân của kết luận `changes-requested` này.
+- Kết luận: `pending`
+- Ghi chú: feedback tại commit `2b045bc204735bd781d66f01dbea279897e21242` đã được xử lý; chờ reviewer độc lập re-review, worker không tự duyệt.
