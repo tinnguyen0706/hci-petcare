@@ -53,7 +53,7 @@
 
 ## Commit
 
-- SHA implementation: `666f2b62b9e2faa1906422a5efe31349fe03e3cc`
+- SHA: `666f2b62b9e2faa1906422a5efe31349fe03e3cc`
 
 ## Review
 
