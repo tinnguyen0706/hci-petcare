@@ -51,5 +51,5 @@
 
 ## Review
 
-- Kết luận: `pending`
-- Ghi chú: chưa review; worker không tự review.
+- Kết luận: `approved`
+- Ghi chú: Review độc lập xác nhận diff `main...HEAD` chỉ gồm đúng 8 đường dẫn trong `write_scope`; sáu tài liệu thực địa nhất quán với PLAN/SKILL/rules về repository có thể công khai, danh sách Markdown ẩn danh được phép, dữ liệu bị cấm, media ngoài Git có consent riêng và withdrawal khỏi current tree kèm chạy lại mọi derivative mà không hứa xóa lịch sử Git. Sàng lọc và consent đều có cổng đồng ý rõ trước phiên; toàn bộ `deliverables/01-user-research/` không có dữ liệu người tham gia hay finding bị bịa. Task validator, integration gate, `git diff --check`, link check và privacy/policy scan đều đạt; coordination smoke Bash không chạy được do giới hạn Windows đã được handoff ghi rõ và không làm thay đổi kết luận.
