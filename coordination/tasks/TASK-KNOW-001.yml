@@ -1,0 +1,22 @@
+id: TASK-KNOW-001
+title: Chuyển tài liệu môn học thành ghi chú Markdown có mục lục
+status: review
+owner_tool: codex
+owner_role: documentation-agent
+branch: agent/codex/TASK-KNOW-001
+worktree: .worktrees/codex-TASK-KNOW-001
+write_scope:
+  - references/README.md
+  - references/course-materials/notes/
+  - references/project-guidelines/notes/
+  - .gitignore
+  - coordination/tasks/TASK-KNOW-001.yml
+  - coordination/handoffs/TASK-KNOW-001.md
+dependencies:
+  - TASK-REF-001
+acceptance_criteria:
+  - Mỗi PDF và XLSX mới có một ghi chú Markdown tiếng Việt tương ứng và truy vết được tới bản gốc
+  - Mục lục references liệt kê đủ 13 tài liệu cùng phạm vi áp dụng
+  - Nội dung ghi chú phân biệt yêu cầu chính thức với kiến thức tham khảo và không bịa dữ liệu
+  - Tài liệu nhị phân trong references được giữ cục bộ và không bị Git theo dõi
+handoff: coordination/handoffs/TASK-KNOW-001.md
