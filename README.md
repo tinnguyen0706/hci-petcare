@@ -19,11 +19,13 @@ Hệ thống hỗ trợ một hành trình liền mạch: chọn dịch vụ và
 
 ## Bắt đầu
 
+> **Yêu cầu**: [Git](https://git-scm.com/), [Python 3.10+](https://www.python.org/) và [GitHub CLI (`gh`)](https://cli.github.com/). Sau khi cài `gh`, chạy `gh auth login` để xác thực.
+
 1. Đọc `AGENTS.md`, `coordination/PROTOCOL.md`, [mục lục tài liệu tham khảo](references/README.md) và role được giao.
 2. Orchestrator nhận khóa bằng `scripts/coordination/claim-orchestrator`.
 3. Tạo một task từ `coordination/templates/task.yml`, kiểm tra bằng `scripts/coordination/validate-task`, rồi tạo worktree riêng.
 4. Worker commit và tạo handoff; reviewer ghi `approved` hoặc `changes-requested`.
-5. Orchestrator tích hợp task đã duyệt và dọn worktree.
+5. Orchestrator tích hợp task đã duyệt qua Pull Request và dọn worktree.
 
 Không làm việc trực tiếp trên `main`; `.worktrees/` chỉ là vùng làm việc cục bộ và không được theo dõi bởi Git.
 
