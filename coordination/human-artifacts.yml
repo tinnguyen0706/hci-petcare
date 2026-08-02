@@ -6,7 +6,7 @@ artifacts:
   - path: .agents/skills/design-interactions/SKILL.md
     status: agent-draft
   - path: .agents/skills/prepare-final-delivery/SKILL.md
-    status: agent-draft
+    status: human-editing
   - path: .agents/skills/research-users/SKILL.md
     status: human-editing
   - path: .agents/skills/build-prototype/PLAN.md
@@ -14,7 +14,7 @@ artifacts:
   - path: .agents/skills/design-interactions/PLAN.md
     status: agent-draft
   - path: .agents/skills/prepare-final-delivery/PLAN.md
-    status: agent-draft
+    status: human-editing
   - path: .agents/skills/research-users/PLAN.md
     status: human-editing
   - path: rules/assessment-rules.md
