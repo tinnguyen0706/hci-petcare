@@ -1,6 +1,6 @@
 id: TASK-DRAFT-005
 title: Tạo PLAN chuẩn bị bộ nộp cuối kỳ và liên kết skill
-status: ready
+status: review
 owner_tool: codex
 owner_role: documentation-agent
 branch: agent/codex/TASK-DRAFT-005
