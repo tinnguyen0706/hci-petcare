@@ -60,6 +60,8 @@
 - Kết quả: `OK`; diff thật chỉ gồm ba tệp metadata và handoff trong `write_scope`, không có protected artifact bị sửa.
 - Lệnh: `git diff --check main...HEAD` và `git diff --name-only main...HEAD`.
 - Kết quả: không có lỗi whitespace; danh sách diff chỉ có đúng ba tệp trong `write_scope`.
+- Lệnh: `bash tests/coordination-smoke.sh`.
+- Kết quả: không thể khởi chạy trong môi trường Windows hiện tại do `Bash/Service/CreateInstance/E_ACCESSDENIED`; các validator Python trực tiếp và integration gate liên quan ở trên đều đạt.
 
 ## Tài liệu đã ảnh hưởng
 
@@ -84,5 +86,7 @@
 
 ## Review
 
-- Kết luận: `pending`
-- Ghi chú: chờ reviewer độc lập; worker không tự review task.
+- Kết luận: `approved`
+- Bằng chứng: diff `main...HEAD` chỉ có ba tệp metadata nằm đúng trong `write_scope`; registry đổi đúng sáu entry mục tiêu từ `needs-interview` sang `agent-draft`, không đổi trạng thái entry khác và không sửa nội dung protected artifact.
+- Bằng chứng: handoff ghi đủ các quyết định người dùng về liên kết PLAN, usability test tối thiểu năm end-user, fixture cục bộ có reset, Vite/Vitest/Playwright và cổng yêu cầu nộp hiện hành.
+- Bằng chứng: task validator, integration gate và `git diff --check main...HEAD` đều đạt khi reviewer chạy lại; SHA implementation tồn tại trên branch task. Việc coordination smoke test không khởi chạy được do giới hạn Git Bash trên Windows đã được ghi rõ và không che giấu kết quả kiểm tra trực tiếp.
