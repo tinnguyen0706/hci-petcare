@@ -49,5 +49,5 @@
 
 ## Review
 
-- Kết luận: `pending`
-- Ghi chú: đã xử lý changes-requested tại commit `3f40eb65f987680fb9f9d31ed92ec97628ad051b`; chờ reviewer kiểm tra độc lập lại.
+- Kết luận: `approved`
+- Ghi chú: re-review độc lập xác nhận commit `3f40eb65f987680fb9f9d31ed92ec97628ad051b` đáp ứng intent đã làm rõ và toàn bộ acceptance criteria. `tests/coordination-smoke.sh`, `scripts/coordination/validate-task coordination/tasks/TASK-AUTH-001.yml`, validator của ba task legacy `done`, `python3 -m py_compile scripts/coordination/tasklib.py`, `git diff --check main...HEAD` và cổng `--validate-integration` cho branch task đều đạt. Registry có đúng 14 entry, trong đó bốn PLAN đúng tại `.agents/skills/<skill>/PLAN.md`; diff không sửa artifact được bảo vệ. Kiểm thử thủ công xác nhận scope `x/` hợp lệ, còn `.agents/`, `.agents/skills/`, thư mục cha entry, `rules/`, `templates/` đều bị exact-path rule chặn; `PLAN.md`/`SKILL.md` mixed-case chưa đăng ký bị từ chối; chuyển tiến một bước hợp lệ, chuyển lùi/bỏ qua thất bại; delete/rename và branch tự chuyển artifact khỏi `agent-draft` đều bị cổng tích hợp từ chối. Human-editing/locked vẫn read-only với task active, còn task legacy `done` không bị ảnh hưởng bởi trạng thái registry.
