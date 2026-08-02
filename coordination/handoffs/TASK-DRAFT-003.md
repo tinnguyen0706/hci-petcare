@@ -53,5 +53,9 @@
 
 ## Review
 
-- Kết luận: `pending`
-- Ghi chú: chưa review.
+- Kết luận: `approved`
+- Bằng chứng: diff `main...HEAD` chỉ gồm đúng bốn tệp trong `write_scope`; hai protected artifact đang ở `agent-draft`, frontmatter `SKILL.md` không đổi và phần nghiệp vụ chỉ được bổ sung chỉ dẫn bắt buộc đọc `[PLAN.md](PLAN.md)`.
+- Bằng chứng: PLAN là lộ trình tái sử dụng, có cảnh báo, điều kiện dùng, đầu vào/đầu ra, bốn cổng, điều kiện dừng và nguồn quyết định; nội dung chặn khi research chưa được con người chấp nhận và không dùng persona “chị Lan” như finding thiếu evidence.
+- Bằng chứng: workflow bao phủ Scenario 2, user flow, nhiều phương án sketch, Storyboard, Wireframe, Figma Prototype và ma trận truy vết đủ bốn đoạn hành trình; có review 10 Heuristic Nielsen, rubric, accessibility và trạng thái loading/empty/error/success.
+- Bằng chứng: Cổng 4 quy định đúng một vòng với tối thiểu 5 phiên end-user hợp lệ, consent usability riêng, media consent riêng khi cần, Markdown Pxx ẩn danh, synthesis, iteration và human approval; Figma được giữ làm nguồn chỉnh sửa có link/ngày hoặc phiên bản và export khớp bản duyệt, đồng thời cấm commit media/dữ liệu nhận diện.
+- Bằng chứng kiểm tra lại: task validator, integration gate, `quick_validate.py`, link check, frontmatter check, exact diff-scope và `git diff --check main...HEAD` đều đạt; implementation SHA tồn tại trên branch. `tests/coordination-smoke.sh` không khởi chạy được do giới hạn Bash/WSL `E_ACCESSDENIED`, đã được handoff ghi trung thực và được thay bằng các validator Python trực tiếp liên quan.
