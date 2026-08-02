@@ -34,5 +34,5 @@
 
 ## Review
 
-- Kết luận: `pending`
-- Ghi chú: chưa review.
+- Kết luận: `approved`
+- Ghi chú: Diff đáp ứng đủ bốn acceptance criteria: bốn thư mục đích được giữ bằng `.gitkeep`; `AGENTS.md` bắt buộc đọc mục lục, đọc và áp dụng tài liệu liên quan; `references/README.md` quy định rõ thứ tự ưu tiên nguồn chuẩn trước tài liệu tham khảo; `README.md` hướng dẫn thêm tài liệu và liên kết tới mục lục hợp lệ. Reviewer đã chạy lại `validate-task`, `git diff --check`, kiểm tra cấu trúc và truy vết nội dung; tất cả đều đạt. SHA `be28a3e76babfc3cec072639b876fe0891e6a4a0` tồn tại và nằm trên branch task; các tệp trong diff đều thuộc `write_scope`.
