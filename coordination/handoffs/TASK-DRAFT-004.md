@@ -63,5 +63,8 @@
 
 ## Review
 
-- Kết luận: `pending`
-- Ghi chú: feedback tại commit `2b045bc204735bd781d66f01dbea279897e21242` đã được xử lý; chờ reviewer độc lập re-review, worker không tự duyệt.
+- Kết luận: `approved`
+- Bằng chứng xử lý feedback: commit `6b66b60ed5363da7f46613c074fe85c62cd4babf` chỉ sửa Cổng B bước 3 để khóa state vào bộ nhớ phiên chạy, yêu cầu reload hoặc Reset khôi phục fixture gốc và cấm rõ `localStorage`, `sessionStorage`, IndexedDB cùng mọi persistence qua phiên. Không có thay đổi ngoài PLAN, handoff và trạng thái task trong vòng sửa–review.
+- Bằng chứng Acceptance Criteria: PLAN vẫn đủ trạng thái/khi dùng/đầu vào/đầu ra/workflow gate/điều kiện dừng/nguồn; gói Figma đã duyệt và acceptance matrix; React + TypeScript/Vite, Testing Library/Vitest, Playwright; fixture xác định; không backend/live API/“real-time” giả; đủ bốn năng lực, trạng thái biên, accessibility/responsive và cổng kết quả thật cùng human acceptance. `SKILL.md` vẫn chỉ thêm một link PLAN, frontmatter không đổi.
+- Bằng chứng kiểm tra độc lập: task validator, integration gate, `quick_validate.py`, kiểm tra in-memory/reload/Reset/cấm persistence, link/frontmatter, exact-diff checks và `git diff --check main...HEAD` đều đạt; fix SHA và review-ready SHA đều tồn tại trên branch.
+- Ngoại lệ đã biết: `tests/coordination-smoke.sh` vẫn có giả định lifecycle cũ của `AGENTS.md` như handoff đã ghi; ngoại lệ nằm ngoài diff/`write_scope` và không che giấu.
