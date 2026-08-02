@@ -1,0 +1,38 @@
+# Handoff: TASK-REF-001
+
+## Thay đổi
+
+- Tạo thư viện `references/` để phân loại hướng dẫn đồ án và kiến thức môn học.
+- Quy định quy trình đọc theo mục lục, áp dụng tài liệu liên quan và ưu tiên nguồn chuẩn.
+- Cập nhật hướng dẫn chung để mọi agent sử dụng thư viện trước mỗi task.
+
+## Tệp đã sửa
+
+- `references/README.md`
+- `references/project-guidelines/`
+- `references/course-materials/`
+- `AGENTS.md`
+- `README.md`
+- `coordination/tasks/TASK-REF-001.yml`
+
+## Kiểm thử
+
+- Lệnh: `scripts/coordination/validate-task coordination/tasks/TASK-REF-001.yml && git diff --check`
+- Kết quả: task hợp lệ; diff không có lỗi khoảng trắng.
+- Lệnh: `find references -maxdepth 4 -print | sort`
+- Kết quả: đủ bốn thư mục đích và các tệp giữ thư mục sau khi clone.
+- Lệnh: `rg -n "references/README.md|project-guidelines|course-materials|Thứ tự ưu tiên|Quy trình bắt buộc" AGENTS.md README.md references/README.md`
+- Kết quả: hướng dẫn đọc, áp dụng, phân loại và ưu tiên nguồn xuất hiện tại các vị trí dự kiến.
+
+## Vấn đề còn lại
+
+- Cần reviewer độc lập ghi kết luận trước khi orchestrator tích hợp.
+
+## Commit
+
+- SHA: `be28a3e76babfc3cec072639b876fe0891e6a4a0`
+
+## Review
+
+- Kết luận: `pending`
+- Ghi chú: chưa review.
