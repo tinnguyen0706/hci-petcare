@@ -7,6 +7,7 @@ trap 'rm -rf "$fixture"' EXIT
 
 mkdir -p "$fixture/scripts" "$fixture/coordination/tasks" "$fixture/coordination/handoffs" "$fixture/coordination/templates" "$fixture/.worktrees"
 cp -R "$source_root/scripts/coordination" "$fixture/scripts/"
+cp "$source_root/coordination/human-artifacts.yml" "$fixture/coordination/human-artifacts.yml"
 cp "$source_root/coordination/templates/task.yml" "$fixture/coordination/templates/task.yml"
 cp "$source_root/coordination/templates/handoff.md" "$fixture/coordination/templates/handoff.md"
 cd "$fixture"
@@ -30,6 +31,45 @@ make_task 4 opencode work/four
 git add . && git commit -qm "test: baseline"
 
 for task in coordination/tasks/*.yml; do scripts/coordination/validate-task "$task"; done
+
+# Artifact được bảo vệ chỉ nhận exact scope ở agent-draft.
+cp coordination/tasks/TASK-004.yml coordination/tasks/TASK-098.yml
+sed -i 's/TASK-004/TASK-098/g; s/status: ready/status: claimed/; s#work/four/#AGENTS.md#' coordination/tasks/TASK-098.yml
+if scripts/coordination/validate-task coordination/tasks/TASK-098.yml >/dev/null 2>&1; then
+  echo "Artifact needs-interview vẫn được giao agent" >&2; exit 1
+fi
+sed -i '/path: AGENTS.md/{n;s/needs-interview/agent-draft/;}' coordination/human-artifacts.yml
+scripts/coordination/validate-task coordination/tasks/TASK-098.yml >/dev/null
+sed -i '/path: AGENTS.md/{n;s/agent-draft/human-editing/;}' coordination/human-artifacts.yml
+if scripts/coordination/validate-task coordination/tasks/TASK-098.yml >/dev/null 2>&1; then
+  echo "Artifact human-editing vẫn được giao agent" >&2; exit 1
+fi
+sed -i '/path: AGENTS.md/{n;s/human-editing/locked/;}' coordination/human-artifacts.yml
+if scripts/coordination/validate-task coordination/tasks/TASK-098.yml >/dev/null 2>&1; then
+  echo "Artifact locked vẫn được giao agent" >&2; exit 1
+fi
+sed -i 's#AGENTS.md#.agents/new/SKILL.md#' coordination/tasks/TASK-098.yml
+if scripts/coordination/validate-task coordination/tasks/TASK-098.yml >/dev/null 2>&1; then
+  echo "Artifact chưa đăng ký vẫn được giao agent" >&2; exit 1
+fi
+sed -i 's#.agents/new/SKILL.md#.agents/#' coordination/tasks/TASK-098.yml
+if scripts/coordination/validate-task coordination/tasks/TASK-098.yml >/dev/null 2>&1; then
+  echo "Scope rộng vẫn được phép bao phủ artifact" >&2; exit 1
+fi
+rm coordination/tasks/TASK-098.yml
+
+# Registry chỉ cho phép chuyển tiến đúng một trạng thái.
+cp coordination/human-artifacts.yml "$fixture/registry-old.yml"
+cp coordination/human-artifacts.yml "$fixture/registry-new.yml"
+sed -i '/path: AGENTS.md/{n;s/locked/human-editing/;}' "$fixture/registry-new.yml"
+if python3 scripts/coordination/tasklib.py --validate-registry-transition "$fixture/registry-old.yml" "$fixture/registry-new.yml" >/dev/null 2>&1; then
+  echo "Registry cho phép chuyển lùi" >&2; exit 1
+fi
+sed -i '/path: AGENTS.md/{n;s/locked/needs-interview/;}' "$fixture/registry-old.yml"
+sed -i '/path: AGENTS.md/{n;s/human-editing/locked/;}' "$fixture/registry-new.yml"
+if python3 scripts/coordination/tasklib.py --validate-registry-transition "$fixture/registry-old.yml" "$fixture/registry-new.yml" >/dev/null 2>&1; then
+  echo "Registry cho phép bỏ qua trạng thái" >&2; exit 1
+fi
 for task in coordination/tasks/*.yml; do scripts/coordination/create-agent-worktree "$task" >/dev/null; done
 [[ $(git worktree list --porcelain | grep -c '^worktree ') -eq 5 ]]
 
@@ -47,6 +87,14 @@ if scripts/coordination/validate-task coordination/tasks/TASK-002.yml >/dev/null
 fi
 sed -i 's/status: claimed/status: ready/; s#work/shared/#work/two/#' coordination/tasks/TASK-002.yml
 sed -i 's/status: claimed/status: ready/; s#work/shared/child/#work/three/#' coordination/tasks/TASK-003.yml
+
+# Diff thật ngoài write_scope phải bị chặn dù task khai báo hợp lệ.
+touch .worktrees/opencode-TASK-004/outside.txt
+git -C .worktrees/opencode-TASK-004 add outside.txt
+git -C .worktrees/opencode-TASK-004 commit -qm "test: unauthorized diff"
+if python3 scripts/coordination/tasklib.py --validate-integration coordination/tasks/TASK-004.yml main agent/opencode/TASK-004 >/dev/null 2>&1; then
+  echo "Diff ngoài write_scope vẫn được tích hợp" >&2; exit 1
+fi
 
 # Luồng đầy đủ của TASK-001.
 task=coordination/tasks/TASK-001.yml
