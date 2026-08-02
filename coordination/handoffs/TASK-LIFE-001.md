@@ -57,5 +57,5 @@
 
 ## Review
 
-- Kết luận: `pending`
-- Ghi chú: chờ reviewer độc lập; worker không tự review task.
+- Kết luận: `approved`
+- Ghi chú: Review độc lập xác nhận diff `main...agent/codex/TASK-LIFE-001` chỉ gồm ba tệp nằm trong `write_scope`. Registry chuyển đúng năm artifact `.agents/skills/research-users/PLAN.md`, `.agents/skills/research-users/SKILL.md`, `rules/domain-rules.md`, `rules/quality-rules.md` và `rules/assessment-rules.md` từ `needs-interview` sang `agent-draft`; `AGENTS.md`, các artifact còn lại và nội dung protected artifact không đổi. Handoff ghi đầy đủ quyết định về phạm vi/tiến độ nghiên cứu, quyền agent phân tích dữ liệu đã ẩn danh với duyệt của con người, chính sách repository có thể public, consent, dữ liệu cấm đưa vào Git, rút consent và media ngoài Git. `tasklib.py` validate task, validator registry transition, cổng `--validate-integration`, kiểm tra SHA/ancestry và `git diff --check` đều đạt. Wrapper Bash `scripts/coordination/validate-task` không khởi chạy được trong môi trường Windows do `Bash/Service/CreateInstance/E_ACCESSDENIED`; cùng logic validator đã được chạy trực tiếp bằng Python và trả `OK`.
