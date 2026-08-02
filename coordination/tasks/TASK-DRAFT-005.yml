@@ -1,0 +1,23 @@
+id: TASK-DRAFT-005
+title: Tạo PLAN chuẩn bị bộ nộp cuối kỳ và liên kết skill
+status: ready
+owner_tool: codex
+owner_role: documentation-agent
+branch: agent/codex/TASK-DRAFT-005
+worktree: .worktrees/codex-TASK-DRAFT-005
+write_scope:
+  - .agents/skills/prepare-final-delivery/PLAN.md
+  - .agents/skills/prepare-final-delivery/SKILL.md
+  - coordination/tasks/TASK-DRAFT-005.yml
+  - coordination/handoffs/TASK-DRAFT-005.md
+dependencies:
+  - TASK-LIFE-002
+acceptance_criteria:
+  - PLAN là lộ trình tái sử dụng có trạng thái khi dùng đầu vào đầu ra workflow cổng dừng và nguồn quyết định
+  - PLAN chỉ bắt đầu từ artifact 01 đến 03 đã duyệt test thật và yêu cầu nộp hiện hành nếu thiếu chỉ tạo readiness gap report
+  - PLAN lập ma trận đủ 11 mục tới bằng chứng thật không tự cho điểm hoặc bịa teamwork
+  - PLAN bao phủ báo cáo slide speaker notes thiết kế PDF video prototype code ZIP poster hoặc bản giấy khi được xác nhận cùng render link build test và package QA
+  - PLAN yêu cầu cả ba thành viên xác nhận đóng góp phân vai trình bày human sign-off và không tự nộp ra hệ thống ngoài
+  - SKILL chỉ thêm chỉ dẫn bắt buộc đọc PLAN.md không đổi frontmatter hoặc nội dung nghiệp vụ khác
+  - Task validator integration gate quick validate link check và git diff check đều đạt
+handoff: coordination/handoffs/TASK-DRAFT-005.md

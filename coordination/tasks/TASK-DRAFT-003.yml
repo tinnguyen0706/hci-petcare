@@ -1,0 +1,22 @@
+id: TASK-DRAFT-003
+title: Tạo PLAN cho thiết kế tương tác và liên kết skill
+status: ready
+owner_tool: codex
+owner_role: interaction-designer
+branch: agent/codex/TASK-DRAFT-003
+worktree: .worktrees/codex-TASK-DRAFT-003
+write_scope:
+  - .agents/skills/design-interactions/PLAN.md
+  - .agents/skills/design-interactions/SKILL.md
+  - coordination/tasks/TASK-DRAFT-003.yml
+  - coordination/handoffs/TASK-DRAFT-003.md
+dependencies:
+  - TASK-LIFE-002
+acceptance_criteria:
+  - PLAN là lộ trình tái sử dụng có trạng thái khi dùng đầu vào đầu ra workflow cổng dừng và nguồn quyết định
+  - PLAN chỉ bắt đầu từ research đã được con người chấp nhận và bao phủ Scenario 2 Storyboard Wireframe Figma Prototype cùng truy vết bốn đoạn hành trình
+  - PLAN quy định review heuristic rubric accessibility và đúng một vòng usability test tối thiểu năm end-user có consent bằng chứng ẩn danh iteration và human approval
+  - PLAN quy định Figma là nguồn chỉnh sửa có link ngày hoặc phiên bản và export được duyệt không commit media hay dữ liệu nhận diện participant
+  - SKILL chỉ thêm chỉ dẫn bắt buộc đọc PLAN.md không đổi frontmatter hoặc nội dung nghiệp vụ khác
+  - Task validator integration gate quick validate link check và git diff check đều đạt
+handoff: coordination/handoffs/TASK-DRAFT-003.md

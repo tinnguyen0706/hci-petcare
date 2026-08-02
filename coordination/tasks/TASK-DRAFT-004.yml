@@ -1,0 +1,23 @@
+id: TASK-DRAFT-004
+title: Tạo PLAN hiện thực prototype và liên kết skill
+status: ready
+owner_tool: codex
+owner_role: software-implementer
+branch: agent/codex/TASK-DRAFT-004
+worktree: .worktrees/codex-TASK-DRAFT-004
+write_scope:
+  - .agents/skills/build-prototype/PLAN.md
+  - .agents/skills/build-prototype/SKILL.md
+  - coordination/tasks/TASK-DRAFT-004.yml
+  - coordination/handoffs/TASK-DRAFT-004.md
+dependencies:
+  - TASK-LIFE-002
+acceptance_criteria:
+  - PLAN là lộ trình tái sử dụng có trạng thái khi dùng đầu vào đầu ra workflow cổng dừng và nguồn quyết định
+  - PLAN chốt React TypeScript Vite Testing Library Vitest Playwright và chỉ bắt đầu từ gói Figma đã duyệt có acceptance matrix
+  - PLAN dùng fixture cục bộ xác định reset được state trong trình duyệt không backend live API hoặc tuyên bố real-time thật
+  - PLAN bao phủ đủ đặt lịch xác nhận hồ sơ yêu cầu đặc biệt tiến độ thông báo lịch sử cùng trạng thái tải rỗng lỗi accessibility và responsive mobile-first
+  - PLAN yêu cầu typecheck Vitest Playwright production build visual comparison và human acceptance bằng kết quả thật
+  - SKILL chỉ thêm chỉ dẫn bắt buộc đọc PLAN.md không đổi frontmatter hoặc nội dung nghiệp vụ khác
+  - Task validator integration gate quick validate link check và git diff check đều đạt
+handoff: coordination/handoffs/TASK-DRAFT-004.md
