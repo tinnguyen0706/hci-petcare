@@ -49,5 +49,5 @@
 
 ## Review
 
-- Kết luận: `pending`
-- Ghi chú: Đã sửa yêu cầu review về đủ năm mức rubric trong commit `6c1e2de13e46151d3b9b17394ced7aa5ffd55ce2`; chờ reviewer kiểm tra lại.
+- Kết luận: `approved`
+- Ghi chú: Re-review xác nhận commit `6c1e2de13e46151d3b9b17394ced7aa5ffd55ce2` đã mô tả đúng đủ năm mức rubric `0`, `0,25`, `0,5`, `0,75`, `1`; `validate-task`, `git diff --check` và kiểm đếm 13 note/13 mục lục/13 metadata đều đạt.
