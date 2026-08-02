@@ -28,9 +28,9 @@
 - Lệnh: kiểm tra thủ công và PowerShell content scan cho disclaimer, điều kiện đầu vào, đủ 11 hàng rubric, các thành phần package, QA, ba thành viên, human sign-off, no external submission và điều kiện dừng.
 - Kết quả: đạt toàn bộ acceptance criteria; nội dung không tuyên bố package hoặc kết quả nào đã hoàn tất.
 - Lệnh: `python -X utf8 scripts/coordination/tasklib.py --validate-integration coordination/tasks/TASK-DRAFT-005.yml main HEAD`.
-- Kết quả: sẽ cập nhật sau commit implementation.
+- Kết quả: `OK`; diff thật chỉ gồm bốn tệp trong `write_scope`, hai protected artifact đều đã đăng ký và đang ở `agent-draft` trên `main` lẫn branch.
 - Lệnh: `git diff --check main...HEAD` và `git diff --name-only main...HEAD`.
-- Kết quả: sẽ cập nhật sau commit implementation.
+- Kết quả: không có lỗi whitespace; danh sách diff chỉ gồm đúng bốn tệp trong `write_scope`.
 - Lệnh: `bash tests/coordination-smoke.sh`.
 - Kết quả: không thể khởi chạy trong môi trường Windows hiện tại, lỗi `Bash/Service/CreateInstance/E_ACCESSDENIED`; task validator và integration gate Python trực tiếp được dùng để kiểm tra phần logic liên quan.
 
@@ -51,7 +51,7 @@
 
 ## Commit
 
-- SHA: `sẽ cập nhật sau commit implementation`
+- SHA: `7702ba6986985654263edf8ec11ac174380fdbaf`
 
 ## Review
 
