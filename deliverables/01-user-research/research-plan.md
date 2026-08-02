@@ -52,8 +52,9 @@ Ba thành viên luân phiên theo phiên, không gán tên cố định:
 - Đồng thuận là tự nguyện, có thể rút lui/bỏ câu hỏi; không gây áp lực hoặc hứa lợi ích không có thật.
 - Mặc định chỉ ghi chép. Chỉ ghi âm/chụp khi người tham gia đồng ý rõ cho từng loại; không suy ra đồng ý từ việc tham gia phỏng vấn.
 - Che thông báo, tên, số điện thoại, địa chỉ, mã đặt lịch và dữ liệu thanh toán trước quan sát. Dừng ngay nếu dữ liệu ngoài phạm vi xuất hiện.
-- Ghi chép chỉ dùng mã Pxx. Danh sách liên hệ tuyển dụng (nếu có) lưu riêng, hạn chế truy cập và xóa sau phiên cuối. Dữ liệu nghiên cứu được xóa trong vòng 30 ngày sau khi môn học hoàn tất đánh giá, trừ artifact ẩn danh phải nộp theo yêu cầu môn học. Nhóm phải thống nhất nơi lưu có kiểm soát trước phiên đầu; nếu chưa có nơi lưu thì không thu media.
-- Khi người tham gia yêu cầu rút dữ liệu, đánh dấu phiên “withdrawn”, ngừng phân tích và xóa artifact nhận diện/media theo cam kết đã nêu.
+- Repository chỉ chứa dữ liệu đã ẩn danh. Raw data/media nằm ngoài Git trong một thư mục cloud riêng tư do nhóm kiểm soát, không public link và chỉ ba thành viên được truy cập. Bảng nối danh tính/thông tin liên hệ–Pxx nằm tách riêng và chỉ research lead được truy cập. Cả nhóm phải hoàn tất [checklist quản trị dữ liệu](data-governance-checklist.md) trước phiên đầu.
+- Người tham gia yêu cầu rút trực tiếp với facilitator hoặc trả lời kênh tuyển mộ ban đầu, đến trước lúc nhóm chốt synthesis cho final submission. Facilitator xác nhận, ghi withdrawal log bằng Pxx; research lead xóa mapping, media, raw notes/transcript, direct quotes, hàng evidence matrix và mọi synthesis/persona/scenario dẫn xuất có thể truy ngược, rồi nhóm chạy lại tổng hợp.
+- Ngay trước khi chốt synthesis, research lead xử lý yêu cầu đang mở và hủy bảng nối. Sau đó, dữ liệu tổng hợp hoàn toàn ẩn danh không còn cách nhận diện để tách riêng. Raw data/media còn lại được xóa an toàn trong vòng 30 ngày sau ngày công bố điểm cuối kỳ; dữ liệu rút được xóa sớm.
 
 ## 6. Phân tích và tiêu chuẩn kết luận
 
@@ -67,6 +68,7 @@ Ba thành viên luân phiên theo phiên, không gán tên cố định:
 ## 7. Tiêu chí hoàn tất thực địa
 
 - Có ít nhất 5 phiên hợp lệ với end-user đã đồng thuận.
+- Checklist quản trị dữ liệu đã được cả ba vai trò xác nhận trước phiên đầu.
 - Mỗi phiên có consent, ghi chép ẩn danh, dữ liệu của cả bốn đoạn hành trình (hoặc ghi rõ “không có trải nghiệm”), và debrief.
 - Ma trận truy vết được từ diễn giải về mã bằng chứng và phiên; câu trực tiếp đúng nguyên văn hoặc đánh dấu là diễn ý.
 - Báo cáo giới hạn: cỡ/cách tuyển mẫu, dữ liệu thiếu, tình huống tái hiện so với tự nhiên, và ảnh hưởng của người nghiên cứu.

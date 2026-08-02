@@ -10,23 +10,27 @@ Phạm vi là chủ nuôi trực tiếp đặt và theo dõi dịch vụ chăm s
 
 1. [Kế hoạch nghiên cứu](research-plan.md): câu hỏi, phương pháp, phân công, lịch và quy tắc phân tích.
 2. [Sàng lọc và tuyển người tham gia](participant-screening.md): chọn tối thiểu 5 chủ nuôi có trải nghiệm thực tế.
-3. [Kịch bản đồng thuận](consent-script.md): phải hoàn tất trước mọi thu thập dữ liệu.
-4. [Hướng dẫn phỏng vấn](interview-guide.md) và [hướng dẫn quan sát](contextual-observation-guide.md): dùng trong từng phiên.
-5. Sao chép [mẫu ghi chép Pxx](templates/session-notes-Pxx.md) thành `session-notes-P01.md`, `P02`…; không ghi tên thật.
-6. Sao chép [ma trận bằng chứng](templates/evidence-matrix.md) sau khi rà soát ghi chép; chỉ tổng hợp điều có mã nguồn truy vết.
+3. [Checklist quản trị dữ liệu](data-governance-checklist.md): cả nhóm phải hoàn tất trước phiên đầu; đây là bước kiểm tra policy cố định, không phải chỗ tự chọn policy.
+4. [Kịch bản đồng thuận](consent-script.md): phải hoàn tất trước mọi thu thập dữ liệu.
+5. [Hướng dẫn phỏng vấn](interview-guide.md) và [hướng dẫn quan sát](contextual-observation-guide.md): dùng trong từng phiên.
+6. Sao chép [mẫu ghi chép Pxx](templates/session-notes-Pxx.md) thành `session-notes-P01.md`, `P02`…; không ghi tên thật.
+7. Sao chép [ma trận bằng chứng](templates/evidence-matrix.md) sau khi rà soát ghi chép; chỉ tổng hợp điều có mã nguồn truy vết.
 
 ## Dependency và điều kiện sẵn sàng
 
 - Dependency nội bộ `TASK-KNOW-001`: đã cung cấp mục lục và ghi chú môn học; cần còn hiện diện trước khi phân tích.
-- Cần có tối thiểu 5 người vượt sàng lọc, lịch/địa điểm phù hợp và phân công ba vai trò trước khi thực địa.
+- Cần có tối thiểu 5 người vượt sàng lọc, lịch/địa điểm phù hợp, phân công ba vai trò và checklist quản trị dữ liệu đã ký xác nhận trước khi thực địa.
 - Mỗi phiên chỉ bắt đầu sau đồng thuận tự nguyện. Ghi âm/chụp ảnh là lựa chọn riêng, mặc định **không**; từ chối không ảnh hưởng việc tham gia.
 - Chưa đủ điều kiện tạo persona/VPC/scenario cho đến khi dữ liệu thực được ẩn danh, kiểm tra và tổng hợp có truy vết.
 
 ## Quy ước dữ liệu
 
 - Mã người tham gia: `P01`, `P02`…; phiên: `S-P01`; bằng chứng: `P01-O01` (observation), `P01-Q01` (direct quote), `P01-F01` (fact do người tham gia cung cấp), `P01-I01` (interpretation).
-- Không thu tên thật, địa chỉ cụ thể, số điện thoại trong ghi chép nghiên cứu, thông tin đăng nhập/thanh toán, hồ sơ y tế chi tiết của người, hay dữ liệu nhạy cảm không cần thiết. Thông tin liên hệ tuyển dụng (nếu cần) phải để riêng khỏi ghi chép và xóa khi hoàn tất điều phối.
+- Không thu tên thật, địa chỉ cụ thể, số điện thoại trong ghi chép nghiên cứu, thông tin đăng nhập/thanh toán, hồ sơ y tế chi tiết của người, hay dữ liệu nhạy cảm không cần thiết. Thông tin liên hệ tuyển dụng và bảng nối danh tính–Pxx phải để riêng khỏi ghi chép.
 - Không ghi thông tin nhận diện nhân viên/cơ sở hay người thứ ba. Người tham gia có thể bỏ qua câu hỏi hoặc dừng bất cứ lúc nào.
+- Repository chỉ chứa dữ liệu đã ẩn danh. Raw data/media nằm ngoài Git trong thư mục cloud riêng tư do nhóm kiểm soát, không dùng public link và chỉ ba thành viên được truy cập; riêng bảng nối danh tính–Pxx chỉ research lead được truy cập.
+- Người tham gia có quyền rút đến trước khi nhóm chốt synthesis cho final submission, theo quy trình và phạm vi xóa trong checklist quản trị dữ liệu. Sau khi hết hạn rút và bảng nối đã hủy, dữ liệu tổng hợp hoàn toàn ẩn danh không còn cách nhận diện để tách riêng.
+
 
 ## Nguồn đã định hình giao thức
 

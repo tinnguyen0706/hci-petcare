@@ -12,6 +12,8 @@
 - Consent tham gia: `Có / Không`; ghi chép: `Có / Không`; quote ẩn danh: `Có / Không`
 - Ghi âm: `Không đề nghị / Không / Có`; chụp ảnh: `Không đề nghị / Không / Có`
 - Consent cuối phiên còn hiệu lực: `Có / Không`; yêu cầu rút/bỏ phần nào:
+- Đã nói rõ kênh rút và hạn trước khi chốt synthesis cho final submission: `Có / Không`
+- Trạng thái withdrawal: `không yêu cầu / đã yêu cầu—ngừng dùng dữ liệu`; chi tiết nhận diện chỉ ghi trong withdrawal log ngoài Git:
 - Chất lượng/giới hạn phiên (nhớ lại, tái hiện, gián đoạn…):
 
 ## Dòng thời gian và bằng chứng
@@ -46,4 +48,5 @@ Quy tắc loại:
 - Khác biệt giữa lời kể và quan sát:
 - Giải thích cạnh tranh (không kết luận):
 - Dữ liệu cần loại/che:
+- Nếu có withdrawal: đã báo research lead để xóa toàn bộ dữ liệu/dẫn xuất và chạy lại tổng hợp: `Không áp dụng / Đã báo`
 - Đã rà mã bằng chứng và consent: `Có / Không`
