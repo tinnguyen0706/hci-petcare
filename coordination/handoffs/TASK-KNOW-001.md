@@ -45,7 +45,7 @@
 ## Commit
 
 - SHA implementation ban đầu: `1e34e88a06b46055d0e273302750d527c66bc231`
-- SHA sửa changes-requested: `6c1e2de13e46151d3b9b17394ced7aa5ffd55ce2`
+- SHA: `6c1e2de13e46151d3b9b17394ced7aa5ffd55ce2`
 
 ## Review
 

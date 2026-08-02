@@ -1,6 +1,6 @@
 id: TASK-KNOW-001
 title: Chuyển tài liệu môn học thành ghi chú Markdown có mục lục
-status: review
+status: done
 owner_tool: codex
 owner_role: documentation-agent
 branch: agent/codex/TASK-KNOW-001
