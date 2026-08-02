@@ -1,0 +1,18 @@
+id: TASK-LIFE-002
+title: Mở lifecycle cho ba cặp PLAN và SKILL còn thiếu
+status: review
+owner_tool: codex
+owner_role: orchestrator
+branch: agent/codex/TASK-LIFE-002
+worktree: .worktrees/codex-TASK-LIFE-002
+write_scope:
+  - coordination/human-artifacts.yml
+  - coordination/tasks/TASK-LIFE-002.yml
+  - coordination/handoffs/TASK-LIFE-002.md
+dependencies: []
+acceptance_criteria:
+  - Chỉ sáu artifact PLAN và SKILL của design-interactions build-prototype prepare-final-delivery chuyển từ needs-interview sang agent-draft
+  - Handoff ghi đủ quyết định người dùng về link PLAN usability test năm end-user mock cục bộ toolchain web và cổng yêu cầu nộp hiện hành
+  - Nội dung protected artifact cùng trạng thái của AGENTS research-users và rules không thay đổi
+  - Registry transition validator task validator integration gate và git diff check đều đạt
+handoff: coordination/handoffs/TASK-LIFE-002.md
