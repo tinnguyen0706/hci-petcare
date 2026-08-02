@@ -1,6 +1,6 @@
 id: TASK-REF-001
 title: Tạo thư viện tài liệu tham khảo và quy tắc sử dụng cho agent
-status: review
+status: done
 owner_tool: codex
 owner_role: documentation-agent
 branch: agent/codex/TASK-REF-001
