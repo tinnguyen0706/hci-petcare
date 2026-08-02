@@ -1,0 +1,20 @@
+id: TASK-DRAFT-001
+title: Soạn bản nháp AGENTS từ quyết định người dùng
+status: review
+owner_tool: codex
+owner_role: documentation-agent
+branch: agent/codex/TASK-DRAFT-001
+worktree: .worktrees/codex-TASK-DRAFT-001
+write_scope:
+  - AGENTS.md
+  - coordination/tasks/TASK-DRAFT-001.yml
+  - coordination/handoffs/TASK-DRAFT-001.md
+dependencies:
+  - TASK-AUTH-002
+acceptance_criteria:
+  - AGENTS.md phản ánh đúng các quyết định đã được người dùng xác nhận và dữ kiện hiện có trong repo
+  - Quyền tự chủ không vượt task write_scope hoặc cho phép mở rộng phạm vi và quyền bên ngoài
+  - Mọi task vẫn bắt buộc owner branch worktree handoff review và tích hợp theo protocol
+  - Thứ tự ưu tiên nguồn là yêu cầu hiện tại rồi rubric proposal rồi hướng dẫn bài giảng
+  - File hướng dẫn rõ lifecycle hỏi đáp draft human-editing locked và không tự tuyên bố đã được người dùng chốt
+handoff: coordination/handoffs/TASK-DRAFT-001.md
