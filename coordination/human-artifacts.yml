@@ -24,6 +24,6 @@ artifacts:
   - path: rules/quality-rules.md
     status: human-editing
   - path: rules/style-rules.md
-    status: agent-draft
+    status: human-editing
   - path: rules/task-rules.md
     status: needs-interview
