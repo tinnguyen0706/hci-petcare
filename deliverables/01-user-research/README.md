@@ -28,8 +28,10 @@ Phạm vi là chủ nuôi trực tiếp đặt và theo dõi dịch vụ chăm s
 - Mã người tham gia: `P01`, `P02`…; phiên: `S-P01`; bằng chứng: `P01-O01` (observation), `P01-Q01` (direct quote), `P01-F01` (fact do người tham gia cung cấp), `P01-I01` (interpretation).
 - Không thu tên thật, địa chỉ cụ thể, số điện thoại trong ghi chép nghiên cứu, thông tin đăng nhập/thanh toán, hồ sơ y tế chi tiết của người, hay dữ liệu nhạy cảm không cần thiết. Thông tin liên hệ tuyển dụng và bảng nối danh tính–Pxx phải để riêng khỏi ghi chép.
 - Không ghi thông tin nhận diện nhân viên/cơ sở hay người thứ ba. Người tham gia có thể bỏ qua câu hỏi hoặc dừng bất cứ lúc nào.
-- Repository chỉ chứa dữ liệu đã ẩn danh. Raw data/media nằm ngoài Git trong thư mục cloud riêng tư do nhóm kiểm soát, không dùng public link và chỉ ba thành viên được truy cập; riêng bảng nối danh tính–Pxx chỉ research lead được truy cập.
-- Người tham gia có quyền rút đến trước khi nhóm chốt synthesis cho final submission, theo quy trình và phạm vi xóa trong checklist quản trị dữ liệu. Sau khi hết hạn rút và bảng nối đã hủy, dữ liệu tổng hợp hoàn toàn ẩn danh không còn cách nhận diện để tách riêng.
+- Repository **có thể được công khai**. Git chỉ nhận Markdown đã ẩn danh: ghi chép `Pxx`, transcript chữ đã làm sạch nếu có, evidence, synthesis, artifact và các trường consent `Có/Không`.
+- Không commit identifier, thông tin liên hệ, bảng nối danh tính–Pxx, chữ ký, media, screenshot, dữ liệu nhạy cảm, dữ liệu nhận diện cơ sở/người thứ ba hoặc withdrawal log có khả năng nhận diện. Bảng nối, liên hệ và withdrawal log nhận diện được phải nằm ngoài Git; chỉ research lead truy cập phần cần thiết.
+- Ghi chép Markdown Pxx đã ẩn danh có thể vào Git; media và dữ liệu định danh/raw chứa danh tính luôn nằm ngoài Git. Chỉ thu media khi có consent riêng cho từng loại và lưu tạm trong nơi riêng tư ngoài Git.
+- Người tham gia có quyền rút đến trước khi nhóm chốt synthesis cho final submission. Khi rút đúng hạn, nhóm loại dữ liệu Pxx khỏi current tree và nơi lưu tạm, rồi chạy lại mọi derivative; nhóm không hứa xóa dữ liệu khỏi lịch sử Git. Sau khi hết hạn rút và bảng nối đã hủy, dữ liệu tổng hợp hoàn toàn ẩn danh không còn cách nhận diện để tách riêng.
 
 
 ## Nguồn đã định hình giao thức

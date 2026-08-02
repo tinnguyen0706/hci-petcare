@@ -20,6 +20,7 @@ Giả thuyết cần kiểm chứng, lấy từ proposal: chủ nuôi phải ch�
 - Dùng [participant-screening.md](participant-screening.md); loại người chỉ quyết định mua nhưng chưa trực tiếp làm nhiệm vụ.
 - Tuyển có chủ đích để có khác biệt về kênh đặt và loại trải nghiệm, nhưng không đặt quota nhân khẩu học nếu chưa có căn cứ. Ghi rõ thiên lệch mẫu thuận tiện.
 - Không tuyển người không thể tự nguyện đồng thuận. Không cần thu tên cơ sở, giống thú, bệnh cụ thể hoặc dữ liệu nhạy cảm để đạt mục tiêu.
+- Lời mời tuyển phải báo trước rằng repository của đồ án có thể được công khai và Git chỉ chứa Markdown đã ẩn danh; không tuyển nếu ứng viên không đồng ý với cách sử dụng này.
 
 ## 3. Phương pháp và một phiên
 
@@ -52,9 +53,10 @@ Ba thành viên luân phiên theo phiên, không gán tên cố định:
 - Đồng thuận là tự nguyện, có thể rút lui/bỏ câu hỏi; không gây áp lực hoặc hứa lợi ích không có thật.
 - Mặc định chỉ ghi chép. Chỉ ghi âm/chụp khi người tham gia đồng ý rõ cho từng loại; không suy ra đồng ý từ việc tham gia phỏng vấn.
 - Che thông báo, tên, số điện thoại, địa chỉ, mã đặt lịch và dữ liệu thanh toán trước quan sát. Dừng ngay nếu dữ liệu ngoài phạm vi xuất hiện.
-- Repository chỉ chứa dữ liệu đã ẩn danh. Raw data/media nằm ngoài Git trong một thư mục cloud riêng tư do nhóm kiểm soát, không public link và chỉ ba thành viên được truy cập. Bảng nối danh tính/thông tin liên hệ–Pxx nằm tách riêng và chỉ research lead được truy cập. Cả nhóm phải hoàn tất [checklist quản trị dữ liệu](data-governance-checklist.md) trước phiên đầu.
-- Người tham gia yêu cầu rút trực tiếp với facilitator hoặc trả lời kênh tuyển mộ ban đầu, đến trước lúc nhóm chốt synthesis cho final submission. Facilitator xác nhận, ghi withdrawal log bằng Pxx; research lead xóa mapping, media, raw notes/transcript, direct quotes, hàng evidence matrix và mọi synthesis/persona/scenario dẫn xuất có thể truy ngược, rồi nhóm chạy lại tổng hợp.
-- Ngay trước khi chốt synthesis, research lead xử lý yêu cầu đang mở và hủy bảng nối. Sau đó, dữ liệu tổng hợp hoàn toàn ẩn danh không còn cách nhận diện để tách riêng. Raw data/media còn lại được xóa an toàn trong vòng 30 ngày sau ngày công bố điểm cuối kỳ; dữ liệu rút được xóa sớm.
+- Repository có thể được công khai. Git chỉ nhận Markdown đã ẩn danh gồm ghi chép `Pxx`, transcript chữ đã làm sạch nếu có, evidence, synthesis, artifact và consent `Có/Không`. Không commit identifier/contact, mapping, chữ ký, media, screenshot, dữ liệu nhạy cảm, dữ liệu nhận diện cơ sở/người thứ ba hoặc withdrawal log nhận diện được.
+- Ghi chép Markdown Pxx đã ẩn danh có thể nằm trong Git. Media và dữ liệu định danh/raw chứa danh tính nằm ngoài Git; media chỉ được thu với consent riêng cho từng loại và lưu tạm trong thư mục riêng tư ngoài Git. Bảng nối danh tính/thông tin liên hệ–Pxx và withdrawal log nhận diện được nằm tách riêng, chỉ research lead truy cập phần cần thiết. Cả nhóm phải hoàn tất [checklist quản trị dữ liệu](data-governance-checklist.md) trước phiên đầu.
+- Người tham gia yêu cầu rút trực tiếp với facilitator hoặc trả lời kênh tuyển mộ ban đầu, đến trước lúc nhóm chốt synthesis cho final submission. Facilitator xác nhận; research lead dùng log/mapping ngoài Git để xác định Pxx, xóa dữ liệu tương ứng khỏi current tree và nơi lưu tạm, rồi nhóm chạy lại evidence, synthesis, persona, VPC, scenario và mọi derivative không dùng dữ liệu đã rút. Nhóm nói rõ không hứa xóa dữ liệu khỏi lịch sử Git.
+- Ngay trước khi chốt synthesis, research lead xử lý yêu cầu đang mở và hủy bảng nối. Sau đó, dữ liệu tổng hợp hoàn toàn ẩn danh không còn cách nhận diện để tách riêng. Media và dữ liệu định danh/raw chứa danh tính còn lại ngoài Git được xóa an toàn trong vòng 30 ngày sau ngày công bố điểm cuối kỳ; dữ liệu rút được xóa sớm.
 
 ## 6. Phân tích và tiêu chuẩn kết luận
 

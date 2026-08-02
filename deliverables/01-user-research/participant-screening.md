@@ -6,7 +6,7 @@ Tuyển tối thiểu 5 chủ nuôi là end-user có trải nghiệm trực ti�
 
 ## Lời mời trung lập
 
-> Nhóm sinh viên môn Tương tác Người–Máy đang tìm hiểu cách chủ nuôi trải nghiệm việc đặt và theo dõi dịch vụ chăm sóc thú cưng. Buổi trao đổi khoảng 45–60 phút, gồm trò chuyện và có thể tái hiện cách bạn đã làm trong một lần gần đây. Không có câu trả lời đúng/sai; bạn có thể bỏ qua câu hỏi hoặc dừng bất cứ lúc nào. Chúng tôi mặc định chỉ ghi chép và sẽ không ghi âm/chụp nếu chưa có đồng thuận riêng.
+> Nhóm sinh viên môn Tương tác Người–Máy đang tìm hiểu cách chủ nuôi trải nghiệm việc đặt và theo dõi dịch vụ chăm sóc thú cưng. Buổi trao đổi khoảng 45–60 phút, gồm trò chuyện và có thể tái hiện cách bạn đã làm trong một lần gần đây. Repository đồ án có thể được công khai; Git chỉ chứa Markdown đã ẩn danh bằng mã Pxx và lựa chọn consent dạng Có/Không, không chứa tên hay thông tin liên hệ. Không có câu trả lời đúng/sai; bạn có thể bỏ qua câu hỏi hoặc dừng bất cứ lúc nào. Chúng tôi mặc định chỉ ghi chép và sẽ không ghi âm/chụp nếu chưa có đồng thuận riêng cho từng loại media; media luôn được lưu tạm ngoài Git.
 
 Không hứa tính năng, bảo mật tuyệt đối, thù lao hoặc lợi ích nếu chưa được nhóm phê duyệt thật sự.
 
@@ -20,12 +20,13 @@ Ghi phiếu sàng lọc tách khỏi dữ liệu phiên; chỉ giữ mã ứng v
 4. Trong lần đó, bạn trực tiếp tham gia phần nào? `đặt/xác nhận / gửi yêu cầu / theo dõi / xem lại thông tin / phần khác`
 5. Bạn dùng kênh nào trong trải nghiệm đó? `gọi / nhắn tin / trực tiếp / website hoặc ứng dụng / kênh khác` (chỉ phục vụ đa dạng mẫu)
 6. Bạn có tự nguyện tham gia phiên 45–60 phút và hiểu có thể dừng/bỏ câu hỏi không? `Có / Không`
+7. Bạn có hiểu repository có thể được công khai và đồng ý để nhóm đưa Markdown đã ẩn danh bằng Pxx vào Git theo mô tả trên không? `Có / Không`
 
 Không hỏi tên cơ sở, địa chỉ cụ thể, bệnh án, tài chính, thông tin đăng nhập hay thông tin định danh ở bước này.
 
 ## Quy tắc quyết định
 
-- **Đủ điều kiện:** câu 1, 2, 3 và 6 đều “Có”; người đó là người trực tiếp thực hiện chứ không chỉ là customer/influencer.
+- **Đủ điều kiện:** câu 1, 2, 3, 6 và 7 đều “Có”; người đó là người trực tiếp thực hiện chứ không chỉ là customer/influencer.
 - **Không đủ:** thiếu trải nghiệm trực tiếp, không có một lượt thật để hồi tưởng, hoặc không thể tự nguyện đồng thuận.
 - **Đa dạng có chủ đích:** khi có nhiều ứng viên đạt, chọn để tránh toàn bộ mẫu chỉ có cùng một kênh hoặc cùng một phần hành trình. Đây không phải quota đại diện dân số.
 - Không loại dựa trên tuổi, giới, nghề, giống thú hay việc trải nghiệm thuận lợi/khó khăn. Không giả định người giống “chị Lan” phù hợp hơn.
@@ -36,4 +37,4 @@ Không hỏi tên cơ sở, địa chỉ cụ thể, bệnh án, tài chính, th
 |---|---|---|---|---|---|
 |  |  |  |  |  |  |
 
-Thông tin liên hệ để xếp lịch, nếu cần, nằm trong danh sách riêng do một thành viên phụ trách; không chép vào artifact nghiên cứu và xóa sau điều phối.
+Thông tin liên hệ để xếp lịch, nếu cần, và bảng nối `Cxx/Pxx` nằm trong danh sách riêng ngoài Git do research lead phụ trách; không chép vào artifact nghiên cứu và xóa sau điều phối/hạn rút theo checklist. Nhật ký rút có thông tin nhận diện cũng nằm ngoài Git.
