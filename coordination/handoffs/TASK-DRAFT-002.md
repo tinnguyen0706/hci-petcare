@@ -49,5 +49,5 @@
 
 ## Review
 
-- Kết luận: `pending`
-- Ghi chú: chờ reviewer độc lập; worker không tự review.
+- Kết luận: `approved`
+- Ghi chú: diff đúng `write_scope`; năm artifact ở `agent-draft`, đáp ứng pipeline/cổng duyệt, bốn đoạn hành trình và policy Git ẩn danh. Task validator, integration gate, `git diff --check` và privacy scan đạt; hạn chế smoke test trên Windows đã được ghi trung thực và không làm thay đổi kết luận.
