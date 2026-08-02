@@ -1,0 +1,25 @@
+id: TASK-DRAFT-002
+title: Hoàn thiện khung nghiên cứu với dữ liệu ẩn danh trong Git
+status: ready
+owner_tool: codex
+owner_role: user-researcher
+branch: agent/codex/TASK-DRAFT-002
+worktree: .worktrees/codex-TASK-DRAFT-002
+write_scope:
+  - .agents/skills/research-users/PLAN.md
+  - .agents/skills/research-users/SKILL.md
+  - rules/domain-rules.md
+  - rules/quality-rules.md
+  - rules/assessment-rules.md
+  - coordination/tasks/TASK-DRAFT-002.yml
+  - coordination/handoffs/TASK-DRAFT-002.md
+dependencies:
+  - TASK-LIFE-001
+acceptance_criteria:
+  - PLAN mô tả lộ trình chuẩn bị năm phiên synthesis persona Value Proposition và scenario hiện tại với cổng duyệt rõ ràng
+  - Nghiên cứu bao phủ bốn đoạn hành trình và ưu tiên chiều sâu cho theo dõi tiến độ
+  - SKILL phân biệt phần agent phân tích đề xuất với quyền con người duyệt kết quả
+  - Policy cho phép commit Markdown đã ẩn danh và cấm identifier mapping chữ ký media cùng dữ liệu nhạy cảm trong Git
+  - Rule domain quality assessment nhất quán với proposal rubric protocol và cổng bằng chứng
+  - Validator task integration gate privacy scan smoke test và git diff check đều đạt
+handoff: coordination/handoffs/TASK-DRAFT-002.md
