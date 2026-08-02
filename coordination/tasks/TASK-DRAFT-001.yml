@@ -1,6 +1,6 @@
 id: TASK-DRAFT-001
 title: Soạn bản nháp AGENTS từ quyết định người dùng
-status: review
+status: done
 owner_tool: codex
 owner_role: documentation-agent
 branch: agent/codex/TASK-DRAFT-001

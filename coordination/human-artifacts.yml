@@ -1,6 +1,6 @@
 artifacts:
   - path: AGENTS.md
-    status: agent-draft
+    status: human-editing
   - path: .agents/skills/build-prototype/SKILL.md
     status: needs-interview
   - path: .agents/skills/design-interactions/SKILL.md
