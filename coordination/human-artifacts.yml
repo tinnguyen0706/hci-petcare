@@ -8,7 +8,7 @@ artifacts:
   - path: .agents/skills/prepare-final-delivery/SKILL.md
     status: needs-interview
   - path: .agents/skills/research-users/SKILL.md
-    status: agent-draft
+    status: human-editing
   - path: .agents/skills/build-prototype/PLAN.md
     status: needs-interview
   - path: .agents/skills/design-interactions/PLAN.md
@@ -16,13 +16,13 @@ artifacts:
   - path: .agents/skills/prepare-final-delivery/PLAN.md
     status: needs-interview
   - path: .agents/skills/research-users/PLAN.md
-    status: agent-draft
+    status: human-editing
   - path: rules/assessment-rules.md
-    status: agent-draft
+    status: human-editing
   - path: rules/domain-rules.md
-    status: agent-draft
+    status: human-editing
   - path: rules/quality-rules.md
-    status: agent-draft
+    status: human-editing
   - path: rules/style-rules.md
     status: needs-interview
   - path: rules/task-rules.md
