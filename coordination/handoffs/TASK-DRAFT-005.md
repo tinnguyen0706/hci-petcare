@@ -55,5 +55,10 @@
 
 ## Review
 
-- Kết luận: `pending`
-- Ghi chú: chờ reviewer độc lập; worker không tự review.
+- Kết luận: `approved`
+- Bằng chứng: `PLAN.md` là lộ trình tái sử dụng có cảnh báo bản nháp, mục Khi dùng, Đầu vào, Đầu ra, năm cổng workflow, điều kiện dừng/thất bại và nguồn quyết định; nội dung không tuyên bố artifact, kiểm thử hay package đã hoàn tất.
+- Bằng chứng: Cổng 1 chỉ cho chạy đầy đủ khi artifact 01–03 đã được con người duyệt, có kết quả test thật và yêu cầu nộp hiện hành; nếu thiếu bất kỳ điều kiện nào thì chỉ tạo readiness/gap report. Cổng 2 truy vết đủ 11 mục rubric tới bằng chứng thật, cấm tự cho điểm và không dùng protocol/task/commit/Git alias làm bằng chứng teamwork đầy đủ.
+- Bằng chứng: Cổng 3–5 bao phủ đúng package có điều kiện, render/open, kiểm tra link và video, giải nén rồi build/test code ZIP trong môi trường sạch, xác nhận đóng góp và phân vai của đủ ba thành viên, human sign-off và cấm agent tự nộp ra hệ thống ngoài.
+- Bằng chứng: diff của `SKILL.md` giữ nguyên frontmatter và nội dung nghiệp vụ, chỉ thêm một chỉ dẫn bắt buộc đọc link tương đối `[PLAN.md](PLAN.md)` cùng dòng trống định dạng; link phân giải tới tệp thật.
+- Kiểm tra reviewer: task validator, integration gate, `quick_validate.py`, link/frontmatter/minimal-diff check và `git diff --check main...HEAD` đều đạt; diff chỉ có đúng bốn tệp trong `write_scope`, hai protected artifact đang ở `agent-draft` trên `main`.
+- Giới hạn đã xác minh: `bash tests/coordination-smoke.sh` tiếp tục không khởi chạy do `Bash/Service/CreateInstance/E_ACCESSDENIED`; handoff ghi đúng giới hạn này và các validator Python trực tiếp đã kiểm tra phần logic liên quan theo phương án fallback đã chốt.
