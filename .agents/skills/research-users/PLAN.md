@@ -24,7 +24,7 @@ Agent có thể làm sạch Markdown đã ẩn danh, lập ma trận evidence, n
 
 Sau Cổng C, agent đề xuất persona dựa trên mẫu hành vi/mục tiêu, Value Proposition Canvas có đối ứng jobs–pains–gains với pain relievers/gain creators, và scenario hiện tại có persona, mục tiêu, bối cảnh, trình tự, khó khăn và kết quả. Mỗi chi tiết phải truy về synthesis đã được chấp nhận; scenario hiện tại phải thể hiện đủ hành trình, làm nổi bật khoảng thiếu thông tin tiến độ thay vì mô tả giải pháp mới.
 
-**Cổng D — con người chấp nhận artifact:** con người review tính đại diện, đối ứng persona–VPC, độ rõ của khó khăn hiện tại và quyền dùng bằng chứng; chỉ artifact được chấp nhận mới được chuyển sang thiết kế tương tác. Agent chỉ phân tích và đề xuất.
+**Cổng D — con người chấp nhận artifact:** con người review tính đại diện, đối ứng persona–VPC, độ rõ của khó khăn hiện tại và quyền dùng bằng chứng; chỉ artifact được chấp nhận mới được chuyển sang thiết kế tương tác. Agent phải đảm bảo Persona tuân thủ mẫu tại `templates/persona-template.md` và trình bày nằm gọn trong 1 trang theo `rules/persona-rules.md`. Agent chỉ phân tích và đề xuất.
 
 ## Policy Git có thể công khai
 

@@ -116,12 +116,24 @@ THƯ MỤC CẤU HÌNH TỰ ĐỘNG ADAPTER (Hệ thống/Agent quản lý, Con 
 > **Yêu cầu**: [Git](https://git-scm.com/), [Python 3.10+](https://www.python.org/) và [GitHub CLI (`gh`)](https://cli.github.com/). Sau khi cài `gh`, chạy `gh auth login` để xác thực.
 
 1. Đọc `AGENTS.md`, `coordination/PROTOCOL.md`, [mục lục tài liệu tham khảo](references/README.md) và role được giao.
-2. Orchestrator nhận khóa bằng `scripts/coordination/claim-orchestrator`.
-3. Tạo một task từ `coordination/templates/task.yml`, kiểm tra bằng `scripts/coordination/validate-task`, rồi tạo worktree riêng.
-4. Worker commit và tạo handoff; reviewer ghi `approved` hoặc `changes-requested`.
-5. Orchestrator tích hợp task đã duyệt qua Pull Request và dọn worktree.
+2. Cài đặt Git Pre-commit hook để bảo vệ quy trình: `python scripts/coordination/install-hooks.py` (hoặc `python3`/`py`).
+3. Orchestrator nhận khóa bằng `scripts/coordination/claim-orchestrator`.
+4. Tạo một task từ `coordination/templates/task.yml`, kiểm tra bằng `scripts/coordination/validate-task`, rồi tạo worktree riêng.
+5. Worker commit và tạo handoff; reviewer ghi `approved` hoặc `changes-requested`.
+6. Orchestrator tích hợp task đã duyệt qua Pull Request và dọn worktree.
 
 Không làm việc trực tiếp trên `main`; `.worktrees/` chỉ là vùng làm việc cục bộ và không được theo dõi bởi Git.
+
+### Hướng dẫn Git Pre-Commit Hook (Bảo vệ Quy trình cho Con người & Agent)
+
+Dự án đã trang bị script **Git Pre-Commit Hook** đa nền tảng (`scripts/coordination/pre_commit_hook.py`) để ngăn ngừa các sai sót commit:
+* **Chức năng**:
+  - Chặn lệnh commit trực tiếp trên nhánh `main` (tránh Agent hoặc thành viên làm hỏng branch chính).
+  - Bảo vệ các tệp **Protected Artifacts** (`AGENTS.md`, `rules/*`, `templates/*`, `PLAN.md`, `SKILL.md`) không bị chỉnh sửa trái phép ngoài task branch.
+* **Cách cài đặt**:
+  - Chạy lệnh: `python scripts/coordination/install-hooks.py` (hoặc `python3`/`py` tùy OS). Hook sẽ tự động được cài vào `.git/hooks/pre-commit`.
+* **Đối với Agent**: Mọi Agent khi gặp lỗi chặn từ Pre-commit hook phải lập tức tuân thủ `coordination/PROTOCOL.md`: tạo task branch `agent/<tool>/<task-id>` và worktree riêng thay vì cố gắng commit trên `main`.
+
 
 ## Cài đặt trên Windows
 
