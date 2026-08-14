@@ -18,12 +18,12 @@ Worker làm việc trong `.worktrees/<tool>-<task-id>/` trên branch `agent/<too
 
 ### Vòng đời artifact cần quyết định của con người
 
-`coordination/human-artifacts.yml` là registry cho `AGENTS.md` ở gốc, mọi `PLAN.md`/`SKILL.md` (không phân biệt hoa thường), và mọi tệp Markdown bên dưới `rules/` hoặc `templates/`. Template Markdown phải được đăng ký trước khi được tạo. Vòng đời chỉ tiến theo thứ tự:
+`coordination/human-artifacts.yml` là registry cho `AGENTS.md` ở gốc, các `PLAN.md`/`SKILL.md` canonical bên dưới `skills/`, và mọi tệp Markdown bên dưới `rules/` hoặc `templates/`. Template Markdown phải được đăng ký trước khi được tạo. Redirect sinh tự động trong `.agents/skills/` và `.agent/skills/` là adapter kỹ thuật, không phải nguồn nội dung và không tham gia registry. Vòng đời chỉ tiến theo thứ tự:
 
 `needs-interview → agent-draft → human-editing → locked`
 
 1. Orchestrator phỏng vấn người dùng khi artifact ở `needs-interview`, rồi ghi nhận rõ quyết định và chuyển sang `agent-draft`.
-2. Khi task viết một artifact được bảo vệ, agent phải khai báo đúng đường dẫn tệp trong `write_scope`; không được thay bằng scope thư mục hoặc ancestor của artifact đó. Scope thư mục không liên quan như `src/` hoặc `deliverables/` vẫn hợp lệ, nhưng không cấp quyền tạo `PLAN.md`/`SKILL.md` chưa đăng ký bên trong. Agent tạo draft và gửi review trong khi registry vẫn là `agent-draft`.
+2. Khi task viết một artifact được bảo vệ, agent phải khai báo đúng đường dẫn tệp trong `write_scope`; không được thay bằng scope thư mục hoặc ancestor của artifact đó. Scope thư mục không liên quan như `src/` hoặc `deliverables/` vẫn hợp lệ, nhưng không cấp quyền tạo `skills/**/PLAN.md` hoặc `skills/**/SKILL.md` chưa đăng ký. Agent tạo draft và gửi review trong khi registry vẫn là `agent-draft`.
 3. Sau khi review được duyệt, orchestrator kiểm tra diff thật của branch, merge draft, rồi chuyển registry sang `human-editing` trong commit tích hợp riêng.
 4. Ở `human-editing`, người dùng trực tiếp chỉnh nội dung. Agent chỉ được góp ý, không được sửa tệp.
 5. Chỉ sau xác nhận rõ ràng của người dùng, orchestrator mới chuyển artifact sang `locked`. Không có thao tác mở khóa, chuyển lùi hoặc bỏ qua trạng thái.

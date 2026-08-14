@@ -13,8 +13,8 @@ Phạm vi là chủ nuôi trực tiếp đặt và theo dõi dịch vụ chăm s
 3. [Checklist quản trị dữ liệu](data-governance-checklist.md): cả nhóm phải hoàn tất trước phiên đầu; đây là bước kiểm tra policy cố định, không phải chỗ tự chọn policy.
 4. [Kịch bản đồng thuận](consent-script.md): phải hoàn tất trước mọi thu thập dữ liệu.
 5. [Hướng dẫn phỏng vấn](interview-guide.md), [hướng dẫn quan sát](contextual-observation-guide.md) và [biểu mẫu khảo sát trực tuyến](survey-form.md): dùng thu thập dữ liệu định tính và định lượng.
-6. Sao chép [mẫu ghi chép Pxx](templates/session-notes-Pxx.md) thành `session-notes-P01.md`, `P02`…; không ghi tên thật.
-7. Sao chép [ma trận bằng chứng](templates/evidence-matrix.md) sau khi rà soát ghi chép; chỉ tổng hợp điều có mã nguồn truy vết.
+6. Sao chép [mẫu ghi chép Pxx](../../templates/session-notes-Pxx.md) vào `data/user-research/session-notes-P01.md`, `P02`…; không ghi tên thật.
+7. Sao chép [ma trận bằng chứng](../../templates/evidence-matrix.md) vào deliverable synthesis sau khi rà soát ghi chép; chỉ tổng hợp điều có mã nguồn truy vết.
 
 ## Dependency và điều kiện sẵn sàng
 

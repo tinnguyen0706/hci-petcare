@@ -1,0 +1,74 @@
+id: TASK-ARCH-001
+title: Hoàn tất di cư agent và chuẩn hóa PLAN SKILL canonical
+status: review
+owner_tool: codex
+owner_role: orchestrator
+branch: agent/codex/TASK-ARCH-001
+worktree: .worktrees/codex-TASK-ARCH-001
+write_scope:
+  - .agent/
+  - .agents/agents/
+  - .agents/skills/
+  - .codex/agents/
+  - .codex/config.toml
+  - .github/agents/
+  - .github/copilot-instructions.md
+  - .opencode/agents/
+  - README.md
+  - agents/
+  - coordination/PROTOCOL.md
+  - coordination/human-artifacts.yml
+  - coordination/templates/task.yml
+  - coordination/tasks/TASK-ARCH-001.yml
+  - coordination/handoffs/TASK-ARCH-001.md
+  - data/
+  - deliverables/01-user-research/
+  - scripts/
+  - rules/persona-rules.md
+  - templates/persona-template.md
+  - templates/value-proposition-template.md
+  - templates/scenario-current-template.md
+  - templates/scenario-new-template.md
+  - templates/storyboard-template.md
+  - templates/prototype-template.md
+  - templates/wireframe-template.md
+  - templates/software-product-template.md
+  - templates/presentation-template.md
+  - templates/report-template.md
+  - templates/teamwork-template.md
+  - templates/session-notes-Pxx.md
+  - templates/evidence-matrix.md
+  - skills/orchestrator/SKILL.md
+  - skills/orchestrator/PLAN.md
+  - skills/persona-agent/SKILL.md
+  - skills/persona-agent/PLAN.md
+  - skills/value-proposition-agent/SKILL.md
+  - skills/value-proposition-agent/PLAN.md
+  - skills/scenario-current-agent/SKILL.md
+  - skills/scenario-current-agent/PLAN.md
+  - skills/scenario-new-agent/SKILL.md
+  - skills/scenario-new-agent/PLAN.md
+  - skills/storyboard-agent/SKILL.md
+  - skills/storyboard-agent/PLAN.md
+  - skills/prototype-agent/SKILL.md
+  - skills/prototype-agent/PLAN.md
+  - skills/wireframe-agent/SKILL.md
+  - skills/wireframe-agent/PLAN.md
+  - skills/software-product-agent/SKILL.md
+  - skills/software-product-agent/PLAN.md
+  - skills/presentation-agent/SKILL.md
+  - skills/presentation-agent/PLAN.md
+  - skills/report-agent/SKILL.md
+  - skills/report-agent/PLAN.md
+  - skills/teamwork-agent/SKILL.md
+  - skills/teamwork-agent/PLAN.md
+dependencies:
+  - TASK-AUTH-003
+acceptance_criteria:
+  - Mười hai PLAN canonical có Mục đích Dùng skill này khi Input bắt buộc Output và Workflow
+  - Mười hai SKILL canonical có Mục đích Kiến thức nghiệp vụ Chiến lược suy luận Quy tắc kiểm tra và Xử lý khi thiếu dữ liệu hoặc thất bại
+  - Frontmatter SKILL chỉ có name description và description nêu rõ điều kiện kích hoạt
+  - Nội dung bám bằng chứng không tự bịa thuộc tính nghiên cứu kiểm thử hoặc teamwork
+  - Validator kiến trúc quick validation adapter check coordination smoke và diff check đều đạt
+  - Di cư agent cũ sang canonical mới được giữ nguyên và review độc lập
+handoff: coordination/handoffs/TASK-ARCH-001.md

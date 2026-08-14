@@ -10,7 +10,27 @@ from pathlib import Path
 
 FIELDS = {"id", "title", "status", "owner_tool", "owner_role", "branch", "worktree", "write_scope", "dependencies", "acceptance_criteria", "handoff"}
 STATUSES = {"ready", "claimed", "in-progress", "review", "blocked", "done"}
-ROLES = {"orchestrator", "user-researcher", "interaction-designer", "software-implementer", "documentation-agent", "rubric-reviewer"}
+ACTIVE_ROLES = {
+    "orchestrator",
+    "persona-agent",
+    "value-proposition-agent",
+    "scenario-current-agent",
+    "scenario-new-agent",
+    "storyboard-agent",
+    "prototype-agent",
+    "wireframe-agent",
+    "software-product-agent",
+    "presentation-agent",
+    "report-agent",
+    "teamwork-agent",
+}
+LEGACY_DONE_ROLES = {
+    "user-researcher",
+    "interaction-designer",
+    "software-implementer",
+    "documentation-agent",
+    "rubric-reviewer",
+}
 ARTIFACT_STATES = ("needs-interview", "agent-draft", "human-editing", "locked")
 ACTIVE_STATUSES = {"claimed", "in-progress", "review", "blocked"}
 
@@ -58,7 +78,7 @@ def is_protected_path(value: str) -> bool:
     lowered = [part.lower() for part in path.parts]
     if path.as_posix() == "AGENTS.md":
         return True
-    if path.name.lower() in {"plan.md", "skill.md"}:
+    if lowered and lowered[0] == "skills" and path.name.lower() in {"plan.md", "skill.md"}:
         return True
     return bool(lowered and lowered[0] in {"rules", "templates"} and path.suffix.lower() == ".md")
 
@@ -136,7 +156,7 @@ def protected_scope_errors(scopes: list[object], registry: dict[str, str]) -> li
         scope = normalize_repo_path(str(raw_scope).rstrip("/"))
         exact_protected = is_protected_path(scope)
         covered = sorted(path for path in registry if overlaps(scope, path) and scope != path)
-        protected_roots = (".agents/skills", "rules", "templates")
+        protected_roots = ("skills", "rules", "templates")
         protected_specific = scope == "." or any(overlaps(scope, root) for root in protected_roots)
         # Scope thư mục thông thường vẫn cần cho src/deliverables. Chỉ ancestor
         # của artifact đã đăng ký hoặc vùng chuyên chứa artifact phải dùng exact file.
@@ -164,7 +184,9 @@ def validate(path: Path) -> list[str]:
     task_id, tool = str(task["id"]), str(task["owner_tool"])
     if task["status"] not in STATUSES:
         errors.append(f"status không hợp lệ: {task['status']}")
-    if task["owner_role"] not in ROLES:
+    role = str(task["owner_role"])
+    legacy_done = task["status"] == "done" and role in LEGACY_DONE_ROLES
+    if role not in ACTIVE_ROLES and not legacy_done:
         errors.append(f"owner_role không hợp lệ: {task['owner_role']}")
     if task["branch"] != f"agent/{tool}/{task_id}":
         errors.append("branch không đúng agent/<tool>/<task-id>")

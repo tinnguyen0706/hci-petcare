@@ -1,29 +1,89 @@
 artifacts:
   - path: AGENTS.md
     status: human-editing
-  - path: .agents/skills/build-prototype/SKILL.md
-    status: human-editing
-  - path: .agents/skills/design-interactions/SKILL.md
-    status: human-editing
-  - path: .agents/skills/prepare-final-delivery/SKILL.md
-    status: human-editing
-  - path: .agents/skills/research-users/SKILL.md
-    status: human-editing
-  - path: .agents/skills/build-prototype/PLAN.md
-    status: human-editing
-  - path: .agents/skills/design-interactions/PLAN.md
-    status: human-editing
-  - path: .agents/skills/prepare-final-delivery/PLAN.md
-    status: human-editing
-  - path: .agents/skills/research-users/PLAN.md
-    status: human-editing
+  - path: skills/orchestrator/SKILL.md
+    status: agent-draft
+  - path: skills/orchestrator/PLAN.md
+    status: agent-draft
+  - path: skills/persona-agent/SKILL.md
+    status: agent-draft
+  - path: skills/persona-agent/PLAN.md
+    status: agent-draft
+  - path: skills/value-proposition-agent/SKILL.md
+    status: agent-draft
+  - path: skills/value-proposition-agent/PLAN.md
+    status: agent-draft
+  - path: skills/scenario-current-agent/SKILL.md
+    status: agent-draft
+  - path: skills/scenario-current-agent/PLAN.md
+    status: agent-draft
+  - path: skills/scenario-new-agent/SKILL.md
+    status: agent-draft
+  - path: skills/scenario-new-agent/PLAN.md
+    status: agent-draft
+  - path: skills/storyboard-agent/SKILL.md
+    status: agent-draft
+  - path: skills/storyboard-agent/PLAN.md
+    status: agent-draft
+  - path: skills/prototype-agent/SKILL.md
+    status: agent-draft
+  - path: skills/prototype-agent/PLAN.md
+    status: agent-draft
+  - path: skills/wireframe-agent/SKILL.md
+    status: agent-draft
+  - path: skills/wireframe-agent/PLAN.md
+    status: agent-draft
+  - path: skills/software-product-agent/SKILL.md
+    status: agent-draft
+  - path: skills/software-product-agent/PLAN.md
+    status: agent-draft
+  - path: skills/presentation-agent/SKILL.md
+    status: agent-draft
+  - path: skills/presentation-agent/PLAN.md
+    status: agent-draft
+  - path: skills/report-agent/SKILL.md
+    status: agent-draft
+  - path: skills/report-agent/PLAN.md
+    status: agent-draft
+  - path: skills/teamwork-agent/SKILL.md
+    status: agent-draft
+  - path: skills/teamwork-agent/PLAN.md
+    status: agent-draft
   - path: rules/assessment-rules.md
     status: human-editing
   - path: rules/domain-rules.md
     status: human-editing
+  - path: rules/persona-rules.md
+    status: agent-draft
   - path: rules/quality-rules.md
     status: human-editing
   - path: rules/style-rules.md
     status: human-editing
   - path: rules/task-rules.md
     status: needs-interview
+  - path: templates/persona-template.md
+    status: agent-draft
+  - path: templates/value-proposition-template.md
+    status: agent-draft
+  - path: templates/scenario-current-template.md
+    status: agent-draft
+  - path: templates/scenario-new-template.md
+    status: agent-draft
+  - path: templates/storyboard-template.md
+    status: agent-draft
+  - path: templates/prototype-template.md
+    status: agent-draft
+  - path: templates/wireframe-template.md
+    status: agent-draft
+  - path: templates/software-product-template.md
+    status: agent-draft
+  - path: templates/presentation-template.md
+    status: agent-draft
+  - path: templates/report-template.md
+    status: agent-draft
+  - path: templates/teamwork-template.md
+    status: agent-draft
+  - path: templates/session-notes-Pxx.md
+    status: agent-draft
+  - path: templates/evidence-matrix.md
+    status: agent-draft

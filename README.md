@@ -24,13 +24,13 @@ Hệ thống tuân thủ mô hình cộng tác **Human-in-the-Loop**. Agent đó
 | 8 | **Software Product** | Chạy thử nghiệm, kiểm thử trải nghiệm người dùng cuối trên thiết bị di động. | Viết mã nguồn React + TypeScript (`src/`), component UI, kiểm thử tự động (`tests/`). |
 | 9 | **Trình bày** | Thực hiện thuyết trình trước lớp, trả lời các câu hỏi phản biện của GV. | Soạn dàn ý slide, chuẩn bị câu hỏi Q&A dự kiến và tài liệu hỗ trợ. |
 | 10 | **Báo cáo** | Đọc soát, hoàn thiện văn phong, duyệt và xuất báo cáo cuối kỳ. | Tổng hợp toàn bộ tài liệu từ `01` đến `03` thành báo cáo Markdown hoàn chỉnh (>6 trang). |
-| 11 | **Team work** | Phân công giữa 3 thành viên, thực địa, ký duyệt các task & artifact. | Đóng vai các agent (Orchestrator, Researcher, Designer, Implementer, Reviewer) theo đúng `PROTOCOL.md`. |
+| 11 | **Team work** | Phân công giữa 3 thành viên, thực địa, ký duyệt các task & artifact. | `teamwork-agent` tổng hợp bằng chứng thật; `orchestrator` điều phối theo `agents/manifest.json`. |
 
 ### Nhiệm vụ của Con người đối với Protected Artifacts
 
 Theo `AGENTS.md` (Mục 6) và `coordination/PROTOCOL.md`, các tài liệu sau là **Protected Artifacts** (Artifacts được bảo vệ):
 1. `AGENTS.md` ở thư mục gốc.
-2. Mọi tệp `PLAN.md` và `SKILL.md` (trong `.agents/skills/` hoặc bất kỳ đâu).
+2. Mọi `PLAN.md` và `SKILL.md` canonical trong `skills/`.
 3. Mọi tệp Markdown bên dưới `rules/` (các quy tắc hệ thống).
 4. Mọi tệp Markdown bên dưới `templates/`.
 
@@ -47,15 +47,15 @@ Vòng đời của các file này trải qua 4 trạng thái một chiều:
 | **3. `human-editing`** | **Nhiệm vụ chính của Con người**: Trực tiếp đọc, chỉnh sửa, bổ sung và hoàn thiện nội dung file Markdown theo ý mình. | **Agent CHỈ ĐƯỢC ĐỌC VÀ GÓP Ý**, tuyệt đối không được tự ý sửa nội dung file. |
 | **4. `locked`** | Xác nhận chốt file hoàn toàn. Khi cần thay đổi, người dùng chỉ đạo để mở lại quy trình. | Agent chỉ đọc tệp để tuân thủ quy tắc, không được tự mở khóa hay chuyển lùi trạng thái. |
 
-> **Tóm lại**: Sau khi Agent tạo xong bản nháp (`agent-draft`) và được tích hợp, mọi việc đọc, chỉnh sửa nội dung chi tiết của `AGENTS.md`, `PLAN.md`, `SKILL.md`, các file trong `rules/` và `templates/` **hoàn toàn thuộc về CON NGƯỜI** (`human-editing`). Agent không được phép tự ý đè/sửa các file này.
+> **Tóm lại**: Sau khi Agent tạo xong bản nháp (`agent-draft`) và được tích hợp, mọi việc đọc, chỉnh sửa nội dung chi tiết của `AGENTS.md`, `skills/**/PLAN.md`, `skills/**/SKILL.md`, các file trong `rules/` và `templates/` **hoàn toàn thuộc về CON NGƯỜI** (`human-editing`). Redirect runtime được sinh từ manifest và không chỉnh tay.
 
 #### Chi tiết các File Markdown do Con người trực tiếp chỉnh sửa (`human-editing`)
 
 | Thư mục | Các file Markdown Con người chỉnh sửa | Mục đích chỉnh sửa của Con người |
 |---|---|---|
 | Gốc (`/`) | **`AGENTS.md`** | Chỉnh sửa quy tắc chung, nguyên tắc làm việc, thứ tự ưu tiên nguồn và bổ sung lưu ý từ người dùng. |
-| `.agents/skills/<skill>/` | **`SKILL.md`** (trong 4 skill: `research-users`, `design-interactions`, `build-prototype`, `prepare-final-delivery`) | Chỉnh sửa hướng dẫn quy trình từng bước, phương pháp thực hiện nhiệm vụ của từng kỹ năng. |
-| `.agents/skills/<skill>/` | **`PLAN.md`** (kế hoạch thực hiện từng skill) | Chỉnh sửa kế hoạch hành động, phạm vi công việc và các mốc chốt của skill đó. |
+| `skills/<agent>/` | **`SKILL.md`** của 11 rubric agent và orchestrator | Chỉnh sửa hướng dẫn thực hiện nhiệm vụ cụ thể của agent. |
+| `skills/<agent>/` | **`PLAN.md`** cùng package | Chỉnh sửa input, output, workflow, cổng quyết định và tiêu chí hoàn tất. |
 | `rules/` | **`assessment-rules.md`**, **`domain-rules.md`**, **`quality-rules.md`**, **`style-rules.md`**, **`task-rules.md`** | Điều chỉnh các quy định về tiêu chí đánh giá, nghiệp vụ thú cưng, chất lượng kiểm thử, văn phong và quy định task. |
 | `templates/` | Mọi tệp `.md` khuôn mẫu | Chỉnh sửa định dạng khung mẫu cho báo cáo, handoff, session notes. |
 | `docs/` | **`proposal.md`** | Hoàn thiện nội dung nghiệp vụ Vấn đề - Ý tưởng - Quy trình. |
@@ -65,7 +65,7 @@ Vòng đời của các file này trải qua 4 trạng thái một chiều:
 | File Markdown | Cách Agent đọc & tuân thủ khi thực thi Task |
 |---|---|
 | **`AGENTS.md`** | **Quy tắc bắt buộc hàng đầu**: Tất cả Agent đều đọc file này trước tiên để biết ranh giới quyền hạn, thứ tự ưu tiên nguồn, ngôn ngữ (tiếng Việt), và không vi phạm `write_scope`. |
-| **`SKILL.md` & `PLAN.md`** | **Hướng dẫn thực thi kỹ năng**: Khi Agent đảm nhận vai trò tương ứng (ví dụ `user-researcher`), Agent sẽ đọc `SKILL.md` để làm đúng các bước và đọc `PLAN.md` để bám sát kế hoạch đã duyệt. |
+| **`agents/*.md`, `SKILL.md` & `PLAN.md`** | Agent đọc mục tiêu trong `agents/`, sau đó dùng cặp canonical trong `skills/`; adapter của từng runtime chỉ điều hướng tới các file này. |
 | **`rules/*.md`** | **Bộ lọc kiểm tra chất lượng**: Agent áp dụng `domain-rules` để không làm sai nghiệp vụ, `style-rules` để không dịch thuật ngữ tiếng Anh, `quality-rules` để chạy kiểm thử thật, `task-rules` để tuân thủ branch/worktree. |
 | **`templates/*.md`** | **Khuôn mẫu xuất đầu ra**: Agent sao chép đúng định dạng mẫu khi lập `handoff.md`, `session-notes-Pxx.md`, v.v. |
 | **`docs/proposal.md`** | **Nguồn sự thật nghiệp vụ**: Agent đối chiếu để giữ đúng 4 tính năng cốt lõi (xác nhận tức thì, yêu cầu đặc biệt, mốc tiến độ real-time, lịch sử) và không tự ý thêm backend/tính năng ngoài scope. |
@@ -78,13 +78,15 @@ Vòng đời của các file này trải qua 4 trạng thái một chiều:
 THƯ MỤC NƠI CON NGƯỜI ĐIỀU KHIỂN & CHỈNH SỬA (Human-Controlled Content)
 ├── AGENTS.md                          <-- Quy tắc hệ thống tối cao
 ├── rules/*.md                         <-- Bộ luật kiểm soát chất lượng (style, domain, quality, task, assessment)
-├── .agents/skills/<skill>/SKILL.md    <-- Quy trình thực thi kỹ năng dùng chung
-├── .agents/skills/<skill>/PLAN.md     <-- Lộ trình kế hoạch & Cổng duyệt dùng chung
+├── agents/*.md & manifest.json        <-- Điều phối mục tiêu lớn
+├── skills/<agent>/SKILL.md            <-- Nhiệm vụ cụ thể dùng chung
+├── skills/<agent>/PLAN.md             <-- Workflow và cổng quyết định
 ├── docs/proposal.md                   <-- Đề xuất nghiệp vụ chính thức
 └── templates/*.md                     <-- Các mẫu báo cáo & handoff
 
 THƯ MỤC CẤU HÌNH TỰ ĐỘNG ADAPTER (Hệ thống/Agent quản lý, Con người KHÔNG NÊN sửa tay)
-├── .agents/agents/<role>/agent.md     <-- Adapter cho Antigravity CLI (agy)
+├── .agents/agents/<agent>/agent.md    <-- Adapter agent cho Antigravity (agy)
+├── .agents/skills/ & .agent/skills/   <-- Redirect skill, không chứa workflow gốc
 ├── .codex/config.toml & .codex/agents/*.toml <-- Adapter cho OpenAI Codex CLI
 ├── .github/copilot-instructions.md    <-- Adapter cho GitHub Copilot
 └── opencode.json & .opencode/         <-- Adapter cho OpenCode AI
@@ -95,18 +97,20 @@ THƯ MỤC CẤU HÌNH TỰ ĐỘNG ADAPTER (Hệ thống/Agent quản lý, Con 
 | Vùng Thư mục | Ai trực tiếp quản lý/sửa? | Chức năng & Cách Agent sử dụng |
 |---|---|---|
 | **`/AGENTS.md`** | **CON NGƯỜI** (ở `human-editing`) | **Luật tối cao chung**: Tất cả Agent (`agy`, `codex`, `copilot`, `opencode`) đọc file này trước tiên để tuân thủ thứ tự ưu tiên nguồn, ngôn ngữ tiếng Việt và ranh giới `write_scope`. |
-| **`.agents/skills/<skill>/`** | **CON NGƯỜI** (ở `human-editing`) | **Skill & Plan chung**: Chứa `SKILL.md` (hướng dẫn thực thi) và `PLAN.md` (kế hoạch & cổng duyệt). Mọi Adapter Config của 4 công cụ AI đều trỏ về đây để Agent thực thi đúng workflow. |
+| **`agents/` và `skills/<agent>/`** | **CON NGƯỜI** sau khi draft được duyệt | Nguồn canonical: agent điều phối mục tiêu; SKILL/PLAN mô tả nhiệm vụ và workflow. Mọi runtime đều trỏ về đây. |
 | **`rules/*.md`** | **CON NGƯỜI** (ở `human-editing`) | **Bộ luật kiểm soát**: Định nghĩa các quy tắc kiểm thử, văn phong (giữ thuật ngữ tiếng Anh), nghiệp vụ petcare. Agent đọc để không vi phạm quy chuẩn. |
 | **`docs/proposal.md`** | **CON NGƯỜI** (ở `human-editing`) | **Nguồn sự thật nghiệp vụ**: Agent đối chiếu để giữ đúng 4 tính năng cốt lõi và không tự mở rộng scope. |
-| **`.codex/`, `.agents/agents/`, `.github/agents/`, `.opencode/agents/`** | **Cấu hình Adapter kỹ thuật** | **Cầu nối kỹ thuật**: Đã được thiết lập sẵn để tự động khai báo danh sách 6 subagent cho từng phần mềm AI. Con người không cần chỉnh sửa các file này trừ khi muốn thêm role mới. |
+| **`.codex/`, `.agents/`, `.agent/`, `.github/`, `.opencode/`** | **Cấu hình Adapter kỹ thuật** | Cầu nối sinh từ manifest cho 11 rubric agent và orchestrator; không chỉnh workflow trực tiếp tại đây. |
 
 ## Cấu trúc làm việc
 
 - `docs/`: proposal và rubric chính thức.
 - `references/`: mục lục hướng dẫn đồ án và kiến thức môn học dùng để hỗ trợ từng task.
 - `deliverables/`: sản phẩm theo bốn nhóm user research, interaction design, software product và final submission.
-- `agents/roles/`: sáu vai trò trung lập dùng chung.
-- `.agents/skills/`: bốn workflow chuẩn dùng chung.
+- `agents/`: manifest và 12 agent điều phối mục tiêu.
+- `skills/`: 12 cặp SKILL/PLAN canonical dùng chung cho mọi runtime.
+- `data/`: dữ liệu đầu vào; agent không ghi output vào đây.
+- `templates/`: cấu trúc đầu ra cho 11 rubric item và nghiên cứu.
 - `coordination/`: task, handoff, template và protocol cộng tác.
 - `scripts/coordination/`: công cụ khóa orchestrator, worktree, kiểm tra task, handoff và tích hợp.
 - `.codex/`, `.agents/agents/`, `.github/agents/`, `.opencode/agents/`: adapter cho từng công cụ.
@@ -115,7 +119,7 @@ THƯ MỤC CẤU HÌNH TỰ ĐỘNG ADAPTER (Hệ thống/Agent quản lý, Con 
 
 > **Yêu cầu**: [Git](https://git-scm.com/), [Python 3.10+](https://www.python.org/) và [GitHub CLI (`gh`)](https://cli.github.com/). Sau khi cài `gh`, chạy `gh auth login` để xác thực.
 
-1. Đọc `AGENTS.md`, `coordination/PROTOCOL.md`, [mục lục tài liệu tham khảo](references/README.md) và role được giao.
+1. Đọc `AGENTS.md`, `coordination/PROTOCOL.md`, `agents/manifest.json`, file agent, SKILL/PLAN canonical và [mục lục tài liệu tham khảo](references/README.md).
 2. Cài đặt Git Pre-commit hook để bảo vệ quy trình: `python scripts/coordination/install-hooks.py` (hoặc `python3`/`py`).
 3. Orchestrator nhận khóa bằng `scripts/coordination/claim-orchestrator`.
 4. Tạo một task từ `coordination/templates/task.yml`, kiểm tra bằng `scripts/coordination/validate-task`, rồi tạo worktree riêng.
@@ -129,7 +133,7 @@ Không làm việc trực tiếp trên `main`; `.worktrees/` chỉ là vùng là
 Dự án đã trang bị script **Git Pre-Commit Hook** đa nền tảng (`scripts/coordination/pre_commit_hook.py`) để ngăn ngừa các sai sót commit:
 * **Chức năng**:
   - Chặn lệnh commit trực tiếp trên nhánh `main` (tránh Agent hoặc thành viên làm hỏng branch chính).
-  - Bảo vệ các tệp **Protected Artifacts** (`AGENTS.md`, `rules/*`, `templates/*`, `PLAN.md`, `SKILL.md`) không bị chỉnh sửa trái phép ngoài task branch.
+  - Bảo vệ các tệp **Protected Artifacts** (`AGENTS.md`, `rules/*`, `templates/*`, `skills/**/PLAN.md`, `skills/**/SKILL.md`) không bị chỉnh sửa trái phép ngoài task branch.
 * **Cách cài đặt**:
   - Chạy lệnh: `python scripts/coordination/install-hooks.py` (hoặc `python3`/`py` tùy OS). Hook sẽ tự động được cài vào `.git/hooks/pre-commit`.
 * **Đối với Agent**: Mọi Agent khi gặp lỗi chặn từ Pre-commit hook phải lập tức tuân thủ `coordination/PROTOCOL.md`: tạo task branch `agent/<tool>/<task-id>` và worktree riêng thay vì cố gắng commit trên `main`.

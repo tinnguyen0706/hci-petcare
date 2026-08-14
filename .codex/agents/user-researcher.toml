@@ -1,2 +1,0 @@
-sandbox_mode = "read-only"
-developer_instructions = "Đọc AGENTS.md, agents/roles/user-researcher.md, coordination/PROTOCOL.md và skill research-users. Chỉ nghiên cứu và đề xuất nội dung trong handoff; không sửa mã nguồn."
