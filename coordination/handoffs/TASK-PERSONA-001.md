@@ -58,5 +58,5 @@
 
 - Vòng 1: `changes-requested`.
 - Yêu cầu sửa: loại các feature của proposal khỏi finding/Needs/Wishes; chỉ giữ outcome trung tính có evidence. Hiệu chỉnh finding “giảm bất định”, không tính P04 vào mẫu này và thể hiện P04 là phản chứng. Rà lại truy vết chung chung trong bảng tổng hợp.
-- Vòng 2: `pending`.
-- Reviewer cần xác nhận các outcome đã trung tính và có truy vết đúng mức, P04 được giữ như phản chứng, Persona thể hiện mẫu nổi trội thay vì gán cho toàn bộ mẫu; reviewer không sửa deliverable.
+- Vòng 2: `approved`.
+- Bằng chứng: outcome được mô tả trung tính và truy vết đúng mức; finding là `4/5` với P04 được giữ như phản chứng; không có regression ở Persona hoặc synthesis; task validator, integration gate và scope check đều đạt. Consent không được dùng làm tiêu chí đánh giá theo yêu cầu hiện tại của người dùng.
