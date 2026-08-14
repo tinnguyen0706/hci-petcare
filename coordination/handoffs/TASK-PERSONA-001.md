@@ -24,8 +24,10 @@
 - Kết quả: `OK` ở cả trạng thái `in-progress` và `review`.
 - Lệnh: `git diff --check` trước commit nội dung.
 - Kết quả: không có lỗi whitespace.
-- Lệnh dự kiến sau commit handoff: `py -3 -X utf8 scripts/coordination/tasklib.py --validate-integration coordination/tasks/TASK-PERSONA-001.yml main HEAD`, `git diff --check main...HEAD`, và kiểm tra danh sách diff so với `write_scope`.
-- Kết quả: chờ commit handoff để kiểm tra trên diff hoàn chỉnh.
+- Lệnh: `py -3 -X utf8 scripts/coordination/tasklib.py --validate-integration coordination/tasks/TASK-PERSONA-001.yml main HEAD`.
+- Kết quả: `OK`; diff hoàn chỉnh hợp lệ với task và `write_scope`.
+- Lệnh: `git diff --check main...HEAD` và PowerShell đối chiếu `git diff --name-only main...HEAD` với bốn đường dẫn trong `write_scope`.
+- Kết quả: không có lỗi whitespace; đúng bốn tệp thay đổi và không có tệp ngoài phạm vi.
 
 ## Tài liệu đã ảnh hưởng
 
