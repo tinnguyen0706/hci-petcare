@@ -26,5 +26,5 @@
 
 ## Review
 
-- Kết luận: `pending`
-- Ghi chú: chưa review.
+- Kết luận: `approved`
+- Ghi chú: Diff chỉ chuẩn hóa `AGENTS.md` về `needs-interview` trong fixture, không thay đổi production validator. `validate-task`, `git diff --check` và smoke test đều đạt; smoke test cũng đạt trên bản sao tạm khi registry nguồn đặt `AGENTS.md` ở `human-editing`. Ma trận vẫn kiểm tra `agent-draft`, `human-editing`, `locked`, chuyển lùi, bỏ qua trạng thái, integration guard và luồng task cũ.
