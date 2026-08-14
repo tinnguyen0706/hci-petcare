@@ -45,11 +45,11 @@ Mọi task phải có đúng một owner, một branch `agent/<tool>/<task-id>`,
 - Reviewer chỉ đọc task, diff, handoff và kết quả kiểm thử; reviewer ghi một kết luận `approved` hoặc `changes-requested`, không sửa sản phẩm của task.
 - Chỉ orchestrator đang giữ khóa mới được tích hợp task đã được duyệt vào `main` và thực hiện các bước metadata, trạng thái hoặc dọn worktree theo protocol.
 
-Trước khi nhận hoặc thực hiện task, phải đọc `coordination/PROTOCOL.md`, `references/README.md`, role tương ứng trong `agents/roles/` và skill phù hợp trong `.agents/skills/`.
+Trước khi nhận hoặc thực hiện task, phải đọc `coordination/PROTOCOL.md`, `references/README.md`, `agents/manifest.json`, file agent tương ứng trong `agents/` và cặp `SKILL.md`/`PLAN.md` canonical trong `skills/`.
 
 ## 6. Vòng đời artifact cần quyết định của con người
 
-Các artifact được bảo vệ gồm `AGENTS.md` ở gốc, mọi tệp `PLAN.md` hoặc `SKILL.md` không phân biệt hoa thường, và mọi tệp Markdown bên dưới `rules/` hoặc `templates/`. Chúng tuân theo vòng đời một chiều:
+Các artifact được bảo vệ gồm `AGENTS.md` ở gốc, mọi `PLAN.md` hoặc `SKILL.md` canonical bên dưới `skills/`, và mọi tệp Markdown bên dưới `rules/` hoặc `templates/`. Các file redirect sinh tự động trong `.agents/skills/` và `.agent/skills/` chỉ là adapter kỹ thuật, không phải nguồn nội dung và không tham gia lifecycle. Artifact canonical tuân theo vòng đời một chiều:
 
 `needs-interview → agent-draft → human-editing → locked`
 
@@ -58,4 +58,4 @@ Các artifact được bảo vệ gồm `AGENTS.md` ở gốc, mọi tệp `PLAN
 - `human-editing`: sau khi bản nháp được duyệt và tích hợp, người dùng trực tiếp sửa nội dung; agent chỉ góp ý, không sửa tệp.
 - `locked`: chỉ được chuyển sang trạng thái này sau xác nhận rõ ràng của người dùng; agent chỉ đọc.
 
-Agent không được tự tuyên bố artifact đã được người dùng chốt, tự mở khóa, chuyển lùi hoặc bỏ qua trạng thái. Đối với `AGENTS.md`, `PLAN.md`, `SKILL.md`, các tệp Markdown trong `rules/` và các template Markdown, sau giai đoạn agent tạo draft, mọi chỉnh sửa nội dung thuộc về người dùng; agent chỉ góp ý. Mọi thao tác với artifact được bảo vệ phải tiếp tục tuân thủ registry và các kiểm tra trong `coordination/PROTOCOL.md`.
+Agent không được tự tuyên bố artifact đã được người dùng chốt, tự mở khóa, chuyển lùi hoặc bỏ qua trạng thái. Đối với `AGENTS.md`, `skills/**/PLAN.md`, `skills/**/SKILL.md`, các tệp Markdown trong `rules/` và các template Markdown, sau giai đoạn agent tạo draft, mọi chỉnh sửa nội dung thuộc về người dùng; agent chỉ góp ý. Adapter phải được sinh lại từ manifest và không được chỉnh workflow trực tiếp trong adapter. Mọi thao tác với artifact được bảo vệ phải tiếp tục tuân thủ registry và các kiểm tra trong `coordination/PROTOCOL.md`.
