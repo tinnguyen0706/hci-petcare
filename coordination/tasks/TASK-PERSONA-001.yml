@@ -1,0 +1,21 @@
+id: TASK-PERSONA-001
+title: Tổng hợp nghiên cứu và tạo Persona chủ nuôi thú cưng
+status: ready
+owner_tool: codex
+owner_role: persona-agent
+branch: agent/codex/TASK-PERSONA-001
+worktree: .worktrees/codex-TASK-PERSONA-001
+write_scope:
+  - deliverables/01-user-research/synthesis.md
+  - deliverables/01-user-research/persona.md
+  - coordination/tasks/TASK-PERSONA-001.yml
+  - coordination/handoffs/TASK-PERSONA-001.md
+dependencies: []
+acceptance_criteria:
+  - Tổng hợp sáu tệp nghiên cứu hiện có, lấy năm khảo sát chủ nuôi có kinh nghiệm đặt lịch làm cổng bằng chứng chính và dùng phiên phỏng vấn làm bằng chứng bổ sung
+  - Mỗi finding quan trọng trong synthesis có mã truy vết P01-P06, tần suất và phản chứng hoặc khác biệt khi có
+  - Persona đại diện mẫu hành vi nổi trội từ nghiên cứu, không sao chép giả thuyết nhân khẩu học chưa được dữ liệu hỗ trợ trong proposal
+  - Persona trình bày tiếng Việt súc tích theo bố cục A4 một trang, có minh họa đại diện và đủ các thành phần được rules cùng rubric yêu cầu
+  - Mục tiêu, nhiệm vụ, hành vi, pain point, frustration, motivation và nhu cầu nhất quán; quote giữ đúng nguyên văn từ dữ liệu
+  - Đối chiếu docs/proposal.md, docs/final-rubric.csv và references/course-materials/notes/05-persona-value-proposition.md; không bịa finding hoặc kết quả kiểm thử
+handoff: coordination/handoffs/TASK-PERSONA-001.md
