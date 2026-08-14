@@ -8,6 +8,8 @@
 - Tạo evidence matrix có loại bằng chứng, tần suất, mã truy vết, phản chứng/khác biệt và giới hạn cho từng finding quan trọng.
 - Tạo Persona một trang theo bố cục hai cột với minh họa SVG tự chứa, đủ các mục quote, demographics, context/touchpoints, behaviors, tasks, goals, motivations, pain points, frustrations, needs và wishes.
 - Giữ nguyên quote P06; không sao chép Persona giả thuyết Lan 28 tuổi/nhân viên văn phòng/Poodle/TP.HCM từ proposal. Synthesis ghi rõ chênh lệch giữa giả thuyết proposal và mẫu nghiên cứu hiện có.
+- Sau review vòng 1, thay toàn bộ feature suy ra từ proposal trong finding/Needs/Wishes bằng outcome trung tính có evidence; bảng Goals/Tasks/Motivations/Pains/Needs truy vết riêng từng cụm thay vì gán chung P01–P06.
+- Hiệu chỉnh finding lo lắng/rủi ro thành `4/5`, loại P04 khỏi tần suất và ghi P04 là phản chứng; title, behaviors, motivations cùng footer Persona nêu rõ mẫu nổi trội P01/P03/P05 thay vì toàn bộ mẫu.
 
 ## Tệp đã sửa
 
@@ -28,6 +30,8 @@
 - Kết quả: `OK`; diff hoàn chỉnh hợp lệ với task và `write_scope`.
 - Lệnh: `git diff --check main...HEAD` và PowerShell đối chiếu `git diff --name-only main...HEAD` với bốn đường dẫn trong `write_scope`.
 - Kết quả: không có lỗi whitespace; đúng bốn tệp thay đổi và không có tệp ngoài phạm vi.
+- Lệnh vòng 2: PowerShell kiểm tra bốn outcome trung tính, cấm solution language trong Persona, tần suất `4/5`, phản chứng P04, không còn truy vết P01–P06 chung chung trong bảng mục 3, quote P06, đủ nhãn Persona và giới hạn compact.
+- Kết quả vòng 2: `OK`; Persona không chứa các feature bị reviewer nêu, finding có đúng `4/5` và P04 là phản chứng, bảng tổng hợp truy vết theo từng cụm; Persona còn 14 dòng nguồn Markdown và khoảng 648 từ/token-like.
 
 ## Tài liệu đã ảnh hưởng
 
@@ -47,10 +51,12 @@
 
 ## Commit
 
-- SHA: `5d04738d8247c63647fcc37443ea2c360736a52a`
+- Nội dung ban đầu: `5d04738d8247c63647fcc37443ea2c360736a52a`
+- Sửa theo review vòng 1: `6687120863b484d947e29e61fce3d0396040f04d`
 
 ## Review
 
 - Vòng 1: `changes-requested`.
 - Yêu cầu sửa: loại các feature của proposal khỏi finding/Needs/Wishes; chỉ giữ outcome trung tính có evidence. Hiệu chỉnh finding “giảm bất định”, không tính P04 vào mẫu này và thể hiện P04 là phản chứng. Rà lại truy vết chung chung trong bảng tổng hợp.
-- Vòng 2: chưa gửi review.
+- Vòng 2: `pending`.
+- Reviewer cần xác nhận các outcome đã trung tính và có truy vết đúng mức, P04 được giữ như phản chứng, Persona thể hiện mẫu nổi trội thay vì gán cho toàn bộ mẫu; reviewer không sửa deliverable.
