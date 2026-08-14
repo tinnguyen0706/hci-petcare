@@ -51,5 +51,6 @@
 
 ## Review
 
-- Kết luận: `pending`
-- Reviewer cần đối chiếu acceptance criteria, finding/tần suất với P01–P06, quote P06, phản chứng và độ gọn/khả năng đọc của Persona; reviewer không sửa deliverable.
+- Vòng 1: `changes-requested`.
+- Yêu cầu sửa: loại các feature của proposal khỏi finding/Needs/Wishes; chỉ giữ outcome trung tính có evidence. Hiệu chỉnh finding “giảm bất định”, không tính P04 vào mẫu này và thể hiện P04 là phản chứng. Rà lại truy vết chung chung trong bảng tổng hợp.
+- Vòng 2: chưa gửi review.
