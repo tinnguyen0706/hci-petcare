@@ -1,4 +1,4 @@
-# Anh Nguyễn Quốc Bảo
+# Anh Thành viên nhóm
 **Nguồn:** Phỏng vấn bán cấu trúc (trực tiếp)
 
 ## Demographic Information
