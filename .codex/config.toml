@@ -5,25 +5,49 @@ multi_agent = true
 max_threads = 4
 
 [agents.orchestrator]
-description = "Điều phối task và tích hợp thay đổi đã duyệt."
+description = "Điều phối 11 agent theo dependency và bằng chứng hiện có."
 config_file = "agents/orchestrator.toml"
 
-[agents.user_researcher]
-description = "Nghiên cứu người dùng và artifact khám phá."
-config_file = "agents/user-researcher.toml"
+[agents.persona-agent]
+description = "Tổng hợp evidence đã ẩn danh thành Persona có truy vết."
+config_file = "agents/persona-agent.toml"
 
-[agents.interaction_designer]
-description = "Thiết kế luồng và giao diện tương tác."
-config_file = "agents/interaction-designer.toml"
+[agents.value-proposition-agent]
+description = "Tạo Value Proposition Canvas đối ứng với Persona và evidence."
+config_file = "agents/value-proposition-agent.toml"
 
-[agents.software_implementer]
-description = "Hiện thực và kiểm thử prototype."
-config_file = "agents/software-implementer.toml"
+[agents.scenario-current-agent]
+description = "Mô tả Scenario hiện tại và khó khăn của quy trình cũ."
+config_file = "agents/scenario-current-agent.toml"
 
-[agents.documentation_agent]
-description = "Chuẩn bị proposal, báo cáo và trình bày."
-config_file = "agents/documentation-agent.toml"
+[agents.scenario-new-agent]
+description = "Thiết kế Scenario mới thể hiện tương tác cải tiến."
+config_file = "agents/scenario-new-agent.toml"
 
-[agents.rubric_reviewer]
-description = "Review chỉ đọc theo rubric."
-config_file = "agents/rubric-reviewer.toml"
+[agents.storyboard-agent]
+description = "Chuyển Scenario mới thành Storyboard có mạch truyện và chú thích."
+config_file = "agents/storyboard-agent.toml"
+
+[agents.wireframe-agent]
+description = "Thiết kế Wireframe mobile-first cho toàn bộ hành trình."
+config_file = "agents/wireframe-agent.toml"
+
+[agents.prototype-agent]
+description = "Quản lý Prototype Figma, phiên bản và bằng chứng tương tác."
+config_file = "agents/prototype-agent.toml"
+
+[agents.software-product-agent]
+description = "Hiện thực và kiểm thử Software product React TypeScript."
+config_file = "agents/software-product-agent.toml"
+
+[agents.presentation-agent]
+description = "Chuẩn bị slide, speaker notes và Q&A dựa trên artifact thật."
+config_file = "agents/presentation-agent.toml"
+
+[agents.report-agent]
+description = "Soạn báo cáo cuối kỳ tự chứa từ bằng chứng đã duyệt."
+config_file = "agents/report-agent.toml"
+
+[agents.teamwork-agent]
+description = "Tổng hợp phân công và bằng chứng đóng góp thực tế."
+config_file = "agents/teamwork-agent.toml"

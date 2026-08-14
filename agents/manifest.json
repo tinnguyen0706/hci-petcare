@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "canonical": {
+    "agents": "agents",
+    "skills": "skills",
+    "rules": "rules",
+    "templates": "templates",
+    "data": "data",
+    "outputs": "deliverables"
+  },
+  "agents": [
+    {
+      "id": "orchestrator",
+      "rubric_item": null,
+      "description": "Điều phối 11 agent theo dependency và bằng chứng hiện có.",
+      "skill": "skills/orchestrator",
+      "template": null,
+      "rules": ["rules/task-rules.md", "rules/quality-rules.md", "rules/assessment-rules.md"],
+      "inputs": ["agents/manifest.json", "docs/proposal.md", "docs/final-rubric.csv"],
+      "dependencies": [],
+      "outputs": ["coordination/tasks/", "coordination/handoffs/"]
+    },
+    {
+      "id": "persona-agent",
+      "rubric_item": 1,
+      "description": "Tổng hợp evidence đã ẩn danh thành Persona có truy vết.",
+      "skill": "skills/persona-agent",
+      "template": "templates/persona-template.md",
+      "rules": ["rules/persona-rules.md", "rules/quality-rules.md", "rules/style-rules.md"],
+      "inputs": ["data/user-research/", "docs/proposal.md", "docs/final-rubric.csv"],
+      "dependencies": [],
+      "outputs": ["deliverables/01-user-research/synthesis.md", "deliverables/01-user-research/persona.md"]
+    },
+    {
+      "id": "value-proposition-agent",
+      "rubric_item": 2,
+      "description": "Tạo Value Proposition Canvas đối ứng với Persona và evidence.",
+      "skill": "skills/value-proposition-agent",
+      "template": "templates/value-proposition-template.md",
+      "rules": ["rules/quality-rules.md", "rules/style-rules.md", "rules/assessment-rules.md"],
+      "inputs": ["deliverables/01-user-research/synthesis.md", "deliverables/01-user-research/persona.md"],
+      "dependencies": ["persona-agent"],
+      "outputs": ["deliverables/01-user-research/value-proposition.md"]
+    },
+    {
+      "id": "scenario-current-agent",
+      "rubric_item": 3,
+      "description": "Mô tả Scenario hiện tại và khó khăn của quy trình cũ.",
+      "skill": "skills/scenario-current-agent",
+      "template": "templates/scenario-current-template.md",
+      "rules": ["rules/domain-rules.md", "rules/quality-rules.md", "rules/style-rules.md"],
+      "inputs": ["data/user-research/", "deliverables/01-user-research/synthesis.md", "deliverables/01-user-research/persona.md"],
+      "dependencies": ["persona-agent"],
+      "outputs": ["deliverables/01-user-research/scenario-current.md"]
+    },
+    {
+      "id": "scenario-new-agent",
+      "rubric_item": 4,
+      "description": "Thiết kế Scenario mới thể hiện tương tác cải tiến.",
+      "skill": "skills/scenario-new-agent",
+      "template": "templates/scenario-new-template.md",
+      "rules": ["rules/domain-rules.md", "rules/quality-rules.md", "rules/style-rules.md"],
+      "inputs": ["deliverables/01-user-research/persona.md", "deliverables/01-user-research/value-proposition.md", "deliverables/01-user-research/scenario-current.md"],
+      "dependencies": ["persona-agent", "value-proposition-agent", "scenario-current-agent"],
+      "outputs": ["deliverables/02-interaction-design/scenario-new.md"]
+    },
+    {
+      "id": "storyboard-agent",
+      "rubric_item": 5,
+      "description": "Chuyển Scenario mới thành Storyboard có mạch truyện và chú thích.",
+      "skill": "skills/storyboard-agent",
+      "template": "templates/storyboard-template.md",
+      "rules": ["rules/domain-rules.md", "rules/quality-rules.md", "rules/style-rules.md"],
+      "inputs": ["deliverables/02-interaction-design/scenario-new.md"],
+      "dependencies": ["scenario-new-agent"],
+      "outputs": ["deliverables/02-interaction-design/storyboard/"]
+    },
+    {
+      "id": "wireframe-agent",
+      "rubric_item": 7,
+      "description": "Thiết kế Wireframe mobile-first cho toàn bộ hành trình.",
+      "skill": "skills/wireframe-agent",
+      "template": "templates/wireframe-template.md",
+      "rules": ["rules/domain-rules.md", "rules/quality-rules.md", "rules/style-rules.md"],
+      "inputs": ["deliverables/02-interaction-design/scenario-new.md", "data/design-inputs/"],
+      "dependencies": ["scenario-new-agent"],
+      "outputs": ["deliverables/02-interaction-design/wireframe/"]
+    },
+    {
+      "id": "prototype-agent",
+      "rubric_item": 6,
+      "description": "Quản lý Prototype Figma, phiên bản và bằng chứng tương tác.",
+      "skill": "skills/prototype-agent",
+      "template": "templates/prototype-template.md",
+      "rules": ["rules/domain-rules.md", "rules/quality-rules.md", "rules/style-rules.md"],
+      "inputs": ["deliverables/02-interaction-design/storyboard/", "deliverables/02-interaction-design/wireframe/", "data/design-inputs/"],
+      "dependencies": ["storyboard-agent", "wireframe-agent"],
+      "outputs": ["deliverables/02-interaction-design/prototype/"]
+    },
+    {
+      "id": "software-product-agent",
+      "rubric_item": 8,
+      "description": "Hiện thực và kiểm thử Software product React TypeScript.",
+      "skill": "skills/software-product-agent",
+      "template": "templates/software-product-template.md",
+      "rules": ["rules/domain-rules.md", "rules/quality-rules.md", "rules/style-rules.md"],
+      "inputs": ["deliverables/02-interaction-design/prototype/", "deliverables/02-interaction-design/wireframe/"],
+      "dependencies": ["prototype-agent", "wireframe-agent"],
+      "outputs": ["src/", "tests/", "deliverables/03-software-product/"]
+    },
+    {
+      "id": "presentation-agent",
+      "rubric_item": 9,
+      "description": "Chuẩn bị slide, speaker notes và Q&A dựa trên artifact thật.",
+      "skill": "skills/presentation-agent",
+      "template": "templates/presentation-template.md",
+      "rules": ["rules/quality-rules.md", "rules/style-rules.md", "rules/assessment-rules.md"],
+      "inputs": ["deliverables/01-user-research/", "deliverables/02-interaction-design/", "deliverables/03-software-product/", "data/submission-inputs/"],
+      "dependencies": ["persona-agent", "value-proposition-agent", "scenario-current-agent", "scenario-new-agent", "storyboard-agent", "prototype-agent", "wireframe-agent", "software-product-agent"],
+      "outputs": ["deliverables/04-final-submission/presentation/"]
+    },
+    {
+      "id": "report-agent",
+      "rubric_item": 10,
+      "description": "Soạn báo cáo cuối kỳ tự chứa từ bằng chứng đã duyệt.",
+      "skill": "skills/report-agent",
+      "template": "templates/report-template.md",
+      "rules": ["rules/quality-rules.md", "rules/style-rules.md", "rules/assessment-rules.md"],
+      "inputs": ["deliverables/01-user-research/", "deliverables/02-interaction-design/", "deliverables/03-software-product/", "data/submission-inputs/"],
+      "dependencies": ["persona-agent", "value-proposition-agent", "scenario-current-agent", "scenario-new-agent", "storyboard-agent", "prototype-agent", "wireframe-agent", "software-product-agent"],
+      "outputs": ["deliverables/04-final-submission/report/"]
+    },
+    {
+      "id": "teamwork-agent",
+      "rubric_item": 11,
+      "description": "Tổng hợp phân công và bằng chứng đóng góp thực tế.",
+      "skill": "skills/teamwork-agent",
+      "template": "templates/teamwork-template.md",
+      "rules": ["rules/quality-rules.md", "rules/assessment-rules.md"],
+      "inputs": ["data/teamwork-inputs/", "coordination/tasks/", "coordination/handoffs/"],
+      "dependencies": [],
+      "outputs": ["deliverables/04-final-submission/teamwork/"]
+    }
+  ]
+}
