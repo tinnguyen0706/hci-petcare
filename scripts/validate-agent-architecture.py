@@ -160,8 +160,10 @@ def main() -> int:
     for agent_id in expected_ids:
         for filename in ("SKILL.md", "PLAN.md"):
             path = f"skills/{agent_id}/{filename}"
-            if not re.search(rf"- path: {re.escape(path)}\n\s+status: agent-draft", registry):
-                errors.append(f"registry thiếu agent-draft: {path}")
+            if not re.search(
+                rf"- path: {re.escape(path)}\n\s+status: (?:agent-draft|human-editing|locked)", registry
+            ):
+                errors.append(f"registry thiếu trạng thái hậu phỏng vấn hợp lệ: {path}")
 
     generated = subprocess.run(
         [sys.executable, "scripts/generate-agent-adapters.py", "--check"],

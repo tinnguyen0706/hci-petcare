@@ -1,6 +1,6 @@
 id: TASK-ARCH-001
 title: Hoàn tất di cư agent và chuẩn hóa PLAN SKILL canonical
-status: review
+status: done
 owner_tool: codex
 owner_role: orchestrator
 branch: agent/codex/TASK-ARCH-001

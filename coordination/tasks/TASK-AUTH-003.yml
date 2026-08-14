@@ -1,6 +1,6 @@
 id: TASK-AUTH-003
 title: Tách smoke test khỏi trạng thái artifact thực tế
-status: review
+status: done
 owner_tool: codex
 owner_role: software-implementer
 branch: agent/codex/TASK-AUTH-003
