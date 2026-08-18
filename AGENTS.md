@@ -53,52 +53,34 @@
 
 ---
 
-## 5. Workflow (Các bước làm việc trong project)
+## 5. Workflow
 
 ```mermaid
-graph TD
-    Phase1["Giai đoạn 1: Nghiên cứu người dùng"] --> Phase2["Giai đoạn 2: Thiết kế tương tác"]
-    Phase2 --> Phase3["Giai đoạn 3: Hiện thực phần mềm"]
-    Phase3 --> Phase4["Giai đoạn 4: Báo cáo & Thuyết trình"]
-
-    subgraph "Phase 1: User Research"
-        P1_1["1. Persona (1 trang / Infographic)"]
-        P1_2["2. Value Proposition Canvas"]
-        P1_3["3. Scenario 1 (Hệ thống hiện tại)"]
-    end
-
-    subgraph "Phase 2: Interaction Design"
-        P2_1["4. Scenario 2 (Hệ thống mới)"]
-        P2_2["5. Storyboard (Trực quan, có chú thích)"]
-        P2_3["6. Wireframe (Mobile-first)"]
-        P2_4["7. Prototype (Figma tương tác cao)"]
-    end
-
-    subgraph "Phase 3: Software Product"
-        P3_1["8. Web App React + TS (src/)"]
-    end
-
-    subgraph "Phase 4: Final Submission"
-        P4_1["9. Slide & Q&A Thuyết trình"]
-        P4_2["10. Báo cáo cuối kỳ (>6 trang)"]
-        P4_3["11. Bằng chứng Teamwork"]
-    end
+graph LR
+    Step1["1. Tiếp nhận yêu cầu"] --> Step2["2. Nắm rõ yêu cầu"]
+    Step2 --> Step3["3. Tìm kiếm & Kích hoạt Subagent"]
+    Step3 --> Step4["4. Thực thi nhiệm vụ"]
+    Step4 --> Step5["5. Báo cáo kết quả"]
 ```
 
-1. **Giai đoạn 1: Nghiên cứu người dùng (`deliverables/01-user-research/`)**
-   - Tổng hợp ghi chép phỏng vấn từ `data/user-research/`.
-   - Hoàn thiện **Persona** chuẩn 1 trang (kèm ảnh minh họa & HTML/PNG).
-   - Xây dựng **Value Proposition Canvas** (đối ứng 1-1 với Persona).
-   - Viết **Scenario 1** (mô tả khó khăn và bất cập của hệ thống cũ).
-2. **Giai đoạn 2: Thiết kế tương tác (`deliverables/02-interaction-design/`)**
-   - Viết **Scenario 2** (thể hiện rõ các bước tương tác cải tiến của hệ thống mới).
-   - Tạo **Storyboard** trực quan kèm chú thích câu chuyện.
-   - Thiết kế **Wireframe** mobile-first chi tiết, tiện dụng.
-   - Xây dựng **Prototype** tương tác cao trên Figma mô phỏng 4 luồng nghiệp vụ cốt lõi.
-3. **Giai đoạn 3: Hiện thực phần mềm (`src/` & `deliverables/03-software-product/`)**
-   - Khởi tạo và phát triển ứng dụng Web React + TypeScript theo chuẩn mobile-first.
-   - Cài đặt trọn vẹn 100% các tính năng tương tác mới và kiểm thử trải nghiệm.
-4. **Giai đoạn 4: Hoàn thiện báo cáo & Bảo vệ (`deliverables/04-final-submission/`)**
-   - Soạn slide thuyết trình và chuẩn bị các câu hỏi Q&A phản biện.
-   - Viết báo cáo cuối kỳ đầy đủ format, minh chứng (>6 trang).
-   - Tổng hợp minh chứng đóng góp teamwork công bằng, rõ ràng.
+1. **Tiếp nhận yêu cầu**: Lắng nghe yêu cầu cụ thể từ người dùng về tính năng, tài liệu, thiết kế hoặc kiểm thử.
+2. **Nắm rõ yêu cầu của người dùng**:
+   - Phân tích mục tiêu, phạm vi công việc, dữ liệu đầu vào cần dùng (trong `data/`, `docs/`, `deliverables/`) và tiêu chí hoàn thành.
+   - Trao đổi ngay nếu có điểm chưa rõ ràng hoặc thiếu dữ kiện cần thiết.
+3. **Tìm kiếm & Sử dụng Subagent thích hợp**:
+   - Xác định và áp dụng kỹ năng/subagent phù hợp theo 11 chuyên môn:
+     - `persona-agent`: Xây dựng Persona chuẩn 1 trang từ dữ liệu phỏng vấn.
+     - `value-proposition-agent`: Lập Value Proposition Canvas tương ứng Persona.
+     - `scenario-current-agent`: Mô tả kịch bản và khó khăn của quy trình cũ.
+     - `scenario-new-agent`: Thiết kế kịch bản luồng tương tác mới.
+     - `storyboard-agent`: Soạn kịch bản và tạo Storyboard trực quan.
+     - `wireframe-agent`: Thiết kế Wireframe mobile-first chi tiết, tiện dụng.
+     - `prototype-agent`: Quản lý và xây dựng Prototype tương tác (Figma).
+     - `software-product-agent`: Lập trình ứng dụng Web React + TypeScript (`src/`).
+     - `presentation-agent`: Soạn Slide thuyết trình và nội dung Q&A phản biện.
+     - `report-agent`: Tổng hợp và biên soạn Báo cáo cuối kỳ (>6 trang).
+     - `teamwork-agent`: Tổng hợp phân công và minh chứng đóng góp thực tế.
+4. **Thực thi nhiệm vụ**:
+   - Tiến hành viết code, cập nhật tài liệu, xuất hình ảnh hoặc chạy script kiểm thử theo đúng quy chuẩn thiết kế và kỹ thuật.
+5. **Báo cáo kết quả**:
+   - Trình bày kết quả rõ ràng, dẫn link file đã tạo/sửa, tóm tắt các điểm quan trọng và sẵn sàng nhận phản hồi để hoàn thiện tiếp.
