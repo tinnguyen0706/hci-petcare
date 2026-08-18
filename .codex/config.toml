@@ -4,10 +4,6 @@ multi_agent = true
 [agents]
 max_threads = 4
 
-[agents.orchestrator]
-description = "Điều phối 11 agent theo dependency và bằng chứng hiện có."
-config_file = "agents/orchestrator.toml"
-
 [agents.persona-agent]
 description = "Tổng hợp evidence đã ẩn danh thành Persona có truy vết."
 config_file = "agents/persona-agent.toml"

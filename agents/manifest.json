@@ -10,17 +10,6 @@
   },
   "agents": [
     {
-      "id": "orchestrator",
-      "rubric_item": null,
-      "description": "Điều phối 11 agent theo dependency và bằng chứng hiện có.",
-      "skill": "skills/orchestrator",
-      "template": null,
-      "rules": ["rules/task-rules.md", "rules/quality-rules.md", "rules/assessment-rules.md"],
-      "inputs": ["agents/manifest.json", "docs/proposal.md", "docs/final-rubric.csv"],
-      "dependencies": [],
-      "outputs": ["coordination/tasks/", "coordination/handoffs/"]
-    },
-    {
       "id": "persona-agent",
       "rubric_item": 1,
       "description": "Tổng hợp evidence đã ẩn danh thành Persona có truy vết.",
@@ -137,7 +126,7 @@
       "skill": "skills/teamwork-agent",
       "template": "templates/teamwork-template.md",
       "rules": ["rules/quality-rules.md", "rules/assessment-rules.md"],
-      "inputs": ["data/teamwork-inputs/", "coordination/tasks/", "coordination/handoffs/"],
+      "inputs": ["data/teamwork-inputs/"],
       "dependencies": [],
       "outputs": ["deliverables/04-final-submission/teamwork/"]
     }

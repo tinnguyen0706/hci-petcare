@@ -1,78 +1,68 @@
 # Lộ trình & Tiến độ Dự án HCI (CSC12106)
 
-Tài liệu này lưu trữ tập trung **trạng thái tiến độ hiện tại** và **kế hoạch làm việc** của dự án Đặt lịch & Theo dõi Chăm sóc Thú cưng.
+Tài liệu theo dõi **tiến độ thực tế** và **kế hoạch hành động** của dự án Đặt lịch & Theo dõi Chăm sóc Thú cưng.
 
 ---
 
 ## 1. Trạng thái Tiến độ 11 Deliverables (Theo Rubric)
 
-| # | Deliverable | Nhóm | Trạng thái | Vị trí Artifact / Ghi chú |
+| # | Deliverable | Nhóm thư mục | Trạng thái | Vị trí Artifact / Ghi chú |
 |---|---|---|---|---|
-| 1 | **Persona** | `01-user-research` | ⏳ Chờ dữ liệu phỏng vấn | Cần 5 phiên phỏng vấn chủ nuôi thực tế |
-| 2 | **Value Proposition** | `01-user-research` | ⏳ Chờ dữ liệu phỏng vấn | Khớp 1-1 giữa Persona & VPC |
-| 3 | **Scenario 1** (Hiện tại) | `01-user-research` | ⏳ Chờ dữ liệu phỏng vấn | Mô tả khó khăn hệ thống cũ |
-| 4 | **Scenario 2** (Mới) | `02-interaction-design` | 🔴 Chưa bắt đầu | Khái niệm các bước tương tác mới |
-| 5 | **Storyboard** | `02-interaction-design` | 🔴 Chưa bắt đầu | Kịch bản câu chuyện & hình minh họa |
-| 6 | **Prototype** | `02-interaction-design` | 🔴 Chưa bắt đầu | Thiết kế Figma minh họa tương tác mới |
-| 7 | **Wireframe** | `02-interaction-design` | 🔴 Chưa bắt đầu | Giao diện chi tiết, màu sắc hài hòa |
-| 8 | **Software product** | `03-software-product` | 🔴 Chưa bắt đầu | Mã nguồn React + TypeScript (mobile-first) |
-| 9 | **Trình bày** | `04-final-submission` | 🔴 Chưa bắt đầu | Slide & nội dung Q&A |
-| 10 | **Báo cáo** | `04-final-submission` | 🔴 Chưa bắt đầu | Báo cáo Markdown đầy đủ (>6 trang) |
-| 11 | **Team work** | `04-final-submission` | 🟢 Đã thiết lập | `coordination/PROTOCOL.md` & `AGENTS.md` |
+| 1 | **Persona** | `01-user-research` | 🟢 Hoàn thành | `deliverables/01-user-research/persona.{md,html,png,json}` |
+| 2 | **Value Proposition** | `01-user-research` | ⏳ Tiếp theo | Khớp 1-1 giữa Persona & VPC (`value-proposition.md`) |
+| 3 | **Scenario 1 (Hiện tại)** | `01-user-research` | ⏳ Tiếp theo | Mô tả khó khăn của quy trình cũ (`scenario-current.md`) |
+| 4 | **Scenario 2 (Mới)** | `02-interaction-design` | 🔴 Chưa bắt đầu | Mô tả các mốc tương tác cải tiến của hệ thống mới |
+| 5 | **Storyboard** | `02-interaction-design` | 🔴 Chưa bắt đầu | Kịch bản câu chuyện & hình minh họa trực quan |
+| 6 | **Prototype (Figma)** | `02-interaction-design` | 🔴 Chưa bắt đầu | Thiết kế Figma mô phỏng 4 luồng cốt lõi |
+| 7 | **Wireframe** | `02-interaction-design` | 🔴 Chưa bắt đầu | Bản vẽ giao diện chi tiết, tiện dụng, mobile-first |
+| 8 | **Software Product** | `03-software-product` | 🔴 Chưa bắt đầu | Web App React + TypeScript trong `src/` |
+| 9 | **Trình bày** | `04-final-submission` | 🔴 Chưa bắt đầu | Slide thuyết trình & kịch bản Q&A phản biện |
+| 10 | **Báo cáo cuối kỳ** | `04-final-submission` | 🔴 Chưa bắt đầu | Báo cáo hoàn chỉnh đúng format (>6 trang) |
+| 11 | **Team work** | `04-final-submission` | ⏳ Đang ghi nhận | Bằng chứng phân công và lịch sử đóng góp thực tế |
 
 ---
 
-## 2. Nhật ký Công việc & PRs đã hoàn thành
-
-- **`TASK-REF-001`**: Tạo thư viện tài liệu tham khảo `references/` (`done`).
-- **`TASK-KNOW-001`**: Chuyển đổi slide PDF/XLSX môn học thành ghi chú Markdown (`done`).
-- **`TASK-RES-001`**: Xây dựng Giao thức Nghiên cứu người dùng đầy đủ trong `deliverables/01-user-research/` (`done`).
-- **PR #1** (`fix: add python3->python fallback for Windows Git Bash support`): Hỗ trợ chạy script cộng tác trên Windows Git Bash.
-- **PR #2** (`docs: add human vs agent responsibilities matrix to README`): Cập nhật `README.md` phân định rõ công việc giữa Người và Agent.
-
----
-
-## 3. Kế hoạch Làm việc Tiếp theo
+## 2. Kế hoạch Thực hiện Theo 4 Giai đoạn
 
 ```mermaid
 graph TD
-    Phase1["Giai đoạn 1: Nghiên cứu thực địa"] --> Phase2["Giai đoạn 2: Thiết kế tương tác"]
+    Phase1["Giai đoạn 1: Nghiên cứu người dùng"] --> Phase2["Giai đoạn 2: Thiết kế tương tác"]
     Phase2 --> Phase3["Giai đoạn 3: Hiện thực phần mềm"]
     Phase3 --> Phase4["Giai đoạn 4: Báo cáo & Thuyết trình"]
 
-    subgraph "Phase 1: Research"
-        P1_1["Phỏng vấn 5 chủ nuôi"] --> P1_2["Tổng hợp Ghi chép & Matrix"]
-        P1_2 --> P1_3["Tạo Persona, VPC, Scenario 1"]
+    subgraph "Phase 1: User Research"
+        P1_1["Phỏng vấn chủ nuôi & Tổng hợp data"] --> P1_2["Persona (Done)"]
+        P1_2 --> P1_3["Value Proposition Canvas & Scenario 1"]
     end
 
     subgraph "Phase 2: Interaction Design"
         P2_1["Scenario 2 & Storyboard"] --> P2_2["Wireframe & Figma Prototype"]
     end
 
-    subgraph "Phase 3: Software Build"
-        P3_1["Khởi tạo React + TS App"] --> P3_2["Hiện thực 4 luồng cốt lõi"]
+    subgraph "Phase 3: Software Product"
+        P3_1["Khởi tạo Web App React + TS"] --> P3_2["Hiện thực 4 luồng tương tác"]
     end
 
-    subgraph "Phase 4: Submission"
-        P4_1["Tổng hợp Báo cáo Markdown"] --> P4_2["Chuẩn bị Slide & Q&A"]
+    subgraph "Phase 4: Final Submission"
+        P4_1["Báo cáo cuối kỳ (>6 trang)"] --> P4_2["Slide thuyết trình & Teamwork evidence"]
     end
 ```
 
-### Chi tiết các Giai đoạn:
+### Chi tiết các bước thực hiện:
 
-1. **Giai đoạn 1: Thu thập Dữ liệu & Nghiên cứu Người dùng (Ưu tiên hiện tại)**
-   - **Người thực hiện**: 3 thành viên nhóm thực hiện phỏng vấn & quan sát 5 chủ nuôi theo giao thức tại `deliverables/01-user-research/`.
-   - **Agent thực hiện**: Ngay khi có dữ liệu thô (session notes), Agent sẽ tổng hợp thành **Persona**, **Value Proposition Canvas**, và **Scenario 1**.
+1. **Giai đoạn 1: Nghiên cứu Người dùng (`01-user-research`)**
+   - Đã hoàn thành Persona đại diện từ dữ liệu phỏng vấn thực tế.
+   - Tiếp tục xây dựng **Value Proposition Canvas** và **Scenario 1 (Hiện tại)** làm cơ sở cho thiết kế tương tác mới.
 
-2. **Giai đoạn 2: Thiết kế Luồng Tương tác (Interaction Design)**
-   - Soạn thảo **Scenario 2 (Hệ thống mới)** giải quyết pain points.
-   - Xây dựng **Storyboard** minh họa kịch bản sử dụng.
-   - Thiết kế **Wireframe** & **Prototype (Figma)** mô phỏng tính năng đặt lịch tức thì, yêu cầu đặc biệt, và theo dõi tiến độ chăm sóc real-time.
+2. **Giai đoạn 2: Thiết kế Tương tác (`02-interaction-design`)**
+   - Xây dựng **Scenario 2 (Hệ thống mới)** giải quyết các pain points.
+   - Thiết kế **Storyboard** minh họa câu chuyện sử dụng thực tế.
+   - Tạo **Wireframe** và **Prototype tương tác cao trên Figma**.
 
-3. **Giai đoạn 3: Phát triển Phần mềm (Software Product)**
-   - Xây dựng ứng dụng Web mobile-first bằng React + TypeScript trong thư mục `src/`.
-   - Hiện thực trọn vẹn 100% quy trình nghiệp vụ đặt lịch & theo dõi.
+3. **Giai đoạn 3: Phát triển Phần mềm (`03-software-product`)**
+   - Xây dựng ứng dụng web mobile-first bằng React + TypeScript trong thư mục `src/`.
+   - Đảm bảo hiện thực đầy đủ các luồng nghiệp vụ: đặt lịch tức thì, hồ sơ đính kèm yêu cầu đặc biệt, cập nhật tiến độ 4 mốc và lịch sử chăm sóc.
 
-4. **Giai đoạn 4: Báo cáo & Chuẩn bị Bảo vệ (Final Submission)**
-   - Tổng hợp báo cáo học thuật đầy đủ format.
-   - Chuẩn bị slide thuyết trình & bảng phân công bằng chứng teamwork.
+4. **Giai đoạn 4: Hoàn thiện Báo cáo & Bảo vệ (`04-final-submission`)**
+   - Tổng hợp báo cáo tổng kết chi tiết đầy đủ minh chứng.
+   - Chuẩn bị slide thuyết trình, kịch bản trả lời phản biện và tài liệu ghi nhận teamwork.

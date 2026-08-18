@@ -1,166 +1,85 @@
-# Hệ thống hỗ trợ chăm sóc thú cưng
+# Hệ thống Hỗ Trợ Đặt Lịch & Theo Dõi Chăm Sóc Thú Cưng
 
-Đồ án môn **CSC12106 — Tương tác Người–Máy**, tập trung vào trải nghiệm của chủ nuôi khi đặt lịch, gửi yêu cầu đặc biệt và theo dõi tiến độ chăm sóc thú cưng theo thời gian thực.
+Đồ án môn **CSC12106 — Tương tác Người–Máy (HCI)**, Khoa Công nghệ Thông tin, Trường Đại học Khoa học Tự nhiên (HCMUS).
 
-## Phạm vi sản phẩm
+Hệ thống tập trung vào việc nâng cao trải nghiệm của **chủ nuôi thú cưng** khi đặt lịch hẹn dịch vụ, gửi các yêu cầu chăm sóc đặc biệt (tiền sử dị ứng, dặn dò riêng) và theo dõi tiến độ chăm sóc theo thời gian thực.
 
-Hệ thống hỗ trợ một hành trình liền mạch: chọn dịch vụ và khung giờ, nhận xác nhận tức thì, tự động đính kèm yêu cầu đặc biệt từ hồ sơ thú cưng, theo dõi các mốc chăm sóc và xem lại lịch sử. Nguồn nghiệp vụ đầy đủ nằm tại [docs/proposal.md](docs/proposal.md).
+---
 
-## Phân công nhiệm vụ (Người vs. Agent)
+## 1. Phạm vi Sản phẩm & Nghiệp vụ Cốt lõi
 
-Hệ thống tuân thủ mô hình cộng tác **Human-in-the-Loop**. Agent đóng vai trò trợ lý thực thi (worker/reviewer/orchestrator), con người chịu trách nhiệm chính về dữ liệu thực tế và quyết định chốt.
+Nội dung nghiệp vụ chi tiết được đặc tả trong [docs/proposal.md](docs/proposal.md), bao gồm 4 luồng tương tác chính:
 
-### Ma trận 11 mục Rubric
+1. **Đặt lịch có xác nhận tức thì**: Chọn dịch vụ, thú cưng và khung giờ còn trống; hệ thống tự động khóa giờ và xác nhận ngay lập tức, không để người dùng phải chờ đợi phản hồi thủ công.
+2. **Hồ sơ thú cưng & Yêu cầu đặc biệt**: Lưu trữ tiền sử dị ứng sữa tắm, bệnh lý, thuốc và thói quen của thú cưng; tự động đính kèm vào lịch hẹn khi bàn giao tại cơ sở.
+3. **Theo dõi tiến độ theo thời gian thực (Real-time Milestones)**: Cập nhật minh bạch 4 mốc tiến độ (*Đã nhận* ➔ *Đang chăm sóc* ➔ *Hoàn tất* ➔ *Chờ đón*), gửi thông báo chủ động giúp chủ nuôi an tâm mà không cần gọi hỏi gián đoạn.
+4. **Lịch sử chăm sóc cá nhân hóa**: Tổng hợp dữ liệu dịch vụ, sản phẩm sử dụng và ghi chú của nhân viên sau mỗi lượt để chủ nuôi dễ dàng theo dõi sức khỏe thú cưng lâu dài.
 
-| # | Deliverable | Việc của Người (Human / Nhóm) | Việc của Agent (AI) |
-|---|---|---|---|
-| 1 | **Persona** | Phỏng vấn thực tế 5 chủ nuôi, thu thập dữ liệu thô, duyệt & chỉnh sửa bản nháp (`human-editing`). | Tổng hợp ghi chép phỏng vấn thành bản nháp Persona 9 phần có mã truy vết (`agent-draft`). |
-| 2 | **Value Proposition** | Chốt các định hướng giá trị cốt lõi dựa trên insight thực tế. | Soạn bản nháp Value Proposition Canvas khớp 1-1 giữa Persona và Giá trị đề xuất. |
-| 3 | **Scenario 1 (Hiện tại)** | Cung cấp câu chuyện thực tế về khó khăn khi đặt/theo dõi dịch vụ thú cưng. | Chuẩn bị bản nháp Scenario 1 chi tiết bối cảnh, khó khăn của hệ thống cũ. |
-| 4 | **Scenario 2 (Mới)** | Đánh giá & duyệt luồng tương tác mới có khả thi và giải quyết đúng pain point không. | Soạn bản nháp Scenario 2 mô tả rõ các mốc tương tác mới (xác nhận tức thì, tiến độ real-time). |
-| 5 | **Storyboard** | Vẽ/chỉnh sửa hình minh họa storyboard, chốt câu chuyện. | Soạn kịch bản chi tiết từng khung hình (context, action, caption) cho Storyboard. |
-| 6 | **Prototype (Figma)** | Thiết kế UI/UX trên Figma, kiểm tra cảm nhận trực quan. | Gợi ý cấu trúc layout, component system, tạo bản mẫu wireframe/micro-interactions. |
-| 7 | **Wireframe** | Đánh giá tính tiện dụng, màu sắc hài hòa và duyệt wireframe. | Tạo file phác thảo wireframe HTML/CSS/React hoặc sơ đồ layout UI. |
-| 8 | **Software Product** | Chạy thử nghiệm, kiểm thử trải nghiệm người dùng cuối trên thiết bị di động. | Viết mã nguồn React + TypeScript (`src/`), component UI, kiểm thử tự động (`tests/`). |
-| 9 | **Trình bày** | Thực hiện thuyết trình trước lớp, trả lời các câu hỏi phản biện của GV. | Soạn dàn ý slide, chuẩn bị câu hỏi Q&A dự kiến và tài liệu hỗ trợ. |
-| 10 | **Báo cáo** | Đọc soát, hoàn thiện văn phong, duyệt và xuất báo cáo cuối kỳ. | Tổng hợp toàn bộ tài liệu từ `01` đến `03` thành báo cáo Markdown hoàn chỉnh (>6 trang). |
-| 11 | **Team work** | Phân công giữa 3 thành viên, thực địa, ký duyệt các task & artifact. | `teamwork-agent` tổng hợp bằng chứng thật; `orchestrator` điều phối theo `agents/manifest.json`. |
+---
 
-### Nhiệm vụ của Con người đối với Protected Artifacts
+## 2. Ma trận 11 Deliverables (Theo Rubric Môn học)
 
-Theo `AGENTS.md` (Mục 6) và `coordination/PROTOCOL.md`, các tài liệu sau là **Protected Artifacts** (Artifacts được bảo vệ):
-1. `AGENTS.md` ở thư mục gốc.
-2. Mọi `PLAN.md` và `SKILL.md` canonical trong `skills/`.
-3. Mọi tệp Markdown bên dưới `rules/` (các quy tắc hệ thống).
-4. Mọi tệp Markdown bên dưới `templates/`.
+Chi tiết tiêu chí đánh giá được quy định tại [docs/final-rubric.csv](docs/final-rubric.csv):
 
-#### Vòng đời Artifact & Nhiệm vụ của Con người
+| # | Deliverable | Nhóm thư mục | Trọng số | Mô tả & Trạng thái |
+|---|---|---|---|---|
+| 1 | **Persona** | `deliverables/01-user-research/` | 10% | Đầy đủ 9 phần, có ảnh đại diện, bám sát dữ liệu phỏng vấn thực tế. |
+| 2 | **Value Proposition** | `deliverables/01-user-research/` | 10% | Khớp 1-1 giữa Customer Profile và Value Map. |
+| 3 | **Scenario 1 (Hiện tại)** | `deliverables/01-user-research/` | 5% | Mô tả rõ bối cảnh và khó khăn của quy trình cũ. |
+| 4 | **Scenario 2 (Mới)** | `deliverables/02-interaction-design/` | 5% | Thể hiện rõ các tương tác cải tiến của hệ thống mới. |
+| 5 | **Storyboard** | `deliverables/02-interaction-design/` | 10% | Kịch bản câu chuyện hấp dẫn, hình minh họa trực quan có chú thích. |
+| 6 | **Prototype (Figma)** | `deliverables/02-interaction-design/` | 10% | Bản mẫu tương tác cao trên Figma mô phỏng đầy đủ các luồng nghiệp vụ. |
+| 7 | **Wireframe** | `deliverables/02-interaction-design/` | 10% | Thiết kế wireframe mobile-first chi tiết, màu sắc hài hòa, tiện dụng. |
+| 8 | **Software Product** | `src/` & `deliverables/03-software-product/` | 10% | Ứng dụng Web React + TypeScript mobile-first hoàn chỉnh 100% luồng tương tác. |
+| 9 | **Trình bày** | `deliverables/04-final-submission/presentation/` | 10% | Slide thuyết trình, phân công nói và tài liệu chuẩn bị Q&A phản biện. |
+| 10 | **Báo cáo cuối kỳ** | `deliverables/04-final-submission/report/` | 10% | Báo cáo hoàn chỉnh đúng chuẩn format, đầy đủ nội dung (>6 trang). |
+| 11 | **Team work** | `deliverables/04-final-submission/teamwork/` | 10% | Phân công công việc công bằng, rõ ràng, có bằng chứng đóng góp thực tế. |
 
-Vòng đời của các file này trải qua 4 trạng thái một chiều:
+---
 
-`needs-interview` ➔ `agent-draft` ➔ `human-editing` ➔ `locked`
-
-| Trạng thái | Nhiệm vụ của Con người (Human) | Hành vi của Agent (AI) |
-|---|---|---|
-| **1. `needs-interview`** | Trả lời phỏng vấn / đưa ra các quyết định thiết kế ban đầu khi Agent hỏi. | Orchestrator đặt câu hỏi, ghi nhận quyết định của người dùng và tạo task giao draft. |
-| **2. `agent-draft`** | Xem bản nháp do Agent khởi tạo, duyệt PR tích hợp. | Worker tạo bản nháp đầu tiên đúng theo chỉ đạo của người dùng. |
-| **3. `human-editing`** | **Nhiệm vụ chính của Con người**: Trực tiếp đọc, chỉnh sửa, bổ sung và hoàn thiện nội dung file Markdown theo ý mình. | **Agent CHỈ ĐƯỢC ĐỌC VÀ GÓP Ý**, tuyệt đối không được tự ý sửa nội dung file. |
-| **4. `locked`** | Xác nhận chốt file hoàn toàn. Khi cần thay đổi, người dùng chỉ đạo để mở lại quy trình. | Agent chỉ đọc tệp để tuân thủ quy tắc, không được tự mở khóa hay chuyển lùi trạng thái. |
-
-> **Tóm lại**: Sau khi Agent tạo xong bản nháp (`agent-draft`) và được tích hợp, mọi việc đọc, chỉnh sửa nội dung chi tiết của `AGENTS.md`, `skills/**/PLAN.md`, `skills/**/SKILL.md`, các file trong `rules/` và `templates/` **hoàn toàn thuộc về CON NGƯỜI** (`human-editing`). Redirect runtime được sinh từ manifest và không chỉnh tay.
-
-#### Chi tiết các File Markdown do Con người trực tiếp chỉnh sửa (`human-editing`)
-
-| Thư mục | Các file Markdown Con người chỉnh sửa | Mục đích chỉnh sửa của Con người |
-|---|---|---|
-| Gốc (`/`) | **`AGENTS.md`** | Chỉnh sửa quy tắc chung, nguyên tắc làm việc, thứ tự ưu tiên nguồn và bổ sung lưu ý từ người dùng. |
-| `skills/<agent>/` | **`SKILL.md`** của 11 rubric agent và orchestrator | Chỉnh sửa hướng dẫn thực hiện nhiệm vụ cụ thể của agent. |
-| `skills/<agent>/` | **`PLAN.md`** cùng package | Chỉnh sửa input, output, workflow, cổng quyết định và tiêu chí hoàn tất. |
-| `rules/` | **`assessment-rules.md`**, **`domain-rules.md`**, **`quality-rules.md`**, **`style-rules.md`**, **`task-rules.md`** | Điều chỉnh các quy định về tiêu chí đánh giá, nghiệp vụ thú cưng, chất lượng kiểm thử, văn phong và quy định task. |
-| `templates/` | Mọi tệp `.md` khuôn mẫu | Chỉnh sửa định dạng khung mẫu cho báo cáo, handoff, session notes. |
-| `docs/` | **`proposal.md`** | Hoàn thiện nội dung nghiệp vụ Vấn đề - Ý tưởng - Quy trình. |
-
-#### Cách các Agent dựa vào các File Markdown trên để làm việc
-
-| File Markdown | Cách Agent đọc & tuân thủ khi thực thi Task |
-|---|---|
-| **`AGENTS.md`** | **Quy tắc bắt buộc hàng đầu**: Tất cả Agent đều đọc file này trước tiên để biết ranh giới quyền hạn, thứ tự ưu tiên nguồn, ngôn ngữ (tiếng Việt), và không vi phạm `write_scope`. |
-| **`agents/*.md`, `SKILL.md` & `PLAN.md`** | Agent đọc mục tiêu trong `agents/`, sau đó dùng cặp canonical trong `skills/`; adapter của từng runtime chỉ điều hướng tới các file này. |
-| **`rules/*.md`** | **Bộ lọc kiểm tra chất lượng**: Agent áp dụng `domain-rules` để không làm sai nghiệp vụ, `style-rules` để không dịch thuật ngữ tiếng Anh, `quality-rules` để chạy kiểm thử thật, `task-rules` để tuân thủ branch/worktree. |
-| **`templates/*.md`** | **Khuôn mẫu xuất đầu ra**: Agent sao chép đúng định dạng mẫu khi lập `handoff.md`, `session-notes-Pxx.md`, v.v. |
-| **`docs/proposal.md`** | **Nguồn sự thật nghiệp vụ**: Agent đối chiếu để giữ đúng 4 tính năng cốt lõi (xác nhận tức thì, yêu cầu đặc biệt, mốc tiến độ real-time, lịch sử) và không tự ý thêm backend/tính năng ngoài scope. |
-
-> 📌 **Nguyên tắc hoạt động**: Con người giữ quyền chỉnh sửa nội dung các file Markdown trên ở giai đoạn `human-editing`. Agent luôn luôn đọc (view/search) các file này trước mỗi hành động để đảm bảo mọi mã nguồn, tài liệu và giao diện tạo ra đều tuân thủ chính xác 100% chỉ dẫn của con người.
-
-#### Sơ đồ Phân vùng Thư mục (Con người Chỉnh sửa vs. Adapter Kỹ thuật)
+## 3. Cấu trúc Thư mục Dự án
 
 ```
-THƯ MỤC NƠI CON NGƯỜI ĐIỀU KHIỂN & CHỈNH SỬA (Human-Controlled Content)
-├── AGENTS.md                          <-- Quy tắc hệ thống tối cao
-├── rules/*.md                         <-- Bộ luật kiểm soát chất lượng (style, domain, quality, task, assessment)
-├── agents/*.md & manifest.json        <-- Điều phối mục tiêu lớn
-├── skills/<agent>/SKILL.md            <-- Nhiệm vụ cụ thể dùng chung
-├── skills/<agent>/PLAN.md             <-- Workflow và cổng quyết định
-├── docs/proposal.md                   <-- Đề xuất nghiệp vụ chính thức
-└── templates/*.md                     <-- Các mẫu báo cáo & handoff
-
-THƯ MỤC CẤU HÌNH TỰ ĐỘNG ADAPTER (Hệ thống/Agent quản lý, Con người KHÔNG NÊN sửa tay)
-├── .agents/agents/<agent>/agent.md    <-- Adapter agent cho Antigravity (agy)
-├── .agents/skills/ & .agent/skills/   <-- Redirect skill, không chứa workflow gốc
-├── .codex/config.toml & .codex/agents/*.toml <-- Adapter cho OpenAI Codex CLI
-├── .github/copilot-instructions.md    <-- Adapter cho GitHub Copilot
-└── opencode.json & .opencode/         <-- Adapter cho OpenCode AI
+.
+├── docs/                       # Tài liệu đề xuất (proposal.md, proposal.pdf) & rubric chấm điểm
+├── data/                       # Dữ liệu thô thực tế (phỏng vấn, khảo sát, ảnh, ghi chép)
+├── deliverables/               # Các sản phẩm đầu ra chính thức theo 4 giai đoạn
+│   ├── 01-user-research/       # Persona, Value Proposition, Scenario 1
+│   ├── 02-interaction-design/  # Scenario 2, Storyboard, Wireframe, Prototype
+│   ├── 03-software-product/    # Tài liệu đóng gói phần mềm
+│   └── 04-final-submission/    # Báo cáo cuối kỳ, Slide thuyết trình, Teamwork
+├── src/                        # Mã nguồn ứng dụng web (React + TypeScript, Mobile-first)
+├── templates/                  # Template HTML/Markdown cho Persona, Storyboard, Báo cáo
+├── scripts/                    # Script tiện ích (render-html-to-png.py, v.v.)
+├── references/                 # Tài liệu tham khảo, bài giảng môn học & hướng dẫn đồ án
+├── agents/ & skills/           # Định nghĩa và hướng dẫn kỹ năng cho 11 rubric deliverables
+└── AGENTS.md                   # Quy tắc và hướng dẫn cộng tác trực tiếp cùng AI
 ```
 
-#### Phân biệt Chi tiết các Vùng Thư mục
+---
 
-| Vùng Thư mục | Ai trực tiếp quản lý/sửa? | Chức năng & Cách Agent sử dụng |
-|---|---|---|
-| **`/AGENTS.md`** | **CON NGƯỜI** (ở `human-editing`) | **Luật tối cao chung**: Tất cả Agent (`agy`, `codex`, `copilot`, `opencode`) đọc file này trước tiên để tuân thủ thứ tự ưu tiên nguồn, ngôn ngữ tiếng Việt và ranh giới `write_scope`. |
-| **`agents/` và `skills/<agent>/`** | **CON NGƯỜI** sau khi draft được duyệt | Nguồn canonical: agent điều phối mục tiêu; SKILL/PLAN mô tả nhiệm vụ và workflow. Mọi runtime đều trỏ về đây. |
-| **`rules/*.md`** | **CON NGƯỜI** (ở `human-editing`) | **Bộ luật kiểm soát**: Định nghĩa các quy tắc kiểm thử, văn phong (giữ thuật ngữ tiếng Anh), nghiệp vụ petcare. Agent đọc để không vi phạm quy chuẩn. |
-| **`docs/proposal.md`** | **CON NGƯỜI** (ở `human-editing`) | **Nguồn sự thật nghiệp vụ**: Agent đối chiếu để giữ đúng 4 tính năng cốt lõi và không tự mở rộng scope. |
-| **`.codex/`, `.agents/`, `.agent/`, `.github/`, `.opencode/`** | **Cấu hình Adapter kỹ thuật** | Cầu nối sinh từ manifest cho 11 rubric agent và orchestrator; không chỉnh workflow trực tiếp tại đây. |
+## 4. Công cụ & Hướng dẫn Sử dụng
 
-## Cấu trúc làm việc
+### 4.1. Công cụ kết xuất hình ảnh (`scripts/render-html-to-png.py`)
+Script hỗ trợ chuyển đổi file HTML (như template Persona, Storyboard) thành ảnh PNG độ phân giải cao sử dụng Chrome/Chromium headless:
 
-- `docs/`: proposal và rubric chính thức.
-- `references/`: mục lục hướng dẫn đồ án và kiến thức môn học dùng để hỗ trợ từng task.
-- `deliverables/`: sản phẩm theo bốn nhóm user research, interaction design, software product và final submission.
-- `agents/`: manifest và 12 agent điều phối mục tiêu.
-- `skills/`: 12 cặp SKILL/PLAN canonical dùng chung cho mọi runtime.
-- `data/`: dữ liệu đầu vào; agent không ghi output vào đây.
-- `templates/`: cấu trúc đầu ra cho 11 rubric item và nghiên cứu.
-- `coordination/`: task, handoff, template và protocol cộng tác.
-- `scripts/coordination/`: công cụ khóa orchestrator, worktree, kiểm tra task, handoff và tích hợp.
-- `.codex/`, `.agents/agents/`, `.github/agents/`, `.opencode/agents/`: adapter cho từng công cụ.
+```bash
+# Render file Persona HTML thành PNG
+python3 scripts/render-html-to-png.py deliverables/01-user-research/persona.html deliverables/01-user-research/persona.png --scale 2
+```
 
-## Bắt đầu
+### 4.2. Đồng bộ Agent Adapters
+Khi cần đồng bộ cấu hình agent và skill cho các môi trường AI (Antigravity, Codex, OpenCode, Copilot):
 
-> **Yêu cầu**: [Git](https://git-scm.com/), [Python 3.10+](https://www.python.org/) và [GitHub CLI (`gh`)](https://cli.github.com/). Sau khi cài `gh`, chạy `gh auth login` để xác thực.
+```bash
+python3 scripts/generate-agent-adapters.py
+```
 
-1. Đọc `AGENTS.md`, `coordination/PROTOCOL.md`, `agents/manifest.json`, file agent, SKILL/PLAN canonical và [mục lục tài liệu tham khảo](references/README.md).
-2. Cài đặt Git Pre-commit hook để bảo vệ quy trình: `python scripts/coordination/install-hooks.py` (hoặc `python3`/`py`).
-3. Orchestrator nhận khóa bằng `scripts/coordination/claim-orchestrator`.
-4. Tạo một task từ `coordination/templates/task.yml`, kiểm tra bằng `scripts/coordination/validate-task`, rồi tạo worktree riêng.
-5. Worker commit và tạo handoff; reviewer ghi `approved` hoặc `changes-requested`.
-6. Orchestrator tích hợp task đã duyệt qua Pull Request và dọn worktree.
+### 4.3. Ứng dụng Web (`src/`)
+Ứng dụng web được phát triển bằng React + TypeScript theo chuẩn mobile-first. Chạy môi trường phát triển:
 
-Không làm việc trực tiếp trên `main`; `.worktrees/` chỉ là vùng làm việc cục bộ và không được theo dõi bởi Git.
-
-### Hướng dẫn Git Pre-Commit Hook (Bảo vệ Quy trình cho Con người & Agent)
-
-Dự án đã trang bị script **Git Pre-Commit Hook** đa nền tảng (`scripts/coordination/pre_commit_hook.py`) để ngăn ngừa các sai sót commit:
-* **Chức năng**:
-  - Chặn lệnh commit trực tiếp trên nhánh `main` (tránh Agent hoặc thành viên làm hỏng branch chính).
-  - Bảo vệ các tệp **Protected Artifacts** (`AGENTS.md`, `rules/*`, `templates/*`, `skills/**/PLAN.md`, `skills/**/SKILL.md`) không bị chỉnh sửa trái phép ngoài task branch.
-* **Cách cài đặt**:
-  - Chạy lệnh: `python scripts/coordination/install-hooks.py` (hoặc `python3`/`py` tùy OS). Hook sẽ tự động được cài vào `.git/hooks/pre-commit`.
-* **Đối với Agent**: Mọi Agent khi gặp lỗi chặn từ Pre-commit hook phải lập tức tuân thủ `coordination/PROTOCOL.md`: tạo task branch `agent/<tool>/<task-id>` và worktree riêng thay vì cố gắng commit trên `main`.
-
-
-## Cài đặt trên Windows
-
-Script trong `scripts/coordination/` là bash script. Thành viên dùng Windows cần một trong hai cách sau:
-
-### Cách 1: Git Bash (khuyến nghị)
-
-1. Cài [Git for Windows](https://gitforwindows.org/) — Git Bash được kèm sẵn.
-2. Cài [Python 3.10+](https://www.python.org/downloads/) — chọn **"Add Python to PATH"** khi cài.
-3. Mở **Git Bash**, clone repository và chạy script bình thường:
-   ```bash
-   git clone <url> && cd HCI
-   scripts/coordination/validate-task coordination/tasks/TASK-RES-001.yml
-   ```
-
-### Cách 2: WSL (Windows Subsystem for Linux)
-
-1. Cài WSL theo [hướng dẫn chính thức](https://learn.microsoft.com/en-us/windows/wsl/install).
-2. Trong WSL terminal, cài Git và Python: `sudo apt install git python3`.
-3. Clone repository trong WSL filesystem và làm việc bình thường.
-
-> **Lưu ý**: Nếu Python trên máy chỉ có lệnh `python` (không có `python3`), script sẽ tự fallback. Hoặc set biến: `export PYTHON=python`.
-
-## Thêm tài liệu tham khảo
-
-Đặt hướng dẫn đồ án trong `references/project-guidelines/` và kiến thức môn học trong `references/course-materials/`. Sau khi thêm tệp, cập nhật bảng mục lục trong `references/README.md` để agent biết nội dung, nguồn và task nào cần sử dụng tài liệu đó.
+```bash
+# Cài đặt dependencies và chạy dev server
+npm install
+npm run dev
+```

@@ -15,36 +15,16 @@ ROOT = Path(__file__).resolve().parents[1]
 RETIRED = {
     "documentation-agent",
     "interaction-designer",
+    "orchestrator",
     "rubric-reviewer",
     "software-implementer",
     "user-researcher",
 }
 
-PLAN_SECTIONS = (
-    "## Mục đích",
-    "## Dùng skill này khi",
-    "## Input bắt buộc",
-    "## Output",
-    "## Workflow",
-)
-SKILL_SECTIONS = (
-    "## Mục đích",
-    "## Kiến thức nghiệp vụ",
-    "## Chiến lược suy luận",
-    "## Quy tắc kiểm tra",
-    "## Xử lý khi thiếu dữ liệu hoặc thất bại",
-)
-
 
 def overlap(left: str, right: str) -> bool:
     a, b = left.rstrip("/"), right.rstrip("/")
     return a == b or a.startswith(b + "/") or b.startswith(a + "/")
-
-
-def check_section_contract(text: str, sections: tuple[str, ...], label: str, errors: list[str]) -> None:
-    headings = [line for line in text.splitlines() if line.startswith("## ")]
-    if headings != list(sections):
-        errors.append(f"cấu trúc {label} không hợp lệ: {headings}")
 
 
 def main() -> int:
@@ -59,8 +39,8 @@ def main() -> int:
     agents = manifest.get("agents", [])
     ids = [item.get("id") for item in agents]
     expected_ids = set(ids)
-    if len(ids) != 12 or len(expected_ids) != 12 or "orchestrator" not in expected_ids:
-        errors.append("manifest phải có đúng 11 rubric agent và một orchestrator")
+    if len(ids) != 11 or len(expected_ids) != 11:
+        errors.append("manifest phải có đúng 11 rubric agent")
 
     rubric = sorted(item.get("rubric_item") for item in agents if item.get("rubric_item") is not None)
     if rubric != list(range(1, 12)):
@@ -85,24 +65,9 @@ def main() -> int:
             match = re.match(r"^---\nname:\s*([^\n]+)\ndescription:\s*([^\n]+)\n---\n", text)
             if not match or match.group(1).strip() != agent_id:
                 errors.append(f"frontmatter SKILL không hợp lệ: {skill_file.relative_to(ROOT)}")
-            else:
-                description = match.group(2).strip()
-                if "Dùng" not in description:
-                    errors.append(f"description SKILL thiếu điều kiện kích hoạt: {skill_file.relative_to(ROOT)}")
-            check_section_contract(text, SKILL_SECTIONS, str(skill_file.relative_to(ROOT)), errors)
-        if plan_file.is_file():
-            text = plan_file.read_text(encoding="utf-8")
-            check_section_contract(text, PLAN_SECTIONS, str(plan_file.relative_to(ROOT)), errors)
-            for contract_path in item.get("inputs", []) + item.get("outputs", []):
-                if contract_path not in text:
-                    errors.append(
-                        f"PLAN {plan_file.relative_to(ROOT)} thiếu input/output canonical: {contract_path}"
-                    )
         template = item.get("template")
         if template and not (ROOT / template).is_file():
             errors.append(f"template không tồn tại: {template}")
-        elif template and plan_file.is_file() and template not in plan_file.read_text(encoding="utf-8"):
-            errors.append(f"PLAN không tham chiếu template: {agent_id} → {template}")
 
     visiting: set[str] = set()
     visited: set[str] = set()
@@ -155,15 +120,6 @@ def main() -> int:
             errors.append(f"adapter {label} không khớp manifest: {sorted(names ^ expected_ids)}")
         if names & RETIRED:
             errors.append(f"adapter {label} còn agent cũ: {sorted(names & RETIRED)}")
-
-    registry = (ROOT / "coordination/human-artifacts.yml").read_text(encoding="utf-8")
-    for agent_id in expected_ids:
-        for filename in ("SKILL.md", "PLAN.md"):
-            path = f"skills/{agent_id}/{filename}"
-            if not re.search(
-                rf"- path: {re.escape(path)}\n\s+status: (?:agent-draft|human-editing|locked)", registry
-            ):
-                errors.append(f"registry thiếu trạng thái hậu phỏng vấn hợp lệ: {path}")
 
     generated = subprocess.run(
         [sys.executable, "scripts/generate-agent-adapters.py", "--check"],

@@ -13,7 +13,7 @@ Tổng hợp phân công và đóng góp thực tế của ba thành viên bằn
 ## Input bắt buộc
 
 - Xác nhận đóng góp trong `data/teamwork-inputs/`.
-- `coordination/tasks/` và `coordination/handoffs/`.
+- Lịch sử đóng góp (Git commits, PRs, deliverables).
 - Artifact và lịch sử có thật liên quan.
 - `templates/teamwork-template.md` và rubric.
 

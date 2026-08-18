@@ -4,7 +4,7 @@ mode: subagent
 permission:
   edit: allow
   bash: allow
-  task: deny
+  task: allow
   skill: allow
 ---
 

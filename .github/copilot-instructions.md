@@ -1,5 +1,7 @@
-# Repository instructions
+# Hướng dẫn Repository (Copilot & AI Assistant)
 
-Đọc và tuân thủ `AGENTS.md`, `coordination/PROTOCOL.md`, `agents/manifest.json`, file agent trong `agents/` và cặp `SKILL.md`/`PLAN.md` canonical trong `skills/`. `.github/agents/` và `.agents/skills/` chỉ là adapter. Nguồn nghiệp vụ là `docs/proposal.md`; nguồn đánh giá là `docs/final-rubric.csv`.
+Đọc và tuân thủ [AGENTS.md](file:///home/tinhiem/Projects/HCI/AGENTS.md), `agents/manifest.json`, file agent trong `agents/` và cặp `SKILL.md`/`PLAN.md` canonical trong `skills/`. `.github/agents/`, `.agents/skills/`, `.agent/skills/`, `.codex/` và `.opencode/` là các adapter tự động đồng bộ từ manifest.
 
-Không sửa trực tiếp `main`. Mỗi task dùng branch/worktree riêng và chỉ sửa `write_scope`. Worker không merge, push hoặc xóa worktree. Chỉ orchestrator giữ khóa được tích hợp task có handoff và review `approved`.
+Nguồn nghiệp vụ chính là `docs/proposal.md`; nguồn đánh giá là `docs/final-rubric.csv`.
+
+Làm việc trực tiếp trên repository theo hình thức Pair Programming, thực hiện code, sửa tài liệu và hỗ trợ người dùng xây dựng 11 deliverable theo rubric.

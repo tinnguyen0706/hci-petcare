@@ -117,17 +117,15 @@ tools: [read, edit, search, terminal]
             problems,
         )
 
-        mode = "primary" if agent_id == "orchestrator" else "subagent"
-        task_permission = "allow" if agent_id == "orchestrator" else "deny"
         write(
             ROOT / f".opencode/agents/{agent_id}.md",
             f"""---
 description: {description}
-mode: {mode}
+mode: subagent
 permission:
   edit: allow
   bash: allow
-  task: {task_permission}
+  task: allow
   skill: allow
 ---
 
