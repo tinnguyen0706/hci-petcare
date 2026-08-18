@@ -1,6 +1,6 @@
 id: TASK-UTIL-001
 title: Tạo CLI render HTML thành PNG
-status: review
+status: in-progress
 owner_tool: codex
 owner_role: software-product-agent
 branch: agent/codex/TASK-UTIL-001

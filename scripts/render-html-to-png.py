@@ -8,36 +8,45 @@ import math
 import os
 from pathlib import Path
 import shutil
+import struct
 import subprocess
 import sys
 import tempfile
 import uuid
+import zlib
 
 
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+MAX_DIMENSION = 32_768
+MAX_SCALE = 8.0
+MAX_WAIT_MS = 600_000
 
 
 class RenderError(RuntimeError):
     """An expected, user-facing render failure."""
 
 
-def positive_int(value: str) -> int:
+def bounded_positive_int(value: str) -> int:
     try:
         number = int(value)
     except ValueError as exc:
         raise argparse.ArgumentTypeError("must be an integer") from exc
-    if not math.isfinite(number) or number <= 0:
-        raise argparse.ArgumentTypeError("must be greater than zero")
+    if number <= 0 or number > MAX_DIMENSION:
+        raise argparse.ArgumentTypeError(
+            f"must be between 1 and {MAX_DIMENSION}"
+        )
     return number
 
 
-def non_negative_int(value: str) -> int:
+def bounded_non_negative_int(value: str) -> int:
     try:
         number = int(value)
     except ValueError as exc:
         raise argparse.ArgumentTypeError("must be an integer") from exc
-    if number < 0:
-        raise argparse.ArgumentTypeError("must be zero or greater")
+    if number < 0 or number > MAX_WAIT_MS:
+        raise argparse.ArgumentTypeError(
+            f"must be between 0 and {MAX_WAIT_MS}"
+        )
     return number
 
 
@@ -46,8 +55,8 @@ def positive_float(value: str) -> float:
         number = float(value)
     except ValueError as exc:
         raise argparse.ArgumentTypeError("must be a number") from exc
-    if not math.isfinite(number) or number <= 0:
-        raise argparse.ArgumentTypeError("must be greater than zero")
+    if not math.isfinite(number) or number <= 0 or number > MAX_SCALE:
+        raise argparse.ArgumentTypeError(f"must be greater than 0 and at most {MAX_SCALE:g}")
     return number
 
 
@@ -126,14 +135,65 @@ def find_browser(explicit_browser: str | None) -> Path:
 
 def validate_png(path: Path) -> None:
     try:
-        size = path.stat().st_size
-        with path.open("rb") as png_file:
-            signature = png_file.read(len(PNG_SIGNATURE))
+        png = path.read_bytes()
     except OSError as exc:
         raise RenderError(f"Browser did not create a readable PNG: {path}") from exc
 
-    if size <= len(PNG_SIGNATURE) or signature != PNG_SIGNATURE:
-        raise RenderError(f"Browser output is not a valid non-empty PNG: {path}")
+    if not png.startswith(PNG_SIGNATURE):
+        raise RenderError(f"Browser output has an invalid PNG signature: {path}")
+
+    offset = len(PNG_SIGNATURE)
+    chunk_index = 0
+    saw_iend = False
+
+    while offset < len(png):
+        if len(png) - offset < 8:
+            raise RenderError(f"Browser output has a truncated PNG chunk header: {path}")
+
+        chunk_length = struct.unpack_from(">I", png, offset)[0]
+        chunk_type = png[offset + 4 : offset + 8]
+        data_start = offset + 8
+        data_end = data_start + chunk_length
+        chunk_end = data_end + 4
+        if chunk_end > len(png):
+            raise RenderError(f"Browser output has a truncated PNG chunk: {path}")
+
+        chunk_data = png[data_start:data_end]
+        stored_crc = struct.unpack_from(">I", png, data_end)[0]
+        computed_crc = zlib.crc32(chunk_type)
+        computed_crc = zlib.crc32(chunk_data, computed_crc) & 0xFFFFFFFF
+        if stored_crc != computed_crc:
+            name = chunk_type.decode("ascii", errors="replace")
+            raise RenderError(
+                f"Browser output has an invalid CRC for PNG chunk {name}: {path}"
+            )
+
+        if chunk_index == 0:
+            if chunk_type != b"IHDR" or chunk_length != 13:
+                raise RenderError(
+                    f"Browser output must start with a 13-byte PNG IHDR chunk: {path}"
+                )
+            width, height = struct.unpack_from(">II", chunk_data)
+            if width == 0 or height == 0:
+                raise RenderError(
+                    f"Browser output has zero width or height in PNG IHDR: {path}"
+                )
+        elif chunk_type == b"IHDR":
+            raise RenderError(f"Browser output contains multiple PNG IHDR chunks: {path}")
+
+        if chunk_type == b"IEND":
+            if chunk_length != 0:
+                raise RenderError(f"Browser output has a non-empty PNG IEND chunk: {path}")
+            if chunk_end != len(png):
+                raise RenderError(f"Browser output has data after its PNG IEND chunk: {path}")
+            saw_iend = True
+            break
+
+        offset = chunk_end
+        chunk_index += 1
+
+    if not saw_iend:
+        raise RenderError(f"Browser output is missing its PNG IEND chunk: {path}")
 
 
 def render(args: argparse.Namespace) -> None:
@@ -224,22 +284,31 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("input_html", help="path to the local HTML input file")
     parser.add_argument("output_png", help="path for the generated PNG file")
     parser.add_argument(
-        "--width", type=positive_int, default=1280, help="viewport width (default: 1280)"
+        "--width",
+        type=bounded_positive_int,
+        default=1280,
+        help=f"viewport width, 1-{MAX_DIMENSION} (default: 1280)",
     )
     parser.add_argument(
-        "--height", type=positive_int, default=720, help="viewport height (default: 720)"
+        "--height",
+        type=bounded_positive_int,
+        default=720,
+        help=f"viewport height, 1-{MAX_DIMENSION} (default: 720)",
     )
     parser.add_argument(
         "--scale",
         type=positive_float,
         default=1.0,
-        help="device scale factor (default: 1)",
+        help=f"device scale factor, >0-{MAX_SCALE:g} (default: 1)",
     )
     parser.add_argument(
         "--wait-ms",
-        type=non_negative_int,
+        type=bounded_non_negative_int,
         default=500,
-        help="virtual time allowed for dynamic content in milliseconds (default: 500)",
+        help=(
+            "virtual time allowed for dynamic content in milliseconds, "
+            f"0-{MAX_WAIT_MS} (default: 500)"
+        ),
     )
     parser.add_argument(
         "--browser",

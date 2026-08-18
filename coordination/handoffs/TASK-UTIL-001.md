@@ -7,6 +7,8 @@
 - Hỗ trợ `--width`, `--height`, `--scale` và `--wait-ms`; dùng file URI, quyền truy cập asset cục bộ và user-data-dir tạm.
 - Tạo thư mục cha của đầu ra, render vào tệp tạm rồi chỉ thay đầu ra đích sau khi xác minh signature PNG và nội dung không rỗng.
 - Báo lỗi rõ và trả exit code khác 0 cho HTML/browser không tồn tại, browser timeout, browser thất bại hoặc đầu ra không hợp lệ.
+- Sau review vòng 1, kiểm tra toàn bộ chunk PNG bằng `struct`/`zlib`: IHDR đầu tiên, kích thước dương, biên chunk, CRC, IEND rỗng và không có dữ liệu theo sau.
+- Giới hạn width/height tối đa `32768`, scale hữu hạn tối đa `8`, wait tối đa `600000ms` để giá trị cực trị bị argparse từ chối mà không phát sinh traceback.
 
 ## Tệp đã sửa
 
@@ -28,6 +30,12 @@
 - Kết quả: exit `0`; PNG có signature hợp lệ, kích thước `3067` byte.
 - Lệnh: task validator ở trạng thái `review`; integration validator cho `main...HEAD`; `git diff --check main...HEAD` và kiểm tra danh sách file thay đổi theo `write_scope`.
 - Kết quả: hai validator `OK`, không có lỗi whitespace; chỉ có ba đường dẫn thuộc phạm vi task.
+- Lệnh vòng 2: unit test trực tiếp `validate_png` bằng PNG tối thiểu hợp lệ và 10 trường hợp hỏng: signature, header/chunk truncated, first chunk/IHDR length, zero dimension, CRC, thiếu IEND, IEND có dữ liệu và dữ liệu rác sau IEND.
+- Kết quả vòng 2: PNG hợp lệ được chấp nhận; cả 10 PNG hỏng đều ném `RenderError`; output cũ được giữ nguyên khi browser giả lập sinh PNG hỏng.
+- Lệnh vòng 2: gọi CLI với width số nguyên cực lớn, height `32769`, scale `inf`/`nan`/`9`, wait-ms số nguyên cực lớn.
+- Kết quả vòng 2: cả sáu trường hợp trả exit `2` từ argparse, không có traceback; `--help` vẫn trả exit `0` và hiển thị giới hạn.
+- Lệnh vòng 2: render fixture HTML có JavaScript trì hoãn bằng Chrome tự phát hiện, `640x480`, scale `1.5`, wait `300ms`.
+- Kết quả vòng 2: exit `0`; validator cấu trúc mới chấp nhận PNG thật có signature hợp lệ, kích thước `4958` byte.
 
 ## Tài liệu đã ảnh hưởng
 
@@ -44,7 +52,10 @@
 ## Commit
 
 - Nội dung: `2e5aee6944ea8ac586feb78335c4b878c5317a94`
+- Sửa theo review vòng 1: chờ commit.
 
 ## Review
 
-- `pending`
+- Vòng 1: `changes-requested`.
+- Yêu cầu sửa: kiểm tra cấu trúc và CRC của PNG thay vì chỉ kiểm tra signature/kích thước; giới hạn các tham số số của CLI để loại bỏ overflow/traceback; bổ sung test PNG hỏng và giá trị cực trị.
+- Vòng 2: `pending`.
