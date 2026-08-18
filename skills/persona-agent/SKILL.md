@@ -5,11 +5,12 @@ Một persona tốt cần thực tế, nhất quán về mặt nội dung và đ
 
 ## Lập luận
 
-Nếu có nhiều mục tiêu, hãy ưu tiên mục tiêu chính.
-Nếu điểm đau mâu thuẫn với hành vi, hãy sử dụng hành vi đã được quan sát.
-Chỉ suy luận thông tin nhân khẩu học còn thiếu khi có bằng chứng hỗ trợ.
-Không bao giờ suy luận mục tiêu chỉ dựa trên độ tuổi.
-Hành vi cần hỗ trợ cho mục tiêu.
+Nếu có nhiều goal, hãy ưu tiên goal chính.
+Nếu pain point mâu thuẫn với hành vi, hãy sử dụng hành vi đã được quan sát.
+Chỉ suy luận demographic còn thiếu khi có bằng chứng hỗ trợ.
+Không bao giờ suy luận goal chỉ dựa trên độ tuổi.
+Hành vi cần hỗ trợ cho goal.
+Không cần trích dẫn
 
 ## Xác thực
 

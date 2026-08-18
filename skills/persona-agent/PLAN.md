@@ -13,13 +13,13 @@ Tạo một persona người dùng từ các kết quả nghiên cứu người 
 ## Đầu vào bắt buộc
 
 Một hoặc nhiều thông tin sau từ: `data/user-research`
-– Mục tiêu 
-– Nhiệm vụ
-– Điểm đau
-– Mong muốn
-– Hành vi
-– Trích dẫn
-– Thông tin nhân khẩu học
+– Goals
+– Tasks
+– Pain Points
+– Wishes
+– Behaviors
+– Quotes
+– Demographic information
 
 ## Đầu ra
 
@@ -31,6 +31,4 @@ Một persona hoàn chỉnh theo mẫu persona đã chọn.
 2. Suy luận các thuộc tính persona còn thiếu khi phù hợp.
 3. Tạo một persona thực tế.
 4. Đảm bảo tính nhất quán giữa mục tiêu, nhiệm vụ và điểm đau.
-5. Tạo persona bằng Markdown.
-
-# Một persona trực quan dưới dạng infographic một trang
+5. Tạo persona bằng json.

@@ -9,3 +9,5 @@ references/**/*.xlsx
 references/**/*.docx
 references/**/*.pptx
 .worktrees/
+__pycache__/
+*.py[cod]

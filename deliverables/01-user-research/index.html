@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minh Nhật - Persona</title>
+
+    <link rel="stylesheet" href="persona.css">
+
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 210mm;
+            height: 297mm;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+        }
+
+        .persona {
+            width: 210mm;
+            height: 297mm;
+            padding: 14mm 16mm;
+            display: grid;
+            grid-template-columns: 33% 67%;
+            gap: 10mm;
+            background: #ffffff;
+        }
+
+        /* =========================
+           CỘT BÊN TRÁI
+           ========================= */
+
+        .left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .photo {
+            width: 48mm;
+            height: 48mm;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 5mm;
+        }
+
+        .left h1 {
+            margin: 0 0 2mm 0;
+            font-size: 23px;
+            line-height: 1.2;
+            color: #111827;
+        }
+
+        .occupation {
+            margin: 0 0 5mm 0;
+            font-size: 13.5px;
+            font-weight: bold;
+            color: #4b5563;
+        }
+
+        .background {
+            margin: 0;
+            font-size: 12px;
+            line-height: 1.55;
+            text-align: left;
+            color: #374151;
+        }
+
+        /* =========================
+           CỘT BÊN PHẢI
+           ========================= */
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .section {
+            margin-bottom: 3.8mm;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            margin: 0 0 1.8mm 0;
+            font-size: 15px;
+            line-height: 1.2;
+            color: #111827;
+            border-bottom: 1.5px solid #e5e7eb;
+            padding-bottom: 1mm;
+        }
+
+        .section ul {
+            margin: 0;
+            padding-left: 5mm;
+        }
+
+        .section li {
+            margin-bottom: 1.2mm;
+            font-size: 11.5px;
+            line-height: 1.45;
+            color: #374151;
+        }
+
+        .section li:last-child {
+            margin-bottom: 0;
+        }
+
+        blockquote {
+            margin: 0;
+            padding: 2.5mm 4mm;
+            border-left: 3px solid #111827;
+            background-color: #f9fafb;
+            font-size: 12px;
+            line-height: 1.45;
+            font-style: italic;
+            color: #1f2937;
+        }
+
+        /* Tránh việc một section bị chia đôi khi render PDF */
+        .section {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="persona">
+
+        <!-- CỘT BÊN TRÁI -->
+        <aside class="left">
+
+            <img class="photo" src="avatar.jpg" alt="Ảnh của Minh Nhật">
+
+            <h1>Minh Nhật</h1>
+
+            <p class="occupation">
+                Học sinh / Sinh viên (Dưới 22 tuổi)<br>Chủ nuôi mèo nhút nhát
+            </p>
+
+            <p class="background">
+                Chủ nuôi trẻ tuổi, trực tiếp chăm sóc và tự đặt lịch dịch vụ cho mèo tại nhà. Mèo có tính cách nhút nhát, sợ tiếng ồn và người lạ nên chủ nuôi đặc biệt chú trọng sự an toàn và chăm sóc nhẹ nhàng. Thường đặt lịch qua Zalo/Fanpage hoặc đến trực tiếp tiệm; lưu giữ thông tin bằng giấy tờ tại nhà hoặc lịch sử chat.
+            </p>
+
+        </aside>
+
+
+        <!-- CỘT BÊN PHẢI -->
+        <section class="right">
+
+            <!-- Mục tiêu -->
+            <div class="section">
+                <h2>Mục tiêu</h2>
+                <ul>
+                    <li>Đặt lịch nhanh chóng, biết trước khung giờ còn trống mà không mất thời gian chờ tiệm phản hồi.</li>
+                    <li>Đảm bảo mèo nhút nhát được chăm sóc an toàn, nhẹ nhàng và đúng theo đặc điểm hành vi riêng.</li>
+                    <li>Nắm bắt được tình trạng và tiến độ chăm sóc theo thời gian thực trong lúc gửi tại tiệm để yên tâm.</li>
+                    <li>Tra cứu lại lịch sử các lần chăm sóc cũ (loại dịch vụ, ngày, chi phí) một cách thuận tiện.</li>
+                </ul>
+            </div>
+
+            <!-- Nhiệm vụ -->
+            <div class="section">
+                <h2>Nhiệm vụ</h2>
+                <ul>
+                    <li>Tìm kênh liên hệ và chọn khung giờ còn trống phù hợp để đặt lịch.</li>
+                    <li>Khai báo đặc điểm hành vi nhút nhát, lưu ý dị ứng và yêu cầu chăm sóc riêng của thú cưng.</li>
+                    <li>Bàn giao thú cưng tại cơ sở và theo dõi/chờ thông báo tiến độ hoàn thành.</li>
+                    <li>Tra cứu lại lịch sử ngày thực hiện, loại dịch vụ và chi phí cũ khi cần đối chiếu.</li>
+                </ul>
+            </div>
+
+            <!-- Điểm đau -->
+            <div class="section">
+                <h2>Điểm đau</h2>
+                <ul>
+                    <li>Khung giờ mong muốn bị hết mà không biết trước; tiệm phản hồi tin nhắn chậm trễ.</li>
+                    <li>Dặn dò chỉ dựa trên lời nhắc miệng hoặc chat, sợ nhân viên quên hoặc làm sai.</li>
+                    <li>Không nhận được cập nhật tiến độ giữa chừng; gọi hỏi thì ngại hoặc tiệm không trả lời kịp thời.</li>
+                    <li>Lịch sử chăm sóc phân tán rải rác trên giấy tờ, chat Zalo hoặc không có cách tra cứu lại.</li>
+                </ul>
+            </div>
+
+            <!-- Mong muốn -->
+            <div class="section">
+                <h2>Mong muốn</h2>
+                <ul>
+                    <li>Xem được tình trạng khung giờ trống tức thì và nhận xác nhận đặt lịch rõ ràng.</li>
+                    <li>Được chủ động cập nhật tình trạng chăm sóc theo các mốc tiến độ trong lúc chờ mà không phải gọi hỏi.</li>
+                    <li>Yêu cầu chăm sóc và đặc điểm thú cưng được ghi nhận chính xác, không bị bỏ sót khi bàn giao.</li>
+                    <li>Có nơi lưu trữ tập trung để tra cứu lại toàn bộ lịch sử chăm sóc (ngày, giá tiền, loại dịch vụ).</li>
+                </ul>
+            </div>
+
+            <!-- Hành vi -->
+            <div class="section">
+                <h2>Hành vi</h2>
+                <ul>
+                    <li>Đặt lịch bằng cách nhắn tin Zalo/Fanpage hoặc đến trực tiếp tại quầy cửa hàng.</li>
+                    <li>Nhắc kỹ tính cách nhút nhát của mèo khi bàn giao (dặn 2 lớp qua tin nhắn và tại quầy).</li>
+                    <li>Có tâm lý lo lắng nhưng ngại chủ động gọi điện giục tiệm trong lúc chờ.</li>
+                    <li>Tra cứu thông tin cũ bằng cách lục tin nhắn chat, giữ giấy tờ vật lý hoặc hỏi lại tiệm.</li>
+                </ul>
+            </div>
+
+            <!-- Trích dẫn -->
+            <div class="section">
+                <h2>Trích dẫn</h2>
+                <blockquote>
+                    “Không nhận được thông tin cập nhật, chỉ khi nào mèo được tắm xong thì tôi mới nhận được thông tin.”
+                </blockquote>
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
