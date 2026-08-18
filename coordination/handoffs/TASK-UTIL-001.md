@@ -26,8 +26,8 @@
 - Kết quả: exit `0`; PNG có signature `89-50-4E-47-0D-0A-1A-0A`, kích thước `6704` byte.
 - Lệnh: render cùng fixture bằng `--browser "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"`, kích thước `320x240`, scale `1`, wait `300ms`.
 - Kết quả: exit `0`; PNG có signature hợp lệ, kích thước `3067` byte.
-- Lệnh: `git diff --check` và kiểm tra danh sách file thay đổi theo `write_scope`.
-- Kết quả: không có lỗi whitespace; chỉ có ba đường dẫn thuộc phạm vi task.
+- Lệnh: task validator ở trạng thái `review`; integration validator cho `main...HEAD`; `git diff --check main...HEAD` và kiểm tra danh sách file thay đổi theo `write_scope`.
+- Kết quả: hai validator `OK`, không có lỗi whitespace; chỉ có ba đường dẫn thuộc phạm vi task.
 
 ## Tài liệu đã ảnh hưởng
 
