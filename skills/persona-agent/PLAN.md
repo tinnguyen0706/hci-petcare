@@ -1,31 +1,36 @@
-# Tạo Persona
+# Trình tạo Persona
 
 ## Mục đích
 
-Tổng hợp dữ liệu user research đã ẩn danh thành synthesis và Persona thực tế, nhất quán, có thể truy vết.
+Tạo một persona người dùng từ các kết quả nghiên cứu người dùng.
 
-## Dùng skill này khi
+## Sử dụng skill này khi
 
-- Người dùng muốn tổng hợp user discovery thành Persona.
-- Dữ liệu có mục tiêu, tác vụ, pain point, mong muốn, hành vi hoặc trích dẫn.
-- Đã hoàn tất tối thiểu năm phiên end-user hợp lệ và cần tạo deliverable Persona.
+– Người dùng muốn tạo một persona.
+– Thông tin có sẵn bao gồm mục tiêu, nhiệm vụ, điểm đau, động lực hoặc mong muốn của người dùng.
+– Người dùng đã hoàn thành giai đoạn khám phá người dùng và muốn tóm tắt các phát hiện thành một persona.
 
-## Input bắt buộc
+## Đầu vào bắt buộc
 
-- Tối thiểu năm `data/user-research/session-notes-Pxx.md` hợp lệ, đã ẩn danh và có consent.
-- `docs/proposal.md` và `docs/final-rubric.csv`.
-- `templates/persona-template.md` và rules của `persona-agent` trong manifest.
+Một hoặc nhiều thông tin sau từ: `data/user-research`
+– Mục tiêu 
+– Nhiệm vụ
+– Điểm đau
+– Mong muốn
+– Hành vi
+– Trích dẫn
+– Thông tin nhân khẩu học
 
-## Output
+## Đầu ra
 
-- `deliverables/01-user-research/synthesis.md`.
-- `deliverables/01-user-research/persona.md` theo template Persona một trang.
+Một persona hoàn chỉnh theo mẫu persona đã chọn.
 
-## Workflow
+## Quy trình
 
-1. Kiểm tra ẩn danh, consent, screening và độ phủ câu hỏi nghiên cứu.
-2. Lập evidence matrix, tách fact, observation, direct quote và interpretation.
-3. Nhóm mẫu hành vi, mục tiêu, task, pain và wish; giữ phản chứng và giới hạn mẫu.
-4. Trình synthesis để con người giữ, sửa hoặc bỏ từng interpretation.
-5. Tạo Persona từ synthesis đã chấp nhận; không bổ sung thuộc tính thiếu căn cứ.
-6. Kiểm tra tính nhất quán, chín phần rubric, truy vết và bố cục một trang.
+1. Đọc dữ liệu khám phá người dùng có sẵn.
+2. Suy luận các thuộc tính persona còn thiếu khi phù hợp.
+3. Tạo một persona thực tế.
+4. Đảm bảo tính nhất quán giữa mục tiêu, nhiệm vụ và điểm đau.
+5. Tạo persona bằng Markdown.
+
+# Một persona trực quan dưới dạng infographic một trang
