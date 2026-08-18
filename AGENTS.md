@@ -3,8 +3,9 @@
 ## 1. Bối cảnh và Phạm vi sản phẩm
 
 Dự án thiết kế và xây dựng **Hệ thống hỗ trợ đặt lịch, gửi yêu cầu và theo dõi quá trình chăm sóc thú cưng**, lấy **chủ nuôi** làm người dùng cuối:
+
 - **Môn học**: Tương tác Người–Máy (CSC12106) — HCMUS.
-- **Công nghệ**: Web application theo hướng **mobile-first** sử dụng **React và TypeScript** (`src/`).
+- **Công nghệ**: Web application sử dụng **React và TypeScript** (`src/`).
 - **Thiết kế UI/UX**: **Figma** (wireframe, prototype tương tác cao).
 - **Phạm vi nghiệp vụ**: Bám sát [docs/proposal.md](docs/proposal.md) với 4 luồng cốt lõi:
   1. *Đặt lịch có xác nhận tức thì*: Chọn dịch vụ và khung giờ còn trống, xác nhận ngay.
@@ -23,6 +24,7 @@ Dự án thiết kế và xây dựng **Hệ thống hỗ trợ đặt lịch, g
 ## 3. Thứ tự ưu tiên nguồn tham chiếu
 
 Khi có sự khác biệt giữa các nguồn tài liệu, áp dụng theo thứ tự ưu tiên:
+
 1. **Yêu cầu hiện tại, rõ ràng của người dùng.**
 2. **Tiêu chuẩn Rubric & Proposal**: [docs/final-rubric.csv](docs/final-rubric.csv) và [docs/proposal.md](docs/proposal.md).
 3. **Hướng dẫn đồ án môn học**: `references/project-guidelines/`.
