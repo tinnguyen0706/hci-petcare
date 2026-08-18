@@ -7,8 +7,8 @@ Tài liệu theo dõi **tiến độ thực tế** và **kế hoạch hành đ�
 ## 1. Trạng thái Tiến độ 11 Deliverables (Theo Rubric)
 
 | # | Deliverable | Nhóm thư mục | Trạng thái | Vị trí Artifact / Ghi chú |
-|---|---|---|---|---|
-| 1 | **Persona** | `01-user-research` | 🟢 Hoàn thành | `deliverables/01-user-research/persona.{md,html,png,json}` |
+| --- | --- | --- | --- | --- |
+| 1 | **Persona** | `01-user-research` | 🟢 Hoàn thành | `deliverables/01-user-research/persona.{html,png,json}` |
 | 2 | **Value Proposition** | `01-user-research` | ⏳ Tiếp theo | Khớp 1-1 giữa Persona & VPC (`value-proposition.md`) |
 | 3 | **Scenario 1 (Hiện tại)** | `01-user-research` | ⏳ Tiếp theo | Mô tả khó khăn của quy trình cũ (`scenario-current.md`) |
 | 4 | **Scenario 2 (Mới)** | `02-interaction-design` | 🔴 Chưa bắt đầu | Mô tả các mốc tương tác cải tiến của hệ thống mới |
@@ -48,7 +48,7 @@ graph TD
     end
 ```
 
-### Chi tiết các bước thực hiện:
+### Chi tiết các bước thực hiện
 
 1. **Giai đoạn 1: Nghiên cứu Người dùng (`01-user-research`)**
    - Đã hoàn thành Persona đại diện từ dữ liệu phỏng vấn thực tế.

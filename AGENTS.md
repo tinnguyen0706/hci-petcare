@@ -43,15 +43,18 @@
 
 - **Giao tiếp & Tài liệu**: Trả lời và viết tài liệu bằng tiếng Việt rõ ràng, mạch lạc; giữ nguyên các thuật ngữ chuyên ngành tiếng Anh chuẩn (Persona, Scenario, Storyboard, Wireframe, Prototype, Rubric, Props, Component...).
 - **Tính trung thực với dữ liệu**: Mọi Persona, Value Proposition, Scenario và bài báo cáo đều phải xuất phát từ dữ liệu phỏng vấn/khảo sát thực tế trong `data/` và `deliverables/`.
-- **Bám sát yêu cầu**: Bám sát 11 mục tiêu chí trong [docs/final-rubric.csv](docs/final-rubric.csv) và đề xuất trong [docs/proposal.md](docs/proposal.md).
-- **Pair Programming trực tiếp**: Hỗ trợ trực tiếp trên codebase, viết code sạch, kiểm thử cẩn thận và thực hiện commit khi hoàn tất công việc.
+- **Bám sát yêu cầu**: Thực hiện đủ và đúng yêu cầu người dùng đưa
+- **Tôn trọng workflow**: Tuân thủ các workflow mà làm việc, không làm ngoài phạm vi workflow.
+- **Tuân thủ đúng phạm vi tài liệu (Scope Minimization)**: Khi thực thi nhiệm vụ theo vai trò của Agent nào, chỉ được đọc và tham chiếu đúng các file được liệt kê trong định nghĩa của Agent đó (`agents/<tên-agent>.md`), template tương ứng và dữ liệu đầu vào trong `data/`.
 
 ### Những gì AI Assistant KHÔNG ĐƯỢC làm
 
 - **Tuyệt đối không tự bịa số liệu**, trích dẫn phỏng vấn, kết quả nghiên cứu hay bằng chứng đóng góp nhóm.
 - **Không tự mở rộng phạm vi sản phẩm**: Không tự ý biến ứng dụng thành hệ thống quản lý cơ sở/ERP phòng khám phức tạp ngoài phạm vi dành cho chủ nuôi.
 - **Không tự đổi Tech Stack**: Không tự thêm backend phức tạp hay đổi framework khi chưa có yêu cầu từ người dùng.
-- **Không tạo cơ chế rào cản**: Không cài đặt các cơ chế khóa commit hay quy trình điều phối rườm rà.
+- **Không tự ý đọc lan man ngoài phạm vi**: Tuyệt đối không tự ý mở, đọc hoặc quét qua các file rules khác, tài liệu môn học (`references/`), deliverables hay template của các giai đoạn/agent khác khi không được workflow hoặc người dùng yêu cầu.
+- **Tuyệt đối không tự ý chạy lệnh Git / kiểm tra Git**: Không chạy `git status`, `git log`, `git diff` hoặc các lệnh git để tra cứu lịch sử repo/thư mục khi người dùng không yêu cầu.
+- **Không tự ý tạo file ngoài đặc tả**: Chỉ tạo đúng các định dạng file được quy định rõ trong workflow của từng Agent — tuyệt đối không tự ý tạo thêm file `.md` hay các file phụ trợ ngoài danh mục).
 
 ---
 
