@@ -20,6 +20,13 @@ PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 MAX_DIMENSION = 32_768
 MAX_SCALE = 8.0
 MAX_WAIT_MS = 600_000
+VALID_BIT_DEPTHS = {
+    0: {1, 2, 4, 8, 16},
+    2: {8, 16},
+    3: {1, 2, 4, 8},
+    4: {8, 16},
+    6: {8, 16},
+}
 
 
 class RenderError(RuntimeError):
@@ -144,6 +151,10 @@ def validate_png(path: Path) -> None:
 
     offset = len(PNG_SIGNATURE)
     chunk_index = 0
+    color_type: int | None = None
+    bit_depth: int | None = None
+    saw_idat = False
+    saw_plte = False
     saw_iend = False
 
     while offset < len(png):
@@ -173,17 +184,74 @@ def validate_png(path: Path) -> None:
                 raise RenderError(
                     f"Browser output must start with a 13-byte PNG IHDR chunk: {path}"
                 )
-            width, height = struct.unpack_from(">II", chunk_data)
+            (
+                width,
+                height,
+                bit_depth,
+                color_type,
+                compression_method,
+                filter_method,
+                interlace_method,
+            ) = struct.unpack(">IIBBBBB", chunk_data)
             if width == 0 or height == 0:
                 raise RenderError(
                     f"Browser output has zero width or height in PNG IHDR: {path}"
                 )
+            if color_type not in VALID_BIT_DEPTHS:
+                raise RenderError(
+                    f"Browser output has invalid PNG color type {color_type}: {path}"
+                )
+            if bit_depth not in VALID_BIT_DEPTHS[color_type]:
+                raise RenderError(
+                    "Browser output has invalid PNG bit depth "
+                    f"{bit_depth} for color type {color_type}: {path}"
+                )
+            if compression_method != 0:
+                raise RenderError(
+                    f"Browser output has unsupported PNG compression method: {path}"
+                )
+            if filter_method != 0:
+                raise RenderError(
+                    f"Browser output has unsupported PNG filter method: {path}"
+                )
+            if interlace_method not in (0, 1):
+                raise RenderError(
+                    f"Browser output has invalid PNG interlace method: {path}"
+                )
         elif chunk_type == b"IHDR":
             raise RenderError(f"Browser output contains multiple PNG IHDR chunks: {path}")
+
+        if chunk_type == b"PLTE":
+            if saw_plte:
+                raise RenderError(f"Browser output contains multiple PNG PLTE chunks: {path}")
+            if saw_idat:
+                raise RenderError(f"Browser output has PNG PLTE after IDAT: {path}")
+            if color_type in (0, 4):
+                raise RenderError(
+                    f"Browser output has forbidden PNG PLTE for color type {color_type}: {path}"
+                )
+            if chunk_length == 0 or chunk_length % 3 != 0 or chunk_length > 768:
+                raise RenderError(f"Browser output has invalid PNG PLTE length: {path}")
+            if color_type == 3 and bit_depth is not None:
+                palette_entries = chunk_length // 3
+                if palette_entries > 2**bit_depth:
+                    raise RenderError(
+                        f"Browser output PNG palette exceeds its bit depth: {path}"
+                    )
+            saw_plte = True
+
+        if chunk_type == b"IDAT":
+            if color_type == 3 and not saw_plte:
+                raise RenderError(
+                    f"Browser output indexed PNG is missing PLTE before IDAT: {path}"
+                )
+            saw_idat = True
 
         if chunk_type == b"IEND":
             if chunk_length != 0:
                 raise RenderError(f"Browser output has a non-empty PNG IEND chunk: {path}")
+            if not saw_idat:
+                raise RenderError(f"Browser output is missing PNG IDAT data: {path}")
             if chunk_end != len(png):
                 raise RenderError(f"Browser output has data after its PNG IEND chunk: {path}")
             saw_iend = True

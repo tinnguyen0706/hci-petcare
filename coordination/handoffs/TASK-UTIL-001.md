@@ -9,6 +9,7 @@
 - Báo lỗi rõ và trả exit code khác 0 cho HTML/browser không tồn tại, browser timeout, browser thất bại hoặc đầu ra không hợp lệ.
 - Sau review vòng 1, kiểm tra toàn bộ chunk PNG bằng `struct`/`zlib`: IHDR đầu tiên, kích thước dương, biên chunk, CRC, IEND rỗng và không có dữ liệu theo sau.
 - Giới hạn width/height tối đa `32768`, scale hữu hạn tối đa `8`, wait tối đa `600000ms` để giá trị cực trị bị argparse từ chối mà không phát sinh traceback.
+- Sau review vòng 2, giải mã đủ bảy trường IHDR; kiểm tra color type/bit depth, compression, filter, interlace; yêu cầu IDAT và áp dụng quy tắc PLTE cơ bản cho ảnh indexed.
 
 ## Tệp đã sửa
 
@@ -36,6 +37,10 @@
 - Kết quả vòng 2: cả sáu trường hợp trả exit `2` từ argparse, không có traceback; `--help` vẫn trả exit `0` và hiển thị giới hạn.
 - Lệnh vòng 2: render fixture HTML có JavaScript trì hoãn bằng Chrome tự phát hiện, `640x480`, scale `1.5`, wait `300ms`.
 - Kết quả vòng 2: exit `0`; validator cấu trúc mới chấp nhận PNG thật có signature hợp lệ, kích thước `4958` byte.
+- Lệnh vòng 3: unit test hai PNG tối thiểu hợp lệ (RGBA và indexed có PLTE) cùng 10 trường hợp sai IHDR/IDAT/PLTE.
+- Kết quả vòng 3: hai PNG hợp lệ được chấp nhận; IHDR+IEND thiếu IDAT, bit depth/color type/compression/filter/interlace sai và các vi phạm PLTE đều ném `RenderError`; output cũ vẫn nguyên vẹn.
+- Lệnh vòng 3: render lại fixture HTML bằng Chrome tự phát hiện với `640x480`, scale `1.5`, wait `300ms`.
+- Kết quả vòng 3: exit `0`; PNG thật qua validator mới, signature hợp lệ và kích thước `4958` byte.
 
 ## Tài liệu đã ảnh hưởng
 
@@ -53,9 +58,12 @@
 
 - Nội dung: `2e5aee6944ea8ac586feb78335c4b878c5317a94`
 - Sửa theo review vòng 1: `49b752a623f3d1f0fa60238041ee5188a056d174`.
+- Sửa theo review vòng 2: chờ commit.
 
 ## Review
 
 - Vòng 1: `changes-requested`.
 - Yêu cầu sửa: kiểm tra cấu trúc và CRC của PNG thay vì chỉ kiểm tra signature/kích thước; giới hạn các tham số số của CLI để loại bỏ overflow/traceback; bổ sung test PNG hỏng và giá trị cực trị.
-- Vòng 2: `pending`.
+- Vòng 2: `changes-requested`.
+- Yêu cầu sửa: kiểm tra toàn bộ trường IHDR và tổ hợp bit depth/color type; yêu cầu ít nhất một IDAT trước IEND; bổ sung quy tắc PLTE cơ bản cho indexed color và test các cấu trúc PNG chưa hợp lệ này.
+- Vòng 3: `pending`.
