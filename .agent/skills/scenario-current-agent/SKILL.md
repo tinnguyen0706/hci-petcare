@@ -9,6 +9,6 @@ description: Adapter đa runtime cho skill canonical scenario-current-agent. Mô
 
 1. `../../../skills/scenario-current-agent/SKILL.md`.
 2. `../../../skills/scenario-current-agent/PLAN.md`.
-3. `../../../agents/scenario-current-agent.md` và entry `scenario-current-agent` trong `../../../agents/manifest.json`.
+3. `../../../agents/scenario-current-agent.md`.
 
 Nếu adapter và nguồn canonical khác nhau, nguồn canonical được ưu tiên.

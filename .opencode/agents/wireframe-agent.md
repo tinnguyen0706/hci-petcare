@@ -8,4 +8,4 @@ permission:
   skill: allow
 ---
 
-Đọc AGENTS.md, agents/manifest.json, agents/wireframe-agent.md, skills/wireframe-agent/SKILL.md và skills/wireframe-agent/PLAN.md. Dùng rules, template, input và output ownership trong manifest; không sao chép workflow vào adapter.
+Đọc AGENTS.md, agents/wireframe-agent.md, skills/wireframe-agent/SKILL.md và skills/wireframe-agent/PLAN.md. không sao chép workflow vào adapter.

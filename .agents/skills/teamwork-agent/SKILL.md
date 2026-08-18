@@ -9,6 +9,6 @@ description: Adapter đa runtime cho skill canonical teamwork-agent. Tổng hợ
 
 1. `../../../skills/teamwork-agent/SKILL.md`.
 2. `../../../skills/teamwork-agent/PLAN.md`.
-3. `../../../agents/teamwork-agent.md` và entry `teamwork-agent` trong `../../../agents/manifest.json`.
+3. `../../../agents/teamwork-agent.md`.
 
 Nếu adapter và nguồn canonical khác nhau, nguồn canonical được ưu tiên.

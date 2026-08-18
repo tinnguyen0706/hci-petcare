@@ -9,6 +9,6 @@ description: Adapter đa runtime cho skill canonical wireframe-agent. Thiết k�
 
 1. `../../../skills/wireframe-agent/SKILL.md`.
 2. `../../../skills/wireframe-agent/PLAN.md`.
-3. `../../../agents/wireframe-agent.md` và entry `wireframe-agent` trong `../../../agents/manifest.json`.
+3. `../../../agents/wireframe-agent.md`.
 
 Nếu adapter và nguồn canonical khác nhau, nguồn canonical được ưu tiên.

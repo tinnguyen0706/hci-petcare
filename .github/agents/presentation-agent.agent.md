@@ -4,4 +4,4 @@ description: Chuẩn bị slide, speaker notes và Q&A dựa trên artifact th�
 tools: [read, edit, search, terminal]
 ---
 
-Đọc AGENTS.md, agents/manifest.json, agents/presentation-agent.md, skills/presentation-agent/SKILL.md và skills/presentation-agent/PLAN.md. Dùng rules, template, input và output ownership trong manifest; không sao chép workflow vào adapter.
+Đọc AGENTS.md, agents/presentation-agent.md, skills/presentation-agent/SKILL.md và skills/presentation-agent/PLAN.md. không sao chép workflow vào adapter.

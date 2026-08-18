@@ -22,7 +22,7 @@ Nội dung nghiệp vụ chi tiết được đặc tả trong [docs/proposal.md
 Chi tiết tiêu chí đánh giá được quy định tại [docs/final-rubric.csv](docs/final-rubric.csv):
 
 | # | Deliverable | Nhóm thư mục | Trọng số | Mô tả & Trạng thái |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 1 | **Persona** | `deliverables/01-user-research/` | 10% | Đầy đủ 9 phần, có ảnh đại diện, bám sát dữ liệu phỏng vấn thực tế. |
 | 2 | **Value Proposition** | `deliverables/01-user-research/` | 10% | Khớp 1-1 giữa Customer Profile và Value Map. |
 | 3 | **Scenario 1 (Hiện tại)** | `deliverables/01-user-research/` | 5% | Mô tả rõ bối cảnh và khó khăn của quy trình cũ. |
@@ -50,7 +50,7 @@ Chi tiết tiêu chí đánh giá được quy định tại [docs/final-rubric.
 │   └── 04-final-submission/    # Báo cáo cuối kỳ, Slide thuyết trình, Teamwork
 ├── src/                        # Mã nguồn ứng dụng web (React + TypeScript, Mobile-first)
 ├── templates/                  # Template HTML/Markdown cho Persona, Storyboard, Báo cáo
-├── scripts/                    # Script tiện ích (render-html-to-png.py, v.v.)
+├── tools/                      # Tools tiện ích (render-html-to-png.py, v.v.)
 ├── references/                 # Tài liệu tham khảo, bài giảng môn học & hướng dẫn đồ án
 ├── agents/ & skills/           # Định nghĩa và hướng dẫn kỹ năng cho 11 rubric deliverables
 └── AGENTS.md                   # Quy tắc và hướng dẫn cộng tác trực tiếp cùng AI
@@ -60,22 +60,17 @@ Chi tiết tiêu chí đánh giá được quy định tại [docs/final-rubric.
 
 ## 4. Công cụ & Hướng dẫn Sử dụng
 
-### 4.1. Công cụ kết xuất hình ảnh (`scripts/render-html-to-png.py`)
+### 4.1. Công cụ kết xuất hình ảnh (`tools/render-html-to-png.py`)
+
 Script hỗ trợ chuyển đổi file HTML (như template Persona, Storyboard) thành ảnh PNG độ phân giải cao sử dụng Chrome/Chromium headless:
 
 ```bash
 # Render file Persona HTML thành PNG
-python3 scripts/render-html-to-png.py deliverables/01-user-research/persona.html deliverables/01-user-research/persona.png --scale 2
+python3 tools/render-html-to-png.py deliverables/01-user-research/persona.html deliverables/01-user-research/persona.png --scale 2
 ```
 
-### 4.2. Đồng bộ Agent Adapters
-Khi cần đồng bộ cấu hình agent và skill cho các môi trường AI (Antigravity, Codex, OpenCode, Copilot):
+### 4.2. Ứng dụng Web (`src/`)
 
-```bash
-python3 scripts/generate-agent-adapters.py
-```
-
-### 4.3. Ứng dụng Web (`src/`)
 Ứng dụng web được phát triển bằng React + TypeScript theo chuẩn mobile-first. Chạy môi trường phát triển:
 
 ```bash

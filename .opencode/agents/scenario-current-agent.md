@@ -8,4 +8,4 @@ permission:
   skill: allow
 ---
 
-Đọc AGENTS.md, agents/manifest.json, agents/scenario-current-agent.md, skills/scenario-current-agent/SKILL.md và skills/scenario-current-agent/PLAN.md. Dùng rules, template, input và output ownership trong manifest; không sao chép workflow vào adapter.
+Đọc AGENTS.md, agents/scenario-current-agent.md, skills/scenario-current-agent/SKILL.md và skills/scenario-current-agent/PLAN.md. không sao chép workflow vào adapter.

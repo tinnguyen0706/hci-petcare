@@ -9,6 +9,6 @@ description: Adapter đa runtime cho skill canonical software-product-agent. Hi�
 
 1. `../../../skills/software-product-agent/SKILL.md`.
 2. `../../../skills/software-product-agent/PLAN.md`.
-3. `../../../agents/software-product-agent.md` và entry `software-product-agent` trong `../../../agents/manifest.json`.
+3. `../../../agents/software-product-agent.md`.
 
 Nếu adapter và nguồn canonical khác nhau, nguồn canonical được ưu tiên.

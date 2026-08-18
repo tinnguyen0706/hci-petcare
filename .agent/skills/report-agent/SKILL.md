@@ -9,6 +9,6 @@ description: Adapter đa runtime cho skill canonical report-agent. Soạn báo c
 
 1. `../../../skills/report-agent/SKILL.md`.
 2. `../../../skills/report-agent/PLAN.md`.
-3. `../../../agents/report-agent.md` và entry `report-agent` trong `../../../agents/manifest.json`.
+3. `../../../agents/report-agent.md`.
 
 Nếu adapter và nguồn canonical khác nhau, nguồn canonical được ưu tiên.

@@ -9,6 +9,6 @@ description: Adapter đa runtime cho skill canonical persona-agent. Tổng hợp
 
 1. `../../../skills/persona-agent/SKILL.md`.
 2. `../../../skills/persona-agent/PLAN.md`.
-3. `../../../agents/persona-agent.md` và entry `persona-agent` trong `../../../agents/manifest.json`.
+3. `../../../agents/persona-agent.md`.
 
 Nếu adapter và nguồn canonical khác nhau, nguồn canonical được ưu tiên.

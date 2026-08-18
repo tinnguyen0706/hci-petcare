@@ -9,6 +9,6 @@ description: Adapter đa runtime cho skill canonical prototype-agent. Quản lý
 
 1. `../../../skills/prototype-agent/SKILL.md`.
 2. `../../../skills/prototype-agent/PLAN.md`.
-3. `../../../agents/prototype-agent.md` và entry `prototype-agent` trong `../../../agents/manifest.json`.
+3. `../../../agents/prototype-agent.md`.
 
 Nếu adapter và nguồn canonical khác nhau, nguồn canonical được ưu tiên.

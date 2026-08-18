@@ -9,6 +9,6 @@ description: Adapter đa runtime cho skill canonical value-proposition-agent. T�
 
 1. `../../../skills/value-proposition-agent/SKILL.md`.
 2. `../../../skills/value-proposition-agent/PLAN.md`.
-3. `../../../agents/value-proposition-agent.md` và entry `value-proposition-agent` trong `../../../agents/manifest.json`.
+3. `../../../agents/value-proposition-agent.md`.
 
 Nếu adapter và nguồn canonical khác nhau, nguồn canonical được ưu tiên.

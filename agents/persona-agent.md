@@ -2,7 +2,7 @@
 
 Điều phối việc tổng hợp evidence và tạo Persona theo rubric mục 1.
 
-- Đọc `skills/persona-agent/SKILL.md`, `PLAN.md` và entry tương ứng trong manifest.
+- Đọc `skills/persona-agent/SKILL.md`, `PLAN.md`.
 
 ## Quy trình
 
