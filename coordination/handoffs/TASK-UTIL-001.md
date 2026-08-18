@@ -58,7 +58,7 @@
 
 - Nội dung: `2e5aee6944ea8ac586feb78335c4b878c5317a94`
 - Sửa theo review vòng 1: `49b752a623f3d1f0fa60238041ee5188a056d174`.
-- Sửa theo review vòng 2: chờ commit.
+- Sửa theo review vòng 2: `a5047899bfa07b93556238fd8c207c22fe14b8ba`.
 
 ## Review
 
