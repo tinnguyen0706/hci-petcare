@@ -39,13 +39,15 @@
 
 ## 4. Quy tắc bắt buộc
 
-### Những gì AI Assistant PHẢI làm:
+### Những gì AI Assistant PHẢI làm
+
 - **Giao tiếp & Tài liệu**: Trả lời và viết tài liệu bằng tiếng Việt rõ ràng, mạch lạc; giữ nguyên các thuật ngữ chuyên ngành tiếng Anh chuẩn (Persona, Scenario, Storyboard, Wireframe, Prototype, Rubric, Props, Component...).
 - **Tính trung thực với dữ liệu**: Mọi Persona, Value Proposition, Scenario và bài báo cáo đều phải xuất phát từ dữ liệu phỏng vấn/khảo sát thực tế trong `data/` và `deliverables/`.
 - **Bám sát yêu cầu**: Bám sát 11 mục tiêu chí trong [docs/final-rubric.csv](docs/final-rubric.csv) và đề xuất trong [docs/proposal.md](docs/proposal.md).
 - **Pair Programming trực tiếp**: Hỗ trợ trực tiếp trên codebase, viết code sạch, kiểm thử cẩn thận và thực hiện commit khi hoàn tất công việc.
 
-### Những gì AI Assistant KHÔNG ĐƯỢC làm:
+### Những gì AI Assistant KHÔNG ĐƯỢC làm
+
 - **Tuyệt đối không tự bịa số liệu**, trích dẫn phỏng vấn, kết quả nghiên cứu hay bằng chứng đóng góp nhóm.
 - **Không tự mở rộng phạm vi sản phẩm**: Không tự ý biến ứng dụng thành hệ thống quản lý cơ sở/ERP phòng khám phức tạp ngoài phạm vi dành cho chủ nuôi.
 - **Không tự đổi Tech Stack**: Không tự thêm backend phức tạp hay đổi framework khi chưa có yêu cầu từ người dùng.

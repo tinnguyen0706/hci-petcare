@@ -1,0 +1,139 @@
+[
+  {
+    "id": "persona-01",
+    "is_primary": true,
+    "name": "Nguyễn Thảo Vy",
+    "role": "Chủ nuôi thú cưng (Pet Owner) - Sinh viên & Freelancer",
+    "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+    "quote": "Đừng hỏi shop tình trạng hiện tại của pet như nào, họ không trả lời đâu. Mình chỉ mong biết bé đang làm tới đâu để yên tâm làm việc.",
+    "quote_secondary": "Cho các bé dữ sinh hoạt chung và con mình bị trầy và hói đầu dù đã dặn trước.",
+    "demographics": {
+      "age": 22,
+      "gender": "Nữ",
+      "occupation": "Sinh viên năm cuối & Freelance Designer",
+      "location": "Quận 10, TP. Hồ Chí Minh",
+      "pet_info": "Bé Mèo 'Bơ' (Mèo Anh lông ngắn, 2 tuổi, tính cách nhút nhát, sợ tiếng ồn, da nhạy cảm với xà phòng có hương liệu)",
+      "tech_savviness": "Thành thạo (sử dụng smartphone hàng ngày, quen dùng Zalo, MoMo, app giao đồ ăn & đặt dịch vụ)",
+      "pet_care_experience": "Đã từng trực tiếp đặt lịch chăm sóc và đem thú cưng đi spa định kỳ 2-3 tuần/lần"
+    },
+    "background": "Vy đang sống tại căn hộ ở TP.HCM cùng chú mèo 'Bơ'. Lịch học và làm việc tự do của Vy khá bận rộn. Vy rất yêu thương mèo nhưng không có đủ dụng cụ và kỹ năng để tự tắm, cắt móng và vệ sinh tai cho mèo tại nhà (mèo rất sợ nước và dễ cào xé). Vì vậy, Vy chọn giải pháp gửi dịch vụ spa ngoài định kỳ nhưng luôn mang tâm lý lo lắng, bất an mỗi khi gửi mèo lại tiệm.",
+    "touchpoints": [
+      "Smartphone (iOS/Android) với kết nối 4G/Wi-Fi thường trực",
+      "Kênh liên hệ cũ: Nhắn tin Zalo/Fanpage, gọi điện thoại hotline, hoặc đến trực tiếp",
+      "Kênh thanh toán: Chuyển khoản ngân hàng, ví điện tử",
+      "Lưu trữ hiện tại: Giấy tờ hóa đơn vật lý, ảnh chụp bill, lục lại lịch sử chat Zalo"
+    ],
+    "goals": [
+      {
+        "content": "Đặt lịch dịch vụ spa/tắm/cắt tỉa nhanh chóng, biết chắc chắn khung giờ còn trống và nhận xác nhận tức thì.",
+        "evidence": ["01_respondent_08-06", "03_respondent_08-07_0722", "06_interview_member"]
+      },
+      {
+        "content": "Đảm bảo thú cưng được chăm sóc an toàn, không bị nhốt chung với thú cưng hung dữ khác và tuân thủ đúng dặn dò dị ứng xà phòng/thuốc.",
+        "evidence": ["01_respondent_08-06", "02_respondent_08-07_0503", "06_interview_member"]
+      },
+      {
+        "content": "Nắm bắt được tiến độ chăm sóc theo thời gian thực (đang tắm, sấy, cắt tỉa hay đã xong) để an tâm làm việc và chủ động giờ đón.",
+        "evidence": ["01_respondent_08-06", "02_respondent_08-07_0503", "05_respondent_08-13_1512", "06_interview_member"]
+      },
+      {
+        "content": "Dễ dàng tra cứu lại toàn bộ lịch sử chăm sóc cũ (ngày làm, loại dịch vụ, sản phẩm sử dụng, giá tiền, ghi chú của kỹ thuật viên) tại một nơi duy nhất.",
+        "evidence": ["03_respondent_08-07_0722", "04_respondent_08-13_1450", "05_respondent_08-13_1512"]
+      }
+    ],
+    "tasks": [
+      {
+        "content": "Tìm kiếm cơ sở spa chăm sóc gần nhà hoặc uy tín qua bản đồ / mạng xã hội.",
+        "evidence": ["06_interview_member"]
+      },
+      {
+        "content": "Liên hệ cơ sở để hỏi khung giờ trống và đặt chỗ dịch vụ.",
+        "evidence": ["01_respondent_08-06", "03_respondent_08-07_0722", "06_interview_member"]
+      },
+      {
+        "content": "Dặn dò nhân viên về tính cách nhút nhát, tiền sử dị ứng và lưu ý đặc biệt lúc bàn giao bé tại quầy.",
+        "evidence": ["01_respondent_08-06", "02_respondent_08-07_0503", "06_interview_member"]
+      },
+      {
+        "content": "Chờ đợi cơ sở chăm sóc và chủ động nhắn tin/gọi điện hỏi thăm tiến độ.",
+        "evidence": ["02_respondent_08-07_0503", "06_interview_member"]
+      },
+      {
+        "content": "Đến cơ sở đón mèo, thanh toán và giữ lại phiếu thu/hóa đơn.",
+        "evidence": ["02_respondent_08-07_0503", "05_respondent_08-13_1512", "06_interview_member"]
+      },
+      {
+        "content": "Tra cứu lại thông tin đợt làm cũ bằng cách lục tin nhắn Zalo cũ hoặc hóa đơn giấy.",
+        "evidence": ["04_respondent_08-13_1450", "06_interview_member"]
+      }
+    ],
+    "pain_points": [
+      {
+        "content": "Khung giờ muốn đặt thường bị kín hoặc chồng chéo nhưng không biết trước, phải chờ tiệm phản hồi tin nhắn rất lâu.",
+        "evidence": ["01_respondent_08-06", "02_respondent_08-07_0503", "03_respondent_08-07_0722", "06_interview_member"]
+      },
+      {
+        "content": "Dặn dò đặc biệt (mèo nhát, dị ứng xà phòng) dễ bị nhân viên quên hoặc không truyền đạt lại cho kỹ thuật viên trực tiếp tắm, dẫn đến rủi ro thực tế (trầy xước, nhốt chung bé dữ, kích ứng da).",
+        "evidence": ["02_respondent_08-07_0503", "06_interview_member"]
+      },
+      {
+        "content": "Hoàn toàn 'mù mờ' về tiến độ trong suốt 2-3 tiếng gửi thú cưng; nhắn tin hỏi thì tiệm trả lời chậm hoặc không trả lời, còn tự gọi điện thì ngại làm phiền.",
+        "evidence": ["01_respondent_08-06", "03_respondent_08-07_0722", "05_respondent_08-13_1512", "06_interview_member"]
+      },
+      {
+        "content": "Không có hệ thống tập trung lưu trữ lịch sử chăm sóc; mỗi lần cần xem lại ngày tiêm phòng/ngày tắm hay loại sữa tắm cũ đều phải lục tìm thủ công hoặc 'đành chịu'.",
+        "evidence": ["04_respondent_08-13_1450", "05_respondent_08-13_1512", "06_interview_member"]
+      }
+    ],
+    "wishes": [
+      {
+        "content": "Giao diện hiển thị trực quan các khung giờ trống theo ngày để chọn và nhận xác nhận lịch hẹn tức thì không cần chờ chat.",
+        "evidence": ["01_respondent_08-06", "03_respondent_08-07_0722"]
+      },
+      {
+        "content": "Hồ sơ thú cưng tự động lưu trữ và gắn kèm dặn dò dị ứng / tính cách vào phiếu hẹn mỗi lần đặt lịch.",
+        "evidence": ["02_respondent_08-07_0503", "06_interview_member"]
+      },
+      {
+        "content": "Thanh trạng thái tiến độ theo thời gian thực (Đã tiếp nhận ➔ Đang chăm sóc ➔ Hoàn tất ➔ Chờ đón) kèm thông báo tự động.",
+        "evidence": ["01_respondent_08-06", "05_respondent_08-13_1512", "06_interview_member"]
+      },
+      {
+        "content": "Trang nhật ký/lịch sử lưu trữ chi tiết từng lượt chăm sóc kèm hình ảnh và ghi chú sản phẩm sử dụng.",
+        "evidence": ["03_respondent_08-07_0722", "04_respondent_08-13_1450", "05_respondent_08-13_1512"]
+      }
+    ],
+    "behaviors": [
+      {
+        "content": "Thói quen dặn dò lặp lại 2 lớp (nhắn tin khi đặt lịch + nhắc miệng khi bàn giao) vì thiếu tin tưởng vào khả năng ghi nhớ thủ công của cơ sở.",
+        "evidence": ["02_respondent_08-07_0503", "06_interview_member"]
+      },
+      {
+        "content": "Tâm lý lo lắng nhưng ngại gọi điện nhiều lần làm gián đoạn nhân viên; thường xuyên kiểm tra điện thoại chờ thông báo.",
+        "evidence": ["01_respondent_08-06", "03_respondent_08-07_0722", "05_respondent_08-13_1512"]
+      },
+      {
+        "content": "Lưu trữ thông tin phân tán (chụp màn hình chat Zalo, cất bill giấy) nhưng ít khi tìm lại được hiệu quả.",
+        "evidence": ["01_respondent_08-06", "04_respondent_08-13_1450", "05_respondent_08-13_1512", "06_interview_member"]
+      }
+    ],
+    "frustrations": [
+      "Bị động hoàn toàn về mặt thời gian khi phải chờ cơ sở phản hồi tin nhắn chốt lịch.",
+      "Cảm giác bất an tột độ khi không biết thú cưng có bị hoảng loạn, đau đớn hay bị đối xử thô bạo trong lúc tắm.",
+      "Ức chế khi những dặn dò đặc biệt về tính cách/sức khỏe bị lãng quên hoặc bỏ qua."
+    ],
+    "motivations": [
+      "Tình yêu thương và trách nhiệm bảo vệ sức khỏe thể chất, tinh thần cho thú cưng.",
+      "Mong muốn tiết kiệm thời gian, tối ưu hóa công việc cá nhân trong khi thú cưng vẫn được chăm sóc chu đáo.",
+      "Sự an tâm và minh bạch tuyệt đối trong toàn bộ quy trình dịch vụ."
+    ],
+    "evidence_sources": [
+      { "id": "P01", "file": "data/user-research/01_respondent_08-06.md", "type": "Khảo sát" },
+      { "id": "P02", "file": "data/user-research/02_respondent_08-07_0503.md", "type": "Khảo sát" },
+      { "id": "P03", "file": "data/user-research/03_respondent_08-07_0722.md", "type": "Khảo sát" },
+      { "id": "P04", "file": "data/user-research/04_respondent_08-13_1450.md", "type": "Khảo sát" },
+      { "id": "P05", "file": "data/user-research/05_respondent_08-13_1512.md", "type": "Khảo sát" },
+      { "id": "P06", "file": "data/user-research/06_interview_member.md", "type": "Phỏng vấn trực tiếp" }
+    ]
+  }
+]

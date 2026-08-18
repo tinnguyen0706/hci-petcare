@@ -1,5 +1,5 @@
 ---
-name: persona-agent
+name: persona-generator
 description: Tổng hợp evidence đã ẩn danh thành Persona có truy vết. Dùng khi cần tạo hoặc cập nhật Persona từ kết quả nghiên cứu người dùng.
 ---
 

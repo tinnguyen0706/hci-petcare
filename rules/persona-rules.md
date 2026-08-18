@@ -9,7 +9,6 @@ Tài liệu này quy định các yêu cầu bắt buộc đối với tất c�
 
 ## 2. Bắt buộc tuân thủ Template dự án
 
-* Mọi Persona khi xây dựng phải sử dụng chính xác cấu trúc được định nghĩa tại [`templates/persona-template.md`](file:///home/tinhiem/Projects/HCI/templates/persona-template.md).
 * Bắt buộc bao gồm đúng **11 thành phần minh họa chuẩn bài giảng HCI**:
   1. Quote đại diện
   2. Demographics (Thông tin cơ bản)
@@ -26,3 +25,7 @@ Tài liệu này quy định các yêu cầu bắt buộc đối với tất c�
 
 * Persona **không được bịa đặt hay hư cấu tùy tiện**, mà phải dựa trên bằng chứng thu thập thực tế từ bước **User Discovery** (tối thiểu 5 phiên hợp lệ `P01`–`P05`).
 * Mỗi thông tin trong Persona khi trích xuất sang Value Proposition Canvas đều phải truy vết được nguồn dữ liệu từ khảo sát.
+
+## 4. Nguyên tắc làm việc
+
+Tuân thủ hoàn toàn workflow.
