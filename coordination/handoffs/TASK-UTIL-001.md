@@ -66,4 +66,6 @@
 - Yêu cầu sửa: kiểm tra cấu trúc và CRC của PNG thay vì chỉ kiểm tra signature/kích thước; giới hạn các tham số số của CLI để loại bỏ overflow/traceback; bổ sung test PNG hỏng và giá trị cực trị.
 - Vòng 2: `changes-requested`.
 - Yêu cầu sửa: kiểm tra toàn bộ trường IHDR và tổ hợp bit depth/color type; yêu cầu ít nhất một IDAT trước IEND; bổ sung quy tắc PLTE cơ bản cho indexed color và test các cấu trúc PNG chưa hợp lệ này.
-- Vòng 3: `pending`.
+- Vòng 3: `approved`.
+- Bằng chứng: finding vòng 1 về validator PNG nông và giới hạn CLI đã được khắc phục bằng kiểm tra chunk/CRC cùng các bound hữu hạn; finding vòng 2 về semantics IHDR/IDAT/PLTE đã được khắc phục bằng validation theo color type và thứ tự chunk tối thiểu.
+- Không có regression: unit test PNG hợp lệ/hỏng, bảo toàn output cũ, CLI extreme-value, render thật Chrome, task validator, integration validator và scope check đều đạt.
