@@ -24,6 +24,13 @@
       "Nhắn tin/gọi điện hỏi thăm tình trạng của mèo trong thời gian tiệm đang thực hiện dịch vụ.",
       "Giữ hóa đơn, hình ảnh và tra cứu lại tin nhắn cũ khi cần kiểm tra lại lịch sử chăm sóc và chi phí."
     ],
+    "tags": [
+      "Chủ nuôi cẩn trọng & lo âu",
+      "Mèo da nhạy cảm & nhút nhát",
+      "Yêu cầu dặn dò đặc biệt",
+      "Nhu cầu theo dõi tiến độ thời gian thực",
+      "Đặt lịch xác nhận tức thì"
+    ],
     "pain_points": [
       "Khung giờ mong muốn thường xuyên bị hết chỗ mà không biết trước; phải nhắn tin hoặc đến tận nơi chờ đợi rất lâu.",
       "Nơm nớp lo sợ nhân viên quên ghi chú dặn dò, dẫn đến việc dùng sai sữa tắm gây dị ứng hoặc để chung với thú cưng hung dữ gây tổn thương, trầy xước.",
@@ -74,6 +81,13 @@
       "Bàn giao thú cưng tại tiệm và trao đổi nhanh các dịch vụ cần thực hiện.",
       "Kiểm tra trạng thái dịch vụ để chủ động sắp xếp thời gian quay lại tiệm đón thú cưng.",
       "Tra cứu lại hóa đơn, chi phí và gói dịch vụ đã dùng của những lần trước để lên lịch hẹn đợt tiếp theo."
+    ],
+    "tags": [
+      "Chủ nuôi bận rộn & thực tế",
+      "Nhân viên văn phòng",
+      "Ưu tiên tự phục vụ (Self-service)",
+      "Nuôi nhiều thú cưng (Chó & Mèo)",
+      "Cần thông báo giờ đón chuẩn xác"
     ],
     "pain_points": [
       "Khung giờ ngoài giờ hành chính hoặc cuối tuần thường hết chỗ nhanh, mất nhiều thời gian trao đổi qua lại để tìm giờ hẹn thay thế.",
