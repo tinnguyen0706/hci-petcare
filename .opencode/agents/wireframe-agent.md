@@ -8,4 +8,4 @@ permission:
   skill: allow
 ---
 
-Đọc AGENTS.md, agents/wireframe-agent.md, skills/wireframe-agent/SKILL.md và skills/wireframe-agent/PLAN.md. không sao chép workflow vào adapter.
+Đọc và tuân thủ AGENTS.md và agents/wireframe-agent.md. Không sao chép workflow vào adapter.

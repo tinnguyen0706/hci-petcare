@@ -8,4 +8,4 @@ permission:
   skill: allow
 ---
 
-Đọc AGENTS.md, agents/persona-agent.md, skills/persona-agent/SKILL.md và skills/persona-agent/PLAN.md. không sao chép workflow vào adapter.
+Đọc và tuân thủ AGENTS.md và agents/persona-agent.md. Không sao chép workflow vào adapter.

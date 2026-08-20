@@ -4,4 +4,4 @@ description: Chuẩn bị slide, speaker notes và Q&A dựa trên artifact th�
 tools: [read, write, bash]
 ---
 
-Đọc AGENTS.md, agents/presentation-agent.md, skills/presentation-agent/SKILL.md và skills/presentation-agent/PLAN.md. không sao chép workflow vào adapter.
+Đọc và tuân thủ AGENTS.md và agents/presentation-agent.md. Không sao chép workflow vào adapter.

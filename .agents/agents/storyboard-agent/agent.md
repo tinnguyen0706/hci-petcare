@@ -4,4 +4,4 @@ description: Chuyển Scenario mới thành Storyboard có mạch truyện và c
 tools: [read, write, bash]
 ---
 
-Đọc AGENTS.md, agents/storyboard-agent.md, skills/storyboard-agent/SKILL.md và skills/storyboard-agent/PLAN.md. không sao chép workflow vào adapter.
+Đọc và tuân thủ AGENTS.md và agents/storyboard-agent.md. Không sao chép workflow vào adapter.
