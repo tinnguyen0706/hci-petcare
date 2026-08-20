@@ -24,6 +24,12 @@
       "Nhắn tin/gọi điện hỏi thăm tình trạng của mèo trong thời gian tiệm đang thực hiện dịch vụ.",
       "Giữ hóa đơn, hình ảnh và tra cứu lại tin nhắn cũ khi cần kiểm tra lại lịch sử chăm sóc và chi phí."
     ],
+    "touch_points": [
+      "Ứng dụng di động (Giao diện đặt lịch, hồ sơ thú cưng, theo dõi tiến độ)",
+      "Kênh nhắn tin Zalo / Hotline hỗ trợ",
+      "Quầy lễ tân tiếp nhận & bàn giao thú cưng tại spa",
+      "Kỹ thuật viên chăm sóc / Groomer trực tiếp"
+    ],
     "tags": [
       "Chủ nuôi cẩn trọng & lo âu",
       "Mèo da nhạy cảm & nhút nhát",
@@ -81,6 +87,12 @@
       "Bàn giao thú cưng tại tiệm và trao đổi nhanh các dịch vụ cần thực hiện.",
       "Kiểm tra trạng thái dịch vụ để chủ động sắp xếp thời gian quay lại tiệm đón thú cưng.",
       "Tra cứu lại hóa đơn, chi phí và gói dịch vụ đã dùng của những lần trước để lên lịch hẹn đợt tiếp theo."
+    ],
+    "touch_points": [
+      "Ứng dụng di động (Đặt lịch nhanh 24/7, đồng bộ hồ sơ đa thú cưng)",
+      "Thông báo đẩy (Push notification) / SMS báo hoàn tất dịch vụ",
+      "Quầy tiếp nhận & thanh toán nhanh tại spa",
+      "Hóa đơn & Lịch sử chăm sóc điện tử"
     ],
     "tags": [
       "Chủ nuôi bận rộn & thực tế",
