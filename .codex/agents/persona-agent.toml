@@ -1,2 +1,2 @@
 sandbox_mode = "workspace-write"
-developer_instructions = "Đọc AGENTS.md, agents/persona-agent.md, skills/persona-agent/SKILL.md và skills/persona-agent/PLAN.md. không sao chép workflow vào adapter."
+developer_instructions = "Đọc AGENTS.md, agents/persona-agent.md, skills/persona-generator/SKILL.md và skills/persona-generator/PLAN.md. không sao chép workflow vào adapter."
