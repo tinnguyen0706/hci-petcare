@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lê Hoàng Long - Value Proposition Canvas</title>
+  <link rel="stylesheet" href="value-proposition.css">
+</head>
+<body>
+  <main class="value-proposition-canvas" aria-label="Value Proposition Canvas cho Lê Hoàng Long">
+    <header class="canvas-header">
+      <h1>Value Proposition Canvas</h1>
+      <span class="subtitle">Persona 2: Lê Hoàng Long (Secondary Persona &mdash; The Busy &amp; Pragmatic Pet Owner)</span>
+    </header>
+
+    <svg class="canvas-geometry" viewBox="0 0 1280 720" aria-hidden="true">
+      <defs>
+        <marker id="arrow-right" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z"></path>
+        </marker>
+      </defs>
+      <rect x="20" y="50" width="580" height="620"></rect>
+      <line x1="20" y1="50" x2="310" y2="360"></line>
+      <line x1="20" y1="670" x2="310" y2="360"></line>
+      <line x1="310" y1="360" x2="600" y2="360"></line>
+      <circle cx="980" cy="360" r="300"></circle>
+      <line x1="980" y1="360" x2="1180" y2="135"></line>
+      <line x1="980" y1="360" x2="1180" y2="585"></line>
+      <line class="fit-arrow" x1="600" y1="360" x2="640" y2="360" marker-end="url(#arrow-right)"></line>
+      <line class="fit-arrow" x1="936" y1="360" x2="640" y2="360" marker-end="url(#arrow-right)"></line>
+    </svg>
+
+    <section class="zone products-services" aria-labelledby="products-title">
+      <div class="zone-heading">
+        <svg class="zone-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M4 11h24v17H4zM2 7h28v5H2zM10 7c-3 0-5-1.5-5-3.5S7 1 9 2c2 1 4.5 5 7 5M22 7c3 0 5-1.5 5-3.5S25 1 23 2c-2 1-4.5 5-7 5M16 7v21"></path>
+        </svg>
+        <h2 id="products-title">Products &amp; Services</h2>
+      </div>
+      <p class="prompt">Chúng ta cung cấp những sản phẩm hoặc dịch vụ nào?</p>
+      <ul class="canvas-items">
+        <li><strong>Nền tảng đặt lịch tự phục vụ 24/7</strong> với lưới giờ trống trực quan. <span class="trace">[PS1]</span></li>
+        <li><strong>Hệ thống thông báo trạng thái</strong> &amp; ước tính thời gian hoàn thành (ETA). <span class="trace">[PS2]</span></li>
+        <li><strong>Trình quản lý đa hồ sơ thú cưng</strong> đồng bộ cho cả Chó và Mèo. <span class="trace">[PS3]</span></li>
+        <li><strong>Báo cáo chi tiêu &amp; Lịch sử dịch vụ</strong> điện tử kèm nhắc lịch định kỳ. <span class="trace">[PS4]</span></li>
+      </ul>
+    </section>
+
+    <section class="zone gain-creators" aria-labelledby="gain-creators-title">
+      <div class="zone-heading">
+        <svg class="zone-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M4 25l7-8 5 4 11-14M21 7h6v6"></path>
+        </svg>
+        <h2 id="gain-creators-title">Gain Creators</h2>
+      </div>
+      <p class="prompt">Sản phẩm tạo ra kết quả tích cực nào?</p>
+      <ul class="canvas-items">
+        <li>Cho phép đặt lịch nhanh nhiều thú cưng cùng lúc trong 1 lần thao tác. <span class="trace">[GC1 &rarr; G1]</span></li>
+        <li>Tối ưu hóa thời gian bận rộn, không lãng phí phút nào chờ đợi tại tiệm. <span class="trace">[GC2 &rarr; G2]</span></li>
+        <li>Chuyển đổi linh hoạt giữa các hồ sơ thú cưng chỉ với 1 chạm trên thanh điều hướng. <span class="trace">[GC3 &rarr; G3]</span></li>
+        <li>Thống kê chi phí rõ ràng minh bạch giúp chủ nuôi chủ động quản lý ngân sách. <span class="trace">[GC4 &rarr; G4]</span></li>
+      </ul>
+    </section>
+
+    <section class="zone pain-relievers" aria-labelledby="pain-relievers-title">
+      <div class="zone-heading">
+        <svg class="zone-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M8 24a7 7 0 0 1 0-10l7-7a7 7 0 0 1 10 10l-7 7a7 7 0 0 1-10 0zM11 11l10 10"></path>
+        </svg>
+        <h2 id="pain-relievers-title">Pain Relievers</h2>
+      </div>
+      <p class="prompt">Sản phẩm làm giảm khó khăn cụ thể nào?</p>
+      <ul class="canvas-items">
+        <li>Lựa chọn khung giờ trống tức thì cho từng thú cưng mà không cần trao đổi thủ công. <span class="trace">[PR1 &rarr; P1]</span></li>
+        <li>Thông báo đẩy ngay khi chuyển trạng thái 'Hoàn tất / Chờ đón' kèm thời gian đón ước tính. <span class="trace">[PR2 &rarr; P2]</span></li>
+        <li>Đồng bộ hồ sơ, chi phí và lịch hẹn của chó và mèo trên một giao diện thống nhất. <span class="trace">[PR3 &rarr; P3]</span></li>
+        <li>Hóa đơn điện tử lưu trữ vĩnh viễn và tự động nhắc hẹn chăm sóc sau 2-3 tuần. <span class="trace">[PR4 &rarr; P4]</span></li>
+      </ul>
+    </section>
+
+    <section class="zone gains" aria-labelledby="gains-title">
+      <div class="zone-heading">
+        <svg class="zone-icon face-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="12"></circle><circle cx="12" cy="13" r="1"></circle><circle cx="20" cy="13" r="1"></circle><path d="M10 19c2 4 10 4 12 0"></path>
+        </svg>
+        <h2 id="gains-title">Gains</h2>
+      </div>
+      <p class="prompt">Điều gì tạo nên kết quả mong muốn cho người dùng?</p>
+      <ul class="canvas-items">
+        <li>Đặt lịch 24/7 tự phục vụ chỉ trong vài giây với xác nhận tức thì. <span class="trace">[G1]</span></li>
+        <li>Biết chính xác thời gian hoàn tất và nhận thông báo đón thú cưng đúng giờ. <span class="trace">[G2]</span></li>
+        <li>Quản lý đồng thời nhiều hồ sơ thú cưng dễ dàng trên cùng một tài khoản. <span class="trace">[G3]</span></li>
+        <li>Tra cứu nhanh lịch sử dịch vụ, chi phí và nhận nhắc hẹn định kỳ tự động. <span class="trace">[G4]</span></li>
+      </ul>
+    </section>
+
+    <section class="zone pains" aria-labelledby="pains-title">
+      <div class="zone-heading">
+        <svg class="zone-icon face-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="12"></circle><circle cx="12" cy="13" r="1"></circle><circle cx="20" cy="13" r="1"></circle><path d="M10 22c2-4 10-4 12 0"></path>
+        </svg>
+        <h2 id="pains-title">Pains</h2>
+      </div>
+      <p class="prompt">Điều gì gây khó chịu, lo lắng hoặc cản trở họ?</p>
+      <ul class="canvas-items">
+        <li>Khung giờ cuối tuần/sau giờ làm nhanh hết chỗ, mất thời gian nhắn tin thương lượng giờ hẹn. <span class="trace">[P1]</span></li>
+        <li>Tiệm không báo trước giờ hoàn thành cụ thể, đến sớm thì phải chờ đợi, đến trễ thì trễ hẹn cá nhân. <span class="trace">[P2]</span></li>
+        <li>Khó nhớ lịch chăm sóc định kỳ và khó theo dõi tổng chi tiêu cho nhiều thú cưng. <span class="trace">[P3]</span></li>
+        <li>Thông tin chăm sóc phân tán qua hóa đơn giấy, dễ quên đợt cắt tỉa/vệ sinh tiếp theo. <span class="trace">[P4]</span></li>
+      </ul>
+    </section>
+
+    <section class="zone customer-jobs" aria-labelledby="customer-jobs-title">
+      <div class="zone-heading">
+        <svg class="zone-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M12 7h16M12 16h16M12 25h16M3 7l2 2 4-4M3 16l2 2 4-4M3 25l2 2 4-4"></path>
+        </svg>
+        <h2 id="customer-jobs-title">Customer Job(s)</h2>
+      </div>
+      <p class="prompt">Người dùng đang cố gắng hoàn thành việc gì?</p>
+      <ul class="canvas-items">
+        <li>Đặt lịch spa/tắm định kỳ ngoài giờ làm hoặc cuối tuần cho nhiều thú cưng. <span class="trace">[CJ1]</span></li>
+        <li>Sắp xếp thời gian đưa đón thú cưng chuẩn xác, không ảnh hưởng lịch làm việc. <span class="trace">[CJ2]</span></li>
+        <li>Theo dõi nhanh trạng thái để biết chính xác khi nào dịch vụ xong để đến đón. <span class="trace">[CJ3]</span></li>
+        <li>Quản lý tập trung chi phí và lịch sử chăm sóc của nhiều bé (Chó &amp; Mèo). <span class="trace">[CJ4]</span></li>
+      </ul>
+    </section>
+
+    <div class="value-symbol" aria-hidden="true">
+      <svg viewBox="0 0 96 96"><path d="M16 34h64v50H16zM10 24h76v14H10zM48 24v60M48 24c-8-14-28-20-30-8-2 11 19 10 30 8M48 24c8-14 28-20 30-8 2 11-19 10-30 8"></path></svg>
+    </div>
+
+    <div class="customer-symbol" aria-hidden="true">
+      <svg viewBox="0 0 112 112"><path d="M91 56c0 23-17 42-40 42H34V81H19l12-18V43C31 25 45 14 62 14c17 0 29 12 29 42z"></path><circle cx="58" cy="48" r="3"></circle></svg>
+    </div>
+
+  </main>
+</body>
+</html>
