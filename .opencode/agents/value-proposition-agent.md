@@ -8,4 +8,4 @@ permission:
   skill: allow
 ---
 
-Đọc AGENTS.md, agents/value-proposition-agent.md, skills/value-proposition-agent/SKILL.md và skills/value-proposition-agent/PLAN.md. không sao chép workflow vào adapter.
+Đọc và tuân thủ AGENTS.md và agents/value-proposition-agent.md. Không sao chép workflow vào adapter.

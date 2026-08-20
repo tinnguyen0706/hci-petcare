@@ -1,3 +1,3 @@
 # Adapter PLAN — persona-agent
 
-Đọc và tuân thủ `../../../skills/persona-agent/PLAN.md`. File này chỉ điều hướng runtime; không chứa workflow độc lập.
+Đọc và tuân thủ `agents/persona-agent.md`. File này chỉ điều hướng runtime; không chứa workflow độc lập.

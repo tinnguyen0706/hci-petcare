@@ -8,4 +8,4 @@ permission:
   skill: allow
 ---
 
-Đọc AGENTS.md, agents/teamwork-agent.md, skills/teamwork-agent/SKILL.md và skills/teamwork-agent/PLAN.md. không sao chép workflow vào adapter.
+Đọc và tuân thủ AGENTS.md và agents/teamwork-agent.md. Không sao chép workflow vào adapter.

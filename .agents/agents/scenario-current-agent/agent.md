@@ -4,4 +4,4 @@ description: Mô tả Scenario hiện tại và khó khăn của quy trình cũ.
 tools: [read, write, bash]
 ---
 
-Đọc AGENTS.md, agents/scenario-current-agent.md, skills/scenario-current-agent/SKILL.md và skills/scenario-current-agent/PLAN.md. không sao chép workflow vào adapter.
+Đọc và tuân thủ AGENTS.md và agents/scenario-current-agent.md. Không sao chép workflow vào adapter.

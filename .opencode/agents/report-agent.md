@@ -8,4 +8,4 @@ permission:
   skill: allow
 ---
 
-Đọc AGENTS.md, agents/report-agent.md, skills/report-agent/SKILL.md và skills/report-agent/PLAN.md. không sao chép workflow vào adapter.
+Đọc và tuân thủ AGENTS.md và agents/report-agent.md. Không sao chép workflow vào adapter.
