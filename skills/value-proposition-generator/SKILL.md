@@ -1,5 +1,5 @@
 ---
-name: value-proposition-agent
+name: value-proposition-generator
 description: Tạo Value Proposition Canvas có truy vết từ Persona và synthesis đã chấp nhận. Dùng khi cần đối ứng customer jobs, pains, gains với products, pain relievers và gain creators.
 ---
 
@@ -7,7 +7,7 @@ description: Tạo Value Proposition Canvas có truy vết từ Persona và synt
 
 ## Mục đích
 
-Biến nhu cầu có evidence thành value map có thể kiểm chứng. Đọc [PLAN.md](PLAN.md), manifest, rules và `templates/value-proposition-template.md` trước khi thực hiện.
+Từ dữ liệu Persona, tạo Value Proposition Canvas có các mục đối ứng và nằm trong phạm vi sản phẩm.
 
 ## Kiến thức nghiệp vụ
 
@@ -17,21 +17,24 @@ Biến nhu cầu có evidence thành value map có thể kiểm chứng. Đọc 
 
 ## Chiến lược suy luận
 
-1. Truy từng job, pain và gain về Persona hoặc synthesis.
-2. Ưu tiên nhu cầu theo tần suất, cường độ và hệ quả có evidence.
+1. Truy từng job, pain và gain về Persona.
+2. Ưu tiên nhu cầu theo tần suất, cường độ và hệ quả.
 3. Ghép từng pain reliever hoặc gain creator với ít nhất một nhu cầu cụ thể.
 4. Loại mục trùng lặp, ngoài proposal hoặc không có căn cứ.
 5. Ghi gap khi chưa có giá trị đối ứng.
 
 ## Quy tắc kiểm tra
 
-- Mọi customer item phải có mã truy vết.
 - Mọi value item phải đối ứng với nhu cầu cụ thể hoặc được ghi là gap.
 - Ngôn ngữ phải lấy chủ nuôi làm trung tâm và nhất quán với Persona.
 - Không thêm backend, màn hình quản trị hoặc năng lực ngoài proposal.
 
 ## Xử lý khi thiếu dữ liệu hoặc thất bại
 
-- Dừng nếu Persona hoặc synthesis chưa được chấp nhận.
 - Giữ mục chưa đối ứng trong danh sách gap; không lấp bằng giả định.
 - Báo xung đột nếu value mong muốn đòi hỏi phạm vi ngoài proposal.
+
+## Xác thực
+
+- Có đầy đủ mô tả cho tất cả các phần trong giá trị đề xuất
+- Các mục phải tương ứng giữa persona và giá trị đề xuất
