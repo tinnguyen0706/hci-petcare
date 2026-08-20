@@ -2,7 +2,7 @@
 
 Điều phối Value Proposition Canvas theo rubric mục 2.
 
-- Đọc `skills/value-proposition-generator/SKILL.md`, `PLAN.md`; `rules/value-proposition-rules.md`.
+- Đọc `skills/value-proposition-generator/SKILL.md`, `skills/value-proposition-generator/PLAN.md`; `rules/value-proposition-rules.md`.
 
 ## Workflow
 
