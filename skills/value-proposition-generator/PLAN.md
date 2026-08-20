@@ -17,13 +17,12 @@ Chuyển nhu cầu đã truy vết trong Persona thành Value Proposition Canvas
 
 ## Output
 
-`deliverables/01-user-research/value-proposition<id>.json`.
+`deliverables/01-user-research/value-proposition.json`.
 
 ## Workflow
 
-1. Trích customer jobs, pains và gains cùng mã truy vết.
-2. Nhóm và ưu tiên theo độ mạnh evidence.
-3. Xây products/services trong bốn năng lực đã chốt của sản phẩm.
-4. Ánh xạ pain relievers và gain creators với nhu cầu cụ thể.
-5. Ghi rõ nhu cầu chưa có đối ứng thay vì tự tạo feature.
-6. Kiểm tra tính đối ứng, khả thi và nhất quán với Persona trước khi hoàn tất.
+1. Trích customer jobs, pains và gains từ persona.
+2. Xây products/services trong bốn năng lực đã chốt của sản phẩm.
+3. Ánh xạ pain relievers và gain creators với nhu cầu cụ thể.
+4. Ghi rõ nhu cầu chưa có đối ứng thay vì tự tạo feature.
+5. Kiểm tra tính đối ứng, khả thi và nhất quán với Persona trước khi hoàn tất.
