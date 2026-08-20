@@ -35,10 +35,10 @@
         .persona {
             width: 210mm;
             min-height: 297mm;
-            padding: 18mm;
+            padding: 16mm;
             display: grid;
-            grid-template-columns: 35% 65%;
-            gap: 12mm;
+            grid-template-columns: 40% 60%;
+            gap: 10mm;
             background: #ffffff;
         }
 
@@ -49,28 +49,31 @@
         .left {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            text-align: left;
         }
 
         .photo {
-            width: 55mm;
-            height: 55mm;
+            width: 50mm;
+            height: 50mm;
             object-fit: cover;
             border-radius: 50%;
-            margin-bottom: 8mm;
+            margin: 0 auto 5mm auto;
+            display: block;
         }
 
         .left h1 {
-            margin: 0 0 3mm 0;
-            font-size: 26px;
+            margin: 0 0 2mm 0;
+            font-size: 24px;
             line-height: 1.2;
+            text-align: center;
         }
 
         .occupation {
-            margin: 0 0 8mm 0;
-            font-size: 15px;
+            margin: 0 0 5mm 0;
+            font-size: 14px;
             font-weight: normal;
+            text-align: center;
+            color: #475569;
         }
 
         .background {
@@ -90,39 +93,36 @@
         }
 
         .section {
-            margin-bottom: 7mm;
+            margin-bottom: 6mm;
+            break-inside: avoid;
+            page-break-inside: avoid;
         }
 
         .section h2 {
-            margin: 0 0 3mm 0;
-            font-size: 18px;
+            margin: 0 0 2.5mm 0;
+            font-size: 17px;
             line-height: 1.3;
         }
 
         .section ul {
             margin: 0;
-            padding-left: 6mm;
+            padding-left: 5.5mm;
         }
 
         .section li {
-            margin-bottom: 2mm;
-            font-size: 13px;
-            line-height: 1.5;
+            margin-bottom: 1.8mm;
+            font-size: 12.5px;
+            line-height: 1.45;
         }
 
         blockquote {
             margin: 0;
-            padding: 4mm 5mm;
+            padding: 3.5mm 4.5mm;
             border-left: 3px solid #333333;
-            font-size: 14px;
-            line-height: 1.6;
+            font-size: 13px;
+            line-height: 1.55;
             font-style: italic;
-        }
-
-        /* Tránh việc một section bị chia đôi khi render PDF */
-        .section {
-            break-inside: avoid;
-            page-break-inside: avoid;
+            background: #f8fafc;
         }
     </style>
 </head>
@@ -142,15 +142,13 @@
                 Sinh viên năm cuối &amp; Freelance Designer (21 tuổi)
             </p>
 
-            <p class="background">
-                Thư hiện là sinh viên năm cuối kiêm thiết kế tự do, sống cùng chú mèo "Bơ" 2 tuổi. "Bơ" có tính cách rất nhút nhát, sợ tiếng ồn lớn và có tiền sử viêm da dị ứng với sữa tắm chứa hương liệu nhân tạo. Vì lịch học và làm việc bận rộn, Thư định kỳ đưa mèo đi spa chăm sóc nhưng luôn nơm nớp lo sợ mèo bị hoảng loạn, dùng sai sữa tắm dị ứng hoặc nhốt chung với thú cưng hung dữ.
-            </p>
-
-        </aside>
-
-
-        <!-- CỘT BÊN PHẢI -->
-        <section class="right">
+            <!-- Bối cảnh -->
+            <div class="section">
+                <h2>Background</h2>
+                <p class="background">
+                    Thư hiện là sinh viên năm cuối kiêm thiết kế tự do, sống cùng chú mèo "Bơ" 2 tuổi. "Bơ" có tính cách rất nhút nhát, sợ tiếng ồn lớn và có tiền sử viêm da dị ứng với sữa tắm chứa hương liệu nhân tạo. Vì lịch học và làm việc bận rộn, Thư định kỳ đưa mèo đi spa chăm sóc nhưng luôn nơm nớp lo sợ mèo bị hoảng loạn, dùng sai sữa tắm dị ứng hoặc nhốt chung với thú cưng hung dữ.
+                </p>
+            </div>
 
             <!-- Nhân khẩu học -->
             <div class="section">
@@ -163,6 +161,32 @@
                     <li><strong>Kinh nghiệm:</strong> Đã từng nhiều lần đặt lịch spa/tắm chăm sóc mèo</li>
                 </ul>
             </div>
+
+            <!-- Thẻ phân loại -->
+            <div class="section">
+                <h2>Tags</h2>
+                <ul>
+                    <li>Chủ nuôi cẩn trọng &amp; lo âu</li>
+                    <li>Mèo da nhạy cảm &amp; nhút nhát</li>
+                    <li>Yêu cầu dặn dò đặc biệt</li>
+                    <li>Nhu cầu theo dõi tiến độ thời gian thực</li>
+                    <li>Đặt lịch xác nhận tức thì</li>
+                </ul>
+            </div>
+
+            <!-- Trích dẫn -->
+            <div class="section">
+                <h2>Quote</h2>
+                <blockquote>
+                    "Mỗi lần gửi bé đi spa mình luôn thấp thỏm lo lắng, nhắn tin hỏi thì tiệm bận không trả lời. Chỉ mong có ứng dụng theo dõi tiến độ rõ ràng và lưu sẵn ghi chú dị ứng để không sợ tiệm sơ suất."
+                </blockquote>
+            </div>
+
+        </aside>
+
+
+        <!-- CỘT BÊN PHẢI -->
+        <section class="right">
 
             <!-- Mục tiêu -->
             <div class="section">
@@ -196,18 +220,6 @@
                 </ul>
             </div>
 
-            <!-- Thẻ phân loại -->
-            <div class="section">
-                <h2>Tags</h2>
-                <ul>
-                    <li>Chủ nuôi cẩn trọng &amp; lo âu</li>
-                    <li>Mèo da nhạy cảm &amp; nhút nhát</li>
-                    <li>Yêu cầu dặn dò đặc biệt</li>
-                    <li>Nhu cầu theo dõi tiến độ thời gian thực</li>
-                    <li>Đặt lịch xác nhận tức thì</li>
-                </ul>
-            </div>
-
             <!-- Điểm đau -->
             <div class="section">
                 <h2>Pain Points</h2>
@@ -238,14 +250,6 @@
                     <li>Thực hiện dặn dò '2 lớp': nhắn tin dặn kỹ lúc đặt lịch và tiếp tục nhắc miệng trực tiếp với nhân viên khi bàn giao thú cưng tại tiệm.</li>
                     <li>Chụp ảnh, giữ hóa đơn và lục lại các đoạn chat Zalo cũ để tìm lại thông tin các lần chăm sóc trước.</li>
                 </ul>
-            </div>
-
-            <!-- Trích dẫn -->
-            <div class="section">
-                <h2>Quote</h2>
-                <blockquote>
-                    "Mỗi lần gửi bé đi spa mình luôn thấp thỏm lo lắng, nhắn tin hỏi thì tiệm bận không trả lời. Chỉ mong có ứng dụng theo dõi tiến độ rõ ràng và lưu sẵn ghi chú dị ứng để không sợ tiệm sơ suất."
-                </blockquote>
             </div>
 
         </section>

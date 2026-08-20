@@ -35,10 +35,10 @@
         .persona {
             width: 210mm;
             min-height: 297mm;
-            padding: 18mm;
+            padding: 16mm;
             display: grid;
-            grid-template-columns: 35% 65%;
-            gap: 12mm;
+            grid-template-columns: 40% 60%;
+            gap: 10mm;
             background: #ffffff;
         }
 
@@ -49,28 +49,31 @@
         .left {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            text-align: left;
         }
 
         .photo {
-            width: 55mm;
-            height: 55mm;
+            width: 50mm;
+            height: 50mm;
             object-fit: cover;
             border-radius: 50%;
-            margin-bottom: 8mm;
+            margin: 0 auto 5mm auto;
+            display: block;
         }
 
         .left h1 {
-            margin: 0 0 3mm 0;
-            font-size: 26px;
+            margin: 0 0 2mm 0;
+            font-size: 24px;
             line-height: 1.2;
+            text-align: center;
         }
 
         .occupation {
-            margin: 0 0 8mm 0;
-            font-size: 15px;
+            margin: 0 0 5mm 0;
+            font-size: 14px;
             font-weight: normal;
+            text-align: center;
+            color: #475569;
         }
 
         .background {
@@ -90,39 +93,36 @@
         }
 
         .section {
-            margin-bottom: 7mm;
+            margin-bottom: 6mm;
+            break-inside: avoid;
+            page-break-inside: avoid;
         }
 
         .section h2 {
-            margin: 0 0 3mm 0;
-            font-size: 18px;
+            margin: 0 0 2.5mm 0;
+            font-size: 17px;
             line-height: 1.3;
         }
 
         .section ul {
             margin: 0;
-            padding-left: 6mm;
+            padding-left: 5.5mm;
         }
 
         .section li {
-            margin-bottom: 2mm;
-            font-size: 13px;
-            line-height: 1.5;
+            margin-bottom: 1.8mm;
+            font-size: 12.5px;
+            line-height: 1.45;
         }
 
         blockquote {
             margin: 0;
-            padding: 4mm 5mm;
+            padding: 3.5mm 4.5mm;
             border-left: 3px solid #333333;
-            font-size: 14px;
-            line-height: 1.6;
+            font-size: 13px;
+            line-height: 1.55;
             font-style: italic;
-        }
-
-        /* Tránh việc một section bị chia đôi khi render PDF */
-        .section {
-            break-inside: avoid;
-            page-break-inside: avoid;
+            background: #f8fafc;
         }
     </style>
 </head>
@@ -142,15 +142,13 @@
                 Chuyên viên Marketing &amp; Nhân viên văn phòng (23 tuổi)
             </p>
 
-            <p class="background">
-                Long là nhân viên văn phòng có lịch làm việc cố định từ sáng đến tối trong tuần. Lịch trình bận rộn khiến Long không có thời gian tự tắm rửa, vệ sinh lông định kỳ cho 2 bé thú cưng ở nhà. Long thường xuyên sử dụng dịch vụ spa thú cưng vào cuối tuần hoặc sau giờ làm, ưu tiên các giải pháp đặt lịch nhanh chóng, tự phục vụ và tiết kiệm thời gian trao đổi thủ công.
-            </p>
-
-        </aside>
-
-
-        <!-- CỘT BÊN PHẢI -->
-        <section class="right">
+            <!-- Bối cảnh -->
+            <div class="section">
+                <h2>Background</h2>
+                <p class="background">
+                    Long là nhân viên văn phòng có lịch làm việc cố định từ sáng đến tối trong tuần. Lịch trình bận rộn khiến Long không có thời gian tự tắm rửa, vệ sinh lông định kỳ cho 2 bé thú cưng ở nhà. Long thường xuyên sử dụng dịch vụ spa thú cưng vào cuối tuần hoặc sau giờ làm, ưu tiên các giải pháp đặt lịch nhanh chóng, tự phục vụ và tiết kiệm thời gian trao đổi thủ công.
+                </p>
+            </div>
 
             <!-- Nhân khẩu học -->
             <div class="section">
@@ -163,6 +161,32 @@
                     <li><strong>Kinh nghiệm:</strong> Sử dụng dịch vụ spa/tắm định kỳ 2-3 tuần/lần</li>
                 </ul>
             </div>
+
+            <!-- Thẻ phân loại -->
+            <div class="section">
+                <h2>Tags</h2>
+                <ul>
+                    <li>Chủ nuôi bận rộn &amp; thực tế</li>
+                    <li>Nhân viên văn phòng</li>
+                    <li>Ưu tiên tự phục vụ (Self-service)</li>
+                    <li>Nuôi nhiều thú cưng (Chó &amp; Mèo)</li>
+                    <li>Cần thông báo giờ đón chuẩn xác</li>
+                </ul>
+            </div>
+
+            <!-- Trích dẫn -->
+            <div class="section">
+                <h2>Quote</h2>
+                <blockquote>
+                    "Lịch trình đi làm của mình khá dày, chỉ cần đặt lịch nhanh trên app mà không phải chờ nhắn tin qua lại, xong có thông báo chính xác để ghé đón là tiện nhất."
+                </blockquote>
+            </div>
+
+        </aside>
+
+
+        <!-- CỘT BÊN PHẢI -->
+        <section class="right">
 
             <!-- Mục tiêu -->
             <div class="section">
@@ -196,18 +220,6 @@
                 </ul>
             </div>
 
-            <!-- Thẻ phân loại -->
-            <div class="section">
-                <h2>Tags</h2>
-                <ul>
-                    <li>Chủ nuôi bận rộn &amp; thực tế</li>
-                    <li>Nhân viên văn phòng</li>
-                    <li>Ưu tiên tự phục vụ (Self-service)</li>
-                    <li>Nuôi nhiều thú cưng (Chó &amp; Mèo)</li>
-                    <li>Cần thông báo giờ đón chuẩn xác</li>
-                </ul>
-            </div>
-
             <!-- Điểm đau -->
             <div class="section">
                 <h2>Pain Points</h2>
@@ -236,14 +248,6 @@
                     <li>Thường xuyên sắp xếp công việc theo lịch biểu điện tử nên cần các thông báo nhắc nhở và mốc thời gian chuẩn xác.</li>
                     <li>Sử dụng đa kênh liên lạc nhưng muốn quy về một nền tảng duy nhất để quản lý thông tin thú cưng dễ dàng.</li>
                 </ul>
-            </div>
-
-            <!-- Trích dẫn -->
-            <div class="section">
-                <h2>Quote</h2>
-                <blockquote>
-                    "Lịch trình đi làm của mình khá dày, chỉ cần đặt lịch nhanh trên app mà không phải chờ nhắn tin qua lại, xong có thông báo chính xác để ghé đón là tiện nhất."
-                </blockquote>
             </div>
 
         </section>

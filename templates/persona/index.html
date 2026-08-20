@@ -35,10 +35,10 @@
         .persona {
             width: 210mm;
             min-height: 297mm;
-            padding: 18mm;
+            padding: 16mm;
             display: grid;
-            grid-template-columns: 35% 65%;
-            gap: 12mm;
+            grid-template-columns: 40% 60%;
+            gap: 10mm;
             background: #ffffff;
         }
 
@@ -49,28 +49,31 @@
         .left {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            text-align: left;
         }
 
         .photo {
-            width: 55mm;
-            height: 55mm;
+            width: 50mm;
+            height: 50mm;
             object-fit: cover;
             border-radius: 50%;
-            margin-bottom: 8mm;
+            margin: 0 auto 5mm auto;
+            display: block;
         }
 
         .left h1 {
-            margin: 0 0 3mm 0;
-            font-size: 26px;
+            margin: 0 0 2mm 0;
+            font-size: 24px;
             line-height: 1.2;
+            text-align: center;
         }
 
         .occupation {
-            margin: 0 0 8mm 0;
-            font-size: 15px;
+            margin: 0 0 5mm 0;
+            font-size: 14px;
             font-weight: normal;
+            text-align: center;
+            color: #475569;
         }
 
         .background {
@@ -90,39 +93,36 @@
         }
 
         .section {
-            margin-bottom: 7mm;
+            margin-bottom: 6mm;
+            break-inside: avoid;
+            page-break-inside: avoid;
         }
 
         .section h2 {
-            margin: 0 0 3mm 0;
-            font-size: 18px;
+            margin: 0 0 2.5mm 0;
+            font-size: 17px;
             line-height: 1.3;
         }
 
         .section ul {
             margin: 0;
-            padding-left: 6mm;
+            padding-left: 5.5mm;
         }
 
         .section li {
-            margin-bottom: 2mm;
-            font-size: 13px;
-            line-height: 1.5;
+            margin-bottom: 1.8mm;
+            font-size: 12.5px;
+            line-height: 1.45;
         }
 
         blockquote {
             margin: 0;
-            padding: 4mm 5mm;
+            padding: 3.5mm 4.5mm;
             border-left: 3px solid #333333;
-            font-size: 14px;
-            line-height: 1.6;
+            font-size: 13px;
+            line-height: 1.55;
             font-style: italic;
-        }
-
-        /* Tránh việc một section bị chia đôi khi render PDF */
-        .section {
-            break-inside: avoid;
-            page-break-inside: avoid;
+            background: #f8fafc;
         }
     </style>
 </head>
@@ -142,15 +142,13 @@
                 {{occupation}}
             </p>
 
-            <p class="background">
-                {{background}}
-            </p>
-
-        </aside>
-
-
-        <!-- CỘT BÊN PHẢI -->
-        <section class="right">
+            <!-- Bối cảnh -->
+            <div class="section">
+                <h2>Background</h2>
+                <p class="background">
+                    {{background}}
+                </p>
+            </div>
 
             <!-- Nhân khẩu học -->
             <div class="section">
@@ -159,6 +157,28 @@
                     {{demographics}}
                 </ul>
             </div>
+
+            <!-- Thẻ phân loại -->
+            <div class="section">
+                <h2>Tags</h2>
+                <ul>
+                    {{tags}}
+                </ul>
+            </div>
+
+            <!-- Trích dẫn -->
+            <div class="section">
+                <h2>Quote</h2>
+                <blockquote>
+                    {{quote}}
+                </blockquote>
+            </div>
+
+        </aside>
+
+
+        <!-- CỘT BÊN PHẢI -->
+        <section class="right">
 
             <!-- Mục tiêu -->
             <div class="section">
@@ -184,14 +204,6 @@
                 </ul>
             </div>
 
-            <!-- Thẻ phân loại -->
-            <div class="section">
-                <h2>Tags</h2>
-                <ul>
-                    {{tags}}
-                </ul>
-            </div>
-
             <!-- Điểm đau -->
             <div class="section">
                 <h2>Pain Points</h2>
@@ -214,14 +226,6 @@
                 <ul>
                     {{behaviors}}
                 </ul>
-            </div>
-
-            <!-- Trích dẫn -->
-            <div class="section">
-                <h2>Quote</h2>
-                <blockquote>
-                    {{quote}}
-                </blockquote>
             </div>
 
         </section>
