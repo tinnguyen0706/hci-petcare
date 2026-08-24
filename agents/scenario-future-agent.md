@@ -10,15 +10,16 @@
 - Đọc dữ liệu từng value-proposition `deliverables/01-user-research/value-proposition/value-proposition.json` 
 - Đọc Scenario Current tương ứng trong `deliverables/01-user-research/scenario-current/`.
 - Đọc evidence liên quan trong `data/user-research/`.
-- evidence trong `data/user-research/`.
+
 
 2.  **Gọi Scenario Future Generator**
 
 3. **Kiểm tra kết quả**:
-- Nội dung nhất quán với Persona, Value Proposition và evidence.
-- Thể hiện rõ khó khăn của quy trình cũ.
-- Không tự bịa dữ liệu.
-- Không đưa giải pháp mới vào Scenario hiện tại.
+- Nội dung nhất quán với Persona, Value Proposition, Scenario Current và evidence.
+- Giữ nguyên Persona, thú cưng, goal/task, Trigger và bối cảnh của Scenario Current tương ứng.
+- Thể hiện rõ cách tương tác mới giải quyết pain points của quy trình cũ.
+- Không tự bịa dữ liệu hoặc thêm tính năng ngoài phạm vi sản phẩm.
+- Không sử dụng khẳng định tuyệt đối về hiệu quả của giải pháp.
 
 4. **Trả về kết quả**:
 - Mỗi Persona có một thư mục riêng trong

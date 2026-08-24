@@ -34,8 +34,11 @@ description: Tạo kịch bản Scenario 2 mô tả quy trình tương lai và t
 
 5. **Tính nhất quán & Tương ứng với Persona–Goal**:
    - Mỗi goal/task chính của từng Persona phải có một Scenario Future tương ứng.
-   - Mỗi Scenario phải khai thác đúng bối cảnh, đặc điểm thú cưng, goal/task và pain points của Persona đó.
-   - Không bắt buộc một Scenario phải chứa đủ cả 4 tính năng; chỉ sử dụng các tương tác liên quan trực tiếp đến goal/task.
+   - Mỗi Scenario Future phải giữ nguyên Persona, thú cưng, goal/task, Trigger, thời gian, địa điểm và áp lực thực tế của Scenario Current tương ứng.
+   - Chỉ thay đổi hành động, điểm tiếp xúc và phản hồi của quy trình cũ bằng các tương tác cải tiến có căn cứ.
+   - Không tự thêm địa điểm, sự kiện, hoàn cảnh, cơ sở vật chất hoặc giao diện dành cho nhân viên không có trong dữ liệu đầu vào.
+   - Không bắt buộc một Scenario phải chứa đủ cả 4 tính năng; chỉ sử dụng các tương tác liên quan trực tiếp đến goal/task và pain points tương ứng.
+   - Không sử dụng khẳng định tuyệt đối về hiệu quả của giải pháp; ưu tiên các cách diễn đạt thực tế như “yên tâm hơn”, “giảm nguy cơ” hoặc “dễ kiểm tra hơn”.
 
 ## Xác thực & Tiêu chí Rubric (Mức 1.0)
 
