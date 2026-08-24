@@ -5,7 +5,12 @@
 - Đọc `skills/scenario-future-generator/SKILL.md`, `skills/scenario-future-generator/PLAN.md`,`rules/scenario_future-rules.md`
 
 ## Workflow
-1. **Kiểm tra và xác thực đầu vào**: đọc dữ liệu của từng persona trong `deliverables/01-user-research/persona/personas.json` và evidence trong `data/user-research/`.
+1. **Kiểm tra và xác thực đầu vào**: 
+- Đọc dữ liệu của từng persona trong `deliverables/01-user-research/persona/personas.json` 
+- Đọc dữ liệu từng value-proposition `deliverables/01-user-research/value-proposition/value-proposition.json` 
+- Đọc Scenario Current tương ứng trong `deliverables/01-user-research/scenario-current/`.
+- Đọc evidence liên quan trong `data/user-research/`.
+- evidence trong `data/user-research/`.
 
 2.  **Gọi Scenario Future Generator**
 
