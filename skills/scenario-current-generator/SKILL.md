@@ -1,5 +1,5 @@
 ---
-name: scenario-current-agent
+name: scenario-current-generator
 description: Tạo kịch bản Scenario 1 mô tả quy trình hiện tại và làm nổi bật các khó khăn, điểm đau của hệ thống cũ từ dữ liệu nghiên cứu người dùng.
 ---
 
