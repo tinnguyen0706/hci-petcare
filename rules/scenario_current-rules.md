@@ -1,9 +1,5 @@
 # Quy tắc tạo scenario cho quy trình hiện tại
 
-## Giữ nguyên quy trình cũ trong `docs/proposal.md`
-
-- Không được tự ý thay đổi quy trình.
-
 ## Tập trung vào người dùng, không tập trung vào hệ thống
 
 Scenario phải mô tả người dùng làm gì để đạt mục tiêu, thay vì mô tả hệ thống có những chức năng gì hay công nghệ hoạt động thế nào.
