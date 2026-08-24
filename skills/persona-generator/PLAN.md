@@ -23,7 +23,8 @@ Một hoặc nhiều thông tin sau từ: `data/user-research`
 
 ## Đầu ra
 
-Danh sách các Persona đại diện cho từng nhóm người dùng (xuất ra `personas.json` chứa mảng các persona hoặc từng file `persona-{id}.json`).
+- Danh sách các Persona đại diện cho từng nhóm người dùng (xuất ra `personas.json` chứa mảng các persona hoặc từng file `persona-{id}.json`).
+- Lưu trong `deliverables/01-user-research/persona/`
 
 ## Quy trình
 
