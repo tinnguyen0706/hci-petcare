@@ -8,7 +8,7 @@
 
 1. **Kiểm tra và xác thực đầu vào**: Đọc toàn bộ dữ liệu nghiên cứu người dùng trong `data/user-research/`.
 2. **Gọi Persona Generator**: Phân nhóm (Clustering) dựa trên Behavior + Attitudes + Motivations và tạo danh sách các Persona tương ứng cho từng nhóm.
-3. **Lưu dữ liệu cấu trúc**: Xuất file `personas.json` (chứa toàn bộ danh sách personas).
+3. **Lưu dữ liệu cấu trúc**: Xuất file `deliverables/01-user-research/persona/personas.json` (chứa toàn bộ danh sách personas).
 4. **Load template HTML và CSS**: Nạp template từ `templates/persona/`.
 5. **Điền dữ liệu vào template cho từng Persona**:
     - Tạo file HTML cho từng Persona (ví dụ: `persona-1.html`, `persona-2.html`,...).
