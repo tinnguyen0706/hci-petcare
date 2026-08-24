@@ -27,3 +27,5 @@ Không chỉ kể hành động; phải hiểu tại sao user làm những hành
 ## Phong cách trình bày
 
 Scenario được viết dưới dạng 1 đoạn văn hoàn chỉnh. Markdown chỉ là định dạng, nội dung vẫn là 1 đoạn văn bản bình thường.
+
+**Không được phép tạo thêm bất cứ 1 nội dung nào ngoài nội dung của đoạn văn của scenario**.
