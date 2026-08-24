@@ -2,7 +2,7 @@
 
 Điều phối việc tổng hợp evidence, phân nhóm và tạo các Persona theo rubric mục 1.
 
-- Đọc `skills/persona-generator/SKILL.md`, `skills/value-proposition-generator/PLAN.md`, `templates/persona`,`rules/persona-rules.md`
+- Đọc `skills/persona-generator/SKILL.md`, `skills/persona-generator/PLAN.md`, `templates/persona`,`rules/persona-rules.md`
 
 ## Workflow
 
