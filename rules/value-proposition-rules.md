@@ -29,3 +29,4 @@ Value Proposition Canvas phải bao gồm 2 phần đối ứng 1-1 rõ ràng:
   - Phải duy trì mạch truy vết xuyên suốt: `Evidence` ➔ `Persona` ➔ `Jobs/Pains/Gains` ➔ `Value Map` ➔ `Quyết định thiết kế UI/UX`.
 * **Phân định rõ Hiện trạng và Tương lai:** Không trộn lẫn vấn đề của quy trình cũ vào giải pháp mới; User Profile phản ánh hiện trạng người dùng, còn Value Map thể hiện đề xuất giá trị tương lai.
 * **Trình bày trực quan, cô đọng:** Tuân thủ template chuẩn (HTML/CSS hoặc Markdown theo quy định), trình bày gọn gàng, súc tích trong 1 trang nhìn.
+* **Tuân thủ các template được cung cấp sẵn trong thư mục `templates/`** Không sửa template, chỉ cần điền nội dung theo template là được.
