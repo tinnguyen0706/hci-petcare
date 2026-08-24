@@ -6,7 +6,7 @@ Chuyển nhu cầu đã truy vết trong Persona thành Value Proposition Canvas
 
 ## Dùng skill này khi
 
-- Persona và synthesis đã được chấp nhận.
+- Persona đã được chấp nhận.
 - Cần xác định customer jobs, pains, gains và value map.
 - Cần chuẩn bị deliverable Value Proposition trước Scenario mới.
 
