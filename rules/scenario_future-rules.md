@@ -26,6 +26,8 @@ Không chỉ kể hành động; phải hiểu tại sao user làm những hành
 
 ## Scenario này phải mô tả cách làm trong tương lai
 
+Phải dựa trên Current Scenario, giải quyết được những vấn đề của quy trình cũ.
+
 ## Phong cách trình bày
 
 Scenario được viết dưới dạng 1 đoạn văn hoàn chỉnh. Markdown chỉ là định dạng, nội dung vẫn là 1 đoạn văn bản bình thường.
