@@ -2,156 +2,293 @@
   {
     "persona_id": "persona-1",
     "persona_name": "Nguyễn Minh Thư",
-    "role": "Primary Persona - The Protective & Anxious Pet Parent",
-    "demographics_summary": "21 tuổi, Sinh viên & Freelance Designer, nuôi Mèo Anh lông dài 'Bơ' 2 tuổi (nhút nhát, da nhạy cảm dị ứng sữa tắm hương liệu)",
+    "persona_role": "Primary Persona - The Protective & Anxious Pet Parent",
+    "target_segment": "Chủ nuôi thú cưng có nhu cầu dặn dò đặc biệt (thú cưng nhút nhát / dị ứng)",
     "customer_profile": {
       "customer_jobs": [
-        "Đặt lịch spa/tắm chăm sóc an toàn cho mèo lông dài nhạy cảm trước khi đưa đến tiệm.",
-        "Dặn dò kỹ lưỡng tiền sử dị ứng sữa tắm và lưu ý tính cách nhút nhát cho tiệm.",
-        "Theo dõi tình trạng, mức độ an toàn của mèo trong suốt thời gian làm dịch vụ.",
-        "Lưu trữ và kiểm tra lại lịch sử chăm sóc, sản phẩm đã dùng và chi phí các lần trước."
+        {
+          "id": "CJ1",
+          "content": "Đặt lịch chăm sóc / spa định kỳ cho mèo nhạy cảm",
+          "type": "functional"
+        },
+        {
+          "id": "CJ2",
+          "content": "Dặn dò kỹ tiền sử dị ứng sữa tắm & tính cách nhút nhát của thú cưng cho nhân viên",
+          "type": "functional & emotional"
+        },
+        {
+          "id": "CJ3",
+          "content": "Theo dõi liên tục tiến độ chăm sóc từ xa để an tâm làm việc",
+          "type": "emotional"
+        },
+        {
+          "id": "CJ4",
+          "content": "Lưu trữ và tra cứu lại lịch sử chăm sóc, sản phẩm sử dụng và chi phí",
+          "type": "functional"
+        }
       ],
       "pains": [
-        "Nơm nớp lo sợ tiệm quên ghi chú dặn dò, dẫn đến việc dùng sai sữa tắm gây dị ứng hoặc để chung với thú cưng hung dữ.",
-        "Hoàn toàn mất dấu tiến độ khi gửi mèo ở tiệm; nhắn tin hỏi thăm thì nhân viên bận rộn không trả lời kịp thời.",
-        "Khung giờ trống không rõ ràng, mất nhiều thời gian nhắn tin chờ đợi phản hồi xác nhận lịch hẹn.",
-        "Lịch sử chăm sóc và toa thuốc/sản phẩm phân tán trong chat Zalo, hóa đơn giấy dễ thất lạc."
+        {
+          "id": "P1",
+          "content": "Lo sợ nhân viên quên ghi chú, dùng sai sữa tắm gây dị ứng da hoặc để chung với thú cưng hung dữ",
+          "severity": "high"
+        },
+        {
+          "id": "P2",
+          "content": "Không nhận được cập nhật tiến độ trong lúc thú cưng ở tiệm; nhắn tin hỏi thăm không được trả lời kịp",
+          "severity": "high"
+        },
+        {
+          "id": "P3",
+          "content": "Khung giờ mong muốn thường xuyên hết chỗ; mất thời gian nhắn tin trao đổi qua lại",
+          "severity": "medium"
+        },
+        {
+          "id": "P4",
+          "content": "Lịch sử dịch vụ và hóa đơn rải rác trên Zalo/giấy dễ thất lạc, khó xem lại loại sữa tắm đã dùng",
+          "severity": "medium"
+        }
       ],
       "gains": [
-        "Tuyệt đối an tâm thú cưng được dùng đúng sữa tắm an toàn và cách ly thú dữ nhờ cơ chế ghi chú tự động.",
-        "Nắm bắt tiến độ chăm sóc trực quan theo thời gian thực (4 mốc rõ ràng) kèm hình ảnh cập nhật.",
-        "Đặt lịch nhanh chóng, thấy ngay khung giờ còn trống và nhận xác nhận tức thì.",
-        "Xem lại toàn bộ nhật ký chăm sóc, sản phẩm đã dùng và chi phí tập trung trên một ứng dụng."
+        {
+          "id": "G1",
+          "content": "Yên tâm tuyệt đối vì thông tin dị ứng/thuốc và dặn dò đặc biệt luôn được tiệm ghi nhận chính xác",
+          "relevance": "essential"
+        },
+        {
+          "id": "G2",
+          "content": "Minh bạch tiến độ chăm sóc theo thời gian thực (4 mốc) mà không cần nhắn tin hỏi tiệm",
+          "relevance": "essential"
+        },
+        {
+          "id": "G3",
+          "content": "Chủ động thấy lịch trống và nhận xác nhận đặt lịch ngay lập tức 24/7",
+          "relevance": "high"
+        },
+        {
+          "id": "G4",
+          "content": "Hồ sơ và nhật ký chăm sóc tập trung, dễ dàng xem lại hình ảnh và sản phẩm đã dùng",
+          "relevance": "high"
+        }
       ]
     },
     "value_map": {
       "products_services": [
-        "Ứng dụng đặt lịch chăm sóc thú cưng trực tuyến với xác nhận tức thì theo khung giờ trống thực tế.",
-        "Hồ sơ thú cưng cá nhân hóa đính kèm cảnh báo dị ứng, tính cách và yêu cầu chăm sóc đặc biệt.",
-        "Tính năng theo dõi tiến độ dịch vụ theo thời gian thực 4 mốc (Đã nhận ➔ Đang chăm sóc ➔ Hoàn tất ➔ Chờ đón).",
-        "Sổ tay điện tử lưu trữ lịch sử chăm sóc, chi tiết sản phẩm sử dụng, hóa đơn và hình ảnh kết quả."
+        {
+          "id": "PS1",
+          "content": "Đặt lịch dịch vụ spa/tắm có xác nhận tức thì",
+          "category": "core"
+        },
+        {
+          "id": "PS2",
+          "content": "Hồ sơ thú cưng & Quản lý dặn dò đặc biệt (Dị ứng, Tính cách)",
+          "category": "core"
+        },
+        {
+          "id": "PS3",
+          "content": "Theo dõi tiến độ chăm sóc theo thời gian thực (Timeline Stepper 4 mốc)",
+          "category": "core"
+        },
+        {
+          "id": "PS4",
+          "content": "Nhật ký & Lịch sử chăm sóc cá nhân hóa (kèm hình ảnh & sản phẩm sử dụng)",
+          "category": "supporting"
+        }
       ],
       "pain_relievers": [
-        "Tự động đồng bộ và hiển thị nổi bật cảnh báo dị ứng/tính cách trên phiếu tiếp nhận của groomer, xóa bỏ nỗi lo quên dặn.",
-        "Cập nhật minh bạch từng bước chăm sóc qua timeline 4 mốc, chấm dứt cảm giác thấp thỏm, không cần gọi điện/nhắn tin hỏi tiệm.",
-        "Hiển thị lịch trống thời gian thực và xác nhận tức thì, loại bỏ thời gian chờ đợi phản hồi thủ công.",
-        "Tự động lưu trữ tập trung dữ liệu dịch vụ, hóa đơn và sản phẩm sử dụng vào hồ sơ cá nhân, không lo thất lạc."
+        {
+          "id": "PR1",
+          "target_pain_id": "P1",
+          "content": "Tự động đính kèm cảnh báo dị ứng & ghi chú tính cách vào phiếu tiếp nhận của Groomer [-> P1]"
+        },
+        {
+          "id": "PR2",
+          "target_pain_id": "P2",
+          "content": "Cập nhật tiến độ trực quan 4 mốc (Đã nhận -> Đang chăm sóc -> Hoàn tất -> Chờ đón) kèm ảnh thực tế [-> P2]"
+        },
+        {
+          "id": "PR3",
+          "target_pain_id": "P3",
+          "content": "Hiển thị trực quan khung giờ còn trống và xác nhận lịch hẹn tức thì không cần chờ duyệt [-> P3]"
+        },
+        {
+          "id": "PR4",
+          "target_pain_id": "P4",
+          "content": "Lưu trữ số hóa tập trung lịch sử các lần chăm sóc, sản phẩm đã dùng và chi phí [-> P4]"
+        }
       ],
       "gain_creators": [
-        "Đem lại sự an tâm tuyệt đối nhờ cơ chế kiểm tra ghi chú dị ứng nghiêm ngặt trước khi thực hiện dịch vụ.",
-        "Mang lại trải nghiệm theo dõi sinh động, giúp chủ nuôi an tâm làm việc với thông báo tiến độ và ảnh chụp thực tế.",
-        "Giúp chủ động quản lý thời gian với khả năng giữ chỗ tức thì 24/7.",
-        "Cung cấp hồ sơ sức khỏe & làm đẹp liền mạch, giúp dễ dàng tái đặt lịch và theo dõi thể trạng lông/da của thú cưng."
-      ]
-    },
-    "fit_analysis": {
-      "core_value": "An tâm tuyệt đối khi gửi thú cưng nhạy cảm nhờ hồ sơ cảnh báo dị ứng tự động và theo dõi tiến độ 4 mốc thời gian thực.",
-      "supporting_values": [
-        "Đặt lịch tự phục vụ nhanh chóng với xác nhận tức thì 24/7.",
-        "Quản lý tập trung toàn bộ lịch sử chăm sóc và sản phẩm sử dụng."
-      ],
-      "problem_solution_fit": [
         {
-          "pain": "Lo sợ tiệm quên ghi chú dặn dò dẫn đến dùng sai sữa tắm gây dị ứng",
-          "pain_reliever": "Hồ sơ thú cưng tự động lưu và đính kèm nổi bật cảnh báo dị ứng vào phiếu thực hiện dịch vụ",
-          "feature_mapping": "Hồ sơ thú cưng & Cảnh báo dặn dò đặc biệt"
+          "id": "GC1",
+          "target_gain_id": "G1",
+          "content": "Tag cảnh báo nổi bật (nhạy cảm, dị ứng hương liệu) hiển thị xuyên suốt quy trình phục vụ [-> G1]"
         },
         {
-          "pain": "Mất dấu tiến độ trong lúc chăm sóc, nhắn tin hỏi không được trả lời kịp",
-          "pain_reliever": "Timeline 4 mốc minh bạch cập nhật theo thời gian thực kèm thông báo đẩy",
-          "feature_mapping": "Theo dõi tiến độ thời gian thực 4 mốc"
+          "id": "GC2",
+          "target_gain_id": "G2",
+          "content": "Thông báo đẩy (Push notification) tự động theo từng mốc giúp chủ nuôi an tâm làm việc [-> G2]"
         },
         {
-          "pain": "Khung giờ trống không rõ ràng, mất thời gian chờ xác nhận thủ công",
-          "pain_reliever": "Hiển thị khung giờ trống trực quan và xác nhận lịch hẹn tức thì",
-          "feature_mapping": "Đặt lịch xác nhận tức thì"
+          "id": "GC3",
+          "target_gain_id": "G3",
+          "content": "Thao tác đặt lịch tự phục vụ chỉ trong 3 bước, chọn chính xác khung giờ phù hợp [-> G3]"
         },
         {
-          "pain": "Lịch sử dịch vụ và sản phẩm phân tán, dễ thất lạc",
-          "pain_reliever": "Lưu trữ tập trung lịch sử chăm sóc, hóa đơn điện tử và sản phẩm sử dụng",
-          "feature_mapping": "Lịch sử chăm sóc cá nhân hóa"
+          "id": "GC4",
+          "target_gain_id": "G4",
+          "content": "Nhật ký số lưu lại lộ trình làm đẹp và sản phẩm phù hợp cho từng thú cưng [-> G4]"
         }
       ]
     },
-    "evidence_sources": [
-      "data/user-research/01_respondent_08-06.md",
-      "data/user-research/02_respondent_08-07_0503.md",
-      "data/user-research/03_respondent_08-07_0722.md",
-      "data/user-research/05_respondent_08-13_1512.md",
-      "data/user-research/06_interview_member.md"
-    ]
+    "fit_analysis": {
+      "problem_solution_fit": "100% các nỗi đau (P1-P4) và kỳ vọng (G1-G4) của Nguyễn Minh Thư đều có giải pháp giải tỏa nỗi đau (PR1-PR4) và bộ tạo lợi ích (GC1-GC4) đối ứng trực tiếp.",
+      "core_value_proposition": "An tâm tuyệt đối khi gửi thú cưng nhạy cảm nhờ cảnh báo dị ứng tự động và theo dõi tiến độ chăm sóc theo thời gian thực."
+    }
   },
   {
     "persona_id": "persona-2",
     "persona_name": "Lê Hoàng Long",
-    "role": "Secondary Persona - The Busy & Pragmatic Pet Owner",
-    "demographics_summary": "23 tuổi, Marketing Executive (Nhân viên văn phòng bận rộn), nuôi 1 Chó Poodle (Milo, 1.5 tuổi) & 1 Mèo Anh lông ngắn (Mochi, 1 tuổi)",
+    "persona_role": "Secondary Persona - The Busy & Pragmatic Pet Owner",
+    "target_segment": "Chủ nuôi bận rộn, nuôi nhiều thú cưng, ưu tiên tự phục vụ (Self-service) và tiết kiệm thời gian",
     "customer_profile": {
       "customer_jobs": [
-        "Đặt lịch chăm sóc định kỳ cho cả chó và mèo vào khung giờ rảnh ngoài giờ làm việc.",
-        "Bàn giao và quản lý thông tin dịch vụ của nhiều thú cưng cùng lúc một cách nhanh gọn.",
-        "Sắp xếp công việc và di chuyển đến đón thú cưng đúng giờ ngay khi hoàn tất.",
-        "Quản lý chi tiêu, gói dịch vụ và theo dõi chu kỳ chăm sóc định kỳ của từng bé."
+        {
+          "id": "CJ1",
+          "content": "Đặt lịch spa/tắm định kỳ ngoài giờ làm hoặc cuối tuần cho nhiều thú cưng",
+          "type": "functional"
+        },
+        {
+          "id": "CJ2",
+          "content": "Sắp xếp thời gian đưa đón thú cưng chuẩn xác, không ảnh hưởng lịch làm việc",
+          "type": "functional & organizational"
+        },
+        {
+          "id": "CJ3",
+          "content": "Theo dõi nhanh trạng thái để biết chính xác khi nào dịch vụ xong để đến đón",
+          "type": "monitoring"
+        },
+        {
+          "id": "CJ4",
+          "content": "Quản lý tập trung chi phí và lịch sử chăm sóc của nhiều bé (Chó & Mèo)",
+          "type": "functional"
+        }
       ],
       "pains": [
-        "Khung giờ ngoài giờ hành chính hoặc cuối tuần thường hết chỗ nhanh, mất nhiều thời gian trao đổi qua lại để tìm giờ hẹn thay thế.",
-        "Tiệm không báo trước thời gian hoàn thành cụ thể khiến Long khó chủ động thời gian đi lại (đến quá sớm phải chờ đợi, đến quá trễ thì tiệm đóng cửa).",
-        "Lịch sử dịch vụ chỉ lưu qua hóa đơn giấy hoặc tin nhắn phân tán, khó quản lý chi tiêu và thông tin cho nhiều thú cưng."
+        {
+          "id": "P1",
+          "content": "Khung giờ cuối tuần/sau giờ làm nhanh hết chỗ, mất thời gian nhắn tin thương lượng giờ hẹn",
+          "severity": "high"
+        },
+        {
+          "id": "P2",
+          "content": "Tiệm không báo trước giờ hoàn thành cụ thể, đến sớm thì phải chờ đợi, đến trễ thì trễ hẹn cá nhân",
+          "severity": "high"
+        },
+        {
+          "id": "P3",
+          "content": "Khó nhớ lịch chăm sóc định kỳ và khó theo dõi tổng chi tiêu cho nhiều thú cưng",
+          "severity": "medium"
+        },
+        {
+          "id": "P4",
+          "content": "Thông tin chăm sóc phân tán qua hóa đơn giấy, dễ quên đợt cắt tỉa/vệ sinh tiếp theo",
+          "severity": "medium"
+        }
       ],
       "gains": [
-        "Chủ động chọn khung giờ trống và đặt lịch thành công 24/7 chỉ trong vài thao tác, nhận xác nhận tức thì.",
-        "Nhận thông báo tự động ngay khi dịch vụ chuyển sang trạng thái 'Hoàn tất / Chờ đón' kèm thời gian ước tính đón thú cưng chuẩn xác.",
-        "Quản lý đồng bộ hồ sơ và chi phí chăm sóc riêng biệt cho từng bé thú cưng trên một tài khoản duy nhất.",
-        "Hệ thống tự động nhắc lịch chăm sóc định kỳ giúp duy trì thói quen vệ sinh cho thú cưng mà không cần ghi nhớ thủ công."
+        {
+          "id": "G1",
+          "content": "Đặt lịch 24/7 tự phục vụ chỉ trong vài giây với xác nhận tức thì",
+          "relevance": "essential"
+        },
+        {
+          "id": "G2",
+          "content": "Biết chính xác thời gian hoàn tất và nhận thông báo đón thú cưng đúng giờ",
+          "relevance": "essential"
+        },
+        {
+          "id": "G3",
+          "content": "Quản lý đồng thời nhiều hồ sơ thú cưng dễ dàng trên cùng một tài khoản",
+          "relevance": "high"
+        },
+        {
+          "id": "G4",
+          "content": "Tra cứu nhanh lịch sử dịch vụ, chi phí và nhận nhắc hẹn định kỳ tự động",
+          "relevance": "high"
+        }
       ]
     },
     "value_map": {
       "products_services": [
-        "Nền tảng tự đặt lịch hẹn dịch vụ spa 24/7 theo khung giờ trống thực tế.",
-        "Tính năng quản lý đa hồ sơ thú cưng (Multi-pet Profile) tích hợp.",
-        "Hệ thống thông báo đẩy (Push notification) cập nhật trạng thái & thời gian đón dự kiến.",
-        "Bảng tổng hợp lịch sử chăm sóc, chi phí điện tử và nhắc lịch tự động định kỳ."
+        {
+          "id": "PS1",
+          "content": "Nền tảng đặt lịch tự phục vụ 24/7 với lưới giờ trống trực quan",
+          "category": "core"
+        },
+        {
+          "id": "PS2",
+          "content": "Hệ thống thông báo trạng thái & ước tính thời gian hoàn thành (ETA)",
+          "category": "core"
+        },
+        {
+          "id": "PS3",
+          "content": "Trình quản lý đa hồ sơ thú cưng (Multi-pet Profile Management)",
+          "category": "supporting"
+        },
+        {
+          "id": "PS4",
+          "content": "Báo cáo chi tiêu & Lịch sử dịch vụ điện tử kèm nhắc lịch định kỳ",
+          "category": "supporting"
+        }
       ],
       "pain_relievers": [
-        "Cập nhật lịch trống thời gian thực giúp đặt chỗ ngay lập tức, chấm dứt việc nhắn tin thương lượng giờ hẹn ngoài giờ.",
-        "Thông báo tự động ngay khi hoàn tất dịch vụ với thời gian hẹn đón chính xác, loại bỏ thời gian chết chờ đợi tại tiệm.",
-        "Gom toàn bộ lịch sử, hóa đơn điện tử và thông tin đa thú cưng về một giao diện quản lý trực quan duy nhất."
+        {
+          "id": "PR1",
+          "target_pain_id": "P1",
+          "content": "Lựa chọn khung giờ trống tức thì cho từng bé mà không cần trao đổi thủ công [-> P1]"
+        },
+        {
+          "id": "PR2",
+          "target_pain_id": "P2",
+          "content": "Thông báo đẩy ngay khi chuyển trạng thái 'Hoàn tất / Chờ đón' kèm thời gian đón ước tính [-> P2]"
+        },
+        {
+          "id": "PR3",
+          "target_pain_id": "P3",
+          "content": "Đồng bộ hồ sơ, chi phí và lịch hẹn của chó và mèo trên một giao diện thống nhất [-> P3]"
+        },
+        {
+          "id": "PR4",
+          "target_pain_id": "P4",
+          "content": "Hóa đơn điện tử lưu trữ vĩnh viễn và tự động nhắc hẹn chăm sóc sau 2-3 tuần [-> P4]"
+        }
       ],
       "gain_creators": [
-        "Tối ưu hóa thời gian tối đa với luồng tự phục vụ (Self-service) liền mạch mọi lúc mọi nơi.",
-        "Giúp chủ động hoàn toàn lịch trình cá nhân nhờ thông báo đón chuẩn xác.",
-        "Giúp theo dõi chi tiêu và chăm sóc toàn diện cho nhiều thú cưng dễ dàng, khoa học.",
-        "Tự động hóa lịch trình chăm sóc định kỳ giúp thú cưng luôn sạch sẽ mà không tốn công ghi nhớ."
-      ]
-    },
-    "fit_analysis": {
-      "core_value": "Tiết kiệm thời gian tối đa với luồng đặt lịch tự phục vụ 24/7 và thông báo đón thú cưng chuẩn xác.",
-      "supporting_values": [
-        "Quản lý đa hồ sơ thú cưng và chi tiêu tập trung trên 1 tài khoản.",
-        "Nhắc lịch chăm sóc định kỳ tự động."
-      ],
-      "problem_solution_fit": [
         {
-          "pain": "Khung giờ ngoài giờ hành chính dễ hết chỗ, mất công chat qua lại",
-          "pain_reliever": "Lịch trống thời gian thực 24/7 giúp chọn và giữ chỗ tức thì",
-          "feature_mapping": "Đặt lịch xác nhận tức thì"
+          "id": "GC1",
+          "target_gain_id": "G1",
+          "content": "Đặt lịch nhanh nhiều thú cưng cùng lúc trong 1 lần thao tác [-> G1]"
         },
         {
-          "pain": "Không biết giờ hoàn tất chính xác, khó chủ động đi lại đón",
-          "pain_reliever": "Thông báo đẩy tự động mốc 'Hoàn tất / Chờ đón' kèm ước tính thời gian",
-          "feature_mapping": "Theo dõi tiến độ thời gian thực 4 mốc"
+          "id": "GC2",
+          "target_gain_id": "G2",
+          "content": "Tối ưu hóa thời gian bận rộn, không lãng phí phút nào chờ đợi tại tiệm [-> G2]"
         },
         {
-          "pain": "Khó theo dõi chi phí và thông tin nhiều thú cưng qua hóa đơn giấy",
-          "pain_reliever": "Quản lý đa hồ sơ thú cưng và hóa đơn điện tử tập trung",
-          "feature_mapping": "Hồ sơ thú cưng & Lịch sử chăm sóc cá nhân hóa"
+          "id": "GC3",
+          "target_gain_id": "G3",
+          "content": "Chuyển đổi linh hoạt giữa các hồ sơ thú cưng chỉ với 1 chạm [-> G3]"
+        },
+        {
+          "id": "GC4",
+          "target_gain_id": "G4",
+          "content": "Thống kê chi phí rõ ràng minh bạch giúp chủ nuôi chủ động ngân sách [-> G4]"
         }
       ]
     },
-    "evidence_sources": [
-      "data/user-research/03_respondent_08-07_0722.md",
-      "data/user-research/04_respondent_08-13_1450.md",
-      "data/user-research/05_respondent_08-13_1512.md"
-    ]
+    "fit_analysis": {
+      "problem_solution_fit": "100% các nỗi đau (P1-P4) và kỳ vọng (G1-G4) của Lê Hoàng Long đều được giải quyết bởi các giải pháp Pain Relievers (PR1-PR4) và Gain Creators (GC1-GC4).",
+      "core_value_proposition": "Tiết kiệm tối đa thời gian với trải nghiệm đặt lịch tự phục vụ 24/7 tức thì và thông báo đón thú cưng chuẩn xác theo lịch trình bận rộn."
+    }
   }
 ]

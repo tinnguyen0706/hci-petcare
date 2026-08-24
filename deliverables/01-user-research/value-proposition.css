@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --ink: #0f172a;
+  --body: #334155;
+  --muted: #64748b;
+  --paper: #ffffff;
+  --page: #f8fafc;
+  --primary: #0d766e;
+  --pain: #be123c;
+  --gain: #d97706;
+  --border-width: 2.5px;
+}
+
+@page { size: 13.333in 7.5in; margin: 0; }
+* { box-sizing: border-box; }
+
+html,
+body {
+  width: 1280px;
+  height: 720px;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  background: var(--page);
+  color: var(--body);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.value-proposition-canvas {
+  width: 1280px;
+  height: 720px;
+  position: relative;
+  overflow: hidden;
+  background: var(--page);
+}
+
+.canvas-geometry {
+  width: 1280px;
+  height: 720px;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.canvas-geometry rect,
+.canvas-geometry circle,
+.canvas-geometry line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: var(--border-width);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.canvas-geometry .fit-arrow { stroke-width: 2.5px; }
+.canvas-geometry marker path { fill: var(--ink); }
+
+.canvas-header {
+  position: absolute;
+  top: 14px;
+  left: 30px;
+  z-index: 5;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.canvas-header h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+.canvas-header .subtitle {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.zone {
+  position: absolute;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.zone-heading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.zone-heading h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.zone-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--ink);
+}
+
+.face-icon { width: 18px; height: 18px; flex-basis: 18px; }
+.face-icon circle:not(:first-child) { fill: currentColor; stroke: none; }
+
+.prompt {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 7.5px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.canvas-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.canvas-items li {
+  position: relative;
+  padding-left: 9px;
+  color: var(--body);
+  font-size: 7.5px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.canvas-items li strong {
+  color: var(--ink);
+}
+
+.canvas-items li::before {
+  content: '';
+  width: 3.5px;
+  height: 3.5px;
+  position: absolute;
+  top: 4px;
+  left: 0;
+  background: var(--primary);
+  border-radius: 50%;
+}
+
+.canvas-items .trace {
+  margin-left: 3px;
+  color: var(--muted);
+  font-size: 7px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.products-services { top: 235px; left: 30px; width: 155px; height: 260px; }
+.gain-creators { top: 75px; left: 240px; width: 330px; height: 230px; }
+.pain-relievers { top: 420px; left: 240px; width: 330px; height: 230px; }
+.gains { top: 150px; left: 780px; width: 190px; height: 180px; }
+.pains { top: 400px; left: 780px; width: 190px; height: 180px; }
+.customer-jobs { top: 220px; left: 1080px; width: 170px; height: 280px; }
+
+.gain-creators .zone-heading,
+.gains .zone-heading { color: var(--gain); }
+
+.pain-relievers .zone-heading,
+.pains .zone-heading { color: var(--pain); }
+
+.gain-creators .zone-heading h2,
+.gains .zone-heading h2,
+.pain-relievers .zone-heading h2,
+.pains .zone-heading h2 { color: var(--ink); }
+
+.value-symbol,
+.customer-symbol {
+  position: absolute;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  background: var(--page);
+}
+
+.value-symbol { width: 68px; height: 76px; top: 322px; left: 286px; }
+.customer-symbol { width: 80px; height: 80px; top: 320px; left: 940px; border-radius: 50%; }
+
+.value-symbol svg,
+.customer-symbol svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--page);
+  stroke: var(--ink);
+  stroke-width: 3.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.customer-symbol circle { fill: var(--ink); stroke: none; }
+
+@media print { body { background: #ffffff; } }
