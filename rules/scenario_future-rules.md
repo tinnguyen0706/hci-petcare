@@ -1,4 +1,4 @@
-# Quy tắc tạo scenario cho quy trình hiện tại
+# Quy tắc tạo scenario cho quy trình tương lai
 
 ## Tập trung vào người dùng, không tập trung vào hệ thống
 
@@ -24,7 +24,7 @@ Scenario phải thể hiện người dùng làm gì trước → làm gì tiế
 
 Không chỉ kể hành động; phải hiểu tại sao user làm những hành động đó.
 
-## Scenario này phải mô tả cách làm hiện tại
+## Scenario này phải mô tả cách làm trong tương lai
 
 ## Phong cách trình bày
 
