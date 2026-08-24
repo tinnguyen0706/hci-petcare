@@ -14,7 +14,6 @@ Mô tả chi tiết câu chuyện và hành trình thực tế của chủ nuôi
 
 - Hồ sơ Persona chính (`deliverables/01-user-research/persona/` hoặc `personas.json`).
 - Dữ liệu phỏng vấn / khảo sát người dùng (`data/user-research/`).
-- Mẫu tài liệu (`templates/scenario-current-template.md`).
 - Rubric môn học và phạm vi 4 bài toán cốt lõi trong proposal.
 
 ## Đầu ra

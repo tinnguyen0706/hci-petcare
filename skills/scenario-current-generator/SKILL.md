@@ -22,12 +22,12 @@ description: Tạo kịch bản Scenario 1 mô tả quy trình hiện tại và 
    - *Lịch sử dịch vụ*: Lần sau đến tiệm không ai nhớ lần trước dùng gói cạo nào, dầu tắm loại gì; chủ nuôi phải mô tả lại từ đầu.
 3. **Nguyên tắc "Zero Future Solutions"**:
    - Tuyệt đối không nhắc tới ứng dụng mới, tính năng tự động hay bất kỳ giao diện cải tiến nào trong Scenario 1.
-4. **Tính nhất quán & Tương ứng 1-1 với Persona**:
-   - Số lượng Scenario 1 tạo ra phải **tương ứng 1-1 với từng Persona** trong tập dữ liệu Persona.
-   - Mỗi Scenario 1 phải khai thác bối cảnh, hoàn cảnh công việc, tính cách, đặc điểm thú cưng và các điểm đau riêng biệt đã được định nghĩa của chính Persona đó.
-5. **Định dạng đoạn văn liền mạch (Single Narrative Paragraph)**:
+4. **Định dạng đoạn văn liền mạch (Single Narrative Paragraph)**:
    - Trình bày toàn bộ câu chuyện thành **một đoạn văn hoàn chỉnh, mượt mà và liền mạch**.
    - Tránh chia nhỏ vụn vặt thành các mục con hay bảng biểu khô khan trong phần nội dung kịch bản; mọi thông tin về bối cảnh, kênh giao tiếp cũ, điểm nghẽn và cảm xúc phải được đan cài tự nhiên vào dòng tự sự.
+5. **Tính nhất quán & Tương ứng 1-1 với Persona**:
+   - Số lượng Scenario 1 tạo ra phải **tương ứng 1-1 với từng Persona** trong tập dữ liệu Persona.
+   - Mỗi Scenario 1 phải khai thác bối cảnh, hoàn cảnh công việc, tính cách, đặc điểm thú cưng và các điểm đau riêng biệt đã được định nghĩa của chính Persona đó.
 
 ## Xác thực & Tiêu chí Rubric (Mức 1.0)
 
