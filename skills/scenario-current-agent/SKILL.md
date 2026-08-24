@@ -1,37 +1,34 @@
 ---
 name: scenario-current-agent
-description: Tạo Scenario hiện tại từ evidence nghiên cứu để thể hiện khó khăn của quy trình cũ. Dùng sau khi Persona và synthesis được chấp nhận, trước khi thiết kế Scenario mới.
+description: Tạo kịch bản Scenario 1 mô tả quy trình hiện tại và làm nổi bật các khó khăn, điểm đau của hệ thống cũ từ dữ liệu nghiên cứu người dùng.
 ---
 
-# Skill tạo Scenario hiện tại
+# Skill tạo Scenario 1 — Quy trình hiện tại (As-Is Scenario)
 
-## Mục đích
+## Kiến thức
 
-Chuyển evidence thành một câu chuyện hiện trạng có bối cảnh, hành động và pain rõ ràng. Đọc [PLAN.md](PLAN.md), manifest, rules và `templates/scenario-current-template.md` trước khi thực hiện.
+- **Scenario trong HCI** là một câu chuyện kể giàu ngữ cảnh (narrative description) mô tả cách một người dùng cụ thể (Persona) cố gắng hoàn thành mục tiêu trong điều kiện thực tế.
+- **Scenario 1 (Hiện tại)** đóng vai trò tái hiện hiện trạng, tập trung vạch rõ các **điểm nghẽn (breakdowns)**, **sự bất tiện**, **nguy cơ sai sót** và **cảm xúc tiêu cực** (lo lắng, mất thời gian, ức chế) khi dùng các công cụ truyền thống (Zalo, gọi điện thoại, ghi sổ tay, trao đổi miệng).
+- **Context of use** phải thể hiện rõ: Ai (Persona), Ở đâu (Địa điểm), Khi nào (Thời gian/Áp lực), Làm gì (Mục tiêu), Bằng phương tiện gì (Kênh hiện tại) và Hậu quả là gì.
 
-## Kiến thức nghiệp vụ
+## Lập luận & Quy tắc suy luận
 
-- Scenario hiện tại mô tả cách người dùng đang hoàn thành mục tiêu, không mô tả giải pháp mong muốn.
-- Mỗi bước nên có action, touchpoint, response, pain/workaround và hệ quả khi phù hợp.
-- Context of use bao gồm người dùng, mục tiêu, thời điểm, môi trường và ràng buộc.
+1. **Góc nhìn người dùng (Human-centered)**:
+   - Dùng ngôn từ tự nhiên, phản ánh đúng tâm lý và hành vi thực tế của chủ nuôi bận rộn; không dùng thuật ngữ kỹ thuật hệ thống.
+2. **Khắc họa rõ 4 điểm đau cốt lõi của quy trình cũ**:
+   - *Đặt hẹn*: Chờ đợi phản hồi chậm, hỏi qua lại nhiều câu để chốt giờ, dễ bị trùng lịch hoặc hủy hẹn đột ngột.
+   - *Dặn dò & Dị ứng*: Nhân viên tiếp nhận ghi giấy hoặc nhớ miệng, dễ quên khi tiệm đông hoặc khi giao ca cho thợ tỉa lông, gây nguy cơ dị ứng tái phát.
+   - *Tiến độ chăm sóc*: Không có cập nhật trung gian, chủ nuôi sốt ruột không biết bé đã làm đến đâu, lo sợ bé bị hoảng loạn hoặc bị nhốt chuồng lâu.
+   - *Lịch sử dịch vụ*: Lần sau đến tiệm không ai nhớ lần trước dùng gói cạo nào, dầu tắm loại gì; chủ nuôi phải mô tả lại từ đầu.
+3. **Nguyên tắc "Zero Future Solutions"**:
+   - Tuyệt đối không nhắc tới ứng dụng mới, tính năng tự động hay bất kỳ giao diện cải tiến nào trong Scenario 1.
+4. **Tính nhất quán với Persona**:
+   - Tên, tính cách, đặc điểm thú cưng và các mong muốn/nỗi đau trong Scenario 1 phải khớp 100% với Persona đã định nghĩa.
 
-## Chiến lược suy luận
+## Xác thực & Tiêu chí Rubric (Mức 1.0)
 
-1. Chọn một mục tiêu có đủ evidence qua bốn đoạn hành trình.
-2. Sắp evidence theo thời gian và quan hệ nguyên nhân–hệ quả.
-3. Diễn đạt pain ở đúng bước phát sinh, kèm mã truy vết.
-4. Phân biệt sự kiện được ghi nhận với interpretation đã được chấp nhận.
-5. Giữ mạch truyện dễ đọc mà không lược bỏ pain quan trọng.
-
-## Quy tắc kiểm tra
-
-- Truy vết từng pain về evidence hoặc interpretation đã chấp nhận.
-- Bao phủ đủ bốn năng lực trong proposal khi evidence cho phép.
-- Không dùng nhân vật, tình huống hoặc cảm xúc không có căn cứ.
-- Không đưa feature hoặc phản hồi của hệ thống mới vào Scenario 1.
-
-## Xử lý khi thiếu dữ liệu hoặc thất bại
-
-- Dừng nếu Persona hoặc synthesis chưa được chấp nhận.
-- Ghi rõ đoạn hành trình thiếu evidence; không tự nối bằng giả thuyết.
-- Trả lại bản nháp để sửa nếu còn lẫn giải pháp mới hoặc không làm rõ khó khăn của quy trình cũ.
+Kiểm tra chất lượng kịch bản theo checklist:
+- [ ] **Rõ ràng & Dễ đọc**: Văn phong mạch lạc, có phân đoạn theo diễn biến thời gian, kết hợp giữa đoạn văn kể chuyện và bảng hành động chi tiết.
+- [ ] **Làm nổi bật khó khăn**: Người đọc thấy rõ vì sao quy trình cũ gây thất vọng, tốn thời gian và tiềm ẩn rủi ro cho thú cưng.
+- [ ] **Đầy đủ ngữ cảnh**: Có thông tin địa điểm, thời gian, áp lực thực tế và động cơ thúc đẩy hành động.
+- [ ] **Không lẫn giải pháp mới**: Toàn bộ tương tác chỉ diễn ra qua các kênh hiện có (gọi điện, Zalo cá nhân, nói chuyện trực tiếp, ghi giấy nhớ).
