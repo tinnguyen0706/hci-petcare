@@ -9,8 +9,8 @@ Tài liệu theo dõi **tiến độ thực tế** và **kế hoạch hành đ�
 | # | Deliverable | Nhóm thư mục | Trạng thái | Vị trí Artifact / Ghi chú |
 | --- | --- | --- | --- | --- |
 | 1 | **Persona** | `01-user-research` | 🟢 Hoàn thành | `deliverables/01-user-research/persona.{html,png,json}` |
-| 2 | **Value Proposition** | `01-user-research` | ⏳ Tiếp theo | Khớp 1-1 giữa Persona & VPC (`value-proposition.md`) |
-| 3 | **Scenario 1 (Hiện tại)** | `01-user-research` | ⏳ Tiếp theo | Mô tả khó khăn của quy trình cũ (`scenario-current.md`) |
+| 2 | **Value Proposition** | `01-user-research` | 🟢 Hoàn thành | Khớp 1-1 giữa Persona & VPC (`value-proposition.json`, `value-proposition.png`) |
+| 3 | **Scenario 1 (Hiện tại)** | `01-user-research` | 🟢 Hoàn thành | Mô tả khó khăn của quy trình cũ (`scenario-current/`) |
 | 4 | **Scenario 2 (Mới)** | `02-interaction-design` | 🔴 Chưa bắt đầu | Mô tả các mốc tương tác cải tiến của hệ thống mới |
 | 5 | **Storyboard** | `02-interaction-design` | 🔴 Chưa bắt đầu | Kịch bản câu chuyện & hình minh họa trực quan |
 | 6 | **Prototype (Figma)** | `02-interaction-design` | 🔴 Chưa bắt đầu | Thiết kế Figma mô phỏng 4 luồng cốt lõi |

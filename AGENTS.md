@@ -45,7 +45,7 @@
 - **Tính trung thực với dữ liệu**: Mọi Persona, Value Proposition, Scenario và bài báo cáo đều phải xuất phát từ dữ liệu phỏng vấn/khảo sát thực tế trong `data/` và `deliverables/`.
 - **Bám sát yêu cầu**: Thực hiện đủ và đúng yêu cầu người dùng đưa
 - **Tôn trọng workflow**: Tuân thủ các workflow mà làm việc, không làm ngoài phạm vi workflow.
-- **Tuân thủ đúng phạm vi tài liệu (Scope Minimization)**: Khi thực thi nhiệm vụ theo vai trò của Agent nào, chỉ được đọc và tham chiếu đúng các file được liệt kê trong định nghĩa của Agent đó (`agents/<tên-agent>.md`), template tương ứng và dữ liệu đầu vào trong `data/`.
+- **Tuân thủ đúng phạm vi tài liệu (Scope Minimization)**: Khi thực thi nhiệm vụ theo vai trò của Agent nào, chỉ được đọc và tham chiếu đúng các file được liệt kê trong định nghĩa của Agent đó (`agents/<tên-agent>.md`) và dữ liệu đầu vào trong `data/`.
 - **Từ ngữ dễ hiều**: Ưu tiên sử dụng những từ ngữ dễ hiểu cho người Việt.
 
 ### Những gì AI Assistant KHÔNG ĐƯỢC làm
