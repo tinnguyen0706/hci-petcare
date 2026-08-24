@@ -17,7 +17,7 @@ Chuyển nhu cầu đã truy vết trong Persona thành Value Proposition Canvas
 
 ## Output
 
-`deliverables/01-user-research/value-proposition.json`.
+`deliverables/01-user-research/value-proposition/value-proposition.json`.
 
 ## Workflow
 
