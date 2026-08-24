@@ -25,12 +25,15 @@ description: Tạo kịch bản Scenario 1 mô tả quy trình hiện tại và 
 4. **Tính nhất quán & Tương ứng 1-1 với Persona**:
    - Số lượng Scenario 1 tạo ra phải **tương ứng 1-1 với từng Persona** trong tập dữ liệu Persona.
    - Mỗi Scenario 1 phải khai thác bối cảnh, hoàn cảnh công việc, tính cách, đặc điểm thú cưng và các điểm đau riêng biệt đã được định nghĩa của chính Persona đó.
+5. **Định dạng đoạn văn liền mạch (Single Narrative Paragraph)**:
+   - Trình bày toàn bộ câu chuyện thành **một đoạn văn hoàn chỉnh, mượt mà và liền mạch**.
+   - Tránh chia nhỏ vụn vặt thành các mục con hay bảng biểu khô khan trong phần nội dung kịch bản; mọi thông tin về bối cảnh, kênh giao tiếp cũ, điểm nghẽn và cảm xúc phải được đan cài tự nhiên vào dòng tự sự.
 
 ## Xác thực & Tiêu chí Rubric (Mức 1.0)
 
 Kiểm tra chất lượng kịch bản theo checklist:
 - [ ] **Đầy đủ số lượng (1-1 Mapping)**: Mỗi Persona đều có 1 kịch bản Scenario 1 riêng biệt phản ánh đúng chân dung và tình huống của họ.
-- [ ] **Rõ ràng & Dễ đọc**: Văn phong mạch lạc, có phân đoạn theo diễn biến thời gian, kết hợp giữa đoạn văn kể chuyện và bảng hành động chi tiết.
-- [ ] **Làm nổi bật khó khăn**: Người đọc thấy rõ vì sao quy trình cũ gây thất vọng, tốn thời gian và tiềm ẩn rủi ro cho thú cưng.
+- [ ] **Đoạn văn liền mạch (Single Narrative)**: Được viết thành một đoạn văn trôi chảy, giàu tính kể chuyện, không bị đứt gãy hay chia mảnh thành bảng.
+- [ ] **Làm nổi bật khó khăn**: Người đọc thấy rõ 4 khó khăn của quy trình cũ (đặt lịch, dặn dò/dị ứng, theo dõi tiến độ, lịch sử) và cảm xúc tiêu cực của chủ nuôi.
 - [ ] **Đầy đủ ngữ cảnh**: Có thông tin địa điểm, thời gian, áp lực thực tế và động cơ thúc đẩy hành động.
 - [ ] **Không lẫn giải pháp mới**: Toàn bộ tương tác chỉ diễn ra qua các kênh hiện có (gọi điện, Zalo cá nhân, nói chuyện trực tiếp, ghi giấy nhớ).

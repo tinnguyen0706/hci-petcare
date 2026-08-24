@@ -19,21 +19,23 @@ Mô tả chi tiết câu chuyện và hành trình thực tế của chủ nuôi
 
 ## Đầu ra
 
-- Danh sách các Scenario 1 tương ứng với từng Persona (lưu trong `deliverables/01-user-research/scenario-current.md` hoặc từng file `deliverables/01-user-research/scenario/scenario-current-{id}.md` / `scenarios.json`). Mỗi kịch bản bao gồm:
-  1. **Thông tin bối cảnh (Context of Use)**: Persona tương ứng, mục tiêu, động lực, thời gian, địa điểm, áp lực/ràng buộc ban đầu.
-  2. **Câu chuyện kể chi tiết (Story Narrative)**: Đoạn văn kể mạch lạc, giàu cảm xúc, làm nổi bật khó khăn theo góc nhìn của Persona đó.
-  3. **Bảng phân tích từng bước (Step-by-step Journey Table)**: Chi tiết từng hành động, điểm tiếp xúc (touchpoint), phản hồi thực tế, điểm đau (pain point), cảm xúc (emotion) và mã bằng chứng (evidence ID).
-  4. **Tổng kết khó khăn & hệ quả (Breakdown Summary)**: Các điểm đau chính của quy trình cũ mà Persona đó gặp phải.
+- Danh sách các Scenario 1 tương ứng với từng Persona (lưu trong `deliverables/01-user-research/scenario-current.md` hoặc `deliverables/01-user-research/scenario/` / `scenarios.json`).
+- Mỗi Scenario 1 được trình bày dưới dạng **một đoạn văn kể chuyện liền mạch (Narrative Paragraph)**, kết nối mượt mà và tự nhiên các yếu tố:
+  1. **Bối cảnh & Trigger**: Persona, mục tiêu, thời gian, địa điểm và áp lực thực tế.
+  2. **Diễn biến hành động & Điểm tiếp xúc**: Quá trình tương tác thực tế qua các kênh cũ (gọi điện, Zalo, dặn miệng, ghi giấy...).
+  3. **Khó khăn & Cảm xúc (Pain Points & Emotions)**: Sự bất tiện, chờ đợi lâu, nguy cơ thất lạc thông tin dị ứng/dặn dò, lo lắng khi không theo dõi được tiến độ và bất tiện khi không có lịch sử dịch vụ.
+  4. **Kết quả & Hệ quả**: Trạng thái kết thúc quy trình và cảm xúc còn đọng lại của chủ nuôi.
 
 ## Quy trình thực hiện
 
 1. **Đọc danh sách Persona**:
    - Tải toàn bộ danh sách Persona từ `personas.json` (hoặc `deliverables/01-user-research/persona/`).
 2. **Với mỗi Persona trong danh sách**:
-   - 2.1. **Xác định bối cảnh đặc thù & Trigger**: Thiết lập tình huống khởi phát phù hợp với tính cách, hoàn cảnh bận rộn và đặc điểm thú cưng của Persona đó.
-   - 2.2. **Xây dựng mạch câu chuyện (Story Narrative)**: Viết dưới dạng văn xuôi tự nhiên, giàu bối cảnh, mô tả tuần tự 4 chặng: *Tìm cách đặt hẹn ➔ Đưa thú cưng đến & dặn dò ➔ Chờ đợi trong lo lắng ➔ Đón thú cưng và thanh toán*.
-   - 2.3. **Lập bảng chi tiết từng bước (Action & Touchpoint Breakdown)**: Liệt kê cụ thể từng hành động qua kênh truyền thống (gọi điện, Zalo, giấy nhớ...), kèm cảm xúc và workaround.
+   - 2.1. **Xác định bối cảnh đặc thù & Trigger**: Dựa vào chân dung Persona (tính cách, hoàn cảnh công việc, đặc điểm thú cưng) để chọn tình huống cụ thể.
+   - 2.2. **Viết một đoạn văn kể chuyện liền mạch (Narrative Paragraph)**: 
+     - Dẫn dắt câu chuyện tự nhiên theo dòng thời gian từ khi phát sinh nhu cầu đặt lịch đến khi hoàn tất dịch vụ.
+     - Lồng ghép khéo léo 4 khó khăn của quy trình cũ (đặt lịch chậm/trùng slot, dặn dò dị ứng dễ bị quên, thiếu cập nhật tiến độ, không có lịch sử lưu vết) và cảm xúc thực tế (sốt ruột, lo âu, ức chế).
 3. **Kiểm tra độ phủ & Đối chiếu**:
    - Đảm bảo số lượng Scenario 1 tương ứng 1-1 với số lượng Persona đã duyệt.
-   - Rà soát đủ 4 bài toán: đặt lịch, dặn dò đặc biệt, theo dõi tiến độ, lưu vết lịch sử.
+   - Đảm bảo văn phong trôi chảy, đọc như một câu chuyện thực tế, không bị chia vụn.
    - Đảm bảo **100% KHÔNG chứa bất kỳ công nghệ/tính năng mới** nào của giải pháp tương lai.
