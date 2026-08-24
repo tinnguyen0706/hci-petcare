@@ -23,3 +23,7 @@ Scenario phải thể hiện người dùng làm gì trước → làm gì tiế
 ## Phải thể hiện goal của người dùng
 
 Không chỉ kể hành động; phải hiểu tại sao user làm những hành động đó.
+
+## Phong cách trình bày
+
+Scenario được viết dưới dạng 1 đoạn văn hoàn chỉnh. Markdown chỉ là định dạng, nội dung vẫn là 1 đoạn văn bản bình thường.
