@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{STORYBOARD_TITLE}}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="storyboard">
+    <header class="storyboard__header">
+      <h1 class="storyboard__title">
+        {{STORYBOARD_TITLE}}
+      </h1>
+    </header>
+
+    <section
+      class="storyboard__frames"
+      aria-label="Các frame của Storyboard"
+    >
+      <!--
+        STORYBOARD GENERATOR:
+        Workflow tạo đúng 6 frame theo bố cục 3 tầng liền mạch:
+        1. header: ô số [ 1. ] và tiêu đề hành động
+        2. figure: hình phác thảo tay nét mực đen + UI mockup phóng to
+        3. footer: caption 1-2 câu ở đáy có đường kẻ ngang phân tách
+      -->
+      {{FRAME_ITEMS}}
+    </section>
+  </main>
+</body>
+</html>

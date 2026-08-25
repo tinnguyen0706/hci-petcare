@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --storyboard-background: #ffffff;
+  --storyboard-surface: #ffffff;
+  --storyboard-ink: #111111;
+  --storyboard-muted: #555555;
+  --storyboard-border: #1a1a1a;
+  --storyboard-soft-border: #e0e0e0;
+
+  /* Font chữ viết tay comic tự nhiên */
+  --storyboard-comic-font:
+    "Patrick Hand",
+    "Segoe Print",
+    "Bradley Hand",
+    "Comic Sans MS",
+    cursive;
+
+  --storyboard-body-font:
+    "Patrick Hand",
+    "Segoe Print",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --page-width: 1600px;
+  --page-padding: 28px 36px 45px 36px;
+  --frame-gap: 20px;
+  --frame-radius: 4px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  background: var(--storyboard-background);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--storyboard-ink);
+  background: var(--storyboard-background);
+  font-family: var(--storyboard-body-font);
+  line-height: 1.45;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.storyboard {
+  width: min(100%, var(--page-width));
+  min-height: auto;
+  margin: 0 auto;
+  padding: var(--page-padding);
+  background: var(--storyboard-surface);
+}
+
+/* =========================================================
+   HEADER CHÍNH CỦA STORYBOARD
+   ========================================================= */
+
+.storyboard__header {
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.storyboard__title {
+  margin: 0;
+  font-family: var(--storyboard-comic-font);
+  font-size: clamp(30px, 3.8vw, 50px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   LƯỚI KHUNG TRANH (3 CỘT X 2 HÀNG)
+   ========================================================= */
+
+.storyboard__frames {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--frame-gap);
+  align-items: stretch;
+}
+
+/* =========================================================
+   KHUNG TRANH TRUYỆN 3 TẦNG (HEADER -> FIGURE -> CAPTION)
+   ========================================================= */
+
+.storyboard-frame {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-width: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border: 2.2px solid var(--storyboard-border);
+  border-radius: var(--frame-radius);
+  break-inside: avoid;
+}
+
+/* 1. Header trên cùng */
+.storyboard-frame__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 6px 12px;
+  background: #ffffff;
+  border-bottom: 2px solid var(--storyboard-border);
+}
+
+.storyboard-frame__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 5px;
+  border: 1.8px solid var(--storyboard-border);
+  border-radius: 3px;
+  font-family: var(--storyboard-comic-font);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.storyboard-frame__title {
+  margin: 0;
+  padding: 0;
+  font-family: var(--storyboard-comic-font);
+  font-size: clamp(16px, 1.3vw, 20px);
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left;
+}
+
+/* 2. Hình minh họa nét vẽ tay ở giữa */
+.storyboard-frame__figure {
+  position: relative;
+  display: grid;
+  margin: 0;
+  overflow: hidden;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  background: #ffffff;
+}
+
+.storyboard-frame__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: #ffffff;
+}
+
+/* Cắt sprite từ sheet 3:2 */
+.storyboard-frame__sheet-crop {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  background-image: var(--storyboard-sheet-image);
+  background-repeat: no-repeat;
+  background-size: 300% 200%;
+}
+
+.crop-col-1 {
+  background-position-x: 0%;
+}
+
+.crop-col-2 {
+  background-position-x: 50%;
+}
+
+.crop-col-3 {
+  background-position-x: 100%;
+}
+
+.crop-row-1 {
+  background-position-y: 0%;
+}
+
+.crop-row-2 {
+  background-position-y: 100%;
+}
+
+/* 3. Caption ở đáy có đường kẻ ngang phân tách */
+.storyboard-frame__caption {
+  display: flex;
+  align-items: flex-start;
+  min-height: 56px;
+  padding: 8px 12px;
+  background: #ffffff;
+  border-top: 2px solid var(--storyboard-border);
+}
+
+.storyboard-frame__caption p {
+  margin: 0;
+  font-family: var(--storyboard-comic-font);
+  font-size: clamp(14px, 1.1vw, 17px);
+  line-height: 1.35;
+}
+
+/* =========================================================
+   ACCESSIBILITY & RESPONSIVE
+   ========================================================= */
+
+.storyboard-frame:focus-within {
+  outline: 2px solid var(--storyboard-ink);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1200px) {
+  :root {
+    --page-padding: 24px;
+    --frame-gap: 16px;
+  }
+
+  .storyboard__frames {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --page-padding: 16px;
+    --frame-gap: 14px;
+  }
+
+  .storyboard__frames {
+    grid-template-columns: 1fr;
+  }
+
+  .storyboard-frame__caption {
+    min-height: auto;
+  }
+}
