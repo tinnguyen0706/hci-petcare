@@ -1,36 +1,21 @@
 ---
 name: storyboard-generator
-description: Tạo Storyboard từ những buớc ảnh đơn lẻ có sẵn đã được chỉ định.
+description: Tổng hợp Storyboard hoàn chỉnh (HTML, CSS, Markdown và PNG) từ 6 ảnh panel vuông 1:1 và tệp dữ liệu data.json có sẵn.
 ---
 
 ## Purpose
 
-Tạo Storyboard từ những buớc ảnh đơn lẻ có sẵn đã được chỉ định.
+Tổng hợp Storyboard hoàn chỉnh (gồm `storyboard.html`, `style.css`, `storyboard.md`, `storyboard.png`) từ 6 bức ảnh đơn lẻ có sẵn (`assets/frame-1.png` đến `assets/frame-6.png`) và tệp metadata `data.json`.
 
 ## Domain knowledge
 
-Storyboard là một công cụ quan trọng trong thiết kế trải nghiệm người dùng (UX) và thiết kế giao diện người dùng (UI). Nó giúp minh họa các bước tương tác của người dùng với sản phẩm hoặc dịch vụ thông qua các hình ảnh và chú thích. Storyboard thường được sử dụng để:
-- Trình bày các kịch bản sử dụng sản phẩm hoặc dịch vụ.
-- Giúp nhóm thiết kế và phát triển hiểu rõ hơn về trải nghiệm người dùng.
-- Tạo ra một bản đồ rõ ràng về cách người dùng sẽ tương tác với sản phẩm hoặc dịch vụ.
-
-Khi làm scenario phải có ngữ cảnh để biết đường design.
-Ngữ cảnh gồm:
-- Người dùng
-- Tác vụ
-- Thiết bị 
-- Môi trường vật lý
-- Môi trường xã hội
-Lấy scenario của future để vẽ storyboard
-Storyboard tả cách sử dụng sản phẩm thành từng khung hình.
-1 storyboard tốt sẽ có:
-- Có ngữ cảnh
-- Sài trong hoàn cảnh nào
-- Khi sài có thể hiện được cảm xúc
-1 số kỹ năng giúp storyboard trở nên hấp dẫn hơn
-- Thể hiện hành động của nhân vật bằng các ký hiệu như mũi tên, hay vùng mà camera scan, chụp hình,..
+Storyboard là công cụ quan trọng trong thiết kế trải nghiệm người dùng (UX/HCI). Nó giúp minh họa hành trình 6 bước tương tác của người dùng với sản phẩm/dịch vụ qua hình vẽ phác thảo tay và chú thích:
+- Trực quan hóa kịch bản Scenario Future theo mạch truyện 6 nhịp (Beginning → Development → Climax → End).
+- Bố cục 3 tầng rõ ràng cho mỗi khung tranh: Header (ô số + tiêu đề), Khung hình (ảnh phác thảo người que 1:1), Caption (mô tả 1–2 câu ở đáy).
+- Kết xuất tệp ảnh tổng quan chất lượng cao bằng `tools/render-html-to-png.py`.
 
 ## Validation
 
-- Những hình ảnh phải theo đúng thứ tự và được sắp xếp từ trái sang phải.
-- Decription của từng hình ảnh phải được điền đầy đủ, rõ ràng và phải khớp với nội dung của hình ảnh được ghi trong `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/data.json`.
+- Đầy đủ 6 hình ảnh theo đúng thứ tự (`frame-1.png` đến `frame-6.png`), sắp xếp theo lưới 3 cột × 2 hàng (từ trái sang phải, từ trên xuống dưới).
+- Tiêu đề (`stepName`) và Caption (`story`) của từng hình ảnh phải được điền đầy đủ, rõ ràng và khớp chính xác với nội dung được ghi trong `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/data.json`.
+- Tệp `storyboard.png` được kết xuất đầy đủ kích thước `--width 1600 --height 1700 --scale 1`, không bị mất viền hay cắt cụt caption đáy.
