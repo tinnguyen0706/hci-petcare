@@ -1,44 +1,48 @@
-# Kế hoạch thực thi Storyboard Generator
+# Kế hoạch thực thi: Storyboard Generator
 
-## Dùng skill này khi
+## 1. Mục đích
 
-Người dùng hoặc Subagent muốn tổng hợp một Storyboard hoàn chỉnh dựa trên tập 6 ảnh panel vuông 1:1 và tệp `data.json` có sẵn.
+Tổng hợp toàn bộ các asset ảnh đơn lẻ và metadata từ `data.json` thành sản phẩm Storyboard hoàn chỉnh gồm mã nguồn Web (HTML/CSS), tài liệu phân tích (Markdown) và hình ảnh kết xuất A4 khổ ngang (PNG).
 
-## Input
+## 2. Khi nào sử dụng
 
-- 6 ảnh panel tại `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/assets/frame-1.png` .. `frame-6.png`
-- Tệp metadata tại `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/data.json`
-- Template chuẩn tại `templates/storyboard/`
+- Khi đã có sẵn 6 ảnh panel vuông trong `assets/` và tệp dữ liệu `data.json` chuẩn hóa từ `storyboard-detail-generator`.
 
-## Output
+## 3. Đầu vào (Input)
 
-Bộ bàn giao Storyboard hoàn chỉnh lưu tại `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/`:
-- `storyboard.html`: Trang HTML hiển thị bố cục 6 frame 3 tầng.
-- `style.css`: Bảng định kiểu CSS comic sketch.
-- `storyboard.md`: Tài liệu phân tích hành trình, Context of Use và mô tả chi tiết 6 khung hình.
-- `storyboard.png`: Ảnh PNG tổng hợp chất lượng cao.
+- `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/data.json`
+- `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/assets/frame-1.png` đến `frame-6.png`
+- `templates/storyboard/index.html` và `templates/storyboard/style.css`
 
-## Template
+## 4. Đầu ra (Output)
 
-- Tuân thủ cấu trúc trong `templates/storyboard/index.html` và `templates/storyboard/style.css`.
+Tại thư mục `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/`:
+- `storyboard.html`: Trang HTML hiển thị bố cục 6 khung hình 3 tầng.
+- `style.css`: Bảng định kiểu CSS comic sketch với font viết tay `Patrick Hand`.
+- `storyboard.md`: Tài liệu Markdown tổng hợp hành trình và bảng chi tiết 6 khung hình.
+- `storyboard.png`: Hình ảnh Storyboard tổng hợp chất lượng cao (A4 khổ ngang).
 
-## Workflow
+## 5. Quy trình làm việc (Workflow)
 
-1. **Kiểm tra đầu vào**:
-   - Xác định sự tồn tại của 6 ảnh `assets/frame-1.png` đến `assets/frame-6.png` và tệp `data.json`.
-   - Nếu thiếu ảnh hoặc metadata, thông báo lỗi hoặc yêu cầu chạy `storyboard-detail-generator` trước.
-2. **Khởi tạo tệp HTML & CSS**:
-   - Sao chép `style.css` từ `templates/storyboard/style.css` sang thư mục đích.
-   - Điền tiêu đề Storyboard và thông tin Persona/Goal vào header của `storyboard.html`.
-3. **Lắp ghép 6 Frame vào HTML**:
-   - Đọc dữ liệu từng frame trong `data.json` (số thứ tự, `stepName`, `imagePath`, `story`).
-   - Tạo 6 khối `<article class="storyboard-frame">` theo đúng bố cục 3 tầng (Header -> Figure -> Caption).
-4. **Biên soạn tài liệu `storyboard.md`**:
-   - Trình bày thông tin chung, truy vết nguồn gốc (Scenario Future, Evidence), bảng phân tích Context of Use, và bảng chi tiết 6 khung hình.
-5. **Kết xuất ảnh PNG chất lượng cao**:
-   - Sử dụng công cụ `tools/render-html-to-png.py` với lệnh:
-     ```bash
-     python tools/render-html-to-png.py deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/storyboard.html deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/storyboard.png --width 1600 --height 1700 --scale 1
-     ```
-6. **Kiểm tra chất lượng & Bàn giao**:
-   - Kiểm tra ảnh `storyboard.png` để đảm bảo toàn bộ ô caption và viền khung ở hàng đáy hiển thị 100% trọn vẹn, không bị cắt mép.
+```mermaid
+graph TD
+    Step1["1. Kiểm tra tính đầy đủ của tài nguyên đầu vào"] --> Step2["2. Thiết lập tệp HTML & CSS từ template"]
+    Step2 --> Step3["3. Ghép 6 frame theo cấu trúc 3 tầng"]
+    Step3 --> Step4["4. Biên soạn tài liệu phân tích storyboard.md"]
+    Step4 --> Step5["5. Kết xuất ảnh PNG bằng công cụ render"]
+    Step5 --> Step6["6. Kiểm tra trực quan & Nghiệm thu sản phẩm"]
+```
+
+1. **Bước 1 — Kiểm tra đầu vào**:
+   - Xác định sự tồn tại của 6 ảnh trong `assets/` và tệp `data.json`.
+2. **Bước 2 — Thiết lập tệp HTML & CSS**:
+   - Sao chép `style.css` từ `templates/storyboard/style.css` sang thư mục deliverable.
+   - Khởi tạo tệp `storyboard.html` từ template mẫu.
+3. **Bước 3 — Ghép 6 frame vào HTML**:
+   - Đọc dữ liệu từ `data.json` và chèn lần lượt 6 khối frame theo bố cục 3 tầng: *Header (Số + Tên bước) $\rightarrow$ Figure (Ảnh 1:1) $\rightarrow$ Caption (Lời dẫn đáy)*.
+4. **Bước 4 — Biên soạn tài liệu `storyboard.md`**:
+   - Tổng hợp thông tin Persona, Goal, bảng Context of Use và bảng phân rã chi tiết 6 frame.
+5. **Bước 5 — Kết xuất ảnh PNG**:
+   - Chạy script `tools/render-html-to-png.py` để kết xuất file `storyboard.png` khổ ngang sắc nét.
+6. **Bước 6 — Kiểm tra trực quan & Nghiệm thu**:
+   - Mở xem file `storyboard.png` để đảm bảo toàn bộ viền khung và dòng chữ caption ở hàng đáy hiển thị 100% trọn vẹn, không bị cắt mép.

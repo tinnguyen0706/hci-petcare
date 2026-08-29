@@ -1,129 +1,90 @@
 ---
 name: storyboard-detail-generator
-description: Phân tích Scenario Future thành kịch bản 6 frame chi tiết, tạo Character Reference, sinh từng ảnh panel riêng lẻ (tỷ lệ vuông 1:1) theo phong cách phác thảo siêu đơn giản (Ultra-Simple Stick Figure & UI Wire-sketch) với đa góc nhìn linh hoạt và tạo data.json chứa metadata từng bước (tên bước, cameraAngle, story cụ thể, UI mockup, action, feedback, emotion). Đóng vai trò tạo asset chi tiết trước khi chuyển sang storyboard-generator để ghép thành phẩm.
+description: Hướng dẫn chi tiết cách suy luận, kiến thức nền tảng Storytelling + Sketching, kỹ thuật soạn prompt phác thảo người que nét đơn và tạo asset chi tiết cho Storyboard.
 ---
 
-# Storyboard Detail Generator
+# Kỹ năng Phân rã Kịch bản & Tạo Asset Storyboard (Storyboard Detail Generator)
 
-## Mục đích
+## 1. Kiến thức nền tảng (Domain Knowledge)
 
-Chuyển đổi từng Scenario Future thành kịch bản phân rã 6 frame chi tiết, sinh **từng tệp hình ảnh độc lập (Frame 1 đến Frame 6)** theo phong cách **phác thảo siêu đơn giản (Ultra-Simple Sketching)** nét mực đen trên nền trắng với **đa dạng góc nhìn (Multi-Perspective)**, đồng thời tạo tệp **`data.json`** chuẩn hóa chứa đầy đủ tên bước (`stepName`), góc nhìn (`cameraAngle`) và diễn biến câu chuyện cụ thể (`story`) cho từng frame để `storyboard-generator` có thể tự động đọc và merge thành sản phẩm hoàn chỉnh.
+### 1.1. Bản chất cốt lõi: Storyboard = Storytelling + Sketching
+Trong môn học Tương tác Người–Máy (HCI), Storyboard không đơn thuần là vẽ tranh minh họa và cũng không phải là danh sách màn hình giao diện (Wireframe). Storyboard là công cụ giao tiếp trải nghiệm người dùng thông qua sự kết hợp của 2 thành tố:
+- **Storytelling (Kể chuyện)**: Kể một câu chuyện hấp dẫn, lấy con người làm trung tâm, đặt trong ngữ cảnh sử dụng thực tế (*Context of Use*), có cấu trúc mạch lạc, thể hiện sự chuyển biến cảm xúc (*Emotion*) và làm nổi bật giá trị cốt lõi (*Value Proposition*) giải quyết nỗi đau của Persona.
+- **Sketching (Phác thảo)**: Ngôn ngữ hình ảnh phác thảo tay nhanh, mộc mạc và tối giản (*Pure Classic Stick Figure* nét que đơn 1 nét, mắt chấm, miệng cong, khung UI phone mockup vẽ tay); tập trung truyền tải tương tác và ý tưởng thiết kế thay vì sa đà vào vẽ mỹ thuật hoạt hình phức tạp hay đổ bóng 3D.
 
-## Tài liệu bắt buộc
-
-Đọc trước khi thực hiện:
-
-- `skills/storyboard-detail-generator/PLAN.md`
-- `agents/storyboard-agent.md`
-- `rules/storyboard-rules.md`
-- `rules/domain-rules.md`
-- `rules/style-rules.md`
-
-## Nguyên tắc cốt lõi
-
-### 1. Phong cách Phác thảo siêu đơn giản (Ultra-Simple & Low-Fidelity Sketching)
-Storyboard trong HCI nhằm mục đích truyền đạt nhanh câu chuyện trải nghiệm, bối cảnh và cảm xúc tương tác; **tuyệt đối không sa đà vào vẽ đồ họa phức tạp hay thiết kế UI chi tiết dạng pixel-perfect**:
-- **Nhân vật người que (Stick Figure)**: Thân que, đầu tròn, nét mực đen tối giản trên nền trắng giấy vẽ; biểu cảm mặt vẽ bằng vài nét chấm/nét cong cơ bản (lo âu, mỉm cười, ngạc nhiên).
-- **Bối cảnh tối giản (Minimalist Background)**: Chỉ cần vài đường nét cơ bản gợi mở không gian (đường chân sàn, khối chữ nhật tượng trưng bàn làm việc, vòng tròn tượng trưng đồng hồ...).
-- **Giao diện thiết bị siêu đơn giản (UI Wire-sketch)**: Khung điện thoại/màn hình chỉ phác thảo thô dạng low-fidelity — gồm khung chữ nhật, vài vạch ngang tượng trưng dòng chữ, khối ô vuông tượng trưng icon và 1 nút bấm hoặc nhãn trạng thái ngắn gọn (ví dụ: `[Đặt lịch]`, `[Xác nhận]`, `✔ Hoàn tất`). Không vẽ UI phức tạp nhiều chi tiết vụn vặt.
-
-### 2. Thấu hiểu Ngữ cảnh sử dụng (Context of Use)
-Mỗi khung hình sketch phải làm bật lên hoàn cảnh thực tế để giải thích cho các quyết định thiết kế:
-- **Người dùng (User)**: Là ai, vai trò gì, đặc điểm tính cách/tâm lý.
-- **Tác vụ (Task)**: Đang cố gắng thực hiện nhiệm vụ gì, mục tiêu cụ thể.
-- **Thiết bị (Equipment / Device)**: Điện thoại thông minh, máy tính bảng, hay máy tính để bàn.
-- **Môi trường vật lý (Physical Environment)**: Văn phòng làm việc, tại nhà, ngoài đường, trên xe bus, không gian ồn ào hay yên tĩnh.
-- **Môi trường xã hội (Social Environment)**: Đang ở một mình, trong cuộc họp, bên cạnh bạn bè hay đồng nghiệp.
-- **Thời gian & Cảm xúc (Temporal & Emotional Context)**: Gấp gáp, rảnh rỗi, lo âu, bối rối, an tâm hay phấn khởi.
-
-### 3. Kỹ thuật Đa góc nhìn & Khung hình linh hoạt (Dynamic Multi-Perspective)
-Linh hoạt thay đổi góc nhìn qua 6 frame để câu chuyện trực quan và lôi cuốn, tránh lặp lại góc nhìn đơn điệu:
-- **Góc toàn cảnh (Wide / Establishing Shot)**: Bao quát không gian môi trường xung quanh và vị trí nhân vật (thường dùng ở Frame 1 để định hình bối cảnh).
-- **Góc trung cảnh (Medium Shot)**: Thể hiện nhân vật đang thao tác trong bối cảnh thực tế từ thắt lưng trở lên.
-- **Góc nhìn qua vai (Over-the-shoulder POV)**: Đặt góc nhìn phía sau vai nhân vật, thấy cả nhân vật và thiết bị đang cầm trên tay.
-- **Góc nhìn thứ nhất / Cận cảnh thiết bị (First-Person Handheld POV)**: Nhìn trực diện vào bàn tay cầm điện thoại phác thảo nhanh màn hình và thao tác bấm/chạm.
-- **Góc cận cảnh biểu cảm (Close-Up Shot)**: Tập trung vào nét mặt người que lột tả rõ cảm xúc (lo lắng, nhẹ nhõm, vui mừng).
-- **Góc nhìn ngang / Nghiêng (Side Profile / 3/4 View)**: Thể hiện nhân vật đang di chuyển, bàn giao hoặc tương tác với người khác.
-- **Góc nhìn từ trên xuống (Top-down View)**: Nhìn xuống mặt bàn làm việc hoặc không gian tương tác.
-- **Khung UI Callout phác thảo**: Khung phụ phác thảo nhanh màn hình ứng dụng đặt cạnh nhân vật.
-
-### 4. Kỹ thuật trực quan hóa hành động & cảm xúc
-- **Ký hiệu hành động (Action Lines & Symbols)**: Mũi tên chỉ hướng di chuyển, đường chỉ thao tác bấm/chạm (`tap`, `swipe`), ký hiệu rung/chuông báo `((🔔))`, tia quét scan mã.
-- **Bóng thoại (Bubbles)**:
-  - *Bóng thoại mây (Thought Bubble)*: Thể hiện suy nghĩ nội tâm, nhu cầu bức thiết hoặc tâm trạng lo lắng.
-  - *Bóng thoại nhọn (Speech Bubble)*: Thể hiện câu nói, hội thoại trực tiếp.
-
-### 5. Nguyên tắc bố cục: Phân tầng & Tuyệt đối không che khuất nhau (Non-overlapping Layout)
-Dù sketch siêu đơn giản, các thành phần trong từng frame phải rõ ràng, thoáng đãng:
-- **Phân tách không gian (Visual Breathing Room)**: Nhân vật và khung UI phác thảo chia sẻ không gian cân đối (ví dụ: nhân vật một bên, UI một bên). **Tuyệt đối không để khung thiết bị đè lấp thân người hoặc che khuất khuôn mặt của nhân vật**.
-- **Vị trí bóng thoại**: Đặt ở khoảng trống phía trên (không gian âm), có đuôi chỉ rõ về nhân vật; **không đè lên chữ trong UI hay các chi tiết chính**.
-- **Độ rõ nét văn bản**: Chữ trong UI và bóng thoại phải nằm trọn trong vùng nền trắng riêng biệt, nét chữ phác thảo rõ ràng, không bị các nét vẽ khác chồng chéo.
+### 1.2. 7 Yếu tố Ngữ cảnh sử dụng (Context of Use)
+Mỗi khung hình phải giúp người xem nhận diện rõ:
+1. **User**: Persona là ai, đặc điểm tâm lý.
+2. **Task**: Đang thực hiện nhiệm vụ gì để đạt mục tiêu.
+3. **Equipment**: Thiết bị tương tác (smartphone, máy POS...).
+4. **Physical Environment**: Địa điểm thực tế (phòng trọ, bàn làm việc, quầy spa).
+5. **Social Environment**: Hoàn cảnh xã hội (ở một mình, tương tác với lễ tân).
+6. **Temporal Context**: Thời điểm, áp lực thời gian.
+7. **Emotional Context**: Cảm xúc biến chuyển (lo lắng $\rightarrow$ an tâm $\rightarrow$ hài lòng).
 
 ---
 
-## Quy trình thực hiện
+## 2. Cách suy luận & Phân tích (Reasoning Strategy)
 
-1. **Phân tích Scenario Future**:
-   - Xác định Context of Use, pain point, hành động người dùng, phản hồi hệ thống và giá trị mang lại (Value Proposition).
-   - Chia câu chuyện theo mạch 6 nhịp: *Beginning (Frame 1: Bối cảnh & Trigger) → Story Development (Frame 2-3: Tiếp cận & Thao tác) → Climax (Frame 4-5: Tương tác & Giá trị cốt lõi) → End (Frame 6: Kết quả & Cảm xúc)*.
-2. **Lựa chọn góc nhìn & soạn kịch bản chi tiết**:
-   - Chọn góc nhìn (`cameraAngle`) phù hợp cho từng frame.
-   - Xác định tên bước (`stepName`) ngắn gọn, súc tích cho Header từng frame.
-   - Viết diễn biến câu chuyện cụ thể (`story`) thành caption 1–2 câu tiếng Việt dễ hiểu.
-   - Soạn Prompt tạo ảnh siêu đơn giản (Ultra-Simple Sketch), chỉ rõ góc nhìn, bố cục phân tách thoáng, bối cảnh thô, UI wire-sketch và bóng thoại.
-   - Lưu toàn bộ metadata vào tệp `data.json`.
-3. **Tạo / Tái sử dụng Character Reference**:
-   - Nếu chưa có `deliverables/02-interaction-design/storyboard/<persona-id>/character-reference.png`, tạo ảnh mẫu người que nét mực đen trên nền trắng để giữ tính nhất quán nhận diện.
-4. **Sinh từng ảnh Frame riêng biệt (tỷ lệ 1:1)**:
-   - Sinh lần lượt từ `frame-1.png` đến `frame-6.png` theo phong cách phác thảo siêu tối giản đã định nghĩa trong `data.json`.
-   - Lưu vào thư mục `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/assets/`.
-5. **Kiểm tra chất lượng từng ảnh**:
-   - Xem từng file ảnh `frame-*.png`: kiểm tra tính tối giản (đúng chất sketch nhanh), góc nhìn đa dạng, các thành phần không bị che khuất nhau, chữ trong UI wire-sketch và bóng thoại rõ ràng.
-   - Nếu có frame bị lỗi hoặc vẽ quá phức tạp, sinh lại riêng frame đó với prompt tối giản hơn.
+### 2.1. Phân rã đoạn văn Scenario thành 6 nhịp kịch bản có cao trào
+1. **Nhịp 1 (Context + Trigger)**: Đặt nhân vật vào bối cảnh đời thực, phát sinh nhu cầu và thể hiện nỗi đau/lo lắng ban đầu qua bóng thoại suy nghĩ dạng đám mây.
+2. **Nhịp 2 (Chuẩn bị / Mở app)**: Nhân vật mở ứng dụng, giao diện phóng to hiển thị thông tin hoặc hồ sơ cá nhân hóa giúp nhân vật giải tỏa một phần lo lắng.
+3. **Nhịp 3 (Hành động cốt lõi)**: Nhân vật thực hiện tương tác cải tiến quan trọng nhất (chọn dịch vụ, chọn giờ trống, tự động đính kèm dặn dò) và nhận xác nhận tức thì trên UI mockup.
+4. **Nhịp 4 (Tương tác thực địa)**: Nhân vật tương tác ngoài đời thực với cơ sở dịch vụ (quét mã QR lịch hẹn), hệ thống tại quầy đồng bộ dữ liệu liền mạch.
+5. **Nhịp 5 (Hệ thống thể hiện giá trị)**: Nhân vật trải nghiệm quy trình dịch vụ an toàn hoặc theo dõi tiến độ từ xa trong khi làm việc, tâm lý thảnh thơi.
+6. **Nhịp 6 (Kết quả + Cảm xúc)**: Nhân vật nhận kết quả hoàn hảo, ôm thú cưng khỏe đẹp, app lưu lịch sử điện tử và đánh giá 5 sao; cảm xúc hạnh phúc trọn vẹn.
 
-## Cấu trúc dữ liệu `data.json`
+### 2.2. Chiến lược bố cục không gian (Non-overlapping Layout)
+- **Tách biệt nhân vật và UI**: Nhân vật người que đứng một bên (trái hoặc phải), khung màn hình điện thoại phóng to đặt ở bên còn lại. Tuyệt đối không để khung UI đè lấp thân hình hay khuôn mặt người que.
+- **Vị trí bóng thoại**: Đặt bóng thoại ở khoảng trống phía trên đỉnh khung tranh, đuôi bóng thoại chỉ rõ về đầu người que, không đè lên chữ trong UI mockup.
 
-Mỗi deliverable Storyboard chứa file `data.json` có cấu trúc:
+---
 
+## 3. Cách làm chi tiết & Kỹ thuật Soạn Prompt (Execution Guide)
+
+### 3.1. Cấu trúc tệp `data.json`
+Tệp `data.json` phải chứa đầy đủ metadata chuẩn hóa cho cả 6 frame:
 ```json
 {
-  "personaId": "<persona-id>",
-  "goalId": "<goal-id>",
-  "storyboardTitle": "TIÊU ĐỀ CHÍNH CỦA STORYBOARD",
+  "personaId": "persona-1",
+  "goalId": "goal-1",
+  "storyboardTitle": "TIÊU ĐỀ IN HOA CỦA STORYBOARD",
   "context": {
-    "user": "Tên và vai trò nhân vật",
-    "environment": "Môi trường vật lý & xã hội diễn ra",
+    "user": "Tên và vai trò Persona",
+    "environment": "Môi trường diễn ra",
     "trigger": "Sự kiện kích hoạt nhu cầu"
   },
   "frames": [
     {
       "frameNumber": 1,
-      "stepName": "Tên bước 1",
-      "cameraAngle": "Wide Establishing Shot | Medium Shot | Over-the-shoulder POV | First-Person Handheld | Close-Up | Side View | Top-down View",
-      "story": "Diễn biến câu chuyện cụ thể 1-2 câu tiếng Việt (caption đáy).",
+      "stepName": "Tiêu đề ngắn cho Header (dưới 8 từ)",
+      "story": "Lời dẫn diễn biến câu chuyện 1-2 câu tiếng Việt cho Caption đáy.",
       "imagePath": "assets/frame-1.png",
-      "imagePrompt": "Ultra-simple hand-drawn black ink comic sketch on clean white paper background, minimalist stick figure. [Camera Angle]. [Mô tả nhân vật người que tối giản và hành động]. [Bối cảnh phác thảo thô bằng vài nét cơ bản]. [UI Wire-sketch đơn giản dạng khung chữ nhật/nhãn trạng thái / Bóng thoại nếu có]. [Bố cục thoáng đãng, các thành phần tách rời không che khuất nhau].",
+      "imagePrompt": "Prompt tạo ảnh chi tiết...",
       "userAction": "Hành động của người dùng...",
-      "systemFeedback": "Phản hồi của hệ thống (nếu có)...",
-      "emotion": "Cảm xúc nhân vật ở bước này",
-      "valueRealized": "Giá trị đạt được hoặc vấn đề được giải quyết"
+      "systemFeedback": "Phản hồi của hệ thống...",
+      "emotion": "Cảm xúc nhân vật",
+      "valueRealized": "Giá trị giải quyết nỗi đau"
     }
   ]
 }
 ```
 
-## Output bàn giao
+### 3.2. Công thức soạn Prompt sinh ảnh Người que chuẩn
+Mọi prompt sinh ảnh cho từng frame phải tuân thủ công thức cấu trúc:
+$$\text{Prompt} = \text{[Style Bắt buộc]} + \text{[Bối cảnh & Hành động Người que]} + \text{[UI Phone Mockup / Bóng thoại]} + \text{[Negative Prompt]}$$
 
-Tại `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/`:
+- **Style bắt buộc**: `Pure classic minimalist stick figure, single-line stick limbs and torso (| \ /), circle head with simple dot eyes and curved smile/worried mouth, simple line hair outline, hand-drawn black ink doodle on pure white paper, clean minimalist comic sketch, high contrast black lines, clean white background.`
+- **UI Mockup Callout**: `Large floating hand-drawn rectangular smartphone frame with rounded corners beside the character, displaying clear minimalist wireframe UI in Vietnamese text: [Tên màn hình, danh mục, nút bấm...].`
+- **Thought Bubble**: `Simple hand-drawn cloud thought bubble above character with text: "[Câu thoại ngắn]".`
+- **Negative Prompt**: `no anime, no manga, no 3D, no body volume, no shaded clothing folds, no color, no photorealism, no grey gradients.`
 
-- `data.json` (chứa toàn bộ tên bước, góc nhìn, câu chuyện 6 frame và metadata)
-- `assets/frame-1.png` đến `assets/frame-6.png` (ảnh vuông tỷ lệ 1:1, phác thảo siêu tối giản)
-- `character-reference.png` (lưu tại thư mục cha `<persona-id>/`)
+---
 
-## Tiêu chí hoàn thành
+## 4. Xác thực & Tiêu chí Kiểm tra (Validation)
 
-- Đầy đủ file `data.json` với đúng 6 frame, chứa `stepName`, `cameraAngle` và `story` rõ ràng, không bị thiếu trường.
-- Đủ 6 ảnh panel vuông 1:1 chất lượng cao trong thư mục `assets/`, đúng phong cách phác thảo siêu đơn giản nét mực đen trên nền trắng.
-- Giao diện thiết bị và bối cảnh được vẽ dạng **low-fidelity wire-sketch tối giản**, không cầu kỳ hay rườm rà.
-- **Đa dạng góc nhìn (Multi-Perspective)** và **Bố cục thoáng không che khuất nhau**.
-- Sẵn sàng 100% để `storyboard-generator` đọc `data.json` và render HTML/PNG mà không cần suy đoán thêm dữ liệu.
+Kiểm tra từng frame ảnh và dữ liệu theo checklist:
+- [ ] **Người que nét que đơn**: Thân và tay chân là 1 nét đơn, không vẽ người có khối 3D hay nếp nhăn quần áo hoạt hình.
+- [ ] **UI Mockup rõ chữ tiếng Việt**: Các chữ trong màn hình điện thoại phóng to dễ đọc, thể hiện đúng wireframe.
+- [ ] **Bố cục thoáng đãng**: Nhân vật, UI mockup và bóng thoại tách biệt, không đè lấp lên nhau.
+- [ ] **Dữ liệu `data.json` đầy đủ**: Không bị thiếu trường, `stepName` và `story` đúng tiếng Việt chuẩn.
