@@ -17,6 +17,7 @@ Tổng hợp toàn bộ các asset ảnh đơn lẻ và metadata từ `data.json
 ## 4. Đầu ra (Output)
 
 Tại thư mục `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/`:
+
 - `storyboard.html`: Trang HTML hiển thị bố cục 6 khung hình 3 tầng.
 - `style.css`: Bảng định kiểu CSS comic sketch với font viết tay `Patrick Hand`.
 - `storyboard.md`: Tài liệu Markdown tổng hợp hành trình và bảng chi tiết 6 khung hình.
@@ -46,3 +47,5 @@ graph TD
    - Chạy script `tools/render-html-to-png.py` để kết xuất file `storyboard.png` khổ ngang sắc nét.
 6. **Bước 6 — Kiểm tra trực quan & Nghiệm thu**:
    - Mở xem file `storyboard.png` để đảm bảo toàn bộ viền khung và dòng chữ caption ở hàng đáy hiển thị 100% trọn vẹn, không bị cắt mép.
+7. **Bước 7 - Sửa sai nếu có**
+   - Nếu file `storyboard.png` không đạt chuẩn, làm lại.
