@@ -59,15 +59,7 @@ Mỗi khung tranh được render trong `storyboard.html` theo cấu trúc seman
 ```
 
 ### 3.2. Lệnh kết xuất ảnh PNG tối ưu (Render Command)
-Để đảm bảo ảnh xuất ra đạt chất lượng in ấn A4 khổ ngang và toàn bộ các ô caption ở hàng đáy hiển thị 100% không bị cắt viền, luôn chạy script với thông số chuẩn:
-```bash
-python3 tools/render-html-to-png.py \
-  deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/storyboard.html \
-  deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/storyboard.png \
-  --width 1600 \
-  --height 1380 \
-  --scale 2.0 \
-  --wait-ms 1000
+Để đảm bảo ảnh xuất ra đạt chất lượng in ấn khổ ngang và toàn bộ các ô caption ở hàng đáy hiển thị 100% không bị cắt viền.
 ```
 
 ---
