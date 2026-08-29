@@ -59,7 +59,7 @@ Mỗi khung tranh được render trong `storyboard.html` theo cấu trúc seman
 ```
 
 ### 3.2. Lệnh kết xuất ảnh PNG tối ưu (Render Command)
-Để đảm bảo ảnh xuất ra đạt chất lượng in ấn khổ ngang và toàn bộ các ô caption ở hàng đáy hiển thị 100% không bị cắt viền.
+Để đảm bảo ảnh xuất ra đạt chất lượng in ấn khổ ngang và toàn bộ các ô caption ở hàng đáy hiển thị 100% không bị cắt viền, xuất toàn bộ `storyboard.html` sang PNG, không cắt mép gì cả.
 ```
 
 ---
