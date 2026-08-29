@@ -30,6 +30,14 @@ Tệp này quy định các chuẩn mực, ràng buộc và tiêu chuẩn chất
   - Thân mình và tay chân bắt buộc là các **nét que đơn 1 nét (*single-line stick limbs & torso*)** dạng `|`, `\`, `/`.
   - Tóc chỉ vẽ nét viền phác thảo tối giản (ví dụ: đuôi ngựa nét đơn cho Thư, tóc ngắn cho Long) để nhận diện nhân vật.
   - **CẤM TUYỆT ĐỐI**: Vẽ người có khối cơ thể 3D, vẽ nếp gấp quần áo dày, giải phẫu người phức tạp kiểu anime/manga hoặc nhân vật hoạt hình tả thực.
+- **Góc nhìn & Phối cảnh (Camera Perspective & Viewpoint)**:
+  - Sử dụng **Góc nhìn thứ 3 (Third-person view)** khi cần bao quát bối cảnh môi trường, nhân vật người que và tương tác thực địa với nhân viên/thú cưng.
+  - Sử dụng **Góc nhìn thứ nhất / Cận cảnh (POV - Point-of-View)** khi cần tập trung tả góc nhìn từ mắt nhân vật vào màn hình điện thoại hoặc thao tác quét mã QR, ấn nút giao diện.
+- **Hiệu ứng chuyển động & Mũi tên mô tả (Motion & Directional Arrows)**:
+  - Phác thảo mũi tên tay (nét đứt hoặc nét liền) để chỉ hướng di chuyển của nhân vật, hướng nhấc đồ vật hoặc hướng thao tác trên màn hình (swipe/tap/kéo).
+  - Vệt sọc gạch ngắn (action dash lines) minh họa sự cử động tay hoặc rung nhẹ của thiết bị/vật thể.
+- **Tương tác vật thể (Holding & Lifting Objects)**:
+  - Cử chỉ cử động bàn tay nét đơn bao quanh hoặc ôm/nhấc các vật thể thực tế (lồng vận chuyển, chai thuốc, điện thoại, dây dắt).
 - **Khung giao diện điện thoại phóng to (*Hand-drawn UI Mockup*)**:
   - Ở các bước tương tác với app, màn hình điện thoại được phác thảo nét vẽ tay chữ nhật bo góc đặt cạnh nhân vật.
   - Bên trong thể hiện wireframe giao diện rõ ràng bằng tiếng Việt (ô tìm kiếm, danh sách lựa chọn kèm giá tiền, ô chọn `[✓]`, nút bấm xác nhận, dấu tích hoàn tất).
