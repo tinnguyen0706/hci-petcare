@@ -71,6 +71,7 @@ Tệp này quy định các chuẩn mực, ràng buộc và tiêu chuẩn chất
 ## 4. Quy tắc về Tiêu chuẩn Nghiệm thu (Acceptance Criteria)
 
 Một Storyboard chỉ được nghiệm thu đạt chuẩn khi đáp ứng đủ các tiêu chí:
+
 1. Đầy đủ các tệp bàn giao trong `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/`:
    - `data.json` (đầy đủ metadata 6 frame, không thiếu trường).
    - `assets/frame-1.png` đến `assets/frame-6.png` (đúng `1280 × 720 px`, tỷ lệ 16:9, chuẩn Expressive Stick-figure UI line art đen–trắng).
@@ -82,3 +83,8 @@ Một Storyboard chỉ được nghiệm thu đạt chuẩn khi đáp ứng đ�
 4. `storyboard.png` đã được mở và kiểm tra trực quan; đủ 6 frame, đúng thứ tự, chữ đọc được, không bị cắt hình, caption hoặc viền.
 5. Toàn bộ template và asset có bảng màu thiết kế đen–trắng; không xuất hiện màu, mảng tô xám, gradient hoặc shadow. Anti-aliasing kỹ thuật ở mép nét/chữ không bị xem là vi phạm.
 6. Kích thước pixel được kiểm tra từ metadata PNG: 6 frame `1280 × 720`, Character Reference `1024 × 1024`, Storyboard tổng `1600 × 900`.
+
+## 5. Công cụ sử dụng để tạo ảnh
+
+1. Chỉ sử dụng công cụ sinh ảnh AI.
+2. Nếu công cụ sinh ảnh không khả dụng, dừng lại ngay và thông báo cho user.
