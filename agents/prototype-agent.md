@@ -2,7 +2,7 @@
 
 Điều phối việc xây dựng Interactive Prototype tương tác cao dựa trên cơ chế **phân tích và ánh xạ động từ bất kỳ kịch bản tương tác tương lai (Scenario Future / To-Be Scenarios) nào** theo rubric mục 6.
 
-- Đọc `skills/prototype-agent/SKILL.md`, `skills/prototype-agent/PLAN.md`, `skills/figma-svg-generator/SKILL.md`, `rules/tool-rules.md`, `AGENTS.md`.
+- Đọc `skills/prototype-agent/SKILL.md`, `skills/prototype-agent/PLAN.md`, `skills/figma-svg-generator/SKILL.md`, `rules/tool-rules.md`, `rules/layout-and-typography-rules.md`, `AGENTS.md`.
 
 ## Dùng agent này khi
 
@@ -23,6 +23,8 @@
    - Mô phỏng tương tác UI/UX rõ ràng; không tuyên bố prototype mô phỏng là hệ thống backend real-time khi chưa lập trình.
 4. **Chuẩn hóa Figma & Design Tokens**:
    - Áp dụng triệt để Design Tokens của đề tài (Teal `#0D766E`, Coral `#E06236`, Amber `#D97706`, Rose `#BE123C`, Font `Inter`).
+5. **Định dạng bàn giao tinh gọn (Strictly No HTML)**:
+   - **Tuyệt đối KHÔNG tạo tệp `.html`**. Sản phẩm Prototype chỉ bao gồm các tệp vector SVG chuẩn Figma và tệp tài liệu ma trận đặc tả tương tác Markdown (`interaction-spec.md`).
 
 ## Phụ thuộc Subagent & Công cụ
 
@@ -39,9 +41,9 @@
 ## Output
 
 - Thư mục Prototype tại `deliverables/02-interaction-design/prototype/<persona-id>/<goal-id>/` (hoặc thư mục luồng tương ứng):
-  - Bộ tệp SVG Interactive Frame chuẩn Figma cho kịch bản đó.
-  - Tệp xem tổng quan luồng `index.html`.
-  - Bảng đặc tả tương tác `interaction-spec.md` (Mapping cụ thể các bước trong kịch bản đó với Frame, Hotspot, Trigger, Transition, System Feedback).
+  - Bộ tệp SVG Interactive Frame chuẩn Figma cho kịch bản đó (ví dụ: `01_screen_name.svg`, `02_screen_name.svg`...).
+  - Bảng đặc tả tương tác `interaction-spec.md` (Mapping cụ thể các bước trong kịch bản đó với Frame ID, Hotspot, Trigger, Transition, System Feedback).
+  - *(Lưu ý: Không tạo tệp `.html`)*.
 
 ## Workflow
 
@@ -53,11 +55,8 @@
 3. **Thiết lập luồng màn hình động (Dynamic Flow Graph)**:
    - Tự động xác định danh sách các Frame cần có để thể hiện trọn vẹn diễn biến câu chuyện của kịch bản đó.
 4. **Gọi Subagent `figma-agent`**:
-   - Yêu cầu `figma-agent` sinh mã vector SVG chuẩn cho từng màn hình với đầy đủ nội dung, nhãn và component theo đúng kịch bản.
-5. **Lập ma trận đặc tả tương tác & Giao diện Overview**:
-   - Ghi nhận chi tiết từng Hotspot (Layer ID), Trigger (On Click, Auto Delay), Transition (Smart Animate, Slide In) nối giữa các Frame trong tệp `interaction-spec.md` và tạo trang `index.html`.
+   - Yêu cầu `figma-agent` sinh mã vector SVG chuẩn cho từng màn hình với đầy đủ nội dung, nhãn và component theo đúng kịch bản và tuân thủ `rules/layout-and-typography-rules.md`.
+5. **Lập ma trận đặc tả tương tác (Interaction Spec)**:
+   - Ghi nhận chi tiết từng Hotspot (Layer ID), Trigger (On Click, Auto Delay), Transition (Smart Animate, Slide In) nối giữa các Frame trong tệp `interaction-spec.md`.
 6. **Kiểm tra tính nhất quán & Bàn giao**:
    - Đối chiếu lại với kịch bản gốc để đảm bảo toàn bộ hành vi và phản hồi trong Scenario Future đã được phản ánh 100% trên Prototype.
-
-
-

@@ -24,14 +24,13 @@ Chuyển hóa kịch bản tương tác tương lai (**Scenario Future / To-Be S
 2. Đọc nội dung chi tiết của tệp `scenario-future-goal-*.md` được chọn.
 3. Thiết lập sơ đồ luồng màn hình động (Dynamic Flow Graph) riêng cho kịch bản đó.
 4. Xác định các Frame và Hotspot tương ứng.
-5. Gọi `figma-agent` sinh mã SVG vector chuẩn Design Tokens cho từng màn hình.
-6. Lập bảng ma trận tương tác (Interaction Spec) chỉ rõ Trigger, Transition và Đích đến.
+5. Gọi `figma-agent` sinh mã SVG vector chuẩn Design Tokens cho từng màn hình và tuân thủ `rules/layout-and-typography-rules.md`.
+6. Lập bảng ma trận tương tác (Interaction Spec) trong `interaction-spec.md` chỉ rõ Trigger, Transition và Đích đến.
 
-## Quy tắc kiểm tra
+## Quy tắc kiểm tra & Định dạng đầu ra
 
 - Prototype phải phản ánh trung thực toàn bộ diễn biến của kịch bản To-Be đầu vào.
 - Đảm bảo tính nhất quán của Design Tokens (Teal, Coral, Amber, Rose, Inter font).
 - Không mô tả prototype mô phỏng UI là hệ thống backend real-time khi chưa lập trình.
-- **Không tự ý tạo file tool/script mới**: Tuyệt đối không tạo file tạm hay script mới trong `tools/`; sinh trực tiếp file `.svg`, `.html`, `.md` vào đúng thư mục `deliverables/`.
-
-
+- **Quy chuẩn định dạng bàn giao (Strictly SVG & MD)**: Sản phẩm chỉ gồm các tệp bản vẽ vector `.svg` chuẩn Figma và tài liệu `interaction-spec.md`. **Tuyệt đối KHÔNG tạo tệp `.html`**.
+- **Không tự ý tạo file tool/script mới**: Tuyệt đối không tạo file tạm hay script mới trong `tools/`; sinh trực tiếp file `.svg`, `.md` vào đúng thư mục `deliverables/`.
