@@ -52,7 +52,7 @@
 - **Tuân thủ đúng phạm vi tài liệu (Scope Minimization)**: Khi thực thi nhiệm vụ theo vai trò của Agent nào, chỉ được đọc và tham chiếu đúng các file được liệt kê trong định nghĩa của Agent đó (`agents/<tên-agent>.md`) và dữ liệu đầu vào trong `data/`.
 - **Từ ngữ dễ hiều**: Ưu tiên sử dụng những từ ngữ dễ hiểu cho người Việt.
 - **Kiểm tra Tiền điều kiện Bắt buộc (Strict Precondition Enforcement)**:
-  - **Khi tạo Prototype**: Bắt buộc **phải dựa trên Storyboard** tương ứng (`deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/`). Nếu thiếu Storyboard, **tuyệt đối KHÔNG ĐƯỢC PHÉP tạo Prototype mà PHẢI BÁO LỖI VÀ DỪNG LẠI NGAY LẬP TỨC**.
+  - **Khi tạo Prototype**: Bắt buộc **phải dựa trên Storyboard** tương ứng (`deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/`). Nếu thiếu Storyboard, **tuyệt đối KHÔNG ĐƯỢC PHÉP tạo Prototype mà PHẢI BÁO LỖI VÀ DỪNG LẠI NGAY LẬP TỨC**. Output của Agent chỉ là bộ SVG; người dùng tự import và kết nối trên Figma.
   - **Khi tạo Wireframe**: Bắt buộc **phải dựa trên Prototype** tương ứng (`deliverables/02-interaction-design/prototype/<persona-id>/<goal-id>/`). Nếu thiếu Prototype, **tuyệt đối KHÔNG ĐƯỢC PHÉP tạo Wireframe mà PHẢI BÁO LỖI VÀ DỪNG LẠI NGAY LẬP TỨC**.
   - Luôn kiểm tra sự tồn tại của artifact tiền điều kiện ngay bước đầu; nếu thiếu, đưa ra thông báo lỗi chi tiết nêu rõ artifact còn thiếu và dừng thực thi, hướng dẫn người dùng kích hoạt Agent phù hợp để tạo artifact tiền điều kiện trước.
 
@@ -102,8 +102,8 @@ graph TD
      - `scenario-current-agent`: Mô tả kịch bản và khó khăn của quy trình cũ.
      - `scenario-new-agent`: Thiết kế kịch bản luồng tương tác mới.
      - `storyboard-agent`: Soạn kịch bản và tạo Storyboard trực quan (Tiền điều kiện cho Prototype).
-     - `prototype-agent`: Quản lý và xây dựng Interactive Prototype từ Storyboard (Tiền điều kiện cho Wireframe).
-     - `wireframe-agent`: Thiết kế bộ Wireframe mobile-first cho toàn bộ màn hình chức năng của ứng dụng và tích hợp đầy đủ 5 trạng thái giao diện.
+     - `prototype-agent`: Tạo bộ Prototype SVG nhất quán từ Storyboard; người dùng tự import/kết nối Figma (tiền điều kiện cho Wireframe).
+     - `wireframe-agent`: Thiết kế Wireframe mobile-first 5 trạng thái dựa trên Prototype.
      - `software-product-agent`: Lập trình ứng dụng Web React + TypeScript (`src/`).
      - `presentation-agent`: Soạn Slide thuyết trình và nội dung Q&A phản biện.
      - `report-agent`: Tổng hợp và biên soạn Báo cáo cuối kỳ (>6 trang).

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Bộ công cụ sinh mã SVG Wireframe / Mockup chuẩn Figma.
+Bộ công cụ sinh mã SVG Prototype chuẩn Figma.
 Hỗ trợ tạo các màn hình chuẩn iPhone 14 Pro Max (430x932) với các component UI có thể kéo thả 100% vào Figma.
 Tuân thủ nghiêm ngặt rules/layout-and-typography-rules.md: Không dùng emoji màu mè, layout sắc nét.
 """
@@ -11,6 +11,7 @@ import argparse
 import html
 import json
 import os
+import re
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -22,7 +23,9 @@ THEME = {
     "primary_dark": "#0F4C45",  # Teal đậm
     "primary_light": "#F0FDFA", # Nền teal nhạt
     "primary_border": "#CCFBF1",# Viền teal mờ
-    "accent_rose": "#9F1239",   # Đỏ cảnh báo dị ứng (Rose 800)
+    "accent_coral": "#E06236",  # Cam san hô
+    "accent_amber": "#D97706",  # Hổ phách
+    "accent_rose": "#BE123C",   # Đỏ cảnh báo dị ứng theo AGENTS.md
     "accent_rose_bg": "#FFF1F2",# Nền cảnh báo dị ứng
     "accent_rose_border": "#FECDD3",
     "bg_page": "#F8FAFC",       # Nền trang
@@ -35,21 +38,48 @@ THEME = {
     "white": "#FFFFFF",
 }
 
-FONT_FAMILY = 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+FONT_FAMILY = "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+VIEWPORT_WIDTH = 430
+VIEWPORT_HEIGHT = 932
+HOME_INDICATOR_Y = 918
+
+
+def validate_single_line(text: str, max_chars: int, role: str) -> None:
+    """Chặn chuỗi có nguy cơ tràn; màn hình tùy chỉnh phải chủ động tách dòng."""
+    if len(text) > max_chars:
+        raise ValueError(
+            f"{role} vượt {max_chars} ký tự; hãy rút gọn hoặc tách thành nhiều thẻ <text>."
+        )
 
 
 class FigmaSvgBuilder:
     """Builder sinh mã SVG tương thích 100% với Figma Vector Engine chuẩn iPhone 14 Pro Max (430x932)."""
 
-    def __init__(self, width: int = 430, height: int = 932, title: str = "Screen Frame"):
+    def __init__(self, width: int = VIEWPORT_WIDTH, height: int = VIEWPORT_HEIGHT, title: str = "Screen Frame"):
+        if (width, height) != (VIEWPORT_WIDTH, VIEWPORT_HEIGHT):
+            raise ValueError("Prototype mobile phải dùng viewport 430x932 theo layout rules.")
         self.width = width
         self.height = height
         self.title = title
         self.elements: List[str] = []
         self.current_y = 0
+        self.card_count = 0
+        self.layer_ids = set()
+
+    def claim_layer_id(self, layer_id: str) -> str:
+        """Đảm bảo Layer ID hợp lệ và duy nhất trong một Frame."""
+        if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_-]*", layer_id):
+            raise ValueError(f"Layer ID không hợp lệ: {layer_id}")
+        if layer_id in self.layer_ids:
+            raise ValueError(f"Layer ID bị trùng trong Frame: {layer_id}")
+        self.layer_ids.add(layer_id)
+        return layer_id
 
     def add_background(self, bg_color: str = THEME["bg_page"], border_color: str = "#CBD5E1"):
         """Tạo khung viền iPhone 14 Pro Max với Dynamic Island"""
+        self.claim_layer_id("Device_Background")
+        self.claim_layer_id("Device_Border")
+        self.claim_layer_id("Dynamic_Island")
         svg = f'''
   <!-- Device Outer Frame: {html.escape(self.title)} -->
   <rect id="Device_Background" width="{self.width}" height="{self.height}" rx="52" fill="{bg_color}"/>
@@ -60,20 +90,26 @@ class FigmaSvgBuilder:
 '''
         self.elements.append(svg)
 
-    def add_status_bar(self, time_text: str = "14:00"):
+    def add_status_bar(self, time_text: str = "--:--"):
         """Tạo thanh Status Bar chuẩn iPhone 14 Pro Max không dùng emoji"""
+        self.claim_layer_id("Status_Bar")
+        validate_single_line(time_text, 8, "Status Time")
         svg = f'''
   <!-- Status Bar -->
   <g id="Status_Bar">
-    <text x="42" y="35" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="14" font-weight="600">{time_text}</text>
+    <text x="42" y="35" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="14" font-weight="600">{html.escape(time_text)}</text>
     <text x="{self.width - 42}" y="35" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="12" font-weight="600" text-anchor="end">5G • 100%</text>
   </g>
 '''
         self.elements.append(svg)
         self.current_y = 54
 
-    def add_header(self, title: str, show_back: bool = True, state_badge: str = ""):
+    def add_header(self, title: str, show_back: bool = True, state_badge: str = "", layer_id: str = "Header"):
         """Tạo Top Navigation Bar / Header"""
+        self.claim_layer_id(layer_id)
+        validate_single_line(title, 18 if state_badge else 28, "Screen Title")
+        if state_badge:
+            validate_single_line(state_badge, 16, "State Badge")
         y = self.current_y + 16
         back_btn = ""
         title_x = 24
@@ -91,7 +127,7 @@ class FigmaSvgBuilder:
 '''
         svg = f'''
   <!-- Header -->
-  <g id="Header">
+  <g id="{html.escape(layer_id)}">
     {badge_svg}
     {back_btn}
     <text x="{title_x}" y="{y + 19}" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="19" font-weight="700">{html.escape(title)}</text>
@@ -101,12 +137,17 @@ class FigmaSvgBuilder:
         self.elements.append(svg)
         self.current_y = y + 56
 
-    def add_section_title(self, title: str):
+    def add_section_title(self, title: str, layer_id: str = ""):
         """Tiêu đề phân mục (Section Header)"""
+        validate_single_line(title, 54, "Section Title")
+        resolved_layer_id = layer_id or f"Section_Title_{len([item for item in self.layer_ids if item.startswith('Section_Title_')]) + 1:02d}"
+        self.claim_layer_id(resolved_layer_id)
         y = self.current_y + 16
         svg = f'''
   <!-- Section Title -->
-  <text x="22" y="{y}" fill="{THEME['text_secondary']}" font-family="{FONT_FAMILY}" font-size="11" font-weight="800" letter-spacing="0.6">{html.escape(title.upper())}</text>
+  <g id="{html.escape(resolved_layer_id)}">
+    <text x="22" y="{y}" fill="{THEME['text_secondary']}" font-family="{FONT_FAMILY}" font-size="11" font-weight="800" letter-spacing="0.6">{html.escape(title.upper())}</text>
+  </g>
 '''
         self.elements.append(svg)
         self.current_y = y + 8
@@ -120,8 +161,35 @@ class FigmaSvgBuilder:
         price: str = "",
         highlight: bool = False,
         height: int = 120,
+        layer_id: str = "",
     ):
         """Tạo thẻ nội dung chuẩn chiều rộng 390px"""
+        validate_single_line(title, 26 if badge else 36, "Card Title")
+        if subtitle:
+            validate_single_line(subtitle, 46, "Card Subtitle")
+        if badge:
+            validate_single_line(badge, 16, "Card Badge")
+        if price:
+            validate_single_line(price, 16, "Price")
+        for detail in details or []:
+            validate_single_line(detail, 46, "Card Detail")
+
+        detail_count = len(details or [])
+        last_content_baseline = 28
+        if subtitle:
+            last_content_baseline = 52
+        if detail_count:
+            detail_start = 78 if subtitle else 54
+            last_content_baseline = detail_start + (detail_count - 1) * 19
+        minimum_height = last_content_baseline + (46 if price else 18)
+        if height < minimum_height:
+            raise ValueError(
+                f"Card height tối thiểu là {minimum_height}px cho title/subtitle/details/price hiện tại."
+            )
+
+        self.card_count += 1
+        resolved_layer_id = layer_id or f"Card_{self.card_count:02d}"
+        self.claim_layer_id(resolved_layer_id)
         y = self.current_y + 8
         card_w = self.width - 40
         stroke_color = THEME["primary"] if highlight else THEME["border_subtle"]
@@ -136,7 +204,7 @@ class FigmaSvgBuilder:
 '''
 
         details_svg = []
-        dy = y + 54
+        dy = y + (78 if subtitle else 54)
         if details:
             for d in details:
                 details_svg.append(
@@ -154,11 +222,11 @@ class FigmaSvgBuilder:
 
         svg = f'''
   <!-- Card: {html.escape(title)} -->
-  <g id="Card_{html.escape(title[:10])}">
+  <g id="{html.escape(resolved_layer_id)}">
     <rect x="20" y="{y}" width="{card_w}" height="{height}" rx="16" fill="{bg}" stroke="{stroke_color}" stroke-width="{stroke_width}"/>
     <text x="38" y="{y + 28}" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="15" font-weight="700">{html.escape(title)}</text>
     {badge_svg}
-    {f'<text x="38" y="{y + 46}" fill="{THEME["text_secondary"]}" font-family="{FONT_FAMILY}" font-size="12">{html.escape(subtitle)}</text>' if subtitle else ''}
+    {f'<text x="38" y="{y + 52}" fill="{THEME["text_secondary"]}" font-family="{FONT_FAMILY}" font-size="12">{html.escape(subtitle)}</text>' if subtitle else ''}
     {''.join(details_svg)}
     {price_svg}
   </g>
@@ -166,8 +234,13 @@ class FigmaSvgBuilder:
         self.elements.append(svg)
         self.current_y = y + height + 8
 
-    def add_stepper(self, steps: List[str], current_index: int = 1):
+    def add_stepper(self, steps: List[str], current_index: int = 1, layer_id: str = "Stepper"):
         """Tạo Timeline Stepper 4 mốc tiến độ chuẩn iPhone 14 Pro Max"""
+        if not steps or not 0 <= current_index < len(steps):
+            raise ValueError("Stepper cần danh sách bước và current_index hợp lệ.")
+        self.claim_layer_id(layer_id)
+        for step in steps:
+            validate_single_line(step, 12, "Stepper Label")
         y = self.current_y + 12
         card_w = self.width - 40
         height = 84
@@ -196,7 +269,7 @@ class FigmaSvgBuilder:
 
         svg = f'''
   <!-- Progress Stepper -->
-  <g id="Stepper">
+  <g id="{html.escape(layer_id)}">
     <rect x="20" y="{y}" width="{card_w}" height="{height}" rx="16" fill="{THEME['bg_card']}" stroke="{THEME['border_subtle']}" stroke-width="1"/>
     {line_svg}
     {''.join(step_nodes)}
@@ -205,8 +278,13 @@ class FigmaSvgBuilder:
         self.elements.append(svg)
         self.current_y = y + height + 10
 
-    def add_time_slots(self, slots: List[str], selected_idx: int = 0):
+    def add_time_slots(self, slots: List[str], selected_idx: int = 0, layer_id: str = "Time_Slots"):
         """Khung chọn giờ (Time Slots Grid)"""
+        if not slots or not 0 <= selected_idx < len(slots):
+            raise ValueError("Time Slots cần danh sách giờ và selected_idx hợp lệ.")
+        self.claim_layer_id(layer_id)
+        for slot in slots:
+            validate_single_line(slot, 16, "Time Slot")
         y = self.current_y + 8
         card_w = self.width - 40
         cols = len(slots)
@@ -227,31 +305,45 @@ class FigmaSvgBuilder:
 
         svg = f'''
   <!-- Time Slots -->
-  <g id="Time_Slots">
+  <g id="{html.escape(layer_id)}">
     {''.join(nodes)}
   </g>
 '''
         self.elements.append(svg)
         self.current_y = y + 54
 
-    def add_button(self, text: str, y_pos: Optional[int] = None, variant: str = "primary"):
+    def add_button(self, text: str, y_pos: Optional[int] = None, variant: str = "primary", layer_id: str = "Button_CTA"):
         """Tạo nút bấm chính (Button CTA) chuẩn ngón tay cái"""
+        if variant not in {"primary", "secondary"}:
+            raise ValueError("Button variant chỉ nhận primary hoặc secondary.")
+        self.claim_layer_id(layer_id)
+        validate_single_line(text, 36, "Button Label")
         y = y_pos if y_pos is not None else (self.height - 188)
+        if y < self.current_y + 12:
+            raise ValueError("CTA va chạm nội dung; cần điều chỉnh layout hoặc y_pos.")
+        if y + 56 > self.height - 132:
+            raise ValueError("CTA vượt vùng nội dung an toàn hoặc đè vùng Bottom Navigation.")
         bg = THEME["primary"] if variant == "primary" else THEME["bg_card"]
         fg = THEME["white"] if variant == "primary" else THEME["primary"]
         border = THEME["primary"] if variant != "primary" else "none"
 
         svg = f'''
   <!-- Primary Button -->
-  <g id="Button_CTA">
+  <g id="{html.escape(layer_id)}">
     <rect x="20" y="{y}" width="{self.width - 40}" height="56" rx="16" fill="{bg}" stroke="{border}" stroke-width="1.5"/>
     <text x="{self.width / 2}" y="{y + 35}" fill="{fg}" font-family="{FONT_FAMILY}" font-size="16" font-weight="700" text-anchor="middle">{html.escape(text)}</text>
   </g>
 '''
         self.elements.append(svg)
 
-    def add_bottom_nav(self, items: List[Dict[str, str]], active_idx: int = 0):
+    def add_bottom_nav(self, items: List[Dict[str, str]], active_idx: int = 0, layer_id: str = "Bottom_Navigation"):
         """Thanh điều hướng dưới đáy (Bottom Navigation Bar) kèm Home Indicator"""
+        if not items or not 0 <= active_idx < len(items):
+            raise ValueError("Bottom Navigation cần items và active_idx hợp lệ.")
+        for item in items:
+            validate_single_line(item.get("label", ""), 12, "Navigation Label")
+        self.claim_layer_id(layer_id)
+        self.claim_layer_id("Home_Indicator")
         y = self.height - 112
         item_w = self.width / len(items)
         nodes = []
@@ -267,66 +359,89 @@ class FigmaSvgBuilder:
 
         svg = f'''
   <!-- Bottom Navigation -->
-  <g id="Bottom_Navigation">
+  <g id="{html.escape(layer_id)}">
     <rect x="0" y="{y}" width="{self.width}" height="112" fill="{THEME['bg_card']}" stroke="{THEME['border_subtle']}" stroke-width="1"/>
     {''.join(nodes)}
     <!-- Home Indicator -->
-    <rect id="Home_Indicator" x="145" y="916" width="140" height="5" rx="2.5" fill="#0F172A"/>
+    <rect id="Home_Indicator" x="145" y="{HOME_INDICATOR_Y}" width="140" height="5" rx="2.5" fill="#0F172A"/>
   </g>
 '''
         self.elements.append(svg)
 
     def build(self) -> str:
         """Xuất toàn bộ mã XML SVG hoàn chỉnh"""
+        if not any('id="Home_Indicator"' in element for element in self.elements):
+            self.claim_layer_id("Home_Indicator")
+            self.elements.append(
+                f'<rect id="Home_Indicator" x="145" y="{HOME_INDICATOR_Y}" width="140" height="5" rx="2.5" fill="#0F172A"/>'
+            )
         body = "\n".join(self.elements)
         return f'''<svg width="{self.width}" height="{self.height}" viewBox="0 0 {self.width} {self.height}" fill="none" xmlns="http://www.w3.org/2000/svg">
 {body}
 </svg>'''
 
 
+def validate_prototype_output_path(output_path: str) -> Path:
+    """Chỉ cho phép SVG trong prototype/<persona-id>/<goal-id>/."""
+    root = (Path.cwd() / "deliverables" / "02-interaction-design" / "prototype").resolve()
+    target = Path(output_path).resolve()
+    try:
+        relative = target.relative_to(root)
+    except ValueError as exc:
+        raise ValueError(f"Output phải nằm trong {root}") from exc
+    filename_ok = bool(re.fullmatch(r"\d{2}_[a-z0-9][a-z0-9_-]*\.svg", target.name))
+    if len(relative.parts) != 3 or not filename_ok:
+        raise ValueError(
+            "Output phải có dạng prototype/<persona-id>/<goal-id>/<nn_screen-name>.svg"
+        )
+    return target
+
+
 def create_sample_screen(screen_type: str, output_path: str):
     """Tạo mẫu các loại màn hình khác nhau chuẩn iPhone 14 Pro Max"""
-    builder = FigmaSvgBuilder(430, 932, title=f"Screen_{screen_type}")
+    target_path = validate_prototype_output_path(output_path)
+    builder = FigmaSvgBuilder(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, title=f"Screen_{screen_type}")
     builder.add_background()
     builder.add_status_bar()
 
     if screen_type == "booking":
         builder.add_header("Đặt lịch chăm sóc", show_back=True)
-        builder.add_section_title("Thông tin thú cưng")
-        builder.add_card("Bông (Poodle Trắng)", subtitle="4.5 kg • Tiền sử dị ứng xà phòng thơm", badge="Hồ sơ", height=76)
-        builder.add_section_title("Chọn gói dịch vụ")
+        builder.add_section_title("Hồ sơ đã chọn")
+        builder.add_card("Tên thú cưng", subtitle="Thông tin lấy từ Scenario", badge="Hồ sơ", height=84, layer_id="Pet_Profile_Card")
+        builder.add_section_title("Chọn dịch vụ")
         builder.add_card(
-            title="Combo Tắm & Cắt Tỉa",
-            subtitle="Vệ sinh tai, cắt móng, tắm thảo dược khử mùi",
-            badge="[KHUYÊN DÙNG]",
-            price="250.000đ",
+            title="Dịch vụ từ Scenario",
+            subtitle="Không dùng dữ liệu mẫu làm nội dung thật",
+            badge="ĐÃ CHỌN",
             highlight=True,
-            height=140,
+            height=112,
+            layer_id="Service_Card",
         )
         builder.add_section_title("Khung giờ trống")
-        builder.add_time_slots(["09:00 - 10:00", "10:30 - 11:30", "14:00 - 15:00"], selected_idx=0)
-        builder.add_button("Xác nhận đặt lịch ➔")
+        builder.add_time_slots(["Khung A", "Khung B", "Khung C"], selected_idx=0)
+        builder.add_button("Xác nhận đặt lịch")
 
     elif screen_type == "tracking":
         builder.add_header("Theo dõi tiến độ", show_back=True)
         builder.add_stepper(["Đã nhận", "Chăm sóc", "Hoàn tất", "Chờ đón"], current_index=1)
         builder.add_section_title("Tình trạng hiện tại")
         builder.add_card(
-            title="Đang tắm thảo dược dịu nhẹ",
-            subtitle="Kỹ thuật viên: Nguyễn Văn A",
-            details=["• Đã kiểm tra da: không trầy xước", "• Đang dùng dầu tắm đặc trị da nhạy cảm"],
+            title="Trạng thái từ Scenario",
+            subtitle="Cập nhật UI theo Storyboard",
+            details=["Nội dung phải có nguồn truy vết"],
             height=120,
             highlight=True,
+            layer_id="Current_Status_Card",
         )
         builder.add_section_title("Ghi chú đặc biệt")
-        builder.add_card("Dặn dò từ chủ nuôi", subtitle="Tránh xịt nước trực tiếp vào tai bé", height=76)
+        builder.add_card("Yêu cầu đặc biệt", subtitle="Chỉ hiển thị dữ liệu có nguồn", height=84, layer_id="Special_Request_Card")
         builder.add_button("Liên hệ cơ sở ngay", variant="secondary")
 
     elif screen_type == "profile":
         builder.add_header("Hồ sơ thú cưng", show_back=False)
-        builder.add_card("Bé Bơ (Mèo Anh)", subtitle="Tuổi: 2 tuổi • Cân nặng: 4.2kg", badge="[ĐÃ TIÊM PHÒNG]", height=84)
-        builder.add_section_title("Tiền sử sức khỏe & Dị ứng")
-        builder.add_card("Dị ứng hương liệu nhân tạo", subtitle="Ghi chú: Luôn dùng sữa tắm hữu cơ Dermacare", height=80)
+        builder.add_card("Tên thú cưng", subtitle="Thông tin lấy từ Persona", badge="HỒ SƠ", height=84, layer_id="Pet_Profile_Card")
+        builder.add_section_title("Sức khỏe và yêu cầu")
+        builder.add_card("Thông tin từ Persona", subtitle="Không tự điền dữ liệu còn thiếu", height=84, layer_id="Health_Info_Card")
         builder.add_bottom_nav([
             {"label": "Trang chủ"},
             {"label": "Đặt lịch"},
@@ -335,14 +450,14 @@ def create_sample_screen(screen_type: str, output_path: str):
         ], active_idx=3)
 
     svg_content = builder.build()
-    Path(output_path).parent.mkdir(parents=True, exist_ok=True)
-    Path(output_path).write_text(svg_content, encoding="utf-8")
-    print(f"Generated SVG wireframe successfully: {output_path}")
+    target_path.parent.mkdir(parents=True, exist_ok=True)
+    target_path.write_text(svg_content, encoding="utf-8")
+    print(f"Generated SVG prototype successfully: {target_path}")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Sinh file SVG Wireframe kéo thả Figma chuẩn iPhone 14 Pro Max")
+    parser = argparse.ArgumentParser(description="Sinh file SVG Prototype kéo thả Figma chuẩn iPhone 14 Pro Max")
     parser.add_argument("--type", choices=["booking", "tracking", "profile"], default="booking", help="Loại màn hình mẫu")
-    parser.add_argument("--out", default="deliverables/generated-wireframe.svg", help="Đường dẫn file SVG đầu ra")
+    parser.add_argument("--out", required=True, help="Đường dẫn SVG đích trong deliverables/02-interaction-design/")
     args = parser.parse_args()
     create_sample_screen(args.type, args.out)

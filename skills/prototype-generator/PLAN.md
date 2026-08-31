@@ -1,19 +1,20 @@
 # Kế hoạch thực thi Prototype Generator
 
-Áp dụng kế hoạch này khi tạo mới hoặc dựng lại trọn vẹn một Prototype từ Scenario Future. Không dùng kế hoạch để mở rộng sản phẩm ngoài Goal đã chọn.
+Áp dụng kế hoạch này khi tạo mới hoặc dựng lại trọn vẹn một Prototype từ Storyboard bắt buộc và Scenario Future tương ứng. Không dùng kế hoạch để mở rộng sản phẩm ngoài Goal đã chọn.
 
 ## Điều kiện bắt đầu
 
 - Đã xác định đúng `<persona-id>` và `<goal-id>`.
+- Storyboard tương ứng tồn tại tại `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/`.
 - Scenario Future mục tiêu tồn tại và người dùng đã chọn rõ nếu có nhiều Scenario.
 - Persona và Value Proposition tương ứng có đủ dữ kiện cần dùng.
 - Đã đọc toàn bộ nguồn chuẩn bắt buộc trong `SKILL.md`.
 
-Nếu thiếu Scenario hoặc lựa chọn của người dùng, dừng trước khi sinh Frame. Nếu thiếu dữ kiện cụ thể, dùng nội dung phi định lượng có nguồn hoặc báo thiếu; không tự điền số liệu.
+Nếu thiếu Storyboard, Scenario hoặc lựa chọn của người dùng, dừng trước khi tạo bất kỳ output Prototype nào. Nếu thiếu dữ kiện cụ thể, dùng nội dung phi định lượng có nguồn hoặc báo thiếu; không tự điền số liệu.
 
-## Giai đoạn 1 — Phân rã Scenario
+## Giai đoạn 1 — Đối chiếu Storyboard và Scenario
 
-Trích xuất thành bảng làm việc nội bộ:
+Đọc Storyboard để xác định panel, bối cảnh trực quan, cảm xúc và visual continuity; đọc Scenario để xác định hành vi và phản hồi hệ thống. Trích xuất thành bảng làm việc nội bộ:
 
 | Thành phần | Nội dung cần xác định |
 |---|---|
@@ -22,8 +23,11 @@ Trích xuất thành bảng làm việc nội bộ:
 | System Feedbacks | Phản hồi tức thì sau từng thao tác |
 | Goal Completed | Trạng thái kết thúc giải quyết pain point nào |
 | Evidence | Câu hoặc dữ kiện nguồn hỗ trợ nội dung UI |
+| Storyboard Mapping | Panel hoặc nhịp chuyển tiếp tương ứng |
 
 Không đưa bảng nội bộ thành file bàn giao riêng.
+
+Nếu Storyboard và Scenario khác nhau về thứ tự hành động, kết quả hoặc dữ liệu, dừng và báo xung đột đầu vào trước khi lập Flow.
 
 ## Giai đoạn 2 — Dynamic Flow Graph
 
@@ -42,10 +46,23 @@ Trước khi vẽ, lập danh sách nội bộ cho từng Frame:
 - Frame ID và tên file.
 - Nội dung có nguồn được phép hiển thị.
 - Component chính và trạng thái active/inactive.
-- Hotspot ID, Trigger, Destination và System Feedback.
+- Layer ID cho Component và vùng tương tác dự kiến.
+- Trạng thái trực quan trước/sau của từng nhịp tương tác.
 - Điều kiện giữ hoặc xóa trạng thái khi quay lại.
 
-Layer ID phải duy nhất trong từng SVG và phải trùng chính tả với Interaction Spec.
+Layer ID phải duy nhất trong từng SVG và dùng cùng convention trên toàn Flow.
+
+Trước khi sang Giai đoạn 4, chốt **Flow Baseline** dùng chung:
+
+- App Shell và vùng nội dung.
+- Bảng Typography role.
+- Component geometry cho Header, Card, CTA, Stepper và Navigation.
+- State Tokens cho selected, disabled, warning, error, success và completed.
+- Quy ước Frame ID và Layer ID.
+- Quy tắc giữ Data State và trạng thái trực quan giữa các Frame.
+- Quy tắc ánh xạ Frame về panel Storyboard và xử lý visual continuity.
+
+Baseline chỉ dùng trong quá trình tạo và kiểm thử; không tạo file tài liệu riêng.
 
 ## Giai đoạn 4 — Sinh SVG
 
@@ -55,20 +72,15 @@ Layer ID phải duy nhất trong từng SVG và phải trùng chính tả với 
 4. Áp dụng viewport, thiết bị, vùng an toàn, Typography, Design Tokens và iconography từ nguồn chuẩn.
 5. Không dùng emoji, dữ liệu mẫu của generator hoặc giá trị không truy vết.
 6. Chỉ tạo các file SVG cần thiết cho Flow đã phân tích.
+7. Tái sử dụng Flow Baseline cho mọi Frame; không căn chỉnh từng màn hình độc lập theo cảm tính.
 
-## Giai đoạn 5 — Interaction Spec
+## Giai đoạn 5 — Hoàn thiện bộ SVG theo Flow
 
-Tạo duy nhất `interaction-spec.md` gồm:
-
-1. Persona, Goal, Scenario nguồn và phạm vi mô phỏng UI/UX.
-2. Dynamic Flow Graph.
-3. Danh sách Frame ID ↔ tên SVG ↔ mục đích.
-4. Ma trận Source Frame, Hotspot/Layer ID, Trigger, Destination, Transition và System Feedback.
-5. Điều hướng ngược và quy tắc giữ trạng thái.
-6. Checklist đối chiếu từng nhịp Scenario.
-7. Trạng thái Figma: URL, version, ngày kiểm chứng và kết quả chạy thử; hoặc ghi rõ `Chưa wire trên Figma`.
-
-Không ghi URL, version hoặc kết quả chạy thử nếu chưa có bằng chứng thực tế.
+1. Bảo đảm mỗi Frame cần thiết đã có một file SVG theo đúng thứ tự.
+2. Tạo SVG trạng thái trung gian khi người dùng cần nhìn thấy thay đổi trực quan quan trọng.
+3. Giữ Frame ID, Layer ID, App Shell, Typography, Component geometry và Data State nhất quán.
+4. Bảo đảm mỗi SVG truy vết được về Storyboard và không mâu thuẫn với Scenario.
+5. Không tạo `interaction-spec.md` hoặc bất kỳ file bàn giao nào ngoài SVG.
 
 ## Giai đoạn 6 — Kiểm thử tĩnh
 
@@ -77,29 +89,27 @@ Chỉ chuyển sang bàn giao khi đạt toàn bộ gate:
 - Mọi SVG parse XML thành công.
 - Viewport và thành phần thiết bị khớp layout rules.
 - Không trùng Layer ID.
-- Mọi Hotspot trong Interaction Spec tồn tại trong SVG nguồn.
+- Các vùng tương tác dự kiến có Layer ID ngữ nghĩa, duy nhất và nhất quán.
 - Không tràn lề, va chạm ngang/dọc hoặc khoảng cách dòng sai.
 - Không có emoji màu, HTML, PNG, script, log hay Markdown phụ.
 - Không có nội dung hoặc số liệu không truy vết.
 - Mỗi User Action và System Feedback trong Scenario đã được ánh xạ.
+- Mỗi Frame đã được ánh xạ về Storyboard panel hoặc transition hợp lệ.
+- App Shell, Typography roles, Component geometry, State Tokens, Navigation và naming convention giống nhau trên toàn bộ Frame.
+- Cùng semantic instance giữ nguyên Layer ID, cấu trúc nhóm và geometry giữa các SVG trạng thái liên quan.
+- Data State chỉ thay đổi sau User Action hoặc System Feedback có trong Storyboard/Scenario.
 
 Nếu không có renderer trực quan, ghi rõ giới hạn QA; không tuyên bố đã kiểm tra bằng mắt.
 
-## Giai đoạn 7 — Kiểm chứng Figma
+## Giai đoạn 7 — Bàn giao bộ SVG
 
-Khi có quyền truy cập Figma:
-
-1. Import các SVG vào cùng một Page theo thứ tự Flow.
-2. Đặt Starting Point.
-3. Nối Hotspot, Trigger, Transition và Component Variant theo Interaction Spec.
-4. Chạy thử từ Entry đến Goal Completed, bao gồm các nhánh quay lại quan trọng.
-5. Ghi URL/version và kết quả kiểm chứng thật vào `interaction-spec.md`.
-
-Khi không có quyền truy cập Figma, dừng ở trạng thái **Prototype assets/spec**. Không gọi sản phẩm là Interactive Prototype hoàn chỉnh.
+1. Kiểm tra thư mục đầu ra chỉ chứa các file `.svg` theo thứ tự Flow.
+2. Báo cáo danh sách file đã tạo và kết quả kiểm thử tĩnh.
+3. Nêu rõ bộ SVG tương thích để người dùng tự import và kết nối trên Figma.
+4. Không mở Figma, không import, không nối Interaction, không chạy thử Figma và không yêu cầu URL/version.
 
 ## Điều kiện hoàn thành
 
-- **Prototype assets/spec hoàn thành:** SVG và Interaction Spec đạt toàn bộ kiểm thử tĩnh; Interaction Spec ghi `Chưa wire trên Figma`.
-- **Interactive Prototype hoàn thành:** đạt điều kiện trên, đã wire và chạy thử trên Figma, có URL/version/bằng chứng thực tế.
+- **Prototype SVG hoàn thành:** toàn bộ SVG cần thiết cho Flow đã được tạo, đạt kiểm thử tĩnh và Cross-frame Consistency Test.
 
-Khi báo cáo, nêu rõ trạng thái nào đã đạt, các file bàn giao và mọi giới hạn kiểm chứng còn lại.
+Khi báo cáo, nêu các file SVG bàn giao và mọi giới hạn kiểm thử tĩnh còn lại. Việc tạo Interactive Prototype trên Figma không thuộc phạm vi hoàn thành của agent.
