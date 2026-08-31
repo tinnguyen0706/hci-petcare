@@ -2,27 +2,27 @@
 
 \usepackage{style}
 
-% Disable indentation on new paragraphs
-% \setlength{\parindent}{0pt}
-
 % Define course name, report name and report title.
-\newcommand{\coursename}{Tên môn học}
-\newcommand{\reporttitle}{Tiêu đề báo cáo}
+\newcommand{\coursename}{Tương tác Người -- Máy (CSC12106)}
+\newcommand{\reporttitle}{Hệ thống hỗ trợ đặt lịch, gửi yêu cầu và theo dõi quá trình chăm sóc thú cưng}
 % Dùng tiêu đề rút gọn khi \reporttitle dài quá hai dòng trên header.
-\newcommand{\headertitle}{\reporttitle}
+\newcommand{\headertitle}{Hệ thống hỗ trợ chăm sóc thú cưng}
 
-\newcommand{\studentname}{MSSV - Họ và Tên}
-\newcommand{\teachername}{TS. Nguyễn Văn hướng dẫn}
+\newcommand{\studentname}{%
+  23127327 -- Lưu Ngô Quốc Bảo\\
+  23127328 -- Nguyễn Quốc Bảo\\
+  23127498 -- Nguyễn Trọng Tín%
+}
+\newcommand{\teachername}{%
+  Lê Thị Nhàn\\
+  Lương Vĩ Minh%
+}
 
 % Header
 \lhead{\parbox[b]{0.62\textwidth}{%
 \setstretch{1}\raggedright\headertitle}}
 \rhead{\parbox[b]{0.28\textwidth}{%
 \setstretch{1}\raggedleft\coursename}}
-
-% Footer
-% \newcommand{\leftfooter}{\LaTeX\ by \href{https://github.com/trhgquan}{Quan, Tran Hoang}}
-% \lfoot{\leftfooter}
 
 % ============ DOCUMENT ============
 \begin{document}
@@ -37,18 +37,22 @@
 
 \pagenumbering{arabic}
 
-% Main content
-\input{content/section}
-\input{content/hinhanh}
-\input{content/bangbieu}
-\input{content/congthuctoan}
-\input{content/code}
-\input{content/ngonngu}
-\input{content/cite}
-\input{content/mytam}
+% Main content - 9 chương chuẩn HCI
+\input{content/01_gioi_thieu}
+\input{content/02_nghien_cuu_nguoi_dung}
+\input{content/03_yeu_cau_muc_tieu}
+\input{content/04_phan_tich_hien_tai}
+\input{content/05_qua_trinh_thiet_ke}
+\input{content/06_thiet_ke_prototype}
+\input{content/07_danh_gia_thiet_ke}
+\input{content/08_thiet_ke_cuoi_cung}
+\input{content/09_ket_luan}
 
 % References
 \input{ref/acknowledgement}
 \input{ref/ref.tex}
+
+% Appendix
+\input{ref/appendix}
 
 \end{document}
