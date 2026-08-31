@@ -20,8 +20,10 @@ Chuyển hóa kịch bản tương tác tương lai (**Scenario Future / To-Be S
 
 ## Chiến lược suy luận & Hiện thực hóa
 
-1. **Xác định kịch bản mục tiêu**: Nếu người dùng chưa chỉ định rõ, liệt kê danh sách 6 kịch bản Scenario Future kèm thông tin Persona và Goal để người dùng lựa chọn 1 kịch bản.
-2. Đọc nội dung chi tiết của tệp `scenario-future-goal-*.md` được chọn.
+1. **Kiểm tra Tiền điều kiện (BẮT BUỘC)**:
+   - Kiểm tra Storyboard tương ứng tại `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/`.
+   - **Nếu thiếu Storyboard**: Dừng lại ngay lập tức (HALT) và báo lỗi `LỖI TIỀN ĐIỀU KIỆN: Thiếu Storyboard`.
+2. Đọc nội dung chi tiết của Storyboard và tệp `scenario-future-goal-*.md` được chọn.
 3. Thiết lập sơ đồ luồng màn hình động (Dynamic Flow Graph) riêng cho kịch bản đó.
 4. Xác định các Frame và Hotspot tương ứng.
 5. Gọi `figma-agent` sinh mã SVG vector chuẩn Design Tokens cho từng màn hình và tuân thủ `rules/layout-and-typography-rules.md`.
@@ -29,7 +31,7 @@ Chuyển hóa kịch bản tương tác tương lai (**Scenario Future / To-Be S
 
 ## Quy tắc kiểm tra & Định dạng đầu ra
 
-- Prototype phải phản ánh trung thực toàn bộ diễn biến của kịch bản To-Be đầu vào.
+- Prototype phải phản ánh trung thực toàn bộ diễn biến của Storyboard và kịch bản To-Be đầu vào.
 - Đảm bảo tính nhất quán của Design Tokens (Teal, Coral, Amber, Rose, Inter font).
 - Không mô tả prototype mô phỏng UI là hệ thống backend real-time khi chưa lập trình.
 - **Quy chuẩn định dạng bàn giao (Strictly SVG & MD)**: Sản phẩm chỉ gồm các tệp bản vẽ vector `.svg` chuẩn Figma và tài liệu `interaction-spec.md`. **Tuyệt đối KHÔNG tạo tệp `.html`**.

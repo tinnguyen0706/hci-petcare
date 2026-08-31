@@ -47,10 +47,15 @@
 - **Tôn trọng workflow**: Tuân thủ các workflow mà làm việc, không làm ngoài phạm vi workflow.
 - **Tuân thủ đúng phạm vi tài liệu (Scope Minimization)**: Khi thực thi nhiệm vụ theo vai trò của Agent nào, chỉ được đọc và tham chiếu đúng các file được liệt kê trong định nghĩa của Agent đó (`agents/<tên-agent>.md`) và dữ liệu đầu vào trong `data/`.
 - **Từ ngữ dễ hiều**: Ưu tiên sử dụng những từ ngữ dễ hiểu cho người Việt.
+- **Kiểm tra Tiền điều kiện Bắt buộc (Strict Precondition Enforcement)**:
+  - **Khi tạo Prototype**: Bắt buộc **phải dựa trên Storyboard** tương ứng (`deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/`). Nếu thiếu Storyboard, **tuyệt đối KHÔNG ĐƯỢC PHÉP tạo Prototype mà PHẢI BÁO LỖI VÀ DỪNG LẠI NGAY LẬP TỨC**.
+  - **Khi tạo Wireframe**: Bắt buộc **phải dựa trên Prototype** tương ứng (`deliverables/02-interaction-design/prototype/<persona-id>/<goal-id>/`). Nếu thiếu Prototype, **tuyệt đối KHÔNG ĐƯỢC PHÉP tạo Wireframe mà PHẢI BÁO LỖI VÀ DỪNG LẠI NGAY LẬP TỨC**.
+  - Luôn kiểm tra sự tồn tại của artifact tiền điều kiện ngay bước đầu; nếu thiếu, đưa ra thông báo lỗi chi tiết nêu rõ artifact còn thiếu và dừng thực thi, hướng dẫn người dùng kích hoạt Agent phù hợp để tạo artifact tiền điều kiện trước.
 
 ### Những gì AI Assistant KHÔNG ĐƯỢC làm
 
 - **Tuyệt đối không tự bịa số liệu**, trích dẫn phỏng vấn, kết quả nghiên cứu hay bằng chứng đóng góp nhóm.
+- **Không tự ý tạo "nhảy cóc" khi thiếu tiền điều kiện**: Tuyệt đối không tự ý tạo Prototype khi chưa có Storyboard, không tự ý tạo Wireframe khi chưa có Prototype.
 - **Không tự mở rộng phạm vi sản phẩm**: Không tự ý biến ứng dụng thành hệ thống quản lý cơ sở/ERP phòng khám phức tạp ngoài phạm vi dành cho chủ nuôi.
 - **Không tự đổi Tech Stack**: Không tự thêm backend phức tạp hay đổi framework khi chưa có yêu cầu từ người dùng.
 - **Không tự ý đọc lan man ngoài phạm vi**: Tuyệt đối không tự ý mở, đọc hoặc quét qua các file rules khác, tài liệu môn học (`references/`), deliverables hay template của các giai đoạn/agent khác khi không được workflow hoặc người dùng yêu cầu.
@@ -64,25 +69,37 @@
 
 ```mermaid
 graph LR
-    Step1["1. Tiếp nhận yêu cầu"] --> Step2["2. Nắm rõ yêu cầu"]
-    Step2 --> Step3["3. Tìm kiếm & Kích hoạt Subagent"]
+    Step1["1. Tiếp nhận yêu cầu"] --> Step2["2. Kiểm tra Tiền điều kiện"]
+    Step2 --> Step3["3. Kích hoạt Subagent"]
     Step3 --> Step4["4. Thực thi nhiệm vụ"]
     Step4 --> Step5["5. Báo cáo kết quả"]
 ```
 
+```mermaid
+graph TD
+    UserResearch["01. User Research (Persona, Scenario Future)"] --> Storyboard["02. Storyboard (storyboard-agent)"]
+    Storyboard -->|Tiền điều kiện bắt buộc| Prototype["03. Prototype (prototype-agent)"]
+    Prototype -->|Tiền điều kiện bắt buộc| Wireframe["04. Wireframe (wireframe-agent)"]
+    Wireframe --> SoftwareProduct["05. Software Product (software-product-agent)"]
+```
+
 1. **Tiếp nhận yêu cầu**: Lắng nghe yêu cầu cụ thể từ người dùng về tính năng, tài liệu, thiết kế hoặc kiểm thử.
-2. **Nắm rõ yêu cầu của người dùng**:
-   - Phân tích mục tiêu, phạm vi công việc, dữ liệu đầu vào cần dùng (trong `data/`, `docs/`, `deliverables/`) và tiêu chí hoàn thành.
-   - Trao đổi ngay nếu có điểm chưa rõ ràng hoặc thiếu dữ kiện cần thiết.
+2. **Kiểm tra Tiền điều kiện & Nắm rõ yêu cầu**:
+   - Phân tích mục tiêu, phạm vi công việc và kiểm tra sự tồn tại của **artifact tiền điều kiện**:
+     - Cần làm **Storyboard** $\rightarrow$ Tiền điều kiện: `scenario-future` tương ứng.
+     - Cần làm **Prototype** $\rightarrow$ Tiền điều kiện: `storyboard` tương ứng. *(Nếu thiếu $\rightarrow$ Báo lỗi & Dừng lại)*.
+     - Cần làm **Wireframe** $\rightarrow$ Tiền điều kiện: `prototype` tương ứng. *(Nếu thiếu $\rightarrow$ Báo lỗi & Dừng lại)*.
+     - Cần làm **Software Product** $\rightarrow$ Tiền điều kiện: `wireframe` & `prototype` tương ứng.
+   - Nếu thiếu bất kỳ tiền điều kiện nào: **Báo lỗi cụ thể và dừng lại ngay**, yêu cầu người dùng hoàn thành bước trước.
 3. **Tìm kiếm & Sử dụng Subagent thích hợp**:
    - Xác định và áp dụng kỹ năng/subagent phù hợp theo 11 chuyên môn:
      - `persona-agent`: Xây dựng Persona chuẩn 1 trang từ dữ liệu phỏng vấn.
      - `value-proposition-agent`: Lập Value Proposition Canvas tương ứng Persona.
      - `scenario-current-agent`: Mô tả kịch bản và khó khăn của quy trình cũ.
      - `scenario-new-agent`: Thiết kế kịch bản luồng tương tác mới.
-     - `storyboard-agent`: Soạn kịch bản và tạo Storyboard trực quan.
-     - `wireframe-agent`: Thiết kế Wireframe mobile-first chi tiết, tiện dụng.
-     - `prototype-agent`: Quản lý và xây dựng Prototype tương tác (Figma).
+     - `storyboard-agent`: Soạn kịch bản và tạo Storyboard trực quan (Tiền điều kiện cho Prototype).
+     - `prototype-agent`: Quản lý và xây dựng Interactive Prototype từ Storyboard (Tiền điều kiện cho Wireframe).
+     - `wireframe-agent`: Thiết kế Wireframe mobile-first 5 trạng thái dựa trên Prototype.
      - `software-product-agent`: Lập trình ứng dụng Web React + TypeScript (`src/`).
      - `presentation-agent`: Soạn Slide thuyết trình và nội dung Q&A phản biện.
      - `report-agent`: Tổng hợp và biên soạn Báo cáo cuối kỳ (>6 trang).

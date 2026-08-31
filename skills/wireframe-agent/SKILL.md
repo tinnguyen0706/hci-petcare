@@ -17,21 +17,24 @@ Biến Scenario mới thành giao diện mobile-first có thể kiểm tra về 
 
 ## Chiến lược suy luận
 
-1. Ánh xạ mỗi bước Scenario thành screen, state hoặc transition.
-2. Nhóm screen theo tác vụ và xác định navigation tối thiểu.
-3. Thiết kế happy path trước, sau đó bổ sung loading, empty, error, success và recovery.
-4. Dùng component và pattern nhất quán cho cùng một ý nghĩa.
-5. Gắn annotation cho tương tác, responsive intent và accessibility không thể hiện hết bằng hình.
+1. **Kiểm tra Tiền điều kiện (BẮT BUỘC)**:
+   - Kiểm tra bộ Prototype tương ứng tại `deliverables/02-interaction-design/prototype/<persona-id>/<goal-id>/`.
+   - **Nếu thiếu Prototype**: Dừng lại ngay lập tức (HALT) và báo lỗi `LỖI TIỀN ĐIỀU KIỆN: Thiếu Prototype`.
+2. Ánh xạ các Frame và component của Prototype thành cấu trúc Wireframe 5 trạng thái.
+3. Nhóm screen theo tác vụ và xác định navigation tối thiểu.
+4. Thiết kế happy path (Main Flow) trước, sau đó bổ sung loading, empty, error, success và recovery.
+5. Dùng component và pattern nhất quán cho cùng một ý nghĩa.
+6. Gắn annotation cho tương tác, responsive intent và accessibility không thể hiện hết bằng hình.
 
 ## Quy tắc kiểm tra
 
-- Bao phủ đủ bốn đoạn hành trình và các trạng thái biên phù hợp.
-- Label, hierarchy và vùng chạm phải rõ trên viewport điện thoại.
+- Bao phủ đủ bốn đoạn hành trình và 5 trạng thái biên (Main, Loading, Empty, Error, Success).
+- Label, hierarchy và vùng chạm phải rõ trên viewport điện thoại (375x812).
 - Không truyền đạt trạng thái chỉ bằng màu; ghi focus và accessibility annotation.
 - Không gọi sketch thiếu state, annotation hoặc phiên bản là Wireframe hoàn chỉnh.
 
 ## Xử lý khi thiếu dữ liệu hoặc thất bại
 
-- Dừng nếu Scenario mới chưa được chấp nhận hoặc design input không có nguồn.
+- **Dừng ngay lập tức nếu thiếu Prototype** tiền điều kiện và báo lỗi rõ ràng.
 - Ghi screen/state còn thiếu trong inventory thay vì tuyên bố luồng đã đủ.
-- Trả về Scenario để làm rõ nếu không thể xác định action, response hoặc recovery.
+- Trả về Scenario/Prototype để làm rõ nếu không thể xác định action, response hoặc recovery.

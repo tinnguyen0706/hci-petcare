@@ -34,7 +34,8 @@
 
 ## Input
 
-- **Kịch bản Scenario Future cần dựng Prototype**: `deliverables/01-user-research/scenario-future/<persona-id>/scenario-future-<goal-id>.md` (do người dùng chỉ định hoặc quét toàn bộ).
+- **Tiền điều kiện bắt buộc (Mandatory Precondition)**: Bộ **Storyboard** hoàn chỉnh tương ứng tại `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/` (gồm `data.json`, `storyboard.png`, các assets frame phân cảnh) hoặc `deliverables/01-user-research/storyboard/<persona-id>/<goal-id>/`.
+- **Kịch bản Scenario Future**: `deliverables/01-user-research/scenario-future/<persona-id>/scenario-future-<goal-id>.md`.
 - Thông tin Persona & Value Proposition (`deliverables/01-user-research/persona/personas.json`, `value-proposition/`).
 - Design Tokens và quy chuẩn thiết kế trong `AGENTS.md`.
 
@@ -42,21 +43,26 @@
 
 - Thư mục Prototype tại `deliverables/02-interaction-design/prototype/<persona-id>/<goal-id>/` (hoặc thư mục luồng tương ứng):
   - Bộ tệp SVG Interactive Frame chuẩn Figma cho kịch bản đó (ví dụ: `01_screen_name.svg`, `02_screen_name.svg`...).
-  - Bảng đặc tả tương tác `interaction-spec.md` (Mapping cụ thể các bước trong kịch bản đó với Frame ID, Hotspot, Trigger, Transition, System Feedback).
+  - Bảng đặc tả tương tác `interaction-spec.md` (Mapping cụ thể các bước trong Storyboard & kịch bản đó với Frame ID, Hotspot, Trigger, Transition, System Feedback).
   - *(Lưu ý: Không tạo tệp `.html`)*.
 
 ## Workflow
 
-1. **Xác định kịch bản đầu vào (Interactive Selection)**:
-   - Quét toàn bộ các tệp kịch bản tại `deliverables/01-user-research/scenario-future/`.
-   - Nếu chưa có chỉ định cụ thể từ người dùng: **Hiển thị danh sách các `scenario-future` có sẵn (kèm Persona và Goal tương ứng)** để người dùng lựa chọn 1 kịch bản mục tiêu trước khi tiến hành dựng Prototype.
-2. **Phân tích nhịp tương tác To-Be**:
-   - Đọc kỹ Scenario Future được chọn, trích xuất chuỗi: *Điểm bắt đầu (Entry/Trigger) $\rightarrow$ Hành động người dùng (Step 1..N) $\rightarrow$ Phản hồi hệ thống $\rightarrow$ Trạng thái hoàn thành*.
+1. **Kiểm tra Tiền điều kiện (Precondition Gate - BẮT BUỘC)**:
+   - Xác định kịch bản mục tiêu (`persona_id` và `goal_id`).
+   - Kiểm tra sự tồn tại của Storyboard tương ứng tại `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/` hoặc `deliverables/01-user-research/storyboard/`.
+   - **XỬ LÝ KHI THIẾU TIỀN ĐIỀU KIỆN**:
+     - Nếu **CHƯA CÓ STORYBOARD**: **Dừng lại ngay lập tức (HALT)**, không tạo bất kỳ file nào và xuất thông báo lỗi:
+       > `❌ LỖI TIỀN ĐIỀU KIỆN (PRECONDITION FAILED): Không tìm thấy Storyboard cho kịch bản [persona-id: <persona-id> | goal-id: <goal-id>]. Theo quy định bắt buộc của dự án, Prototype phải được xây dựng dựa trên Storyboard. Vui lòng kích hoạt 'storyboard-agent' để tạo Storyboard trước khi tiến hành dựng Prototype.`
+2. **Phân tích nhịp tương tác từ Storyboard & Scenario To-Be**:
+   - Đọc kỹ Storyboard (các panel phân cảnh, chuyển biến cảm xúc, UI mockup trong khung tranh) và Scenario Future được chọn.
+   - Trích xuất chuỗi: *Điểm bắt đầu (Entry/Trigger) $\rightarrow$ Hành động người dùng (Step 1..N) $\rightarrow$ Phản hồi hệ thống $\rightarrow$ Trạng thái hoàn thành*.
 3. **Thiết lập luồng màn hình động (Dynamic Flow Graph)**:
-   - Tự động xác định danh sách các Frame cần có để thể hiện trọn vẹn diễn biến câu chuyện của kịch bản đó.
+   - Tự động xác định danh sách các Frame cần có để thể hiện trọn vẹn diễn biến câu chuyện đã được phác họa trong Storyboard.
 4. **Gọi Subagent `figma-agent`**:
-   - Yêu cầu `figma-agent` sinh mã vector SVG chuẩn cho từng màn hình với đầy đủ nội dung, nhãn và component theo đúng kịch bản và tuân thủ `rules/layout-and-typography-rules.md`.
+   - Yêu cầu `figma-agent` sinh mã vector SVG chuẩn cho từng màn hình với đầy đủ nội dung, nhãn và component theo đúng phân cảnh Storyboard và tuân thủ `rules/layout-and-typography-rules.md`.
 5. **Lập ma trận đặc tả tương tác (Interaction Spec)**:
    - Ghi nhận chi tiết từng Hotspot (Layer ID), Trigger (On Click, Auto Delay), Transition (Smart Animate, Slide In) nối giữa các Frame trong tệp `interaction-spec.md`.
 6. **Kiểm tra tính nhất quán & Bàn giao**:
-   - Đối chiếu lại với kịch bản gốc để đảm bảo toàn bộ hành vi và phản hồi trong Scenario Future đã được phản ánh 100% trên Prototype.
+   - Đối chiếu lại với Storyboard và kịch bản gốc để đảm bảo toàn bộ hành vi và phản hồi đã được phản ánh 100% trên Prototype.
+
