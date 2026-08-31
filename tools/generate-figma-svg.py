@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Bộ công cụ sinh mã SVG Wireframe / Mockup chuẩn Figma.
-Hỗ trợ tạo các màn hình chuẩn Mobile (375x812), Tablet, Desktop với các component UI có thể kéo thả 100% vào Figma.
+Hỗ trợ tạo các màn hình chuẩn iPhone 14 Pro Max (430x932) với các component UI có thể kéo thả 100% vào Figma.
+Tuân thủ nghiêm ngặt rules/layout-and-typography-rules.md: Không dùng emoji màu mè, layout sắc nét.
 """
 
 from __future__ import annotations
@@ -15,22 +16,22 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 
-# Bảng màu chuẩn dự án (HCI Design Tokens)
+# Bảng màu chuẩn dự án (HCI Design Tokens - Tinh tế, không sặc sỡ)
 THEME = {
     "primary": "#0D766E",       # Xanh teal chủ đạo
     "primary_dark": "#0F4C45",  # Teal đậm
     "primary_light": "#F0FDFA", # Nền teal nhạt
     "primary_border": "#CCFBF1",# Viền teal mờ
-    "accent_coral": "#E06236",  # Cam san hô
-    "accent_amber": "#D97706",  # Hổ phách
-    "accent_danger": "#BE123C", # Đỏ cảnh báo dị ứng
+    "accent_rose": "#9F1239",   # Đỏ cảnh báo dị ứng (Rose 800)
+    "accent_rose_bg": "#FFF1F2",# Nền cảnh báo dị ứng
+    "accent_rose_border": "#FECDD3",
     "bg_page": "#F8FAFC",       # Nền trang
     "bg_card": "#FFFFFF",       # Nền thẻ card
-    "border_subtle": "#E2E8F0", # Viền phân cách
+    "border_subtle": "#E2E8F0", # Viền phân cách mỏng
     "border_dashed": "#CBD5E1",
-    "text_primary": "#0F172A",  # Chữ chính (đen đậm)
-    "text_secondary": "#64748B",# Chữ phụ / nhãn
-    "text_muted": "#94A3B8",    # Chữ mờ / placeholder
+    "text_primary": "#0F172A",  # Chữ chính (Slate 900)
+    "text_secondary": "#64748B",# Chữ phụ / nhãn (Slate 500)
+    "text_muted": "#94A3B8",    # Chữ mờ / placeholder (Slate 400)
     "white": "#FFFFFF",
 }
 
@@ -38,71 +39,74 @@ FONT_FAMILY = 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, san
 
 
 class FigmaSvgBuilder:
-    """Builder sinh mã SVG tương thích 100% với Figma Vector Engine."""
+    """Builder sinh mã SVG tương thích 100% với Figma Vector Engine chuẩn iPhone 14 Pro Max (430x932)."""
 
-    def __init__(self, width: int = 375, height: int = 812, title: str = "Screen Frame"):
+    def __init__(self, width: int = 430, height: int = 932, title: str = "Screen Frame"):
         self.width = width
         self.height = height
         self.title = title
         self.elements: List[str] = []
         self.current_y = 0
 
-    def add_background(self, bg_color: str = THEME["bg_page"], border_color: str = THEME["border_subtle"]):
-        """Tạo nền cho toàn bộ Frame"""
+    def add_background(self, bg_color: str = THEME["bg_page"], border_color: str = "#CBD5E1"):
+        """Tạo khung viền iPhone 14 Pro Max với Dynamic Island"""
         svg = f'''
-  <!-- Background Frame: {html.escape(self.title)} -->
-  <rect id="Frame_Background" width="{self.width}" height="{self.height}" rx="28" fill="{bg_color}"/>
-  <rect id="Frame_Border" x="1" y="1" width="{self.width - 2}" height="{self.height - 2}" rx="27" fill="none" stroke="{border_color}" stroke-width="2"/>
+  <!-- Device Outer Frame: {html.escape(self.title)} -->
+  <rect id="Device_Background" width="{self.width}" height="{self.height}" rx="52" fill="{bg_color}"/>
+  <rect id="Device_Border" x="1" y="1" width="{self.width - 2}" height="{self.height - 2}" rx="51" fill="none" stroke="{border_color}" stroke-width="2"/>
+  
+  <!-- Dynamic Island -->
+  <rect id="Dynamic_Island" x="152" y="12" width="126" height="35" rx="17.5" fill="#0F172A"/>
 '''
         self.elements.append(svg)
 
-    def add_status_bar(self, time_text: str = "09:41"):
-        """Tạo thanh Status Bar chuẩn Mobile"""
+    def add_status_bar(self, time_text: str = "14:00"):
+        """Tạo thanh Status Bar chuẩn iPhone 14 Pro Max không dùng emoji"""
         svg = f'''
   <!-- Status Bar -->
   <g id="Status_Bar">
-    <text x="24" y="32" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="14" font-weight="600">{time_text}</text>
-    <text x="{self.width - 65}" y="32" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="12">📶 5G 🔋</text>
+    <text x="42" y="35" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="14" font-weight="600">{time_text}</text>
+    <text x="{self.width - 42}" y="35" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="12" font-weight="600" text-anchor="end">5G • 100%</text>
   </g>
 '''
         self.elements.append(svg)
-        self.current_y = 44
+        self.current_y = 54
 
-    def add_header(self, title: str, show_back: bool = True, action_icon: str = ""):
+    def add_header(self, title: str, show_back: bool = True, state_badge: str = ""):
         """Tạo Top Navigation Bar / Header"""
-        y = self.current_y + 12
+        y = self.current_y + 16
         back_btn = ""
         title_x = 24
         if show_back:
-            title_x = 68
+            title_x = 76
             back_btn = f'''
-    <circle cx="40" cy="{y + 14}" r="18" fill="{THEME['bg_card']}" stroke="{THEME['border_subtle']}" stroke-width="1"/>
-    <text x="34" y="{y + 20}" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="18" font-weight="bold">‹</text>
+    <circle cx="42" cy="{y + 12}" r="20" fill="{THEME['bg_card']}" stroke="{THEME['border_subtle']}" stroke-width="1"/>
+    <text x="36" y="{y + 19}" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="20" font-weight="bold">‹</text>
 '''
-        action_btn = ""
-        if action_icon:
-            action_btn = f'''
-    <circle cx="{self.width - 40}" cy="{y + 14}" r="18" fill="{THEME['bg_card']}" stroke="{THEME['border_subtle']}" stroke-width="1"/>
-    <text x="{self.width - 46}" y="{y + 20}" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="14">{html.escape(action_icon)}</text>
+        badge_svg = ""
+        if state_badge:
+            badge_svg = f'''
+    <rect x="{self.width - 180}" y="{y}" width="160" height="24" rx="6" fill="{THEME['primary']}"/>
+    <text x="{self.width - 100}" y="{y + 16}" fill="{THEME['white']}" font-family="{FONT_FAMILY}" font-size="11" font-weight="700" text-anchor="middle">{html.escape(state_badge)}</text>
 '''
         svg = f'''
   <!-- Header -->
   <g id="Header">
+    {badge_svg}
     {back_btn}
-    <text x="{title_x}" y="{y + 20}" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="18" font-weight="700">{html.escape(title)}</text>
-    {action_btn}
+    <text x="{title_x}" y="{y + 19}" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="19" font-weight="700">{html.escape(title)}</text>
     <line x1="0" y1="{y + 44}" x2="{self.width}" y2="{y + 44}" stroke="{THEME['border_subtle']}" stroke-width="1"/>
   </g>
 '''
         self.elements.append(svg)
-        self.current_y = y + 54
+        self.current_y = y + 56
 
     def add_section_title(self, title: str):
         """Tiêu đề phân mục (Section Header)"""
         y = self.current_y + 16
         svg = f'''
   <!-- Section Title -->
-  <text x="20" y="{y}" fill="{THEME['text_secondary']}" font-family="{FONT_FAMILY}" font-size="12" font-weight="700" letter-spacing="0.6">{html.escape(title.upper())}</text>
+  <text x="22" y="{y}" fill="{THEME['text_secondary']}" font-family="{FONT_FAMILY}" font-size="11" font-weight="800" letter-spacing="0.6">{html.escape(title.upper())}</text>
 '''
         self.elements.append(svg)
         self.current_y = y + 8
@@ -115,10 +119,10 @@ class FigmaSvgBuilder:
         details: List[str] = None,
         price: str = "",
         highlight: bool = False,
-        height: int = 110,
+        height: int = 120,
     ):
-        """Tạo thẻ nội dung / thẻ dịch vụ / thông tin"""
-        y = self.current_y + 10
+        """Tạo thẻ nội dung chuẩn chiều rộng 390px"""
+        y = self.current_y + 8
         card_w = self.width - 40
         stroke_color = THEME["primary"] if highlight else THEME["border_subtle"]
         stroke_width = 2 if highlight else 1
@@ -127,74 +131,73 @@ class FigmaSvgBuilder:
         badge_svg = ""
         if badge:
             badge_svg = f'''
-    <rect x="{self.width - 20 - 84}" y="{y + 12}" width="72" height="22" rx="11" fill="{THEME['primary_border']}"/>
-    <text x="{self.width - 20 - 48}" y="{y + 27}" fill="{THEME['primary']}" font-family="{FONT_FAMILY}" font-size="11" font-weight="700" text-anchor="middle">{html.escape(badge)}</text>
+    <rect x="{self.width - 20 - 100}" y="{y + 12}" width="88" height="22" rx="11" fill="{THEME['primary_border']}"/>
+    <text x="{self.width - 20 - 56}" y="{y + 27}" fill="{THEME['primary']}" font-family="{FONT_FAMILY}" font-size="11" font-weight="700" text-anchor="middle">{html.escape(badge)}</text>
 '''
 
         details_svg = []
-        dy = y + 56
+        dy = y + 54
         if details:
             for d in details:
                 details_svg.append(
-                    f'<text x="36" y="{dy}" fill="{THEME["text_secondary"]}" font-family="{FONT_FAMILY}" font-size="12">{html.escape(d)}</text>'
+                    f'<text x="38" y="{dy}" fill="{THEME["text_secondary"]}" font-family="{FONT_FAMILY}" font-size="12">{html.escape(d)}</text>'
                 )
-                dy += 18
+                dy += 19
 
         price_svg = ""
         if price:
             price_svg = f'''
-    <line x1="36" y1="{y + height - 38}" x2="{self.width - 36}" y2="{y + height - 38}" stroke="{THEME['border_subtle']}" stroke-width="1" stroke-dasharray="3 3"/>
-    <text x="36" y="{y + height - 16}" fill="{THEME['primary']}" font-family="{FONT_FAMILY}" font-size="16" font-weight="800">{html.escape(price)}</text>
+    <line x1="38" y1="{y + height - 38}" x2="{self.width - 38}" y2="{y + height - 38}" stroke="{THEME['border_subtle']}" stroke-width="1" stroke-dasharray="3 3"/>
+    <text x="38" y="{y + height - 16}" fill="{THEME['text_secondary']}" font-family="{FONT_FAMILY}" font-size="12">Chi phí niêm yết:</text>
+    <text x="{self.width - 38}" y="{y + height - 16}" fill="{THEME['primary']}" font-family="{FONT_FAMILY}" font-size="16" font-weight="800" text-anchor="end">{html.escape(price)}</text>
 '''
 
         svg = f'''
   <!-- Card: {html.escape(title)} -->
   <g id="Card_{html.escape(title[:10])}">
-    <rect x="20" y="{y}" width="{card_w}" height="{height}" rx="14" fill="{bg}" stroke="{stroke_color}" stroke-width="{stroke_width}"/>
-    <text x="36" y="{y + 28}" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="15" font-weight="700">{html.escape(title)}</text>
+    <rect x="20" y="{y}" width="{card_w}" height="{height}" rx="16" fill="{bg}" stroke="{stroke_color}" stroke-width="{stroke_width}"/>
+    <text x="38" y="{y + 28}" fill="{THEME['text_primary']}" font-family="{FONT_FAMILY}" font-size="15" font-weight="700">{html.escape(title)}</text>
     {badge_svg}
-    {f'<text x="36" y="{y + 46}" fill="{THEME["text_secondary"]}" font-family="{FONT_FAMILY}" font-size="12">{html.escape(subtitle)}</text>' if subtitle else ''}
+    {f'<text x="38" y="{y + 46}" fill="{THEME["text_secondary"]}" font-family="{FONT_FAMILY}" font-size="12">{html.escape(subtitle)}</text>' if subtitle else ''}
     {''.join(details_svg)}
     {price_svg}
   </g>
 '''
         self.elements.append(svg)
-        self.current_y = y + height + 6
+        self.current_y = y + height + 8
 
     def add_stepper(self, steps: List[str], current_index: int = 1):
-        """Tạo Timeline Stepper 4 mốc tiến độ theo chuẩn dự án"""
+        """Tạo Timeline Stepper 4 mốc tiến độ chuẩn iPhone 14 Pro Max"""
         y = self.current_y + 12
         card_w = self.width - 40
-        height = 76
+        height = 84
         num_steps = len(steps)
-        step_gap = (card_w - 40) / max(num_steps - 1, 1)
+        step_gap = (card_w - 60) / max(num_steps - 1, 1)
 
         step_nodes = []
         for i, step_name in enumerate(steps):
-            cx = 40 + (i * step_gap)
-            cy = y + 26
+            cx = 50 + (i * step_gap)
+            cy = y + 30
             is_done = i < current_index
             is_current = i == current_index
             
             circle_color = THEME["primary"] if (is_done or is_current) else THEME["border_subtle"]
             text_color = THEME["primary"] if is_current else (THEME["text_primary"] if is_done else THEME["text_muted"])
             
-            # Icon or dot
             step_nodes.append(f'''
-    <circle cx="{cx}" cy="{cy}" r="10" fill="{circle_color}"/>
-    <text x="{cx}" y="{cy + 4}" fill="{THEME['white']}" font-family="{FONT_FAMILY}" font-size="10" font-weight="700" text-anchor="middle">{"✓" if is_done else str(i+1)}</text>
-    <text x="{cx}" y="{y + 54}" fill="{text_color}" font-family="{FONT_FAMILY}" font-size="10" font-weight="600" text-anchor="middle">{html.escape(step_name)}</text>
+    <circle cx="{cx}" cy="{cy}" r="12" fill="{circle_color}"/>
+    <text x="{cx}" y="{cy + 4}" fill="{THEME['white']}" font-family="{FONT_FAMILY}" font-size="10" font-weight="800" text-anchor="middle">{"✓" if is_done else str(i+1)}</text>
+    <text x="{cx}" y="{y + 62}" fill="{text_color}" font-family="{FONT_FAMILY}" font-size="11" font-weight="{"700" if is_current else "500"}" text-anchor="middle">{html.escape(step_name)}</text>
 ''')
 
-        # Line connecting steps
-        line_start = 40
-        line_end = 40 + (num_steps - 1) * step_gap
-        line_svg = f'<line x1="{line_start}" y1="{y + 26}" x2="{line_end}" y2="{y + 26}" stroke="{THEME["border_subtle"]}" stroke-width="2"/>'
+        line_start = 50
+        line_end = 50 + (num_steps - 1) * step_gap
+        line_svg = f'<line x1="{line_start}" y1="{y + 30}" x2="{line_end}" y2="{y + 30}" stroke="{THEME["border_subtle"]}" stroke-width="2"/>'
 
         svg = f'''
   <!-- Progress Stepper -->
   <g id="Stepper">
-    <rect x="20" y="{y}" width="{card_w}" height="{height}" rx="12" fill="{THEME['bg_card']}" stroke="{THEME['border_subtle']}" stroke-width="1"/>
+    <rect x="20" y="{y}" width="{card_w}" height="{height}" rx="16" fill="{THEME['bg_card']}" stroke="{THEME['border_subtle']}" stroke-width="1"/>
     {line_svg}
     {''.join(step_nodes)}
   </g>
@@ -207,18 +210,19 @@ class FigmaSvgBuilder:
         y = self.current_y + 8
         card_w = self.width - 40
         cols = len(slots)
-        slot_w = (card_w - (cols - 1) * 8) / cols
+        slot_w = (card_w - (cols - 1) * 10) / cols
 
         nodes = []
         for i, s in enumerate(slots):
-            sx = 20 + i * (slot_w + 8)
+            sx = 20 + i * (slot_w + 10)
             is_sel = i == selected_idx
-            bg = THEME["primary"] if is_sel else THEME["bg_card"]
-            fg = THEME["white"] if is_sel else THEME["text_primary"]
+            bg = THEME["primary_light"] if is_sel else THEME["bg_card"]
+            fg = THEME["primary"] if is_sel else THEME["text_primary"]
             border = THEME["primary"] if is_sel else THEME["border_subtle"]
+            bw = 2 if is_sel else 1
             nodes.append(f'''
-    <rect x="{sx}" y="{y}" width="{slot_w}" height="38" rx="8" fill="{bg}" stroke="{border}" stroke-width="1"/>
-    <text x="{sx + slot_w/2}" y="{y + 23}" fill="{fg}" font-family="{FONT_FAMILY}" font-size="11" font-weight="600" text-anchor="middle">{html.escape(s)}</text>
+    <rect x="{sx}" y="{y}" width="{slot_w}" height="46" rx="10" fill="{bg}" stroke="{border}" stroke-width="{bw}"/>
+    <text x="{sx + slot_w/2}" y="{y + 28}" fill="{fg}" font-family="{FONT_FAMILY}" font-size="12" font-weight="{"700" if is_sel else "500"}" text-anchor="middle">{html.escape(s)}</text>
 ''')
 
         svg = f'''
@@ -228,11 +232,11 @@ class FigmaSvgBuilder:
   </g>
 '''
         self.elements.append(svg)
-        self.current_y = y + 46
+        self.current_y = y + 54
 
     def add_button(self, text: str, y_pos: Optional[int] = None, variant: str = "primary"):
-        """Tạo nút bấm chính (Button CTA)"""
-        y = y_pos if y_pos is not None else (self.height - 76)
+        """Tạo nút bấm chính (Button CTA) chuẩn ngón tay cái"""
+        y = y_pos if y_pos is not None else (self.height - 188)
         bg = THEME["primary"] if variant == "primary" else THEME["bg_card"]
         fg = THEME["white"] if variant == "primary" else THEME["primary"]
         border = THEME["primary"] if variant != "primary" else "none"
@@ -240,31 +244,34 @@ class FigmaSvgBuilder:
         svg = f'''
   <!-- Primary Button -->
   <g id="Button_CTA">
-    <rect x="20" y="{y}" width="{self.width - 40}" height="48" rx="10" fill="{bg}" stroke="{border}" stroke-width="1.5"/>
-    <text x="{self.width / 2}" y="{y + 29}" fill="{fg}" font-family="{FONT_FAMILY}" font-size="15" font-weight="700" text-anchor="middle">{html.escape(text)}</text>
+    <rect x="20" y="{y}" width="{self.width - 40}" height="56" rx="16" fill="{bg}" stroke="{border}" stroke-width="1.5"/>
+    <text x="{self.width / 2}" y="{y + 35}" fill="{fg}" font-family="{FONT_FAMILY}" font-size="16" font-weight="700" text-anchor="middle">{html.escape(text)}</text>
   </g>
 '''
         self.elements.append(svg)
 
     def add_bottom_nav(self, items: List[Dict[str, str]], active_idx: int = 0):
-        """Thanh điều hướng dưới đáy (Bottom Navigation Bar)"""
-        y = self.height - 64
+        """Thanh điều hướng dưới đáy (Bottom Navigation Bar) kèm Home Indicator"""
+        y = self.height - 112
         item_w = self.width / len(items)
         nodes = []
         for i, item in enumerate(items):
             ix = i * item_w + item_w / 2
             is_act = i == active_idx
             fg = THEME["primary"] if is_act else THEME["text_secondary"]
+            dot_svg = f'<circle cx="{ix}" cy="{y + 54}" r="3" fill="{THEME["primary"]}"/>' if is_act else ''
             nodes.append(f'''
-    <text x="{ix}" y="{y + 24}" fill="{fg}" font-family="{FONT_FAMILY}" font-size="16" text-anchor="middle">{item.get('icon', '●')}</text>
-    <text x="{ix}" y="{y + 44}" fill="{fg}" font-family="{FONT_FAMILY}" font-size="10" font-weight="{"700" if is_act else "500"}" text-anchor="middle">{html.escape(item.get('label', ''))}</text>
+    <text x="{ix}" y="{y + 34}" fill="{fg}" font-family="{FONT_FAMILY}" font-size="12" font-weight="{"800" if is_act else "600"}" text-anchor="middle">{html.escape(item.get('label', ''))}</text>
+    {dot_svg}
 ''')
 
         svg = f'''
   <!-- Bottom Navigation -->
   <g id="Bottom_Navigation">
-    <rect x="0" y="{y}" width="{self.width}" height="64" fill="{THEME['bg_card']}" stroke="{THEME['border_subtle']}" stroke-width="1"/>
+    <rect x="0" y="{y}" width="{self.width}" height="112" fill="{THEME['bg_card']}" stroke="{THEME['border_subtle']}" stroke-width="1"/>
     {''.join(nodes)}
+    <!-- Home Indicator -->
+    <rect id="Home_Indicator" x="145" y="916" width="140" height="5" rx="2.5" fill="#0F172A"/>
   </g>
 '''
         self.elements.append(svg)
@@ -278,27 +285,27 @@ class FigmaSvgBuilder:
 
 
 def create_sample_screen(screen_type: str, output_path: str):
-    """Tạo mẫu các loại màn hình khác nhau"""
-    builder = FigmaSvgBuilder(375, 812, title=f"Screen_{screen_type}")
+    """Tạo mẫu các loại màn hình khác nhau chuẩn iPhone 14 Pro Max"""
+    builder = FigmaSvgBuilder(430, 932, title=f"Screen_{screen_type}")
     builder.add_background()
     builder.add_status_bar()
 
     if screen_type == "booking":
         builder.add_header("Đặt lịch chăm sóc", show_back=True)
         builder.add_section_title("Thông tin thú cưng")
-        builder.add_card("Bông (Poodle Trắng)", subtitle="4.5 kg • Tiền sử dị ứng xà phòng thơm", badge="Hồ sơ", height=72)
+        builder.add_card("Bông (Poodle Trắng)", subtitle="4.5 kg • Tiền sử dị ứng xà phòng thơm", badge="Hồ sơ", height=76)
         builder.add_section_title("Chọn gói dịch vụ")
         builder.add_card(
             title="Combo Tắm & Cắt Tỉa",
             subtitle="Vệ sinh tai, cắt móng, tắm thảo dược khử mùi",
-            badge="Phổ biến",
+            badge="[KHUYÊN DÙNG]",
             price="250.000đ",
             highlight=True,
-            height=130,
+            height=140,
         )
         builder.add_section_title("Khung giờ trống")
         builder.add_time_slots(["09:00 - 10:00", "10:30 - 11:30", "14:00 - 15:00"], selected_idx=0)
-        builder.add_button("Xác nhận đặt lịch")
+        builder.add_button("Xác nhận đặt lịch ➔")
 
     elif screen_type == "tracking":
         builder.add_header("Theo dõi tiến độ", show_back=True)
@@ -308,23 +315,23 @@ def create_sample_screen(screen_type: str, output_path: str):
             title="Đang tắm thảo dược dịu nhẹ",
             subtitle="Kỹ thuật viên: Nguyễn Văn A",
             details=["• Đã kiểm tra da: không trầy xước", "• Đang dùng dầu tắm đặc trị da nhạy cảm"],
-            height=110,
+            height=120,
             highlight=True,
         )
         builder.add_section_title("Ghi chú đặc biệt")
-        builder.add_card("Dặn dò từ chủ nuôi", subtitle="Tránh xịt nước trực tiếp vào tai bé", height=70)
+        builder.add_card("Dặn dò từ chủ nuôi", subtitle="Tránh xịt nước trực tiếp vào tai bé", height=76)
         builder.add_button("Liên hệ cơ sở ngay", variant="secondary")
 
     elif screen_type == "profile":
         builder.add_header("Hồ sơ thú cưng", show_back=False)
-        builder.add_card("Bông (Poodle)", subtitle="Tuổi: 2 tuổi • Cân nặng: 4.5kg", badge="Đã tiêm phòng", height=80)
+        builder.add_card("Bé Bơ (Mèo Anh)", subtitle="Tuổi: 2 tuổi • Cân nặng: 4.2kg", badge="[ĐÃ TIÊM PHÒNG]", height=84)
         builder.add_section_title("Tiền sử sức khỏe & Dị ứng")
-        builder.add_card("Dị ứng hương liệu nhân tạo", subtitle="Ghi chú: Luôn dùng sữa tắm hữu cơ trà xanh", height=74)
+        builder.add_card("Dị ứng hương liệu nhân tạo", subtitle="Ghi chú: Luôn dùng sữa tắm hữu cơ Dermacare", height=80)
         builder.add_bottom_nav([
-            {"label": "Trang chủ", "icon": "🏠"},
-            {"label": "Đặt lịch", "icon": "📅"},
-            {"label": "Theo dõi", "icon": "⏱"},
-            {"label": "Hồ sơ", "icon": "👤"},
+            {"label": "Trang chủ"},
+            {"label": "Đặt lịch"},
+            {"label": "Tiến độ"},
+            {"label": "Hồ sơ"},
         ], active_idx=3)
 
     svg_content = builder.build()
@@ -334,7 +341,7 @@ def create_sample_screen(screen_type: str, output_path: str):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Sinh file SVG Wireframe kéo thả Figma")
+    parser = argparse.ArgumentParser(description="Sinh file SVG Wireframe kéo thả Figma chuẩn iPhone 14 Pro Max")
     parser.add_argument("--type", choices=["booking", "tracking", "profile"], default="booking", help="Loại màn hình mẫu")
     parser.add_argument("--out", default="deliverables/generated-wireframe.svg", help="Đường dẫn file SVG đầu ra")
     args = parser.parse_args()
