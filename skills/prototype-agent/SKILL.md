@@ -1,37 +1,36 @@
 ---
 name: prototype-agent
-description: Tạo và kiểm chứng Prototype Figma có frame, transition, flow và phiên bản rõ ràng. Dùng sau khi Storyboard và Wireframe được chấp nhận hoặc khi cần chuẩn bị rubric Prototype.
+description: Tạo và kiểm chứng Interactive Prototype Figma thể hiện quy trình tương tác mới bằng cách phân tích và ánh xạ động từ bất kỳ kịch bản Scenario Future (To-Be) nào.
 ---
 
-# Skill tạo Prototype
+# Skill tạo Interactive Prototype
 
 ## Mục đích
 
-Chuyển thiết kế tĩnh thành flow tương tác Figma có thể mở và kiểm chứng. Đọc [PLAN.md](PLAN.md), manifest, rules và `templates/prototype-template.md` trước khi thực hiện.
+Chuyển hóa kịch bản tương tác tương lai (**Scenario Future / To-Be Scenarios**) bất kỳ thành luồng tương tác Prototype sống động, có thể kiểm chứng trên Figma Canvas theo chuẩn Rubric Mục 6.
 
-## Kiến thức nghiệp vụ
+## Kiến thức nghiệp vụ & Phương pháp Ánh xạ Động (Dynamic Mapping)
 
-- Figma là nguồn thiết kế chỉnh sửa được; export chỉ là snapshot của một version.
-- Prototype cần chứng minh entry point, transition, feedback, nhánh lỗi và kết quả của flow.
-- Tương tác mô phỏng không chứng minh có backend hoặc dữ liệu real-time.
+- **Không áp đặt cấu trúc luồng cố định**: Mỗi Persona và mỗi Goal có một bối cảnh và hành trình thao tác riêng biệt (Ví dụ: Đặt lịch khẩn cấp, Quản lý đa thú cưng, Theo dõi tiến độ từ xa, Lịch sử điện tử & Đặt lại 1 chạm, Tư vấn trực tuyến...).
+- **Quy tắc phân rã kịch bản**:
+  1. *Bối cảnh & Điểm kích hoạt (Trigger/Entry)*: Persona bắt đầu từ đâu (App mở từ thông báo đẩy, từ trang chủ, hay từ thẻ hồ sơ)?
+  2. *Chuỗi hành động & Điểm chạm (User Touchpoints)*: Persona bấm chọn, nhập liệu, chuyển tab hoặc kiểm tra thông tin gì?
+  3. *Phản hồi hệ thống (System Feedbacks)*: Hệ thống hiển thị trạng thái gì (Loading skeleton, Modal xác nhận, Stepper chuyển mốc, Live Photo, Tag cảnh báo đỏ...)?
+  4. *Kết quả hoàn thành (Goal Completion)*: Giao diện kết thúc mang lại giá trị gì giải quyết điểm đau cũ của Persona?
 
-## Chiến lược suy luận
+## Chiến lược suy luận & Hiện thực hóa
 
-1. Đối chiếu Storyboard với Wireframe để lập danh sách flow và state.
-2. Nối happy path trước, sau đó bổ sung quyết định, error và recovery.
-3. Dùng component/state nhất quán cho phản hồi giống nhau.
-4. Ghi frame ID, transition, starting point và version trong manifest.
-5. So sánh export với Figma version đã ghim trước khi bàn giao.
+1. **Xác định kịch bản mục tiêu**: Nếu người dùng chưa chỉ định rõ, liệt kê danh sách 6 kịch bản Scenario Future kèm thông tin Persona và Goal để người dùng lựa chọn 1 kịch bản.
+2. Đọc nội dung chi tiết của tệp `scenario-future-goal-*.md` được chọn.
+3. Thiết lập sơ đồ luồng màn hình động (Dynamic Flow Graph) riêng cho kịch bản đó.
+4. Xác định các Frame và Hotspot tương ứng.
+5. Gọi `figma-agent` sinh mã SVG vector chuẩn Design Tokens cho từng màn hình.
+6. Lập bảng ma trận tương tác (Interaction Spec) chỉ rõ Trigger, Transition và Đích đến.
 
 ## Quy tắc kiểm tra
 
-- Bao phủ đủ bốn đoạn hành trình và tương tác cải tiến.
-- Mọi flow phải có starting point, đích đến và transition hoạt động.
-- Link, version, frame và export phải có thật và khớp nhau.
-- Chỉ ghi usability result khi có protocol, participant hợp lệ và evidence thật.
+- Prototype phải phản ánh trung thực toàn bộ diễn biến của kịch bản To-Be đầu vào.
+- Đảm bảo tính nhất quán của Design Tokens (Teal, Coral, Amber, Rose, Inter font).
+- Không mô tả prototype mô phỏng UI là hệ thống backend real-time khi chưa lập trình.
 
-## Xử lý khi thiếu dữ liệu hoặc thất bại
 
-- Dừng nếu Storyboard/Wireframe chưa chấp nhận hoặc không có quyền truy cập Figma.
-- Ghi rõ interaction chỉ là mô phỏng và gap chưa nối; không tuyên bố flow hoàn chỉnh.
-- Không báo kết quả usability test nếu chỉ có kịch bản hoặc dữ liệu giả định.

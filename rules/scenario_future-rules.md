@@ -10,7 +10,7 @@ Scenario là một câu chuyện/narrative thực tế mô tả cách một ngư
 
 ## Dùng ngôn ngữ của chính người dùng
 
-Scenario phải sử dụng từ ngữ và cách diễn đạt của user, để tất cả stakeholder đều dễ hiểu.
+Scenario phải dùng ngôn ngữ tự nhiên, dễ hiểu và paraphrase trung thực theo evidence. Chỉ dùng trích dẫn trực tiếp khi evidence có nguyên văn và nguồn tương ứng; không tự tạo câu nói đại diện cho người dùng.
 
 ## Scenario phải mang tính thực tế
 
@@ -28,8 +28,18 @@ Không chỉ kể hành động; phải hiểu tại sao user làm những hành
 
 Phải dựa trên Current Scenario, giải quyết được những vấn đề của quy trình cũ.
 
+Giữ nguyên Persona, thú cưng, goal/task, Trigger, thời gian, địa điểm và áp lực thực tế của Scenario Current. Chỉ thay đổi hành động, điểm tiếp xúc và phản hồi bằng tương tác cải tiến có căn cứ.
+
+Mỗi tương tác mới phải giải quyết một pain point trong Scenario Current hoặc đáp ứng một value trong Value Proposition, đồng thời không mâu thuẫn với Persona và evidence.
+
+Bốn tương tác cải tiến cốt lõi là phạm vi lựa chọn, không bắt buộc xuất hiện đầy đủ trong mọi Scenario. Chỉ dùng tương tác liên quan trực tiếp đến goal/task.
+
 ## Phong cách trình bày
 
 Scenario được viết dưới dạng 1 đoạn văn hoàn chỉnh. Markdown chỉ là định dạng, nội dung vẫn là 1 đoạn văn bản bình thường.
 
-**Không được phép tạo thêm bất cứ 1 nội dung nào ngoài nội dung của đoạn văn của scenario**.
+**File Scenario Future không được chứa bất kỳ nội dung nào ngoài một đoạn văn Scenario; tiêu đề, metadata, checklist và manifest phải nằm ngoài file.**
+
+## Không ghi đè
+
+Nếu file Scenario Future đích đã tồn tại, phải dừng và báo cho Agent điều phối; không được ghi đè.
