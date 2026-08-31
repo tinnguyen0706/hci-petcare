@@ -17,11 +17,9 @@ description: Tạo kịch bản Scenario 2 mô tả quy trình tương lai và t
    - Dùng ngôn từ tự nhiên, phản ánh đúng tâm lý, hành vi và hoàn cảnh của Persona.
    - Không biến Scenario thành danh sách tính năng hoặc tài liệu mô tả kỹ thuật.
 
-2. **Thể hiện rõ 4 tương tác cải tiến cốt lõi**:
-   - *Đặt lịch*: Persona chọn dịch vụ và khung giờ còn trống, sau đó nhận xác nhận lịch ngay trên ứng dụng.
-   - *Hồ sơ thú cưng & Yêu cầu đặc biệt*: Thông tin dị ứng, thuốc, tính cách và dặn dò được lưu trong hồ sơ, kiểm tra và đính kèm khi đặt lịch.
-   - *Theo dõi tiến độ*: Persona theo dõi quá trình chăm sóc qua 4 mốc: *Đã nhận → Đang chăm sóc → Hoàn tất → Chờ đón*.
-   - *Lịch sử chăm sóc*: Persona xem lại dịch vụ, sản phẩm đã sử dụng và ghi chú sau mỗi lượt chăm sóc.
+2. **Thể hiện rõ các tương tác cải tiến**:
+   - Mô tả cách Persona sử dụng các tính năng mới để giải quyết các khó khăn (pain points) gặp phải trong Scenario Current.
+   - Đảm bảo các tương tác thể hiện đúng phạm vi sản phẩm đã được xác định trong các phần trước.
 
 3. **Nguyên tắc "Pain-to-Solution Traceability"**:
    - Mỗi tương tác mới phải giải quyết một pain point hoặc đáp ứng một value đã được xác định trong Persona, Value Proposition và Scenario Current.
