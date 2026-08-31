@@ -17,9 +17,9 @@ Chuyển đổi các đặc tả giao diện từ `wireframe-agent` (Rubric 7), 
 ## 3. Đầu vào (Input)
 
 - Đặc tả màn hình và hành trình người dùng (`deliverables/01-user-research/scenario-future/` hoặc kịch bản Wireframe/Prototype).
-- Kích thước Viewport mục tiêu: Mobile tiêu chuẩn (`375x812`), Tablet (`768x1024`), Desktop (`1440x900`).
-- Danh sách thành phần UI yêu cầu: Status Bar, Header, Timeline Stepper 4 mốc, Time Slot Picker, Service Card, Form Input, CTA Button, Bottom Nav.
-- Bảng Design Tokens chuẩn HCI được quy định trong `AGENTS.md` và `skills/figma-svg-generator/SKILL.md`.
+- Kích thước Viewport mục tiêu: iPhone 14 Pro Max (`430x932`), Tablet (`768x1024`), Desktop (`1440x900`).
+- Danh sách thành phần UI yêu cầu: Status Bar, Dynamic Island, Header, Timeline Stepper 4 mốc, Time Slot Picker, Service Card, Form Input, CTA Button, Bottom Nav kèm Home Indicator.
+- Bảng Design Tokens chuẩn HCI được quy định trong `AGENTS.md`, `rules/style-rules.md` và `rules/layout-and-typography-rules.md`.
 
 ---
 
@@ -28,7 +28,6 @@ Chuyển đổi các đặc tả giao diện từ `wireframe-agent` (Rubric 7), 
 - Tệp SVG vector chuẩn Figma tại thư mục `deliverables/`:
   - `deliverables/02-interaction-design/wireframe/<screen-name>-wireframe.svg`
   - `deliverables/02-interaction-design/prototype/<flow-name>-prototype.svg`
-- Ảnh kết xuất PNG xem trước độ nét cao (tạo qua `tools/render-html-to-png.py` khi cần kiểm tra hiển thị).
 - Cấu trúc Layer Figma chuẩn hóa: Mỗi khối UI được bọc trong thẻ `<g id="...">` ngữ nghĩa (ví dụ: `Header`, `Progress_Stepper`, `Card_Service_Poodle`, `Button_Confirm_Booking`).
 
 ---
@@ -39,8 +38,8 @@ Chuyển đổi các đặc tả giao diện từ `wireframe-agent` (Rubric 7), 
 graph TD
     Step1["1. Tiếp nhận & Phân tích đặc tả UI"] --> Step2["2. Khởi tạo Khung Viewport & Nền tảng"]
     Step2 --> Step3["3. Xây dựng các khối UI Primitives ngữ nghĩa"]
-    Step3 --> Step4["4. Áp dụng Design Tokens & Quy chuẩn Accessibility"]
-    Step4 --> Step5["5. Đóng gói tệp SVG & Xuất ảnh kiểm tra trực quan"]
+    Step3 --> Step4["4. Áp dụng Design Tokens & Bố cục phẳng không emoji"]
+    Step4 --> Step5["5. Đóng gói tệp SVG & Kiểm thử layout"]
     Step5 --> Step6["6. Nghiệm thu & Hướng dẫn nhập vào Figma"]
 ```
 
@@ -48,14 +47,14 @@ graph TD
 
 1. **Bước 1 — Tiếp nhận & Phân tích đặc tả UI**:
    - Xác định loại màn hình, mục tiêu người dùng, và trạng thái hiển thị (Luồng chính, Đang tải Skeleton, Không có dữ liệu, Lỗi, Thành công).
-   - Chọn kích thước Viewport chuẩn (mặc định Mobile-first: `375x812`).
+   - Chọn kích thước Viewport chuẩn (mặc định iPhone 14 Pro Max: `430x932`).
 
 2. **Bước 2 — Khởi tạo Khung Viewport & Nền tảng**:
    - Sử dụng `FigmaSvgBuilder` từ `tools/generate-figma-svg.py` hoặc khởi tạo cấu trúc SVG chuẩn:
      ```xml
-     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 812" width="375" height="812">
+     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 932" width="430" height="932">
      ```
-   - Thêm nền Frame (`<rect id="Frame_Background" ... rx="28"/>`) và thanh trạng thái (`<g id="Status_Bar">`).
+   - Thêm nền Frame (`<rect id="Device_Background" ... rx="52"/>`), Dynamic Island (`<rect id="Dynamic_Island" ... rx="17.5"/>`) và thanh trạng thái (`<g id="Status_Bar">`).
 
 3. **Bước 3 — Xây dựng các khối UI Primitives ngữ nghĩa**:
    - Bổ sung Top Navigation / Header kèm nút Back và tiêu đề trang.

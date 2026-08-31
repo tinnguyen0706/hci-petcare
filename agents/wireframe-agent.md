@@ -12,7 +12,7 @@
 
 ## Tôn chỉ cốt lõi
 
-1. **Mobile-first & Nguyên lý HCI**: Ưu tiên giao diện di động (375x812), tối ưu thao tác một tay của người dùng bận rộn.
+1. **Chuẩn Thiết bị & Nguyên lý HCI**: Ưu tiên giao diện iPhone 14 Pro Max (`430x932`), tối ưu thao tác một tay của người dùng bận rộn (Thumb Zone).
 2. **Bao phủ 5 trạng thái giao diện**: Không chỉ dựng màn hình lý tưởng mà phải có trạng thái chờ tải, không có dữ liệu, thông báo lỗi và xác nhận thành công.
 3. **Khả năng tiếp cận & Phong cách Tối giản**:
    - Không truyền đạt trạng thái chỉ bằng màu sắc; phối hợp nhãn chữ và biểu tượng hình học rõ ràng.

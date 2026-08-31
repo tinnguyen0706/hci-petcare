@@ -27,4 +27,4 @@ Quy tắc này áp dụng bắt buộc cho toàn bộ tài liệu, bản vẽ gi
 ---
 
 ## 4. Bố cục & Kiểu chữ SVG
-- Tuân thủ nghiêm ngặt [rules/layout-and-typography-rules.md](layout-and-typography-rules.md) để chống đè chữ (overlapping) và chống tràn chữ (overflow) trên màn hình mobile $375\text{px}$.
+- Tuân thủ nghiêm ngặt [rules/layout-and-typography-rules.md](layout-and-typography-rules.md) để chống đè chữ (overlapping) và chống tràn chữ (overflow) trên màn hình iPhone 14 Pro Max $430 \times 932\text{px}$.

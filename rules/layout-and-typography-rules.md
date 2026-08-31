@@ -1,80 +1,84 @@
-# Quy Tắc Bố Cục & Kiểu Chữ SVG (Layout & Typography Rules)
+# Quy Tắc Bố Cục & Kiểu Chữ SVG — iPhone 14 Pro Max (Layout & Typography Rules)
 
 Quy tắc này áp dụng **bắt buộc cho tất cả các Agent và Subagent khi thiết kế, tạo lập màn hình vector SVG (Wireframe, Prototype, Mockup)** trong toàn bộ dự án HCI (CSC12106).
 
 ---
 
-## 1. Nguyên nhân & Tôn chỉ cốt lõi
+## 1. Thiết Bị Chuẩn Hóa: iPhone 14 Pro Max ($430 \times 932\text{px}$)
 
-Trong SVG, thẻ `<text>` **không tự động xuống dòng (No auto-wrap)** như thẻ `<div>` trong HTML. Nếu chuỗi quá dài hoặc khoảng cách giữa các tọa độ không được tính toán, chữ sẽ bị đè lên nhau (Text overlapping) hoặc tràn ra ngoài màn hình điện thoại (Text overflow).
-
-Do đó, mọi màn hình vector SVG phải tuân thủ nghiêm ngặt các giới hạn kích thước và khoảng cách dưới đây.
+Toàn bộ màn hình di động được thiết kế trên khung chuẩn của **iPhone 14 Pro Max**:
+- **Kích thước Viewport**: `width="430" height="932" viewBox="0 0 430 932"`
+- **Bo góc khung máy (Outer Bezel)**: `rx="52" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"`
+- **Dynamic Island**: 
+  ```xml
+  <!-- Dynamic Island Component -->
+  <rect x="152" y="12" width="126" height="35" rx="17.5" fill="#0F172A"/>
+  ```
+- **Status Bar (Hàng trạng thái)**:
+  - Giờ hiển thị: `x="42" y="35"` (`font-size="14" font-weight="600" fill="#0F172A"`)
+  - Chỉ báo sóng/pin: `x="388" y="35"` (`font-size="12" font-weight="600" text-anchor="end" fill="#0F172A"`)
+- **Home Indicator Bar**:
+  ```xml
+  <!-- Home Indicator -->
+  <rect x="145" y="918" width="140" height="5" rx="2.5" fill="#0F172A"/>
+  ```
 
 ---
 
-## 2. Quy chuẩn Kích Thước An Toàn & Giới Hạn Ký Tự
+## 2. Kích Thước Bố Cục An Toàn & Vùng Chứa Thẻ (Card Bounds)
 
-Khung nhìn Mobile chuẩn là **$375 \times 812\text{px}$**.
-- Chiều rộng màn hình: `375px`
-- Lề an toàn 2 bên (Screen Margin): `20px` mỗi bên $\rightarrow$ Chiều rộng thẻ Card tối đa: **`335px`** ($x = 20$ đến $x = 355$).
-- Lề trong của Card (Padding): `16px` mỗi bên $\rightarrow$ Chiều rộng tối đa của đoạn văn bên trong Card: **`303px`** ($x = 36$ đến $x = 339$).
+- **Lề an toàn 2 bên (Screen Margin)**: `20px` mỗi bên.
+- **Chiều rộng thẻ Card tối đa**: **`390px`** ($x = 20$ đến $x = 410$).
+- **Lề trong của Card (Padding)**: `18px` mỗi bên $\rightarrow$ **Vùng text an toàn bên trong Card**: **`354px`** ($x = 38$ đến $x = 392$).
 
 ### Bảng Giới Hạn Số Ký Tự Tối Đa Trên 1 Dòng (Single-line Character Limits)
 
 | Cỡ Chữ (Font Size) | Vai Trò (Typography Role) | Giới Hạn Ký Tự / Dòng | Khoảng Cách Dòng Tối Thiểu ($\Delta y$) |
 | :---: | :--- | :---: | :---: |
-| **16 – 18px** | Header, Tiêu đề chính, Tên thú cưng | **Tối đa 24 ký tự** | $\Delta y \ge 24\text{px}$ |
-| **13 – 15px** | Tên dịch vụ, Tiêu đề thẻ Card, Subheading | **Tối đa 30 ký tự** | $\Delta y \ge 20\text{px}$ |
-| **11 – 12px** | Thân bài, Ghi chú dị ứng, Hướng dẫn KTV | **Tối đa 38 ký tự** | $\Delta y \ge 18\text{px}$ |
-| **9 – 10px** | Nhãn nhỏ, Caption, Thời gian, Badge tag | **Tối đa 46 ký tự** | $\Delta y \ge 15\text{px}$ |
+| **17 – 19px** | Header, Tiêu đề chính màn hình | **Tối đa 28 ký tự** | $\Delta y \ge 26\text{px}$ |
+| **14 – 16px** | Tên dịch vụ, Tiêu đề thẻ Card, Subheading | **Tối đa 36 ký tự** | $\Delta y \ge 22\text{px}$ |
+| **12 – 13px** | Thân bài, Ghi chú y tế, Dặn dò KTV | **Tối đa 46 ký tự** | $\Delta y \ge 19\text{px}$ |
+| **10 – 11px** | Nhãn nhỏ, Caption thời gian, Badge tag | **Tối đa 54 ký tự** | $\Delta y \ge 16\text{px}$ |
 
-> **⚠️ BẮT BUỘC:** Khi nội dung dài hơn giới hạn ký tự trên, Agent phải **chủ động tách thành 2 dòng riêng biệt** (2 thẻ `<text>` với tọa độ $y$ cách nhau $\ge 18\text{px}$) hoặc rút gọn câu từ súc tích.
-
----
-
-## 3. Quy Chuẩn Chống Va Chạm Ngang (Horizontal Collision Prevention)
-
-Khi bố trí 2 khối text nằm trên **cùng một dòng (cùng tọa độ $y$)** (Ví dụ: Tên dịch vụ bên trái và Giá tiền bên phải):
-
-```xml
-<!-- ĐÚNG: Chia rõ phạm vi x và giới hạn ký tự -->
-<text x="36" y="240" font-size="13" font-weight="700">Tắm &amp; Da Nhạy Cảm</text>
-<text x="339" y="240" font-size="15" font-weight="800" text-anchor="end">220.000đ</text>
-```
-
-- **Vùng bên trái ($x = 36\text{px}$)**: Chiều dài tối đa **$170\text{px}$** (tối đa 22 ký tự).
-- **Vùng bên phải ($x = 339\text{px}$, `text-anchor="end"`)**: Chiều dài tối đa **$100\text{px}$** (tối đa 12 ký tự).
-- **Khoảng cách an toàn (Gap)**: Bắt buộc để trống tối thiểu **$20\text{px}$** giữa điểm kết thúc của text trái và điểm bắt đầu của text phải.
+> **⚠️ BẮT BUỘC:** Khi nội dung dài hơn giới hạn trên, Agent phải **chủ động tách thành 2 dòng riêng biệt** ($\Delta y \ge 19\text{px}$) hoặc rút gọn câu từ súc tích.
 
 ---
 
-## 4. Quy Chuẩn Đóng Khung Thẻ Card (Card Boundary Rules)
+## 3. Phong Cách Thiết Kế Tối Giản & Bảng Màu Tinh Tế (Subtle & Elegant Palette)
 
-- Không để text đè lên đường viền (Border) hoặc tràn ra ngoài đáy thẻ Card:
-  $$\text{Chiều cao Card } (h) \ge (\text{Tọa độ } y \text{ của dòng text cuối}) - (\text{Tọa độ } y \text{ đỉnh Card}) + 18\text{px}$$
-- Các khối Badge, Tag cảnh báo (`<rect>` nhỏ chứa text) phải có chiều rộng `width` lớn hơn chiều dài text bên trong tối thiểu **`16px`** (Padding trái/phải $8\text{px}$).
-
----
-
-## 5. Quy Chuẩn Biểu Tượng & Chống Emoji Màu Mè (No Colorful Emojis)
-
-- **Cấm hoàn toàn Emoji màu** (`🐱`, `🐶`, `✂️`, `🧼`, `🌟`, `🚨`, `💡`, `🐾`, `🏠`, `📅`, `⏱️`, `🔔`...) trong mã SVG UI.
-- **Thay thế bằng:**
-  - Chữ cái viết tắt hoặc tên trong khung tròn (ví dụ: `BƠ`, `ML`, `MC`).
-  - Ký tự hình học phẳng (`‹`, `›`, `✓`, `✕`, `•`, `+`, `-`).
-  - Thẻ chữ viết hoa nằm trong hộp viền màu tương ứng (ví dụ: `[Y TẾ]`, `[CẢNH BÁO]`, `[KHUYÊN DÙNG]`, `[ĐẶC BIỆT]`).
+Không dùng màu sắc sặc sỡ hay quá gắt. Toàn bộ giao diện sử dụng bảng màu trầm, trang nhã, đồng bộ:
+- **Nền tổng thể (Background)**: `#F8FAFC` (Slate 50 - Sáng dịu mát).
+- **Thẻ nội dung (Cards)**: `#FFFFFF` (Trắng tinh), viền phân cách mỏng `#E2E8F0` (Slate 200).
+- **Màu thương hiệu chủ đạo (Primary Teal)**: `#0D766E` (Deep Teal), nền đệm `#F0FDFA`, viền mờ `#CCFBF1`.
+- **Màu chữ chính (Main Text)**: `#0F172A` (Slate 900 - Đậm, sắc nét).
+- **Màu chữ phụ (Subtext / Metadata)**: `#64748B` (Slate 500) hoặc `#94A3B8` (Slate 400).
+- **Màu cảnh báo dị ứng y tế (Subtle Alert)**: Nền `#FFF1F2`, viền `#FECDD3`, chữ `#9F1239` (Rose 800 - Tone trầm sang trọng, không chói).
+- **Màu hoàn tất / Thành công (Success)**: Nền `#F0FDF4`, viền `#BBF7D0`, chữ `#166534`.
 
 ---
 
-## 6. Các Bước Kiểm Thử Bắt Buộc Trước Khi Xuất Bản (Testing Steps)
+## 4. Quy Chuẩn Biểu Tượng & CẤM EMOJI MÀU MÈ
 
-Mỗi khi Agent sinh hoặc sửa file SVG, bắt buộc thực hiện 4 bước kiểm tra sau:
+- **Tuyệt đối KHÔNG dùng icon emoji màu mè** (`🐱`, `🐶`, `✂️`, `🧼`, `🌟`, `🚨`, `💡`, `🐾`, `🏠`, `📅`, `⏱️`, `🔔`, `❤️`...).
+- **Sử dụng 100% biểu tượng vector đơn sắc hoặc ký tự hình học phẳng**:
+  - Avatar thú cưng: Vòng tròn viền đơn sắc kèm chữ viết tắt tên in hoa (ví dụ: `BƠ`, `ML`, `MC`).
+  - Nút Back / Tác vụ: Ký tự phẳng `‹`, `›`, `✓`, `✕`, `•`, `+`, `-`.
+  - Thẻ cảnh báo: Nhãn chữ in hoa trong khung viền (Text Badges) như `[DỊ ỨNG DA]`, `[PHÒNG CÁCH LY]`, `[KHUYÊN DÙNG]`, `[Y TẾ]`.
 
-1. **Kiểm thử Tràn lề phải (Right Overflow Test)**:
-   - Với mọi thẻ `<text>` căn trái ($x = 36$): Ước tính $x + (\text{số ký tự} \times 7.2\text{px}) \le 339\text{px}$.
-2. **Kiểm thử Va chạm cùng hàng (Collision Test)**:
-   - Rà soát toàn bộ các cặp `<text>` có cùng giá trị `y`: Đảm bảo tổng chiều dài 2 chuỗi không vượt quá $280\text{px}$.
-3. **Kiểm thử Đè chữ dọc (Vertical Overlap Test)**:
-   - Đảm bảo $y_{i+1} - y_i \ge 18\text{px}$ đối với các dòng chữ liên tiếp.
-4. **Kiểm tra sạch Emoji & Bố cục phẳng**:
-   - Quét toàn bộ file SVG đảm bảo không còn emoji màu mè, layout sắc nét và chuyên nghiệp.
+---
+
+## 5. Quy Chuẩn Chống Va Chạm Ngang (Horizontal Collision Prevention)
+
+Khi bố trí 2 khối text nằm trên **cùng một dòng (cùng tọa độ $y$)**:
+- **Vùng bên trái ($x = 38\text{px}$)**: Chiều dài tối đa **$220\text{px}$** (tối đa 26 ký tự).
+- **Vùng bên phải ($x = 392\text{px}$, `text-anchor="end"`)**: Chiều dài tối đa **$130\text{px}$** (tối đa 16 ký tự).
+- **Khoảng cách an toàn (Gap)**: Giữ khoảng cách tối thiểu **$\ge 24\text{px}$** giữa 2 đoạn text.
+
+---
+
+## 6. Các Bước Kiểm Thử Bắt Buộc Trước Khi Xuất Bản
+
+1. **Kiểm thử Kích thước khung nhìn**: Đảm bảo `viewBox="0 0 430 932"` và có đủ Dynamic Island + Home Indicator.
+2. **Kiểm thử Tràn lề phải**: Với mọi text căn trái ($x = 38$), ước tính $x + (\text{len} \times 7.5\text{px}) \le 392\text{px}$.
+3. **Kiểm thử Va chạm cùng hàng**: Rà soát các cặp text cùng trục $y$, đảm bảo tổng chiều dài $< 330\text{px}$.
+4. **Kiểm thử Sạch Emoji**: Quét toàn bộ file SVG đảm bảo 100% không còn emoji màu mè.

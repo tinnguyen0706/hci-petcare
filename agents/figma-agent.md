@@ -40,9 +40,9 @@ Subagent kỹ thuật chuyên sâu phụ trách việc sinh mã vector SVG, xây
 ## Workflow
 
 1. **Xác định yêu cầu từ Scenario Future**:
-   - Phân tích User Action và System Feedback trong kịch bản tương lai, xác định kích thước viewport (Mobile-first: `375x812`), các khối UI cần thiết (Status Bar, Header, Stepper 4 mốc, Thẻ dặn dò dị ứng, Time Slot Picker, Vé QR, Bottom Bar).
+   - Phân tích User Action và System Feedback trong kịch bản tương lai, xác định kích thước viewport (iPhone 14 Pro Max: `430x932`), các khối UI cần thiết (Status Bar, Header, Stepper 4 mốc, Thẻ dặn dò dị ứng, Time Slot Picker, Vé QR, Bottom Bar kèm Home Indicator).
 2. **Sinh mã giao diện Vector SVG**:
-   - Sử dụng bộ công cụ `tools/generate-figma-svg.py` (`FigmaSvgBuilder`) hoặc sinh trực tiếp mã SVG với đầy đủ layer semantic `<g id="...">` và Design Tokens.
+   - Sử dụng bộ công cụ `tools/generate-figma-svg.py` (`FigmaSvgBuilder`) hoặc sinh trực tiếp mã SVG với đầy đủ layer semantic `<g id="...">`, Design Tokens và tuân thủ nghiêm ngặt `rules/layout-and-typography-rules.md`.
 3. **Kiểm tra và Xuất bản**:
    - Lưu file vào `deliverables/02-interaction-design/prototype/<ten-man-hinh>.svg` hoặc `wireframe/`.
    - (Tùy chọn) Sử dụng `tools/render-html-to-png.py` để render ảnh xem trước.

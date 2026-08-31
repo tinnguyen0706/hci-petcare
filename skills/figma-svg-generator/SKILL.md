@@ -14,8 +14,9 @@ Skill này giúp AI Agent tạo ra các bản vẽ Wireframe/Mockup hoàn chỉn
 
 Để Figma tự động chuyển đổi SVG thành các Frame và Layer chỉnh sửa được mà không bị lỗi:
 
-1. **Khung nhìn (Viewport & Dimensions):**
-   - Mobile-first tiêu chuẩn: `width="375" height="812" viewBox="0 0 375 812"`.
+1. **Khung nhìn (Viewport & Dimensions — Chuẩn iPhone 14 Pro Max):**
+   - Mobile tiêu chuẩn: `width="430" height="932" viewBox="0 0 430 932"`.
+   - Khung viền vật lý: `rx="52"` kèm Dynamic Island (`x="152" y="12" width="126" height="35" rx="17.5" fill="#0F172A"`) và Home Indicator (`x="145" y="918" width="140" height="5" rx="2.5"`).
    - Tablet: `width="768" height="1024" viewBox="0 0 768 1024"`.
    - Desktop: `width="1440" height="900" viewBox="0 0 1440 900"`.
 
@@ -24,10 +25,11 @@ Skill này giúp AI Agent tạo ra các bản vẽ Wireframe/Mockup hoàn chỉn
 
 3. **Font chữ, Typography & Chống Tràn Chữ (Tuân thủ rules/layout-and-typography-rules.md):**
    - Dùng `font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"`.
-   - **Giới hạn số ký tự trên 1 dòng để chống tràn chữ (Mobile 375px / Card 335px):**
-     - Header/Title (`16-18px`): Tối đa **24 ký tự** / dòng ($\Delta y \ge 24\text{px}$).
-     - Section/Card Title (`13-15px`): Tối đa **30 ký tự** / dòng ($\Delta y \ge 20\text{px}$).
-     - Body / Note Text (`11-12px`): Tối đa **38 ký tự** / dòng ($\Delta y \ge 18\text{px}$).
+   - **Giới hạn số ký tự trên 1 dòng để chống tràn chữ (iPhone 14 Pro Max 430px / Card 390px / Vùng text 354px):**
+     - Font $18\text{px}$: Tối đa **28 ký tự** / dòng.
+     - Font $14\text{px}$: Tối đa **36 ký tự** / dòng.
+     - Font $12\text{px}$: Tối đa **46 ký tự** / dòng.
+     - *(Nếu nội dung vượt quá giới hạn trên, bắt buộc phải tách làm 2 dòng với khoảng cách $\Delta y \ge 19\text{px}$)*.
      - Badge / Caption (`9-10px`): Tối đa **46 ký tự** / dòng ($\Delta y \ge 15\text{px}$).
    - **Chống đè chữ cùng hàng**: Khi có 2 text cùng tọa độ $y$ (trái $x=36$, phải $x=339$), text trái tối đa 20 ký tự, text phải tối đa 12 ký tự, chừa gap $\ge 20\text{px}$.
    - **Bắt buộc ngắt dòng**: Khi văn bản dài hơn giới hạn trên, phải tách thành nhiều thẻ `<text>` riêng biệt với $\Delta y \ge 18\text{px}$.
@@ -84,11 +86,12 @@ Hoặc import class `FigmaSvgBuilder` trong Python để dựng bất kỳ màn 
 ```python
 from tools.generate_figma_svg import FigmaSvgBuilder
 
-builder = FigmaSvgBuilder(375, 812, title="Man_Hinh_Thanh_Toan")
+# Khởi tạo màn hình chuẩn iPhone 14 Pro Max (430x932)
+builder = FigmaSvgBuilder(430, 932, title="Man_Hinh_Thanh_Toan")
 builder.add_background()
 builder.add_status_bar()
-builder.add_header("Xác nhận & Thanh toán", show_back=True)
-builder.add_section_title("Chi tiết đơn dịch vụ")
+builder.add_header("Xác nhận thanh toán", show_back=True)
+builder.add_section_title("Thông tin gói dịch vụ")
 builder.add_card("Combo Tắm & Cắt Tỉa", subtitle="Bé Bông (Poodle)", price="250.000đ", height=100)
 builder.add_button("Thanh toán ngay")
 
