@@ -7,28 +7,42 @@
         "editor.wordWrap": "on"
     },
     "workbench.editor.empty.hint": "hidden",
-    "latex-workshop.docker.enabled": true,
-    "latex-workshop.docker.path": "docker",
-    "latex-workshop.docker.image.latex": "ghcr.io/tinnguyen0706/latex-times-new-roman:latest",
+    "latex-workshop.docker.enabled": false,
     "latex-workshop.latex.recipes": [
         {
-            "name": "XeLaTeX via Docker",
+            "name": "XeLaTeX",
             "tools": [
-                "latexmk"
+                "xelatex"
+            ]
+        },
+        {
+            "name": "XeLaTeX -> BibTeX -> XeLaTeX*2",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
             ]
         }
     ],
     "latex-workshop.latex.tools": [
         {
-            "name": "latexmk",
-            "command": "latexmk",
+            "name": "xelatex",
+            "command": "xelatex",
             "args": [
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
-                "-xelatex",
-                "-outdir=%OUTDIR%",
-                "%DOC_EXT%"
+                "-output-directory=%OUTDIR%",
+                "%DOC%"
+            ],
+            "cwd": "%DIR%"
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%OUTDIR%/%DOCFILE%"
             ],
             "cwd": "%DIR%"
         }

@@ -755,47 +755,60 @@ Trước khi hoàn thành báo cáo, kiểm tra:
 
 ---
 
-# 18. Quy trình tự động Build LaTeX theo công thức .vscode (Automated LaTeX Build)
+# 18. Quy trình tự động Build LaTeX thông minh (Dual-Mode Automated Build)
 
-Mỗi khi có **bất kỳ thay đổi nào** trong nội dung báo cáo (file `.tex`, hình ảnh, bảng biểu, trích dẫn, references hoặc file phụ trợ), `report-agent` **PHẢI tự động chạy tiến trình build PDF** theo đúng công thức được cấu hình trong `.vscode/settings.json`.
+Mỗi khi có **bất kỳ thay đổi nào** trong nội dung báo cáo (file `.tex`, hình ảnh, bảng biểu, trích dẫn, references hoặc file phụ trợ), `report-agent` **PHẢI tự động chạy tiến trình build PDF** theo cơ chế 2 trường hợp (Dual-Mode):
 
-### 18.1. Công thức Build chuẩn từ `.vscode/settings.json`
+### 18.1. Cơ chế tự động phát hiện & Lựa chọn công cụ
 
+Agent kiểm tra môi trường hệ thống để quyết định phương thức biên dịch:
+
+```text
+[Kiểm tra xelatex trên máy]
+       │
+       ├─► (Có sẵn compiler) ──► Trường hợp 1: Biên dịch trực tiếp qua Local XeLaTeX (Nhanh, không cần Docker)
+       │
+       └─► (Chưa cài compiler) ─► Trường hợp 2: Biên dịch qua Docker Container (Chứa sẵn TeX Live + Font)
+```
+
+---
+
+### 18.2. Chi tiết 2 Trường hợp Biên dịch
+
+#### Trường hợp 1: Sử dụng Compiler có sẵn trên máy (Local XeLaTeX)
+- **Áp dụng khi**: Máy host đã cài sẵn `MiKTeX` hoặc `TeX Live` (lệnh `xelatex` khả dụng).
+- **Lệnh thực thi (PowerShell):**
+  ```powershell
+  cd <thư_mục_chứa_file_tex>
+  if (!(Test-Path build)) { New-Item -ItemType Directory build }
+  xelatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=build <file_chính>.tex
+  ```
+- **Ví dụ cho sample hoặc final report:**
+  ```powershell
+  cd templates\latex\sample; if (!(Test-Path build)) { New-Item -ItemType Directory build }; xelatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=build main.tex
+  ```
+
+#### Trường hợp 2: Biên dịch qua Docker Image (Fallback Docker)
+- **Áp dụng khi**: Máy host chưa cài TeX Live / MiKTeX hoặc bị thiếu package/font.
 - **Docker Image**: `ghcr.io/tinnguyen0706/latex-times-new-roman:latest`
-- **Engine / Compiler**: `latexmk` với engine `XeLaTeX`
-- **Output Directory**: `%DIR%/build` (thư mục `build/` cùng cấp với file `.tex` chính)
-- **Formatting (tùy chọn trước build)**: `tex-fmt --nowrap`
+- **Lệnh thực thi (PowerShell):**
+  ```powershell
+  docker run --rm --volume "${PWD}:/workspace" --workdir /workspace/<thư_mục_chứa_file_tex> ghcr.io/tinnguyen0706/latex-times-new-roman:latest latexmk -synctex=1 -interaction=nonstopmode -file-line-error -xelatex -outdir=build <file_chính>.tex
+  ```
+- **Lệnh thực thi (Linux/Bash):**
+  ```bash
+  docker run --rm \
+    --volume "$PWD:/workspace" \
+    --workdir /workspace/<thư_mục_chứa_file_tex> \
+    ghcr.io/tinnguyen0706/latex-times-new-roman:latest \
+    latexmk -synctex=1 -interaction=nonstopmode -file-line-error -xelatex -outdir=build <file_chính>.tex
+  ```
 
-### 18.2. Lệnh thực thi Build tự động
-
-Khi phát hiện thay đổi hoặc sau khi ghi/sửa file báo cáo, Agent thực thi ngay lệnh build tương ứng:
-
-**Trên Windows (PowerShell):**
-```powershell
-docker run --rm `
-  --volume "${PWD}:/workspace" `
-  --workdir /workspace/<thư_mục_chứa_file_tex> `
-  ghcr.io/tinnguyen0706/latex-times-new-roman:latest `
-  latexmk -synctex=1 -interaction=nonstopmode -file-line-error -xelatex -outdir=build <file_chính>.tex
-```
-
-*Ví dụ build cho sample hoặc final submission:*
-```powershell
-docker run --rm --volume "${PWD}:/workspace" --workdir /workspace/deliverables/04-final-submission/report ghcr.io/tinnguyen0706/latex-times-new-roman:latest latexmk -synctex=1 -interaction=nonstopmode -file-line-error -xelatex -outdir=build main.tex
-```
-
-**Trên Linux / Bash:**
-```bash
-docker run --rm \
-  --volume "$PWD:/workspace" \
-  --workdir /workspace/<thư_mục_chứa_file_tex> \
-  ghcr.io/tinnguyen0706/latex-times-new-roman:latest \
-  latexmk -synctex=1 -interaction=nonstopmode -file-line-error -xelatex -outdir=build <file_chính>.tex
-```
+---
 
 ### 18.3. Quy tắc bắt buộc sau khi Build
 
-1. **Kiểm tra Log & Exit Code**: Đảm bảo quá trình biên dịch không xảy ra lỗi nghiêm trọng (Fatal errors, missing fonts, undefined citations/packages).
+1. **Kiểm tra Log & Exit Code**: Đảm bảo quá trình biên dịch trả về exit code 0, không có lỗi fatal (missing package, unescaped character như `&`, broken syntax).
 2. **Kiểm tra File đầu ra**: File PDF đầu ra phải xuất hiện tại `<thư_mục_chứa_file_tex>/build/<tên_file>.pdf` và có timestamp mới nhất.
 3. **Không đánh dấu hoàn thành nếu build lỗi**: Tuyệt đối không hoàn tất tác vụ hoặc báo cáo thành công nếu lệnh build PDF thất bại hoặc file PDF chưa được render.
 
@@ -810,7 +823,7 @@ Chỉ gọi báo cáo là **submission-ready** khi:
 3. Citation đã được kiểm tra.
 4. Structure đúng yêu cầu.
 5. Formatting đúng yêu cầu.
-6. PDF đã được tự động build và render thành công qua Docker recipe.
+6. PDF đã được tự động build và render thành công (qua Local XeLaTeX hoặc Docker).
 7. PDF đã được mở/kiểm tra trực quan.
 8. Không có:
 
