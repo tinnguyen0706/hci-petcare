@@ -22,14 +22,15 @@ Skill này giúp AI Agent tạo ra các bản vẽ Wireframe/Mockup hoàn chỉn
 2. **Đặt tên Layer bằng thẻ `<g id="...">`:**
    - Figma tự động lấy thuộc tính `id` của thẻ `<g>` hoặc `<rect>` để đặt tên cho Layer/Frame con (ví dụ: `<g id="Header">`, `<g id="Service_Card">`, `<g id="Button_CTA">`).
 
-3. **Font chữ & Typography:**
+3. **Font chữ, Typography & Chống Tràn Chữ (Tuân thủ rules/layout-and-typography-rules.md):**
    - Dùng `font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"`.
-   - Phân cấp kích thước:
-     - Header/Title: `font-size="18" font-weight="700"`
-     - Section Header: `font-size="12" font-weight="700" letter-spacing="0.6"`
-     - Card Title: `font-size="15" font-weight="700"`
-     - Body Text: `font-size="12-13" font-weight="400"`
-     - Button Label: `font-size="15" font-weight="700"`
+   - **Giới hạn số ký tự trên 1 dòng để chống tràn chữ (Mobile 375px / Card 335px):**
+     - Header/Title (`16-18px`): Tối đa **24 ký tự** / dòng ($\Delta y \ge 24\text{px}$).
+     - Section/Card Title (`13-15px`): Tối đa **30 ký tự** / dòng ($\Delta y \ge 20\text{px}$).
+     - Body / Note Text (`11-12px`): Tối đa **38 ký tự** / dòng ($\Delta y \ge 18\text{px}$).
+     - Badge / Caption (`9-10px`): Tối đa **46 ký tự** / dòng ($\Delta y \ge 15\text{px}$).
+   - **Chống đè chữ cùng hàng**: Khi có 2 text cùng tọa độ $y$ (trái $x=36$, phải $x=339$), text trái tối đa 20 ký tự, text phải tối đa 12 ký tự, chừa gap $\ge 20\text{px}$.
+   - **Bắt buộc ngắt dòng**: Khi văn bản dài hơn giới hạn trên, phải tách thành nhiều thẻ `<text>` riêng biệt với $\Delta y \ge 18\text{px}$.
 
 4. **Bảng màu Design Tokens chuẩn:**
    - *Primary (Chủ đạo)*: `#0D766E` (Xanh teal)

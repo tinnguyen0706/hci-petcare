@@ -4,3 +4,4 @@
 - Giữ nguyên các thuật ngữ chuyên ngành (HCI, UX/UI, phần mềm, Git) bằng tiếng Anh nguyên bản (ví dụ: Persona, Value Proposition, User Discovery, Scenario, Storyboard, Wireframe, Prototype, Worktree, Handoff, Acceptance Criteria, Heuristic, Affordance, PR...). Không dịch gượng ép sang tiếng Việt gây tối nghĩa hoặc sai lệch khái niệm chuẩn.
 - Giao diện tối giản, dễ quét; trạng thái không chỉ truyền đạt bằng màu sắc.
 - Nhãn và thông báo ngắn, cụ thể; typography và tương phản bảo đảm dễ đọc.
+- **Bố cục & Kiểu chữ SVG**: Tuân thủ nghiêm ngặt [rules/layout-and-typography-rules.md](layout-and-typography-rules.md) để chống đè chữ (overlapping) và chống tràn chữ (overflow) trên màn hình mobile.
