@@ -51,7 +51,7 @@ img {
 
 .storyboard {
   display: grid;
-  grid-template-rows: 44px minmax(0, 1fr);
+  grid-template-rows: 56px minmax(0, 1fr);
   gap: 12px;
   width: var(--page-width);
   height: var(--page-height);
@@ -67,8 +67,11 @@ img {
 .storyboard__header {
   display: grid;
   margin: 0;
+  padding: 4px 12px;
   place-items: center;
   text-align: center;
+  background: #ffffff;
+  border: 2px solid var(--storyboard-border);
 }
 
 .storyboard__title {

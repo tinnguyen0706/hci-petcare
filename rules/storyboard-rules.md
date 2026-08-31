@@ -23,20 +23,18 @@ Tệp này quy định các chuẩn mực, ràng buộc và tiêu chuẩn chất
 - **Canvas cố định**: Storyboard tổng hợp phải đúng `1600 × 900 px` (16:9). Mỗi ảnh nguồn `frame-*.png` phải đúng `1280 × 720 px` (16:9); `character-reference.png` phải đúng `1024 × 1024 px`.
 - **Bố cục 3 tầng bắt buộc cho mỗi frame**:
   1. *Tầng 1 (Header)*: Số thứ tự màu trắng trong hình tròn đen và tiêu đề hành động ngắn, in đậm đặt bên cạnh.
-  2. *Tầng 2 (Khung hình - Figure)*: Ảnh minh họa 16:9 được thu nhỏ bằng `object-fit: contain`, nằm giữa panel và không bị crop.
+  2. *Tầng 2 (Khung hình - Figure)*: Ảnh minh họa 16:9 nằm giữa panel, hiển thị trọn vẹn và không bị crop.
   3. *Tầng 3 (Caption đáy)*: Lời dẫn câu chuyện 1–2 câu tiếng Việt, căn giữa, cỡ chữ nhỏ hơn tiêu đề và ngăn cách với hình bằng đường kẻ đen.
-- **Phân tách nội dung và hình ảnh**: Số thứ tự, tiêu đề header và caption đáy do mã nguồn HTML/CSS kết xuất bằng font chữ viết tay comic (`Patrick Hand`), tuyệt đối không ghép sẵn chữ hay số vào trong file ảnh asset.
-- **CSS monochrome bắt buộc**: Template chỉ dùng đen `#000000` và trắng `#ffffff`; không dùng màu thương hiệu, xám, gradient, shadow hoặc nền trang trí.
+- **Phân tách nội dung và hình ảnh**: Số thứ tự, tiêu đề header và caption đáy phải do template kết xuất; tuyệt đối không ghép sẵn chữ hay số vào file ảnh asset.
+- **Trình bày monochrome bắt buộc**: Storyboard hoàn chỉnh chỉ dùng đen và trắng; không dùng màu thương hiệu, xám, gradient, shadow hoặc nền trang trí.
 
-### Canonical HTML/CSS presentation template
+### Template trình bày dùng chung
 
-- **Dùng chung một implementation**: Mọi Storyboard phải dùng cùng cấu trúc HTML và cùng bộ thông số CSS dưới đây. Chỉ các nội dung động được thay đổi theo Persona–Goal: metadata trong `<title>`, eyebrow, tiêu đề Storyboard, thông tin Persona, tiêu đề/caption/alt của 6 frame và đường dẫn ảnh.
-- **Bắt buộc tải font trước khi render**: Trong `<head>` phải khai báo Google Fonts `Patrick Hand` bằng `preconnect` tới `fonts.googleapis.com`, `fonts.gstatic.com` và stylesheet `https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap`. CSS dùng `font-family: "Patrick Hand", "Comic Sans MS", cursive;`. Không được chỉ khai báo tên font mà không load/import font trước khi render.
-- **Canvas chuẩn**: `@page` và `html, body` cố định `1600 × 900 px`; `.canvas` có `padding: 20px 28px 24px`, `grid-template-rows: 74px 1fr` và `gap: 12px`.
-- **Header tổng chuẩn**: `.board-header` là hộp viền đen `3px`, `padding: 8px 16px`, dùng flex căn giữa và `justify-content: space-between`. Khối trái gồm `.eyebrow` (`15px`, `line-height: 1`, `letter-spacing: 1.8px`) và `h1` (`30px`, `line-height: 1`); khối phải là `.persona` (`20px`, `white-space: nowrap`).
-- **Lưới chuẩn**: `.grid` gồm 3 cột × 2 hàng bằng nhau, `gap: 12px`, `min-height: 0`.
-- **Panel chuẩn**: Viền đen `3px`; ba hàng có kích thước `46px minmax(0, 1fr) 74px`. `.panel-header` có `padding: 5px 10px`, `gap: 9px`, viền đáy `2px`; vòng số `31 × 31 px`, chữ số `22px`; `h2` là `24px`, `line-height: 1`, `font-weight: 700`.
-- **Figure và caption chuẩn**: `figure` có `padding: 5px 7px`; ảnh chiếm `100% × 100%` và dùng `object-fit: contain`. `.caption` có `padding: 7px 12px 6px`, viền trên `2px`, chữ căn giữa `17px`, `line-height: 1.08` và `overflow: hidden`.
+- **Single Source of Truth**: `templates/storyboard/index.html` và `templates/storyboard/style.css` là nguồn chuẩn duy nhất cho cấu trúc và giao diện của mọi Storyboard.
+- **Bắt buộc dùng template**: Agent phải nạp và sao chép hai tệp template trên khi tạo artifact. Không được tự dựng HTML/CSS, tạo biến thể bố cục, thêm inline style, đổi class hoặc bổ sung thành phần trình bày ngoài template.
+- **Chỉ điền dữ liệu động**: Trong `index.html`, agent chỉ được thay các placeholder có sẵn như `{{STORYBOARD_TITLE}}` và `{{FRAME_ITEMS}}`. Nội dung `{{FRAME_ITEMS}}` phải tuân thủ đúng DOM contract và class đã được định nghĩa trong template.
+- **CSS đầu ra phải nguyên vẹn**: `style.css` trong thư mục bàn giao phải là bản sao nguyên vẹn của `templates/storyboard/style.css`. Nếu cần thay đổi giao diện, phải sửa template nguồn trước; tuyệt đối không mô tả hoặc nhân bản thông số CSS trong rule này.
+- **Dừng khi template không hợp lệ**: Nếu thiếu template, không đọc được template, thiếu placeholder bắt buộc hoặc không thể tạo `FRAME_ITEMS` theo đúng contract thì phải dừng và báo lỗi; không được tự tạo template thay thế.
 
 ---
 
@@ -75,7 +73,7 @@ Một Storyboard chỉ được nghiệm thu đạt chuẩn khi đáp ứng đ�
    - `data.json` (đầy đủ metadata 6 frame, không thiếu trường).
    - `assets/frame-1.png` đến `assets/frame-6.png` (đúng `1280 × 720 px`, tỷ lệ 16:9, chuẩn Expressive Stick-figure UI line art đen–trắng).
    - `character-reference.png` (đúng `1024 × 1024 px`, nằm trong cùng thư mục Persona–Goal và khớp nhân vật, thú cưng xuyên suốt 6 frame).
-   - `storyboard.html` & `style.css` (bố cục 3 tầng chuẩn).
+   - `storyboard.html` giữ đúng cấu trúc và DOM contract của `templates/storyboard/index.html`; `style.css` khớp nguyên vẹn với `templates/storyboard/style.css`.
    - `storyboard.png` (đúng `1600 × 900 px`, không bị cắt cụt caption hay mất viền).
 2. Hình ảnh thể hiện rõ sự kết hợp giữa **Storytelling** và **Sketching**: nhân vật có nhận diện, tư thế và cảm xúc dễ đọc; UI mockup và bối cảnh phụ thoáng, không che khuất nhau.
 3. Mỗi frame có `sourceRefs` hợp lệ và không có direct quote hoặc Thought Bubble giả nguồn.

@@ -19,6 +19,7 @@ Agent phải điều phối cân bằng trọn vẹn 2 trục nghiệp vụ:
 - Thông tin Persona (`deliverables/01-user-research/persona/personas.json`).
 - Value Proposition (`deliverables/01-user-research/value-proposition/value-proposition.json`).
 - Quy tắc thiết kế (`rules/storyboard-rules.md`).
+- Template HTML và CSS (`templates/storyboard/`).
 
 ## Output
 
@@ -34,13 +35,15 @@ Agent phải điều phối cân bằng trọn vẹn 2 trục nghiệp vụ:
 1. **Xác định dữ liệu đầu vào**:
    - Nếu chưa rõ Scenario cần tạo: hỏi người dùng và hiển thị danh sách các `scenario-future` có sẵn để người dùng lựa chọn.
    - Mặc định chỉ xử lý một cặp `persona_id × goal_id`; chỉ chạy batch khi người dùng yêu cầu rõ ràng và vẫn tạo riêng từng Storyboard theo nguyên tắc 1-1-1.
-   - Xác nhận Scenario Future, Persona, Value Proposition và quy tắc thiết kế tương ứng đều tồn tại, đọc được và khớp `persona_id`, `goal_id`. Nếu thiếu, sai định danh hoặc không truy vết được dữ liệu tương ứng thì dừng và báo rõ đầu vào chưa đạt.
+   - Xác nhận Scenario Future, Persona, Value Proposition, quy tắc thiết kế và template trong `templates/storyboard/` đều tồn tại, đọc được và khớp yêu cầu. Nếu đầu vào chưa đạt thì dừng và báo lỗi.
    - Xác nhận thư mục đích `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/` và mọi artifact đích chưa tồn tại. Nếu đã tồn tại thì dừng; không ghi đè và không tự tạo phiên bản mới.
 2. **Gọi `Storyboard Detail Generator`**:
    - Phân tích đúng Scenario Future đã chọn thành 6 nhịp kể chuyện trung tính, tạo `data.json`, `character-reference.png` `1024 × 1024 px` và 6 ảnh panel `1280 × 720 px` theo phong cách Expressive Stick-figure UI đen–trắng. Không áp đặt nhân vật, tính năng, hành động, bối cảnh hoặc kết quả không có trong Scenario/evidence.
 3. **Gọi `Storyboard Generator`**:
-   - Đọc `data.json` và các ảnh trong `assets/`, đưa vào template HTML/CSS 3 tầng chuẩn và chạy script `tools/render-html-to-png.py` để kết xuất ảnh `storyboard.png`.
+   - **Load template HTML và CSS**: Nạp template từ `templates/storyboard/`.
+   - Điền dữ liệu từ `data.json` và các ảnh trong `assets/` vào template theo `rules/storyboard-rules.md`.
+   - Lưu `storyboard.html`, `style.css` vào thư mục đầu ra và dùng `tools/render-html-to-png.py` để kết xuất `storyboard.png`.
    - Kết xuất bằng lệnh: `python tools/render-html-to-png.py "<output-dir>/storyboard.html" "<output-dir>/storyboard.png" --width 1600 --height 900 --scale 1 --wait-ms 1500`.
-   - Xác nhận PNG đầu ra đúng `1600 × 900 px`, sau đó mở và kiểm tra trực quan; nếu sai kích thước, bị cắt, thiếu frame, mất viền hoặc caption không đọc được thì dừng và báo chưa đạt nghiệm thu.
+   - Xác nhận đầu ra bám đúng template và PNG đúng `1600 × 900 px`; sau đó mở ảnh để kiểm tra trực quan theo tiêu chuẩn nghiệm thu.
 4. **Báo cáo kết quả**:
    - Trình bày tóm tắt mạch 6 frame, đính kèm link các tệp bàn giao và hình ảnh Storyboard hoàn chỉnh cho người dùng.
