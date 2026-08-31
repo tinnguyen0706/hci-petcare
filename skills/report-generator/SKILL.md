@@ -27,7 +27,7 @@ Trước khi viết báo cáo, đọc và kiểm tra các nguồn sau nếu chú
 1. `PLAN.md`
 2. Project manifest / artifact manifest
 3. Project rules / submission requirements
-4. Template báo cáo LaTeX trong `templates/latex/sample/` (`main.tex`, thư mục `content/` gồm 9 chương từ `01_gioi_thieu.tex` đến `09_ket_luan.tex`, `ref/appendix.tex`) và hướng dẫn trong `templates/latex/README.md`
+4. Template báo cáo LaTeX trong `templates/report/` (`main.tex`, thư mục `content/` gồm 9 chương từ `01_gioi_thieu.tex` đến `09_ket_luan.tex`, `ref/appendix.tex`) và hướng dẫn trong `templates/report/README.md`
 5. User research artifacts
 6. Requirements artifacts
 7. Existing system analysis
@@ -785,7 +785,7 @@ Agent kiểm tra môi trường hệ thống để quyết định phương th�
   ```
 - **Ví dụ cho sample hoặc final report:**
   ```powershell
-  cd templates\latex\sample; if (!(Test-Path build)) { New-Item -ItemType Directory build }; xelatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=build main.tex
+  cd templates\report; if (!(Test-Path build)) { New-Item -ItemType Directory build }; xelatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=build main.tex
   ```
 
 #### Trường hợp 2: Biên dịch qua Docker Image (Fallback Docker)

@@ -16,7 +16,7 @@ Tổng hợp research, design, implementation và evaluation thành báo cáo t�
 - `deliverables/02-interaction-design/`.
 - `deliverables/03-software-product/`.
 - Yêu cầu hiện hành trong `data/submission-inputs/`.
-- Đọc template báo cáo LaTeX trong `templates/latex/sample/` (`main.tex`, thư mục `content/` gồm 9 chương và `ref/appendix.tex`), hướng dẫn build trong `templates/latex/README.md`, proposal và rubric.
+- Đọc template báo cáo LaTeX trong `templates/report/` (`main.tex`, thư mục `content/` gồm 9 chương và `ref/appendix.tex`), hướng dẫn build trong `templates/report/README.md`, proposal và rubric.
 
 ## Output
 
@@ -37,7 +37,7 @@ Tổng hợp research, design, implementation và evaluation thành báo cáo t�
 
 ## Workflow
 
-1. Đọc và tải cấu trúc template báo cáo LaTeX trong `templates/latex/sample/` (`main.tex`, `content/`, `ref/`), lập ma trận phần báo cáo → evidence.
+1. Đọc và tải cấu trúc template báo cáo LaTeX trong `templates/report/` (`main.tex`, `content/`, `ref/`), lập ma trận phần báo cáo → evidence.
 2. Viết/cập nhật từng chương báo cáo LaTeX theo đúng cấu trúc và cú pháp của template.
 3. Tự động chạy build PDF ngay sau khi có thay đổi trong source báo cáo: ưu tiên dùng compiler cục bộ (`xelatex` trên máy host); nếu máy chưa có compiler thì fallback tự động sang Docker image `ghcr.io/tinnguyen0706/latex-times-new-roman:latest`.
 4. Kiểm tra mọi claim, hình, bảng, link và thuật ngữ; kiểm tra file PDF đã render trong thư mục `build/`.

@@ -1,0 +1,54 @@
+\contentsline {section}{\numberline {1}Giới thiệu (Introduction)}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Project Background}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Problem Statement}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Project Objectives}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Project Scope}{2}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Nghiên cứu người dùng (User Research)}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Target Users}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Research Methods}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Research Findings}{2}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}User Needs / Pain Points}{2}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Personas}{2}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Yêu cầu và mục tiêu thiết kế (Requirements \& Design Goals)}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}User Requirements}{2}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Usability Goals}{2}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Design Goals}{2}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Phân tích hệ thống và trải nghiệm hiện tại (Existing System Analysis)}{2}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Existing System / Existing Interface}{2}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Task Analysis}{2}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}User Flow / Task Flow}{2}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Usability Problems}{2}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Quá trình thiết kế (Design Process)}{2}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Information Architecture}{2}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}User Flow}{2}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Ideation}{2}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Storyboards}{2}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Wireframes}{2}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Design Alternatives}{2}{subsection.5.6}%
+\contentsline {section}{\numberline {6}Thiết kế Prototype (Prototype Design)}{2}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Prototype Overview}{2}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Prototype Screens}{2}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Interaction Design}{2}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Design Rationale}{2}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Đánh giá thiết kế (Design Evaluation)}{2}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Evaluation Objectives}{2}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Evaluation Method}{2}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Participants}{2}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Tasks}{2}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Metrics}{2}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Procedure}{2}{subsection.7.6}%
+\contentsline {subsection}{\numberline {7.7}Results}{2}{subsection.7.7}%
+\contentsline {subsection}{\numberline {7.8}Discussion}{2}{subsection.7.8}%
+\contentsline {section}{\numberline {8}Thiết kế cuối cùng (Final Design)}{2}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Final Prototype}{2}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Key Design Improvements}{2}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Before vs. After}{2}{subsection.8.3}%
+\contentsline {section}{\numberline {9}Kết luận (Conclusion)}{2}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Summary}{2}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Contributions}{2}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Limitations}{2}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Future Work}{2}{subsection.9.4}%
+\contentsline {section}{Acknowledgement}{3}{section*.2}%
+\contentsline {section}{Tài liệu tham khảo}{4}{section*.3}%
+\contentsline {section}{\numberline {A}Ma trận Claim -- Evidence}{5}{appendix.A}%
+\contentsline {section}{\numberline {B}Bảng phân công và Đóng góp thành viên}{6}{appendix.B}%
