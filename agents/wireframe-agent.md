@@ -48,22 +48,24 @@
 ## Output
 
 Toàn bộ hệ thống Wireframe được lưu tập trung trực tiếp tại thư mục `deliverables/02-interaction-design/wireframe/` (không chia theo thư mục con `persona/goal`):
-- **Các file SVG màn hình Wireframe toàn ứng dụng**:
-  - *Phân hệ Trang chủ & Điều hướng*: `01_home_dashboard_wireframe.svg`, `02_push_notification_wireframe.svg`.
-  - *Phân hệ Đặt lịch & Lưới giờ*: `03_booking_service_selection_wireframe.svg`, `04_booking_timeslot_picker_wireframe.svg`, `05_multi_pet_assignment_wireframe.svg`.
-  - *Phân hệ Hồ sơ thú cưng & Y tế*: `06_pet_medical_profile_wireframe.svg`.
-  - *Phân hệ Theo dõi tiến độ Live Tracking*: `07_tracking_live_timeline_wireframe.svg`, `08_tracking_photo_detail_wireframe.svg`.
-  - *Phân hệ Tiếp nhận & Bàn giao*: `09_reception_checkin_wireframe.svg`, `10_pickup_qr_handoff_wireframe.svg`.
-  - *Phân hệ Lịch sử & Chi tiêu*: `11_history_expense_hub_wireframe.svg`, `12_rebook_modal_wireframe.svg`, `13_budget_cycle_tracker_wireframe.svg`.
+- **Các file SVG màn hình Wireframe toàn ứng dụng (Master Screen Inventory)**:
+  - *Phân hệ Trang chủ & Điều hướng*: Dashboard tổng quan lịch hẹn, Trung tâm thông báo đẩy.
+  - *Phân hệ Đặt lịch & Lưới giờ*: Chọn dịch vụ, Lưới giờ real-time, Đặt lịch 1 bé, Đặt lịch đa thú cưng, Xác nhận đặt lịch tức thì.
+  - *Phân hệ Hồ sơ thú cưng & Y tế*: Quản lý danh sách đa hồ sơ, Hồ sơ y tế & Dị ứng cố định, Sổ tiêm phòng điện tử.
+  - *Phân hệ Tiếp nhận & Điều phối Tiệm*: Mã QR check-in tại quầy, Tablet điều phối tiệm, Biên bản giao ca trực 2 lớp.
+  - *Phân hệ Theo dõi tiến độ Live Tracking*: Các màn hình từng mốc độc lập (Mốc 1 Đã nhận, Mốc 2 Đang tắm, Mốc 3 Sấy & Tỉa, Mốc 4 Hoàn tất), Tiến độ song song đa thú cưng, Xem ảnh phòng cách ly.
+  - *Phân hệ Bàn giao xuất viện & Đánh giá*: Mã QR đón bé xuất viện, Báo cáo nghiệm thu trước/sau, Đánh giá 5 sao.
+  - *Phân hệ Lịch sử, Chi tiêu & Rebook*: Trung tâm lịch sử dịch vụ, Chi tiết lượt chăm sóc cũ, Modal Rebook 1 chạm, Theo dõi chu kỳ & hạn mức ngân sách, Hóa đơn điện tử gộp.
   - *Các màn hình trạng thái biên (Edge States)*:
     - `state_loading_wireframe.svg` (Trạng thái Skeleton Shimmer / Đang đồng bộ).
     - `state_empty_wireframe.svg` (Trạng thái Trống dữ liệu / Chưa có dặn dò / Kín lịch).
-    - `state_error_wireframe.svg` (Trạng thái Cảnh báo rủi ro dị ứng / Xung đột lịch / Mất mạng).
-    - `state_success_wireframe.svg` (Trạng thái Xác nhận thành công).
+    - `state_error_wireframe.svg` (Trạng thái Cảnh báo rủi ro dị ứng nguy hiểm kèm nút 1-Click Sửa lỗi).
+    - `state_error_network_wireframe.svg` (Trạng thái Mất kết nối mạng / timeout kèm nút Thử lại).
+    - `state_success_wireframe.svg` (Trạng thái Xác nhận thành công / bàn giao thú cưng hoàn tất).
 - **Tài liệu đặc tả kiến trúc Wireframe (`wireframe-spec.md`)**:
   - Bản đồ cấu trúc màn hình (Screen Flow & Information Architecture).
   - Hệ thống lưới bố cục (Layout Grid), độ phân cấp Typography và vùng chạm Thumb Zone.
-  - Ma trận đặc tả đầy đủ 5 trạng thái giao diện (*Main Flow*, *Loading*, *Empty*, *Error*, *Success*).
+  - Ma trận đặc tả đầy đủ 5 trạng thái giao diện (*Main Flow*, *Loading*, *Empty*, *Error*, *Success*) cho toàn bộ các màn hình trong hệ thống.
 
 ## Workflow
 

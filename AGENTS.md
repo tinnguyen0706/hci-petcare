@@ -119,7 +119,8 @@ Khi thực thi từng giai đoạn trong Workflow, AI Agent kích hoạt Subagen
 
 ## 7. Công Cụ Hỗ Trợ Chuẩn Hóa (Standard Tools)
 
-Chỉ được phép dùng 2 công cụ chính thức trong thư mục `tools/`:
+Chỉ được phép dùng 3 công cụ chính thức trong thư mục `tools/`:
 
 1. `tools/generate-figma-svg.py`: Công cụ hỗ trợ sinh mã vector SVG chuẩn Figma.
 2. `tools/render-html-to-png.py`: Công cụ kết xuất HTML sang PNG độ nét cao (sử dụng cho Persona, Storyboard).
+3. `tools/validate-svg.py`: Công cụ kiểm thử & đánh giá hợp lệ mã SVG (iPhone 14 Pro Max, chống tràn chữ, cấm emoji, layer Figma).
