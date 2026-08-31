@@ -5,4 +5,4 @@ description: Adapter đa runtime cho scenario-new-agent. Thiết kế Scenario m
 
 # Adapter — scenario-new-agent
 
-Đọc và tuân thủ `AGENTS.md` và `agents/scenario-new-agent.md`.
+Đọc và tuân thủ `AGENTS.md` và `agents/scenario-future-agent.md`.

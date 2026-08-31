@@ -15,7 +15,8 @@ description: Tạo kịch bản Scenario 1 mô tả quy trình hiện tại và 
 
 1. **Góc nhìn người dùng (Human-centered)**:
    - Dùng ngôn từ tự nhiên, phản ánh đúng tâm lý và hành vi thực tế của chủ nuôi bận rộn; không dùng thuật ngữ kỹ thuật hệ thống.
-2. **Khắc họa rõ 4 điểm đau cốt lõi của quy trình cũ**:
+2. **Phân loại pain point của quy trình cũ theo evidence**:
+   Bốn nhóm dưới đây là taxonomy để đối chiếu, không phải checklist bắt buộc cho mọi Scenario:
    - *Đặt hẹn*: Chờ đợi phản hồi chậm, hỏi qua lại nhiều câu để chốt giờ, dễ bị trùng lịch hoặc hủy hẹn đột ngột.
    - *Dặn dò & Dị ứng*: Nhân viên tiếp nhận ghi giấy hoặc nhớ miệng, dễ quên khi tiệm đông hoặc khi giao ca cho thợ tỉa lông, gây nguy cơ dị ứng tái phát.
    - *Tiến độ chăm sóc*: Không có cập nhật trung gian, chủ nuôi sốt ruột không biết bé đã làm đến đâu, lo sợ bé bị hoảng loạn hoặc bị nhốt chuồng lâu.
@@ -24,16 +25,25 @@ description: Tạo kịch bản Scenario 1 mô tả quy trình hiện tại và 
    - Tuyệt đối không nhắc tới ứng dụng mới, tính năng tự động hay bất kỳ giao diện cải tiến nào trong Scenario 1.
 4. **Định dạng đoạn văn liền mạch (Single Narrative Paragraph)**:
    - Trình bày toàn bộ câu chuyện thành **một đoạn văn hoàn chỉnh, mượt mà và liền mạch**.
-   - Tránh chia nhỏ vụn vặt thành các mục con hay bảng biểu khô khan trong phần nội dung kịch bản; mọi thông tin về bối cảnh, kênh giao tiếp cũ, điểm nghẽn và cảm xúc phải được đan cài tự nhiên vào dòng tự sự.
-5. **Tính nhất quán & Tương ứng 1-1 với Persona**:
-   - Số lượng Scenario 1 tạo ra phải **tương ứng 1-1 với từng Persona** trong tập dữ liệu Persona.
-   - Mỗi Scenario 1 phải khai thác bối cảnh, hoàn cảnh công việc, tính cách, đặc điểm thú cưng và các điểm đau riêng biệt đã được định nghĩa của chính Persona đó.
+   - File chỉ chứa đúng một đoạn văn; không thêm tiêu đề, metadata, bullet list, bảng, chú thích nguồn hay manifest vào file.
+   - Mọi thông tin về bối cảnh, kênh giao tiếp cũ, điểm nghẽn và cảm xúc phải được đan cài tự nhiên vào dòng tự sự.
+5. **Tính nhất quán & Tương ứng 1-1 với Persona × goal/task**:
+   - Mỗi cặp `persona_id` × `goal_id` tạo ra đúng một Scenario 1 riêng.
+   - Canonical path là `deliverables/01-user-research/scenario-current/<persona-id>/scenario-current-<goal-id>.md`.
+   - Nếu file đích đã tồn tại thì dừng và báo người dùng; không ghi đè, merge hoặc tự tạo phiên bản khác.
+   - Scenario chỉ khai thác bối cảnh, goal/task, đặc điểm và pain point liên quan có trong evidence của Persona đó; không ép đủ cả bốn nhóm pain point.
+6. **Evidence và cách diễn đạt an toàn**:
+   - Mỗi chi tiết thực tế, pain point và cảm xúc phải truy ngược được về Persona hoặc evidence đầu vào.
+   - Chỉ dùng direct quote khi evidence chứa nguyên văn có thể đối chiếu. Phải giữ đúng ý nghĩa và không ghép các đoạn rời thành một câu giả.
+   - Nếu không cần trích nguyên văn, dùng paraphrase trung tính. Không tạo câu trong ngoặc kép hoặc gán lời nói chưa từng xuất hiện cho người tham gia.
 
 ## Xác thực & Tiêu chí Rubric (Mức 1.0)
 
 Kiểm tra chất lượng kịch bản theo checklist:
-- [ ] **Đầy đủ số lượng (1-1 Mapping)**: Mỗi Persona đều có 1 kịch bản Scenario 1 riêng biệt phản ánh đúng chân dung và tình huống của họ.
+- [ ] **Đầy đủ số lượng (Persona × goal/task)**: Mỗi cặp Persona × goal/task đã duyệt có đúng một Scenario 1 tại canonical path.
 - [ ] **Đoạn văn liền mạch (Single Narrative)**: Được viết thành một đoạn văn trôi chảy, giàu tính kể chuyện, không bị đứt gãy hay chia mảnh thành bảng.
-- [ ] **Làm nổi bật khó khăn**: Người đọc thấy rõ 4 khó khăn của quy trình cũ (đặt lịch, dặn dò/dị ứng, theo dõi tiến độ, lịch sử) và cảm xúc tiêu cực của chủ nuôi.
+- [ ] **Làm nổi bật khó khăn có evidence**: Người đọc thấy rõ các pain point liên quan đến goal/task và được evidence hỗ trợ; không bắt buộc đủ bốn nhóm.
 - [ ] **Đầy đủ ngữ cảnh**: Có thông tin địa điểm, thời gian, áp lực thực tế và động cơ thúc đẩy hành động.
 - [ ] **Không lẫn giải pháp mới**: Toàn bộ tương tác chỉ diễn ra qua các kênh hiện có (gọi điện, Zalo cá nhân, nói chuyện trực tiếp, ghi giấy nhớ).
+- [ ] **An toàn khi diễn đạt**: Direct quote có nguyên văn đối chiếu; nội dung còn lại là paraphrase không bịa lời người tham gia.
+- [ ] **File thuần Scenario**: File chỉ có một narrative paragraph; manifest được trả riêng bên ngoài file.

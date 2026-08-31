@@ -17,28 +17,31 @@ description: Tạo kịch bản Scenario 2 mô tả quy trình tương lai và t
    - Dùng ngôn từ tự nhiên, phản ánh đúng tâm lý, hành vi và hoàn cảnh của Persona.
    - Không biến Scenario thành danh sách tính năng hoặc tài liệu mô tả kỹ thuật.
 
-2. **Thể hiện rõ 4 tương tác cải tiến cốt lõi**:
+2. **Phạm vi 4 tương tác cải tiến cốt lõi có thể sử dụng**:
    - *Đặt lịch*: Persona chọn dịch vụ và khung giờ còn trống, sau đó nhận xác nhận lịch ngay trên ứng dụng.
    - *Hồ sơ thú cưng & Yêu cầu đặc biệt*: Thông tin dị ứng, thuốc, tính cách và dặn dò được lưu trong hồ sơ, kiểm tra và đính kèm khi đặt lịch.
    - *Theo dõi tiến độ*: Persona theo dõi quá trình chăm sóc qua 4 mốc: *Đã nhận → Đang chăm sóc → Hoàn tất → Chờ đón*.
    - *Lịch sử chăm sóc*: Persona xem lại dịch vụ, sản phẩm đã sử dụng và ghi chú sau mỗi lượt chăm sóc.
+   - Đây là phạm vi lựa chọn, không phải danh sách bắt buộc cho mọi Scenario. Chỉ sử dụng tương tác liên quan trực tiếp đến goal/task và pain points tương ứng.
 
 3. **Nguyên tắc "Pain-to-Solution Traceability"**:
-   - Mỗi tương tác mới phải giải quyết một pain point hoặc đáp ứng một value đã được xác định trong Persona, Value Proposition và Scenario Current.
-   - Không tự thêm tính năng mới nếu không có căn cứ từ dữ liệu nghiên cứu người dùng hoặc phạm vi proposal.
+   - Mỗi tương tác mới phải giải quyết một pain point đã xác định trong Scenario Current hoặc đáp ứng một value trong Value Proposition, đồng thời không mâu thuẫn với Persona và evidence liên quan.
+   - Không tự thêm tính năng mới nếu không có căn cứ từ dữ liệu nghiên cứu người dùng hoặc phạm vi sản phẩm đã được chấp nhận.
+   - Diễn đạt lại (paraphrase) nội dung evidence bằng ngôn ngữ tự nhiên. Chỉ dùng trích dẫn trực tiếp khi evidence có nguyên văn và nguồn tương ứng; không tạo câu nói đại diện cho người dùng.
 
 4. **Định dạng đoạn văn liền mạch (Single Narrative Paragraph)**:
    - Trình bày toàn bộ câu chuyện thành **một đoạn văn hoàn chỉnh, mượt mà và liền mạch**.
    - Dẫn dắt tự nhiên từ khi Persona phát sinh nhu cầu, tương tác với giải pháp, nhận phản hồi của hệ thống đến khi hoàn thành mục tiêu.
    - Không chia phần nội dung Scenario thành bảng hoặc các bước rời rạc.
+   - File Scenario Future chỉ chứa đoạn văn này, không kèm tiêu đề, metadata, checklist hoặc manifest. Danh sách file chỉ thuộc phản hồi điều phối của Agent.
 
 5. **Tính nhất quán & Tương ứng với Persona–Goal**:
    - Mỗi goal/task chính của từng Persona phải có một Scenario Future tương ứng.
    - Mỗi Scenario Future phải giữ nguyên Persona, thú cưng, goal/task, Trigger, thời gian, địa điểm và áp lực thực tế của Scenario Current tương ứng.
    - Chỉ thay đổi hành động, điểm tiếp xúc và phản hồi của quy trình cũ bằng các tương tác cải tiến có căn cứ.
    - Không tự thêm địa điểm, sự kiện, hoàn cảnh, cơ sở vật chất hoặc giao diện dành cho nhân viên không có trong dữ liệu đầu vào.
-   - Không bắt buộc một Scenario phải chứa đủ cả 4 tính năng; chỉ sử dụng các tương tác liên quan trực tiếp đến goal/task và pain points tương ứng.
    - Không sử dụng khẳng định tuyệt đối về hiệu quả của giải pháp; ưu tiên các cách diễn đạt thực tế như “yên tâm hơn”, “giảm nguy cơ” hoặc “dễ kiểm tra hơn”.
+   - Không ghi đè file Scenario Future đã tồn tại; dừng và báo cho Agent điều phối.
 
 ## Xác thực & Tiêu chí Rubric (Mức 1.0)
 
@@ -51,4 +54,6 @@ Kiểm tra chất lượng kịch bản theo checklist:
 - [ ] **Đầy đủ ngữ cảnh**: Có địa điểm, thời gian, áp lực thực tế, Trigger và mục tiêu của Persona.
 - [ ] **Đúng phạm vi**: Chỉ sử dụng các tính năng thuộc phạm vi sản phẩm đã được chấp nhận.
 - [ ] **Không bịa dữ liệu**: Không thêm thông tin Persona, thú cưng, số liệu, trích dẫn hoặc nhu cầu không có trong evidence.
+- [ ] **Trích dẫn an toàn**: Chỉ dùng trích dẫn trực tiếp khi evidence có nguyên văn và nguồn tương ứng; nếu không thì paraphrase.
+- [ ] **Không ghi đè**: File đích chưa tồn tại trước khi tạo.
 - [ ] **Sẵn sàng cho thiết kế**: Hành động và phản hồi đủ rõ để tiếp tục xây dựng Storyboard, Wireframe và Prototype.
