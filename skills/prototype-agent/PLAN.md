@@ -18,6 +18,7 @@ Chuyển đổi **bất kỳ kịch bản tương tác tương lai (Scenario Fut
 - **Kịch bản Scenario Future mục tiêu**: `deliverables/01-user-research/scenario-future/<persona-id>/scenario-future-<goal-id>.md`.
 - Dữ liệu Persona & Value Proposition (`deliverables/01-user-research/persona/personas.json`, `value-proposition/`).
 - Design Tokens chuẩn HCI trong `AGENTS.md` (Teal `#0D766E`, Coral `#E06236`, Amber `#D97706`, Rose `#BE123C`, Font `Inter`).
+- **Công cụ cho phép**: Sử dụng công cụ có sẵn `tools/generate-figma-svg.py` hoặc tạo trực tiếp mã vector SVG; tuyệt đối không tạo thêm file tool/script mới trong `tools/`.
 
 ---
 

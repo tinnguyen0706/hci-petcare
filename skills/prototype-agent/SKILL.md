@@ -32,5 +32,6 @@ Chuyển hóa kịch bản tương tác tương lai (**Scenario Future / To-Be S
 - Prototype phải phản ánh trung thực toàn bộ diễn biến của kịch bản To-Be đầu vào.
 - Đảm bảo tính nhất quán của Design Tokens (Teal, Coral, Amber, Rose, Inter font).
 - Không mô tả prototype mô phỏng UI là hệ thống backend real-time khi chưa lập trình.
+- **Không tự ý tạo file tool/script mới**: Tuyệt đối không tạo file tạm hay script mới trong `tools/`; sinh trực tiếp file `.svg`, `.html`, `.md` vào đúng thư mục `deliverables/`.
 
 

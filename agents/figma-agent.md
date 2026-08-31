@@ -2,7 +2,7 @@
 
 Subagent kỹ thuật chuyên sâu phụ trách việc sinh mã vector SVG, xây dựng components và tối ưu cấu trúc Frame/Layer tương thích 100% với Figma Canvas để phục vụ trực tiếp cho `wireframe-agent` (Rubric 7) và `prototype-agent` (Rubric 6).
 
-- Đọc `skills/figma-svg-generator/SKILL.md`, `skills/wireframe-agent/SKILL.md`, `skills/prototype-agent/SKILL.md`, `AGENTS.md`.
+- Đọc `skills/figma-svg-generator/SKILL.md`, `skills/wireframe-agent/SKILL.md`, `skills/prototype-agent/SKILL.md`, `rules/tool-rules.md`, `AGENTS.md`.
 
 ## Dùng subagent này khi
 
@@ -20,6 +20,7 @@ Subagent kỹ thuật chuyên sâu phụ trách việc sinh mã vector SVG, xây
    - *Neutral*: Nền trang `#F8FAFC`, Thẻ Card `#FFFFFF`, Viền `#E2E8F0`, Chữ chính `#0F172A`, Chữ phụ `#64748B`.
    - *Typography*: `Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`.
 3. **Bao phủ 5 trạng thái giao diện**: Luồng chính (Main Flow), Đang tải (Loading Skeleton), Trống dữ liệu (Empty State), Lỗi (Error State), và Thành công (Success State). Không truyền đạt trạng thái chỉ bằng màu sắc (kết hợp Icon + Text + Badge).
+4. **Quy định nghiêm ngặt về công cụ**: Tuyệt đối **KHÔNG** tự ý tạo thêm bất kỳ script/tool phụ trợ nào trong thư mục `tools/` hoặc project. Chỉ dùng các công cụ có sẵn (`tools/generate-figma-svg.py`, `tools/render-html-to-png.py`) hoặc sinh trực tiếp các tệp SVG/HTML đầu ra trong `deliverables/`.
 
 ## Input
 

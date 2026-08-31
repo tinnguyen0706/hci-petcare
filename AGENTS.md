@@ -55,7 +55,8 @@
 - **Không tự đổi Tech Stack**: Không tự thêm backend phức tạp hay đổi framework khi chưa có yêu cầu từ người dùng.
 - **Không tự ý đọc lan man ngoài phạm vi**: Tuyệt đối không tự ý mở, đọc hoặc quét qua các file rules khác, tài liệu môn học (`references/`), deliverables hay template của các giai đoạn/agent khác khi không được workflow hoặc người dùng yêu cầu.
 - **Tuyệt đối không tự ý chạy lệnh Git / kiểm tra Git**: Không chạy `git status`, `git log`, `git diff` hoặc các lệnh git để tra cứu lịch sử repo/thư mục khi người dùng không yêu cầu.
-- **Không tự ý tạo file ngoài đặc tả**: Chỉ tạo đúng các định dạng file được quy định rõ trong workflow của từng Agent — tuyệt đối không tự ý tạo thêm file `.md` hay các file phụ trợ ngoài danh mục).
+- **Không tự ý tạo file ngoài đặc tả**: Chỉ tạo đúng các định dạng file được quy định rõ trong workflow của từng Agent — tuyệt đối không tự ý tạo thêm file `.md` hay các file phụ trợ ngoài danh mục.
+- **Tuyệt đối KHÔNG tự ý tạo Script / Tool mới**: Tuân thủ nghiêm ngặt [rules/tool-rules.md](rules/tool-rules.md); không tự tạo script tạm trong `tools/` hay trong project; chỉ dùng công cụ có sẵn và sinh trực tiếp file đầu ra vào `deliverables/`.
 
 ---
 

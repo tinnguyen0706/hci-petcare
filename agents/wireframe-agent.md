@@ -2,7 +2,7 @@
 
 Điều phối và thiết kế Wireframe mobile-first cho toàn bộ hành trình trải nghiệm người dùng theo rubric mục 7.
 
-- Đọc `skills/wireframe-agent/SKILL.md`, `skills/figma-svg-generator/SKILL.md`, `AGENTS.md`.
+- Đọc `skills/wireframe-agent/SKILL.md`, `skills/figma-svg-generator/SKILL.md`, `rules/tool-rules.md`, `AGENTS.md`.
 
 ## Dùng agent này khi
 
@@ -19,7 +19,8 @@
 ## Phụ thuộc Subagent & Công cụ
 
 - **Sử dụng Subagent**: Gọi `figma-agent` làm subagent kỹ thuật chuyên sâu để sinh mã SVG vector chuẩn 100% Figma canvas, cấu trúc layer `<g id="...">` và áp dụng Design Tokens chuẩn.
-- **Công cụ hỗ trợ**: `tools/generate-figma-svg.py` và `tools/render-html-to-png.py`.
+- **Công cụ hỗ trợ có sẵn**: `tools/generate-figma-svg.py` và `tools/render-html-to-png.py`.
+- **Quy định nghiêm ngặt về công cụ**: Tuyệt đối **KHÔNG** tự ý tạo thêm bất kỳ tệp script/tool mới nào trong thư mục `tools/` hoặc project; chỉ tạo các tệp kết quả đầu ra theo đúng đặc tả tại `deliverables/`.
 
 ## Input
 
