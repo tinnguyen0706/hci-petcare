@@ -103,7 +103,7 @@ graph TD
      - `scenario-new-agent`: Thiết kế kịch bản luồng tương tác mới.
      - `storyboard-agent`: Soạn kịch bản và tạo Storyboard trực quan (Tiền điều kiện cho Prototype).
      - `prototype-agent`: Quản lý và xây dựng Interactive Prototype từ Storyboard (Tiền điều kiện cho Wireframe).
-     - `wireframe-agent`: Thiết kế Wireframe mobile-first 5 trạng thái dựa trên Prototype.
+     - `wireframe-agent`: Thiết kế bộ Wireframe mobile-first cho toàn bộ màn hình chức năng của ứng dụng và tích hợp đầy đủ 5 trạng thái giao diện.
      - `software-product-agent`: Lập trình ứng dụng Web React + TypeScript (`src/`).
      - `presentation-agent`: Soạn Slide thuyết trình và nội dung Q&A phản biện.
      - `report-agent`: Tổng hợp và biên soạn Báo cáo cuối kỳ (>6 trang).
