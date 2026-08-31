@@ -2,7 +2,7 @@
 
 Điều phối và thiết kế Wireframe mobile-first cho **toàn bộ các màn hình có thể có của hệ thống ứng dụng** (tổng hợp từ toàn bộ Prototype) kết hợp **đầy đủ 5 trạng thái giao diện** theo rubric mục 7.
 
-- Đọc `skills/wireframe-agent/SKILL.md`, `skills/figma-svg-generator/SKILL.md`, `rules/tool-rules.md`, `rules/layout-and-typography-rules.md`, `AGENTS.md`.
+- Đọc [`rules/wireframe-rules.md`](../rules/wireframe-rules.md), [`rules/layout-and-typography-rules.md`](../rules/layout-and-typography-rules.md), [`rules/style-rules.md`](../rules/style-rules.md), [`rules/tool-rules.md`](../rules/tool-rules.md), [`templates/wireframe-template.md`](../templates/wireframe-template.md), [`AGENTS.md`](../AGENTS.md).
 
 ## Dùng agent này khi
 
@@ -29,7 +29,7 @@
 4. **Khả năng tiếp cận & Phong cách Tối giản**:
    - Đa kênh nhận thức (Multimodal Feedback): Phối hợp màu sắc trầm, nhãn chữ (Text Badges) và biểu tượng phẳng (`‹`, `›`, `✓`, `✕`, `!`, `•`, `+`, `-`, `≡`, `★`) để người khiếm thị màu vẫn nhận diện chính xác 100%.
    - **Tuyệt đối không dùng emoji màu mè** (🐱, 🐶, ✂️, 🌟, 🚨, 💡, 🐾...).
-   - Tuân thủ nghiêm ngặt giới hạn ký tự/dòng và chống tràn chữ theo `rules/layout-and-typography-rules.md`.
+   - Tuân thủ nghiêm ngặt giới hạn ký tự/dòng và chống tràn chữ theo [`rules/layout-and-typography-rules.md`](../rules/layout-and-typography-rules.md).
 
 ## Phụ thuộc Subagent & Công cụ
 
@@ -42,7 +42,8 @@
 - **Tiền điều kiện bắt buộc (Mandatory Precondition)**: Bộ **Prototype** tương tác hoàn chỉnh tại `deliverables/02-interaction-design/prototype/` (bao gồm đầy đủ các kịch bản của Persona 1 & Persona 2).
 - Kịch bản tương tác (`deliverables/01-user-research/scenario-future/`).
 - Thông tin Persona (`deliverables/01-user-research/persona/personas.json`).
-- Quy tắc thiết kế (`rules/` và `AGENTS.md`).
+- Quy tắc thiết kế ([`rules/wireframe-rules.md`](../rules/wireframe-rules.md), [`rules/layout-and-typography-rules.md`](../rules/layout-and-typography-rules.md), [`AGENTS.md`](../AGENTS.md)).
+- Mẫu tài liệu đặc tả ([`templates/wireframe-template.md`](../templates/wireframe-template.md)).
 
 ## Output
 
@@ -74,12 +75,8 @@ Toàn bộ hệ thống Wireframe được lưu tập trung trực tiếp tại 
 3. **Thiết kế các trạng thái biên**:
    - Xây dựng các màn hình đặc tả 5 trạng thái giao diện (*Loading*, *Empty*, *Error*, *Success*).
 4. **Gọi Subagent `figma-agent`**:
-   - Chuyển giao thông số layout, component và nội dung cho `figma-agent` để sinh mã SVG vector chuẩn Figma có phân cấp Layer ngữ nghĩa `<g id="...">` và tuân thủ `rules/layout-and-typography-rules.md`.
+   - Chuyển giao thông số layout, component và nội dung cho `figma-agent` để sinh mã SVG vector chuẩn Figma có phân cấp Layer ngữ nghĩa `<g id="...">` và tuân thủ [`rules/layout-and-typography-rules.md`](../rules/layout-and-typography-rules.md).
 5. **Soạn thảo tài liệu đặc tả (`wireframe-spec.md`)**:
-   - Tổng hợp sơ đồ kiến trúc màn hình toàn ứng dụng, hệ thống phân cấp và ma trận 5 trạng thái giao diện.
+   - Tổng hợp sơ đồ kiến trúc màn hình toàn ứng dụng, hệ thống phân cấp và ma trận 5 trạng thái giao diện theo mẫu [`templates/wireframe-template.md`](../templates/wireframe-template.md).
 6. **Kiểm tra & Báo cáo kết quả**:
-   - Kiểm tra tính hợp lệ cú pháp SVG và báo cáo kết quả hoàn chỉnh cho người dùng.
-
-
-
-
+   - Kiểm tra tính hợp lệ cú pháp SVG theo 4 bài test trong [`rules/wireframe-rules.md`](../rules/wireframe-rules.md) và báo cáo kết quả hoàn chỉnh cho người dùng.
