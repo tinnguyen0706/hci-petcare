@@ -1,10 +1,13 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.8.31)  31 AUG 2026 13:36
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.8.31)  31 AUG 2026 15:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**./main.tex
-(main.tex
+**"d:/Documents/Đại học/Năm 3-HCMUS/Kì 3/Tương tác người - máy/Đồ án/hci-petcar
+e/templates/report/main.tex"
+
+(d:/Documents/Đại học/Năm 3-HCMUS/Kì 3/Tương tác người - máy/Đồ án/hci-petcare/
+templates/report/main.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
 (C:\Users\Asus\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -1261,7 +1264,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \@quotelevel=\count504
 \@quotereset=\count505
 
-(D:\Documents\Đại học\Năm 3-HCMUS\Kì 3\Tương tác người - máy\Đồ án\hci-petcare\
+(d:/Documents\Đại học\Năm 3-HCMUS\Kì 3\Tương tác người - máy\Đồ án\hci-petcare\
 templates\report\build\main.aux)
 \openout1 = `main.aux'.
 
@@ -1364,9 +1367,9 @@ Package biblatex Info: Reference segment=0 on input line 28.
 \c@lstlisting=\count506
 Package hyperref Info: Link coloring ON on input line 28.
 
-(D:\Documents\Đại học\Năm 3-HCMUS\Kì 3\Tương tác người - máy\Đồ án\hci-petcare\
+(d:/Documents\Đại học\Năm 3-HCMUS\Kì 3\Tương tác người - máy\Đồ án\hci-petcare\
 templates\report\build\main.out)
-(D:\Documents\Đại học\Năm 3-HCMUS\Kì 3\Tương tác người - máy\Đồ án\hci-petcare\
+(d:/Documents\Đại học\Năm 3-HCMUS\Kì 3\Tương tác người - máy\Đồ án\hci-petcare\
 templates\report\build\main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
@@ -1403,7 +1406,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ])
 Package hyperref Info: Option `pageanchor' set `true' on input line 33.
 
-(D:\Documents\Đại học\Năm 3-HCMUS\Kì 3\Tương tác người - máy\Đồ án\hci-petcare\
+(d:/Documents\Đại học\Năm 3-HCMUS\Kì 3\Tương tác người - máy\Đồ án\hci-petcare\
 templates\report\build\main.toc [1])
 \tf@toc=\write6
 \openout6 = `main.toc'.
@@ -1428,7 +1431,7 @@ LaTeX Warning: Empty bibliography on input line 5.
 LaTeX Warning: Empty bibliography on input line 10.
 
 ) (ref/appendix.tex [4] [5]) [6]
-(D:\Documents\Đại học\Năm 3-HCMUS\Kì 3\Tương tác người - máy\Đồ án\hci-petcare\
+(d:/Documents\Đại học\Năm 3-HCMUS\Kì 3\Tương tác người - máy\Đồ án\hci-petcare\
 templates\report\build\main.aux)
  ***********
 LaTeX2e <2025-11-01>
@@ -1441,13 +1444,13 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 36291 strings out of 402987
- 710129 string characters out of 5448731
+ 36292 strings out of 402987
+ 710412 string characters out of 5448731
  1610200 words of memory out of 5000000
  64460 multiletter control sequences out of 15000+600000
  632896 words of font info for 80 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 123i,14n,121p,1853b,850s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,14n,121p,1948b,850s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on D:\Documents\Đại học\Năm 3-HCMUS\Kì 3\Tương tác người - máy\Đ
+Output written on d:/Documents\Đại học\Năm 3-HCMUS\Kì 3\Tương tác người - máy\Đ
 ồ án\hci-petcare\templates\report\build\main.pdf (9 pages).
