@@ -31,6 +31,7 @@ Chuyển hóa kịch bản tương tác tương lai (**Scenario Future / To-Be S
 
 - Prototype phải phản ánh trung thực toàn bộ diễn biến của kịch bản To-Be đầu vào.
 - Đảm bảo tính nhất quán của Design Tokens (Teal, Coral, Amber, Rose, Inter font).
+- **Phong cách Tối giản & Biểu tượng**: Tuyệt đối không dùng emoji màu mè; sử dụng biểu tượng vector đơn sắc hoặc ký tự phẳng (`‹`, `›`, `✓`, `✕`, `•`, `+`, `-`) và nhãn chữ (Text Badges) theo `rules/layout-and-typography-rules.md`.
 - Không mô tả prototype mô phỏng UI là hệ thống backend real-time khi chưa lập trình.
 - **Quy chuẩn định dạng bàn giao (Strictly SVG & MD)**: Sản phẩm chỉ gồm các tệp bản vẽ vector `.svg` chuẩn Figma và tài liệu `interaction-spec.md`. **Tuyệt đối KHÔNG tạo tệp `.html`**.
 - **Không tự ý tạo file tool/script mới**: Tuyệt đối không tạo file tạm hay script mới trong `tools/`; sinh trực tiếp file `.svg`, `.md` vào đúng thư mục `deliverables/`.

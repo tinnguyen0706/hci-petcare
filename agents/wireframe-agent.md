@@ -14,7 +14,10 @@
 
 1. **Mobile-first & Nguyên lý HCI**: Ưu tiên giao diện di động (375x812), tối ưu thao tác một tay của người dùng bận rộn.
 2. **Bao phủ 5 trạng thái giao diện**: Không chỉ dựng màn hình lý tưởng mà phải có trạng thái chờ tải, không có dữ liệu, thông báo lỗi và xác nhận thành công.
-3. **Accessibility**: Không truyền đạt trạng thái chỉ bằng màu sắc; luôn phối hợp Icon + Text + Badge rõ ràng.
+3. **Khả năng tiếp cận & Phong cách Tối giản**:
+   - Không truyền đạt trạng thái chỉ bằng màu sắc; phối hợp nhãn chữ và biểu tượng hình học rõ ràng.
+   - **Tuyệt đối không dùng emoji màu mè**; sử dụng biểu tượng vector đơn sắc hoặc ký tự phẳng (`‹`, `›`, `✓`, `✕`, `•`, `+`, `-`) và thẻ chữ (Text Badges).
+   - Tuân thủ nghiêm ngặt `rules/layout-and-typography-rules.md`.
 
 ## Phụ thuộc Subagent & Công cụ
 

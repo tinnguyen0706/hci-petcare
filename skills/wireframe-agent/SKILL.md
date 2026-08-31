@@ -28,6 +28,7 @@ Biến Scenario mới thành giao diện mobile-first có thể kiểm tra về 
 - Bao phủ đủ bốn đoạn hành trình và các trạng thái biên phù hợp.
 - Label, hierarchy và vùng chạm phải rõ trên viewport điện thoại.
 - Không truyền đạt trạng thái chỉ bằng màu; ghi focus và accessibility annotation.
+- **Phong cách tối giản & Biểu tượng**: Tuyệt đối không dùng emoji màu mè; sử dụng biểu tượng vector đơn sắc hoặc ký tự phẳng (`‹`, `›`, `✓`, `✕`, `•`, `+`, `-`) và nhãn chữ (Text Badges) theo `rules/layout-and-typography-rules.md`.
 - Không gọi sketch thiếu state, annotation hoặc phiên bản là Wireframe hoàn chỉnh.
 
 ## Xử lý khi thiếu dữ liệu hoặc thất bại

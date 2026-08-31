@@ -28,11 +28,15 @@
   - *Accent (Điểm nhấn & Cảnh báo)*: Cam san hô (`#e06236`), Hổ phách (`#d97706`), Đỏ hồng cảnh báo dị ứng (`#be123c`).
   - *Neutral (Nền & Văn bản)*: Nền trang sáng (`#f8fafc`), bề mặt thẻ trắng (`#ffffff`), viền phân cách (`#e2e8f0`), chữ chính (`#0f172a`), chữ phụ (`#64748b`).
 - **Font chữ (Typography)**:
-  - Ưu tiên font `Plus Jakarta Sans` hoặc system fonts hiện đại (`-apple-system`, `BlinkMacSystemFont`, `Segoe UI`, `Roboto`).
-  - Phân cấp kích thước rõ ràng, dòng đọc thoáng (`line-height: 1.4 – 1.6`), chữ hiển thị sắc nét.
+  - Ưu tiên font `Plus Jakarta Sans`, `Inter` hoặc system fonts hiện đại (`-apple-system`, `BlinkMacSystemFont`, `Segoe UI`, `Roboto`).
+  - Phân cấp kích thước rõ ràng, dòng đọc thoáng (`line-height: 1.4 – 1.6`), chữ hiển thị sắc nét, tuân thủ nghiêm ngặt [rules/layout-and-typography-rules.md](rules/layout-and-typography-rules.md).
+- **Quy chuẩn Biểu tượng (Iconography) & Phong cách Tối giản**:
+  - **Tuyệt đối KHÔNG sử dụng icon emoji màu mè** (như 🐱, 🐶, ✂️, 🌟, 🚨, 💡, 🐾, 🏠, 📅, ⏱️, 🔔...).
+  - **Sử dụng 100% biểu tượng vector đơn sắc (Monochrome Vector Icons)**, ký tự hình học phẳng tối giản (`‹`, `›`, `✓`, `✕`, `+`, `•`, `-`) hoặc thẻ nhãn chữ rõ ràng (Text Badges).
+  - Độ dày nét vẽ (Stroke width) đồng nhất `1.5 – 2px`. Màu sắc icon hòa quyện với Design Tokens (`#0D766E`, `#64748B`, `#0F172A`, `#BE123C`).
 - **Style tổng thể**:
-  - Hiện đại, tối giản, thân thiện với chủ nuôi thú cưng (Pet-friendly & Human-centered).
-  - Bo góc mềm mại (`border-radius: 6px – 18px`), đổ bóng nhẹ tạo chiều sâu (`shadow-sm`, `shadow-md`).
+  - Hiện đại, tối giản, chuyên nghiệp và thanh lịch (Clean Modernism / Human-centered Minimalism).
+  - Bo góc mềm mại (`border-radius: 6px – 16px`), đổ bóng nhẹ tạo chiều sâu (`shadow-sm`, `shadow-md`).
   - Tiến độ trực quan qua Timeline Stepper 4 mốc rõ ràng.
 
 ---

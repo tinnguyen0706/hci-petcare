@@ -56,7 +56,17 @@ Khi bố trí 2 khối text nằm trên **cùng một dòng (cùng tọa độ $
 
 ---
 
-## 5. Các Bước Kiểm Thử Bắt Buộc Trước Khi Xuất Bản (Testing Steps)
+## 5. Quy Chuẩn Biểu Tượng & Chống Emoji Màu Mè (No Colorful Emojis)
+
+- **Cấm hoàn toàn Emoji màu** (`🐱`, `🐶`, `✂️`, `🧼`, `🌟`, `🚨`, `💡`, `🐾`, `🏠`, `📅`, `⏱️`, `🔔`...) trong mã SVG UI.
+- **Thay thế bằng:**
+  - Chữ cái viết tắt hoặc tên trong khung tròn (ví dụ: `BƠ`, `ML`, `MC`).
+  - Ký tự hình học phẳng (`‹`, `›`, `✓`, `✕`, `•`, `+`, `-`).
+  - Thẻ chữ viết hoa nằm trong hộp viền màu tương ứng (ví dụ: `[Y TẾ]`, `[CẢNH BÁO]`, `[KHUYÊN DÙNG]`, `[ĐẶC BIỆT]`).
+
+---
+
+## 6. Các Bước Kiểm Thử Bắt Buộc Trước Khi Xuất Bản (Testing Steps)
 
 Mỗi khi Agent sinh hoặc sửa file SVG, bắt buộc thực hiện 4 bước kiểm tra sau:
 
@@ -66,5 +76,5 @@ Mỗi khi Agent sinh hoặc sửa file SVG, bắt buộc thực hiện 4 bước
    - Rà soát toàn bộ các cặp `<text>` có cùng giá trị `y`: Đảm bảo tổng chiều dài 2 chuỗi không vượt quá $280\text{px}$.
 3. **Kiểm thử Đè chữ dọc (Vertical Overlap Test)**:
    - Đảm bảo $y_{i+1} - y_i \ge 18\text{px}$ đối với các dòng chữ liên tiếp.
-4. **Kiểm tra trực quan qua Render/Preview**:
-   - Mở tệp `index.html` hoặc xem tệp SVG để đảm bảo mắt thường thấy rõ từng con chữ, các thẻ tag tách biệt và ngay ngắn.
+4. **Kiểm tra sạch Emoji & Bố cục phẳng**:
+   - Quét toàn bộ file SVG đảm bảo không còn emoji màu mè, layout sắc nét và chuyên nghiệp.

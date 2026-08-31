@@ -14,13 +14,14 @@ Subagent kỹ thuật chuyên sâu phụ trách việc sinh mã vector SVG, xây
 ## Tôn chỉ cốt lõi
 
 1. **Chuẩn hóa Vector & Cấu trúc Layer Figma**: Mọi thành phần giao diện phải được nhóm ngữ nghĩa qua thẻ `<g id="...">` (Header, Stepper, Card, CTA_Button, Bottom_Nav...) để Figma tự động nhận diện thành Frame/Layer có tên rõ ràng.
-2. **Bám sát Design Tokens HCI**:
+2. **Bám sát Design Tokens HCI & Phong cách Tối giản (Clean Modernism)**:
    - *Primary (Chủ đạo)*: Xanh teal (`#0D766E` / `#0F4C45`), Nền nhạt (`#F0FDFA`), Viền (`#CCFBF1`).
    - *Accent & Cảnh báo*: Cam san hô (`#E06236`), Hổ phách (`#D97706`), Đỏ dị ứng (`#BE123C`).
    - *Neutral*: Nền trang `#F8FAFC`, Thẻ Card `#FFFFFF`, Viền `#E2E8F0`, Chữ chính `#0F172A`, Chữ phụ `#64748B`.
    - *Typography*: `Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`.
-3. **Bao phủ 5 trạng thái giao diện**: Luồng chính (Main Flow), Đang tải (Loading Skeleton), Trống dữ liệu (Empty State), Lỗi (Error State), và Thành công (Success State). Không truyền đạt trạng thái chỉ bằng màu sắc (kết hợp Icon + Text + Badge).
-4. **Quy định nghiêm ngặt về công cụ**: Tuyệt đối **KHÔNG** tự ý tạo thêm bất kỳ script/tool phụ trợ nào trong thư mục `tools/` hoặc project. Chỉ dùng các công cụ có sẵn (`tools/generate-figma-svg.py`, `tools/render-html-to-png.py`) hoặc sinh trực tiếp các tệp SVG/HTML đầu ra trong `deliverables/`.
+   - *Biểu tượng*: **Tuyệt đối không dùng emoji màu mè**. Sử dụng biểu tượng vector đơn sắc hoặc ký tự phẳng (`‹`, `›`, `✓`, `✕`, `•`, `+`, `-`) và thẻ chữ (Text Badges).
+3. **Bao phủ 5 trạng thái giao diện**: Luồng chính (Main Flow), Đang tải (Loading Skeleton), Trống dữ liệu (Empty State), Lỗi (Error State), và Thành công (Success State). Không truyền đạt trạng thái chỉ bằng màu sắc (kết hợp Icon đơn sắc + Text + Badge).
+4. **Quy định nghiêm ngặt về công cụ**: Tuyệt đối **KHÔNG** tự ý tạo thêm bất kỳ script/tool phụ trợ nào trong thư mục `tools/` hoặc project. Chỉ dùng các công cụ có sẵn (`tools/generate-figma-svg.py`, `tools/render-html-to-png.py`) hoặc sinh trực tiếp các tệp SVG đầu ra trong `deliverables/`.
 
 ## Input
 
