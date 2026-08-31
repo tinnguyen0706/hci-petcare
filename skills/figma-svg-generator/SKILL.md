@@ -1,12 +1,12 @@
 ---
 name: figma-svg-generator
-description: Skill chuyên dụng để thiết kế và sinh các file SVG Wireframe / Mockup chuẩn vector tương thích 100% với Figma, cho phép kéo thả trực tiếp vào Canvas cho bất kỳ loại màn hình nào.
+description: Skill chuyên dụng để thiết kế và sinh các file SVG Prototype, Wireframe hoặc Mockup chuẩn vector tương thích với Figma và có thể kéo thả trực tiếp vào Canvas.
 ---
 
-# Figma SVG Wireframe Generator Skill
+# Figma SVG Prototype Generator Skill
 
 ## 1. Mục đích
-Skill này giúp AI Agent tạo ra các bản vẽ Wireframe/Mockup hoàn chỉnh dưới định dạng **SVG vector chuẩn**. Người dùng chỉ cần **kéo thả file SVG vào Canvas Figma** (hoặc copy mã SVG rồi nhấn `Ctrl + V`) là toàn bộ cấu trúc Frame, nhóm Layer, Text, Màu sắc và Nút bấm sẽ xuất hiện ngay lập tức và có thể chỉnh sửa tự do.
+Skill này giúp AI Agent tạo Prototype/Wireframe/Mockup dưới định dạng **SVG vector chuẩn**. Với workflow Prototype của dự án, agent chỉ tạo SVG; người dùng tự kéo thả vào Figma và tự kết nối Interaction.
 
 ---
 
@@ -23,16 +23,10 @@ Skill này giúp AI Agent tạo ra các bản vẽ Wireframe/Mockup hoàn chỉn
 2. **Đặt tên Layer bằng thẻ `<g id="...">`:**
    - Figma tự động lấy thuộc tính `id` của thẻ `<g>` hoặc `<rect>` để đặt tên cho Layer/Frame con (ví dụ: `<g id="Header">`, `<g id="Service_Card">`, `<g id="Button_CTA">`).
 
-3. **Font chữ, Typography & Chống Tràn Chữ (Tuân thủ rules/layout-and-typography-rules.md):**
+3. **Font chữ, Typography & Chống Tràn Chữ:**
    - Dùng `font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"`.
-   - **Giới hạn số ký tự trên 1 dòng để chống tràn chữ (iPhone 14 Pro Max 430px / Card 390px / Vùng text 354px):**
-     - Font $18\text{px}$: Tối đa **28 ký tự** / dòng.
-     - Font $14\text{px}$: Tối đa **36 ký tự** / dòng.
-     - Font $12\text{px}$: Tối đa **46 ký tự** / dòng.
-     - *(Nếu nội dung vượt quá giới hạn trên, bắt buộc phải tách làm 2 dòng với khoảng cách $\Delta y \ge 19\text{px}$)*.
-     - Badge / Caption (`9-10px`): Tối đa **46 ký tự** / dòng ($\Delta y \ge 15\text{px}$).
-   - **Chống đè chữ cùng hàng**: Khi có 2 text cùng tọa độ $y$ (trái $x=36$, phải $x=339$), text trái tối đa 20 ký tự, text phải tối đa 12 ký tự, chừa gap $\ge 20\text{px}$.
-   - **Bắt buộc ngắt dòng**: Khi văn bản dài hơn giới hạn trên, phải tách thành nhiều thẻ `<text>` riêng biệt với $\Delta y \ge 18\text{px}$.
+   - `rules/layout-and-typography-rules.md` là nguồn chuẩn duy nhất cho font-size, giới hạn ký tự, khoảng cách dòng, vùng text và collision. Không sao chép một bộ tọa độ hoặc giới hạn khác vào skill này.
+   - Trong khung mobile hiện tại, text trong Card dùng vùng an toàn `x=38` đến `x=392`; mọi chuỗi vượt giới hạn phải được tách thành nhiều thẻ `<text>` theo khoảng cách dòng của layout rules.
 
 4. **Bảng màu Design Tokens chuẩn:**
    - *Primary (Chủ đạo)*: `#0D766E` (Xanh teal)
@@ -55,13 +49,13 @@ Skill này giúp AI Agent tạo ra các bản vẽ Wireframe/Mockup hoàn chỉn
 
 Skill cung cấp sẵn các mẫu vector chuẩn không emoji:
 
-* **Status Bar:** Giờ `09:41`, chỉ báo mạng pin tối giản.
+* **Status Bar:** Thời gian lấy từ Storyboard/Scenario hoặc dùng placeholder phi định lượng; không hardcode giờ mẫu như dữ liệu thật. Chỉ báo mạng/pin dùng hình thức tối giản thống nhất.
 * **Top Navigation / Header:** Nút Back tròn, tiêu đề trang, nút tác vụ đơn sắc.
 * **Timeline Stepper 4 mốc:** Mốc tròn đánh số `1`, `2`, `3`, `4` nối nhau bằng thanh tiến độ (*Đã nhận ➔ Đang chăm sóc ➔ Hoàn tất ➔ Chờ đón*).
-* **Content / Service Card:** Khối bo góc `rx="12-14"`, viền phân cách, tag chữ nổi bật (Badge) và giá tiền.
+* **Content / Service Card:** Khối bo góc trong khoảng `rx="6-16"`, viền phân cách và Text Badge; chỉ hiển thị giá khi có nguồn dữ liệu được phép.
 * **Time Slot Picker:** Lưới chọn khung giờ đặt hẹn với viền và nền trạng thái.
 * **Input / Search Box:** Khung nhập liệu kèm placeholder.
-* **Action Button:** Nút bấm Full-width bo góc `rx="10-12"` với màu chủ đạo.
+* **Action Button:** Nút bấm Full-width bo góc trong khoảng `rx="10-16"` với màu chủ đạo.
 * **Bottom Navigation Bar:** 4 tab điều hướng chính kèm nhãn trang và chỉ báo active dạng thanh line/chấm tròn đơn sắc.
 
 ---
@@ -71,33 +65,17 @@ Skill cung cấp sẵn các mẫu vector chuẩn không emoji:
 Trong repository đã tích hợp sẵn script Python modular hỗ trợ sinh nhanh các loại màn hình:
 
 ```bash
-# Sinh màn hình Đặt lịch (Booking)
-python3 tools/generate-figma-svg.py --type booking --out deliverables/booking-screen.svg
+# Sinh asset mẫu kỹ thuật; khi làm Prototype phải thay persona-id/goal-id thật
+python3 tools/generate-figma-svg.py --type booking --out deliverables/02-interaction-design/prototype/persona-id/goal-id/01_booking.svg
 
-# Sinh màn hình Theo dõi tiến độ (Tracking)
-python3 tools/generate-figma-svg.py --type tracking --out deliverables/tracking-screen.svg
+# Sinh màn hình Theo dõi tiến độ
+python3 tools/generate-figma-svg.py --type tracking --out deliverables/02-interaction-design/prototype/persona-id/goal-id/01_tracking.svg
 
-# Sinh màn hình Hồ sơ thú cưng (Profile)
-python3 tools/generate-figma-svg.py --type profile --out deliverables/profile-screen.svg
+# Sinh màn hình Hồ sơ thú cưng
+python3 tools/generate-figma-svg.py --type profile --out deliverables/02-interaction-design/prototype/persona-id/goal-id/01_profile.svg
 ```
 
-Hoặc import class `FigmaSvgBuilder` trong Python để dựng bất kỳ màn hình tùy chỉnh nào:
-
-```python
-from tools.generate_figma_svg import FigmaSvgBuilder
-
-# Khởi tạo màn hình chuẩn iPhone 14 Pro Max (430x932)
-builder = FigmaSvgBuilder(430, 932, title="Man_Hinh_Thanh_Toan")
-builder.add_background()
-builder.add_status_bar()
-builder.add_header("Xác nhận thanh toán", show_back=True)
-builder.add_section_title("Thông tin gói dịch vụ")
-builder.add_card("Combo Tắm & Cắt Tỉa", subtitle="Bé Bông (Poodle)", price="250.000đ", height=100)
-builder.add_button("Thanh toán ngay")
-
-with open("deliverables/checkout.svg", "w", encoding="utf-8") as f:
-    f.write(builder.build())
-```
+Không import bằng `from tools.generate_figma_svg ...` vì tên file thật chứa dấu gạch ngang. Với màn hình tùy chỉnh, viết SVG trực tiếp theo layout rules hoặc chỉ dùng CLI của tool hiện có; không tạo wrapper/script mới.
 
 ---
 
@@ -105,5 +83,5 @@ with open("deliverables/checkout.svg", "w", encoding="utf-8") as f:
 
 1. **Phân tích yêu cầu:** Xác định loại màn hình, các phần tử cần có (Header, Card, List, Stepper, Form, Button...).
 2. **Khởi tạo mã SVG:** Sử dụng `FigmaSvgBuilder` hoặc viết trực tiếp file `.svg` tuân thủ các quy chuẩn tại Mục 2.
-3. **Lưu file:** Ghi file vào thư mục `deliverables/<tên-màn-hình>.svg`.
+3. **Lưu file:** Với Prototype, ghi vào `deliverables/02-interaction-design/prototype/<persona-id>/<goal-id>/<nn_screen-name>.svg`.
 4. **Hướng dẫn người dùng:** Thông báo đường dẫn file và hướng dẫn kéo thả trực tiếp vào Figma Canvas để sử dụng ngay

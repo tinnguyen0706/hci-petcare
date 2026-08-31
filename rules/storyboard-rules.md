@@ -28,6 +28,16 @@ Tệp này quy định các chuẩn mực, ràng buộc và tiêu chuẩn chất
 - **Phân tách nội dung và hình ảnh**: Số thứ tự, tiêu đề header và caption đáy do mã nguồn HTML/CSS kết xuất bằng font chữ viết tay comic (`Patrick Hand`), tuyệt đối không ghép sẵn chữ hay số vào trong file ảnh asset.
 - **CSS monochrome bắt buộc**: Template chỉ dùng đen `#000000` và trắng `#ffffff`; không dùng màu thương hiệu, xám, gradient, shadow hoặc nền trang trí.
 
+### Canonical HTML/CSS presentation template
+
+- **Dùng chung một implementation**: Mọi Storyboard phải dùng cùng cấu trúc HTML và cùng bộ thông số CSS dưới đây. Chỉ các nội dung động được thay đổi theo Persona–Goal: metadata trong `<title>`, eyebrow, tiêu đề Storyboard, thông tin Persona, tiêu đề/caption/alt của 6 frame và đường dẫn ảnh.
+- **Bắt buộc tải font trước khi render**: Trong `<head>` phải khai báo Google Fonts `Patrick Hand` bằng `preconnect` tới `fonts.googleapis.com`, `fonts.gstatic.com` và stylesheet `https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap`. CSS dùng `font-family: "Patrick Hand", "Comic Sans MS", cursive;`. Không được chỉ khai báo tên font mà không load/import font trước khi render.
+- **Canvas chuẩn**: `@page` và `html, body` cố định `1600 × 900 px`; `.canvas` có `padding: 20px 28px 24px`, `grid-template-rows: 74px 1fr` và `gap: 12px`.
+- **Header tổng chuẩn**: `.board-header` là hộp viền đen `3px`, `padding: 8px 16px`, dùng flex căn giữa và `justify-content: space-between`. Khối trái gồm `.eyebrow` (`15px`, `line-height: 1`, `letter-spacing: 1.8px`) và `h1` (`30px`, `line-height: 1`); khối phải là `.persona` (`20px`, `white-space: nowrap`).
+- **Lưới chuẩn**: `.grid` gồm 3 cột × 2 hàng bằng nhau, `gap: 12px`, `min-height: 0`.
+- **Panel chuẩn**: Viền đen `3px`; ba hàng có kích thước `46px minmax(0, 1fr) 74px`. `.panel-header` có `padding: 5px 10px`, `gap: 9px`, viền đáy `2px`; vòng số `31 × 31 px`, chữ số `22px`; `h2` là `24px`, `line-height: 1`, `font-weight: 700`.
+- **Figure và caption chuẩn**: `figure` có `padding: 5px 7px`; ảnh chiếm `100% × 100%` và dùng `object-fit: contain`. `.caption` có `padding: 7px 12px 6px`, viền trên `2px`, chữ căn giữa `17px`, `line-height: 1.08` và `overflow: hidden`.
+
 ---
 
 ## 3. Quy tắc về Phong cách Hình ảnh (Expressive Stick-figure UI Storyboard)

@@ -52,7 +52,7 @@ Không dùng màu sắc sặc sỡ hay quá gắt. Toàn bộ giao diện sử d
 - **Màu thương hiệu chủ đạo (Primary Teal)**: `#0D766E` (Deep Teal), nền đệm `#F0FDFA`, viền mờ `#CCFBF1`.
 - **Màu chữ chính (Main Text)**: `#0F172A` (Slate 900 - Đậm, sắc nét).
 - **Màu chữ phụ (Subtext / Metadata)**: `#64748B` (Slate 500) hoặc `#94A3B8` (Slate 400).
-- **Màu cảnh báo dị ứng y tế (Subtle Alert)**: Nền `#FFF1F2`, viền `#FECDD3`, chữ `#9F1239` (Rose 800 - Tone trầm sang trọng, không chói).
+- **Màu cảnh báo dị ứng y tế (Subtle Alert)**: Nền `#FFF1F2`, viền `#FECDD3`, chữ `#BE123C` (Rose theo Design Tokens toàn dự án).
 - **Màu hoàn tất / Thành công (Success)**: Nền `#F0FDF4`, viền `#BBF7D0`, chữ `#166534`.
 
 ---
