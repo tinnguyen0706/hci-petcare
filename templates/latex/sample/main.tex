@@ -1,0 +1,54 @@
+\documentclass{article}
+
+\usepackage{style}
+
+% Disable indentation on new paragraphs
+% \setlength{\parindent}{0pt}
+
+% Define course name, report name and report title.
+\newcommand{\coursename}{Tên môn học}
+\newcommand{\reporttitle}{Tiêu đề báo cáo}
+% Dùng tiêu đề rút gọn khi \reporttitle dài quá hai dòng trên header.
+\newcommand{\headertitle}{\reporttitle}
+
+\newcommand{\studentname}{MSSV - Họ và Tên}
+\newcommand{\teachername}{TS. Nguyễn Văn hướng dẫn}
+
+% Header
+\lhead{\parbox[b]{0.62\textwidth}{%
+\setstretch{1}\raggedright\headertitle}}
+\rhead{\parbox[b]{0.28\textwidth}{%
+\setstretch{1}\raggedleft\coursename}}
+
+% Footer
+% \newcommand{\leftfooter}{\LaTeX\ by \href{https://github.com/trhgquan}{Quan, Tran Hoang}}
+% \lfoot{\leftfooter}
+
+% ============ DOCUMENT ============
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\input{title/title_hcmus}
+
+\hypersetup{pageanchor=true}
+\pagenumbering{roman}
+\tableofcontents
+\pagebreak
+
+\pagenumbering{arabic}
+
+% Main content
+\input{content/section}
+\input{content/hinhanh}
+\input{content/bangbieu}
+\input{content/congthuctoan}
+\input{content/code}
+\input{content/ngonngu}
+\input{content/cite}
+\input{content/mytam}
+
+% References
+\input{ref/acknowledgement}
+\input{ref/ref.tex}
+
+\end{document}

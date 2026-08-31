@@ -1,0 +1,45 @@
+{
+    "[latex]": {
+        "editor.defaultFormatter": "James-Yu.latex-workshop",
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": false,
+        "editor.suggestSelection": "recentlyUsedByPrefix",
+        "editor.wordWrap": "on"
+    },
+    "workbench.editor.empty.hint": "hidden",
+    "latex-workshop.docker.enabled": true,
+    "latex-workshop.docker.path": "docker",
+    "latex-workshop.docker.image.latex": "ghcr.io/tinnguyen0706/latex-times-new-roman:latest",
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "XeLaTeX via Docker",
+            "tools": [
+                "latexmk"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-xelatex",
+                "-outdir=%OUTDIR%",
+                "%DOC_EXT%"
+            ],
+            "cwd": "%DIR%"
+        }
+    ],
+    "latex-workshop.latex.recipe.default": "first",
+    "latex-workshop.latex.outDir": "%DIR%/build",
+    "latex-workshop.latex.auxDir": "%OUTDIR%",
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.formatting.latex": "tex-fmt",
+    "latex-workshop.formatting.tex-fmt.path": "tex-fmt",
+    "latex-workshop.formatting.tex-fmt.args": [
+        "--nowrap"
+    ]
+}
