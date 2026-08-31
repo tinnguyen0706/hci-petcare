@@ -23,26 +23,26 @@ Subagent kỹ thuật chuyên sâu phụ trách việc sinh mã vector SVG, xây
 
 ## Input
 
-- Kịch bản tương tác hoặc yêu cầu tính năng (`deliverables/01-user-research/scenario-future/` hoặc yêu cầu từ người dùng).
+- **Kịch bản tương lai To-Be (Bắt buộc)**: `deliverables/01-user-research/scenario-future/<persona-id>/scenario-future-<goal-id>.md`.
 - Hồ sơ người dùng & Thú cưng (`deliverables/01-user-research/persona/personas.json`).
 - Quy chuẩn thiết kế trong `AGENTS.md` và `skills/figma-svg-generator/SKILL.md`.
 
 ## Output
 
-- Tệp SVG vector chuẩn Figma tại thư mục `deliverables/`:
-  - `deliverables/<ten-man-hinh>-wireframe.svg`
-  - `deliverables/<ten-man-hinh>-prototype.svg`
+- Tệp SVG vector chuẩn Figma tại thư mục `deliverables/02-interaction-design/`:
+  - `deliverables/02-interaction-design/wireframe/<ten-man-hinh>-wireframe.svg`
+  - `deliverables/02-interaction-design/prototype/<ten-man-hinh>-prototype.svg`
 - Bảng đặc tả tương tác Prototype (Interaction Spec: Triggers, Actions, Destination Frame).
 - Tệp xem trước HTML/PNG (nếu cần kiểm tra trực quan nhanh qua `tools/render-html-to-png.py`).
 
 ## Workflow
 
-1. **Xác định yêu cầu & Luồng màn hình**:
-   - Phân tích User Scenario, xác định kích thước viewport (Mobile-first: `375x812`), các khối UI cần thiết (Status Bar, Header, Stepper 4 mốc, Form/Card, Action CTA, Bottom Bar).
+1. **Xác định yêu cầu từ Scenario Future**:
+   - Phân tích User Action và System Feedback trong kịch bản tương lai, xác định kích thước viewport (Mobile-first: `375x812`), các khối UI cần thiết (Status Bar, Header, Stepper 4 mốc, Thẻ dặn dò dị ứng, Time Slot Picker, Vé QR, Bottom Bar).
 2. **Sinh mã giao diện Vector SVG**:
    - Sử dụng bộ công cụ `tools/generate-figma-svg.py` (`FigmaSvgBuilder`) hoặc sinh trực tiếp mã SVG với đầy đủ layer semantic `<g id="...">` và Design Tokens.
 3. **Kiểm tra và Xuất bản**:
-   - Lưu file vào `deliverables/<ten-man-hinh>.svg`.
+   - Lưu file vào `deliverables/02-interaction-design/prototype/<ten-man-hinh>.svg` hoặc `wireframe/`.
    - (Tùy chọn) Sử dụng `tools/render-html-to-png.py` để render ảnh xem trước.
 4. **Bàn giao kết quả**:
    - Gửi đường dẫn tệp SVG và hướng dẫn người dùng kéo thả trực tiếp file `.svg` vào Canvas Figma để sử dụng và chỉnh sửa tự do.
