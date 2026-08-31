@@ -140,8 +140,9 @@ Một bộ Wireframe chỉ được nghiệm thu đạt chuẩn mức 1.0 (trọ
 4. **Màu sắc hài hòa, thanh lịch**: Sử dụng đúng bộ Design Tokens chuẩn, tương phản sắc nét, màu trạng thái rõ ràng.
 5. **Có sử dụng tools thiết kế**: Sinh mã SVG vector phân cấp layer ngữ nghĩa `<g id="...">` tương thích 100% khi kéo thả vào Figma Canvas.
 6. **Tiện dụng & Công thái học**: Tối ưu ngón tay cái, vùng chạm $\ge 44\text{px}$, các tác vụ chính nằm ở nửa dưới màn hình.
-7. **Vượt qua 100% 4 bài kiểm thử SVG**:
+7. **Vượt qua 100% các bài kiểm thử SVG của `tools/validate-svg.py`**:
    - Khung nhìn chuẩn $430 \times 932\text{px}$, có Dynamic Island và Home Indicator.
+   - Cú pháp XML nghiêm ngặt: Toàn bộ ký tự đặc biệt được escape chuẩn (`&amp;`, `&lt;`, `&gt;`) và tọa độ thuần số (không kẹt biểu thức toán học).
    - Không bị tràn lề phải ($x + \text{width} \le 392\text{px}$ cho nội dung bên trong card).
    - Không bị va chạm hoặc đè chữ giữa các đoạn văn bản cùng hàng.
    - 100% sạch emoji màu mè, thay thế hoàn toàn bằng vector đơn sắc hoặc ký tự phẳng.
