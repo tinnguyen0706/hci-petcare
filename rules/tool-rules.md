@@ -10,6 +10,7 @@ Quy tắc này áp dụng **bắt buộc và đồng nhất cho tất cả các 
 - **Chỉ sử dụng công cụ chuẩn hóa có sẵn**: Chỉ được phép gọi và sử dụng các công cụ cốt lõi đã có sẵn trong dự án:
   1. `tools/generate-figma-svg.py`: Bộ công cụ sinh mã SVG vector chuẩn Figma.
   2. `tools/render-html-to-png.py`: Bộ công cụ kết xuất HTML sang PNG chất lượng cao.
+  3. `tools/validate-svg.py`: Bộ công cụ kiểm thử & đánh giá hợp lệ mã SVG (iPhone 14 Pro Max, chống tràn chữ, cấm emoji, layer Figma).
 
 ---
 

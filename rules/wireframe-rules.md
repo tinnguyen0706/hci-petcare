@@ -106,33 +106,25 @@ Tuân thủ nghiêm ngặt [rules/layout-and-typography-rules.md](layout-and-typ
 
 ---
 
-## 6. Danh Mục Bàn Giao Đầu Ra Bắt Buộc (Required Deliverables)
+## 6. Quy Định Về Đầu Ra & Phạm Vi Màn Hình (Deliverables & Scope)
 
-Toàn bộ hệ thống Wireframe phải bao gồm đầy đủ các tệp sau trong `deliverables/02-interaction-design/wireframe/`:
-
-### 6.1. Danh Mục Các Tệp Màn Hình Vector SVG
-1. `01_home_dashboard_wireframe.svg`: Dashboard trang chủ, tổng quan lịch hẹn sắp tới, lối tắt 4 dịch vụ cốt lõi.
-2. `02_push_notification_wireframe.svg`: Trung tâm thông báo đẩy (nhắc lịch, cập nhật ảnh live, cảnh báo).
-3. `03_booking_service_selection_wireframe.svg`: Chọn dịch vụ chăm sóc chi tiết, bảng giá minh bạch, thông tin KTV.
-4. `04_booking_timeslot_picker_wireframe.svg`: Lưới chọn ngày/khung giờ còn trống theo thời gian thực.
-5. `05_multi_pet_assignment_wireframe.svg`: Đặt lịch cùng lúc cho nhiều thú cưng với yêu cầu riêng biệt.
-6. `06_pet_medical_profile_wireframe.svg`: Hồ sơ y tế, cảnh báo tiền sử dị ứng, tính cách và thuốc đặc trị.
-7. `07_tracking_live_timeline_wireframe.svg`: Theo dõi tiến độ trực tiếp với Timeline Stepper 4 mốc chuẩn.
-8. `08_tracking_photo_detail_wireframe.svg`: Xem chi tiết ảnh/video chụp trực tiếp từ phòng chăm sóc.
-9. `09_reception_checkin_wireframe.svg`: Màn hình tiếp nhận tại quầy kèm mã QR và ký nhận dặn dò đặc biệt.
-10. `10_pickup_qr_handoff_wireframe.svg`: Màn hình bàn giao thú cưng kèm mã QR đối soát an toàn.
-11. `11_history_expense_hub_wireframe.svg`: Trung tâm lịch sử dịch vụ, hóa đơn điện tử và nhật ký chăm sóc.
-12. `12_rebook_modal_wireframe.svg`: Modal đặt lại 1 chạm (1-Click Rebook) giữ nguyên dịch vụ và ghi chú cũ.
-13. `13_budget_cycle_tracker_wireframe.svg`: Theo dõi chu kỳ chăm sóc và hạn mức chi tiêu định kỳ.
-14. `state_loading_wireframe.svg`: Trạng thái Skeleton Shimmer khi đang kết nối / tải dữ liệu live.
-15. `state_empty_wireframe.svg`: Trạng thái trống dữ liệu (chưa có hồ sơ / kín lịch hẹn) kèm CTA điều hướng.
-16. `state_error_wireframe.svg`: Trạng thái cảnh báo xung đột lịch / dị ứng thành phần kèm nút 1-click sửa lỗi.
-17. `state_success_wireframe.svg`: Trạng thái xác nhận đặt hẹn thành công tức thì / hoàn tất bàn giao.
+### 6.1. Nguyên Tắc Bao Phủ Không Giới Hạn Cứng (Dynamic Master Screen Inventory)
+- **Tuyệt đối không gán cứng một con số màn hình tĩnh**: Wireframe là tài liệu kiến trúc giao diện toàn diện (Master Screen Inventory), số lượng tệp màn hình được quyết định bởi **tổng thể tất cả các màn hình có thể có trong hệ sinh thái ứng dụng**.
+- Hệ thống Wireframe SVG phải bao phủ đầy đủ tất cả các nhóm phân hệ nghiệp vụ:
+  1. **Nhóm Trang chủ & Thông báo (Home & Push Hub)**: Dashboard trang chủ, Trung tâm thông báo đẩy, Cài đặt kênh thông báo.
+  2. **Nhóm Đặt lịch & Lưới giờ (Booking Hub)**: Chọn dịch vụ & KTV, Lưới chọn ngày/giờ real-time, Luồng đặt đơn lẻ (1 bé), Luồng đặt đa thú cưng song song (Multi-pet), Màn hình xác nhận đặt hẹn tức thì.
+  3. **Nhóm Hồ sơ thú cưng & Sức khỏe (Pet Profiles & Medical)**: Quản lý danh sách đa hồ sơ, Hồ sơ y tế & Cảnh báo dị ứng cố định, Sổ tiêm phòng & Sức khỏe điện tử.
+  4. **Nhóm Tiếp nhận & Điều phối Tiệm (Reception & Dispatcher)**: Mã QR check-in tiếp nhận tại quầy, Tablet điều phối KTV nội bộ, Biên bản giao ca trực điện tử bảo toàn dặn dò y tế 2 lớp.
+  5. **Nhóm Theo dõi tiến độ thời gian thực (Live Tracking)**: Các màn hình từng mốc độc lập (*Mốc 1: Đã nhận, Mốc 2: Đang tắm, Mốc 3: Sấy & Tỉa, Mốc 4: Hoàn tất chờ đón*), Màn hình theo dõi tiến độ song song đa thú cưng, Màn hình phóng to & xem chi tiết ảnh chụp từ phòng cách ly.
+  6. **Nhóm Bàn giao & Đánh giá (Handoff & Review)**: Mã QR đối soát xuất viện đón bé, Báo cáo nghiệm thu & đối chiếu ảnh trước/sau, Màn hình đánh giá 5 sao & phản hồi chất lượng.
+  7. **Nhóm Lịch sử, Rebook & Chi tiêu (History, Rebook & Expense)**: Sổ nhật ký dịch vụ số hóa, Chi tiết lượt chăm sóc cũ (công thức & ảnh mẫu), Modal tái đặt lịch 1 chạm (1-Click Rebook), Theo dõi chu kỳ & hạn mức ngân sách tháng, Hóa đơn điện tử gộp (E-Invoice).
+  8. **Nhóm Trạng thái giao diện biên (Edge States)**: Loading (Skeleton Shimmer), Empty (Trống dữ liệu / Kín lịch), Error (Xung đột dị ứng nguy hiểm kèm 1-Click Fix), Error Network (Mất kết nối mạng kèm giữ dữ liệu đệm), Success (Hoàn tất xác nhận).
+- Toàn bộ các tệp SVG phải được lưu trữ trực tiếp tại `deliverables/02-interaction-design/wireframe/`.
 
 ### 6.2. Tài Liệu Đặc Tả Kiến Trúc Wireframe (`wireframe-spec.md`)
-Tài liệu Markdown chuẩn hóa theo `templates/wireframe-template.md` bao gồm:
-- Sơ đồ Kiến trúc thông tin toàn diện (Information Architecture & Screen Flow Map).
-- Ma trận phân tích chi tiết toàn bộ màn hình kết hợp đầy đủ 5 trạng thái giao diện.
+Tài liệu Markdown chuẩn hóa lưu tại `deliverables/02-interaction-design/wireframe/wireframe-spec.md` bao gồm:
+- Sơ đồ Kiến trúc thông tin toàn diện (Information Architecture & Screen Flow Map) của toàn bộ các màn hình trong hệ thống.
+- Ma trận phân tích chi tiết toàn bộ các màn hình kết hợp đầy đủ 5 trạng thái giao diện (*Main Flow, Loading, Empty, Error/Recovery, Success*).
 - Bảng đặc tả Khả năng tiếp cận (Accessibility) & Phản hồi đa kênh (Multimodal Feedback).
 - Phân tích độ phủ vùng chạm ngón cái (Thumb Zone Ergonomics Analysis).
 - Đánh giá khoảng trống thiết kế và các quyết định kiến trúc giao diện (Gap Analysis & Decisions).
@@ -142,13 +134,15 @@ Tài liệu Markdown chuẩn hóa theo `templates/wireframe-template.md` bao g�
 ## 7. Tiêu Chuẩn Nghiệm Thu Đạt Chuẩn Rubric Điểm Tối Đa (1.0)
 
 Một bộ Wireframe chỉ được nghiệm thu đạt chuẩn mức 1.0 (trọng số 10%) của Rubric khi đáp ứng đủ các tiêu chí:
-1. **Đầy đủ số lượng và phân hệ**: Có đủ 13 màn hình luồng chính + 4 màn hình trạng thái biên SVG và file `wireframe-spec.md`.
-2. **Giống giao diện thật & Chi tiết cao**: Thể hiện đầy đủ thành phần vi mô (Status Bar, Dynamic Island, Navigation, Card, Button, Badge, Timeline Stepper, QR, Home Indicator).
-3. **Màu sắc hài hòa, thanh lịch**: Sử dụng đúng bộ Design Tokens chuẩn, tương phản sắc nét, màu trạng thái rõ ràng.
-4. **Có sử dụng tools thiết kế**: Sinh mã SVG vector phân cấp layer ngữ nghĩa `<g id="...">` tương thích 100% khi kéo thả vào Figma Canvas.
-5. **Tiện dụng & Công thái học**: Tối ưu ngón tay cái, vùng chạm $\ge 44\text{px}$, các tác vụ chính nằm ở nửa dưới màn hình.
-6. **Vượt qua 100% 4 bài kiểm thử SVG**:
+1. **Bao quát toàn bộ 100% tất cả các màn hình có thể có của ứng dụng**: Bao phủ trọn vẹn mọi phân hệ, mọi hành trình người dùng đã phát hiện từ Prototype/Scenario, đầy đủ màn hình nghiệp vụ tiệm và các trạng thái biên.
+2. **Kế thừa và mở rộng toàn diện từ Prototype**: Không bỏ sót bất kỳ màn hình nào từ các kịch bản của Persona 1 và Persona 2.
+3. **Giống giao diện thật & Chi tiết cao**: Thể hiện đầy đủ thành phần vi mô (Status Bar, Dynamic Island, Navigation, Card, Button, Badge, Timeline Stepper, QR, Home Indicator).
+4. **Màu sắc hài hòa, thanh lịch**: Sử dụng đúng bộ Design Tokens chuẩn, tương phản sắc nét, màu trạng thái rõ ràng.
+5. **Có sử dụng tools thiết kế**: Sinh mã SVG vector phân cấp layer ngữ nghĩa `<g id="...">` tương thích 100% khi kéo thả vào Figma Canvas.
+6. **Tiện dụng & Công thái học**: Tối ưu ngón tay cái, vùng chạm $\ge 44\text{px}$, các tác vụ chính nằm ở nửa dưới màn hình.
+7. **Vượt qua 100% các bài kiểm thử SVG của `tools/validate-svg.py`**:
    - Khung nhìn chuẩn $430 \times 932\text{px}$, có Dynamic Island và Home Indicator.
+   - Cú pháp XML nghiêm ngặt: Toàn bộ ký tự đặc biệt được escape chuẩn (`&amp;`, `&lt;`, `&gt;`) và tọa độ thuần số (không kẹt biểu thức toán học).
    - Không bị tràn lề phải ($x + \text{width} \le 392\text{px}$ cho nội dung bên trong card).
    - Không bị va chạm hoặc đè chữ giữa các đoạn văn bản cùng hàng.
    - 100% sạch emoji màu mè, thay thế hoàn toàn bằng vector đơn sắc hoặc ký tự phẳng.

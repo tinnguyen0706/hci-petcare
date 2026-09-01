@@ -87,3 +87,18 @@ Khi bố trí 2 khối text nằm trên **cùng một dòng (cùng tọa độ $
 2. **Kiểm thử Tràn lề phải**: Với mọi text căn trái ($x = 38$), ước tính $x + (\text{len} \times 7.5\text{px}) \le 392\text{px}$.
 3. **Kiểm thử Va chạm cùng hàng**: Rà soát các cặp text cùng trục $y$, đảm bảo tổng chiều dài $< 330\text{px}$.
 4. **Kiểm thử Sạch Emoji**: Quét toàn bộ file SVG đảm bảo 100% không còn emoji màu mè.
+5. **Kiểm thử Cú pháp XML & Escape Entities**: Đảm bảo 100% tệp SVG parse thành công qua `tools/validate-svg.py`, không chứa `&` thô hay biểu thức số học kẹt trong thuộc tính.
+
+---
+
+## 7. Quy Chuẩn Escape Ký Tự XML & Thuộc Tính Tọa Độ (Strict XML & Numbers)
+
+SVG là định dạng XML nghiêm ngặt, bắt buộc tuân thủ 2 quy chuẩn để tránh lỗi không preview được:
+- **Escape ký tự đặc biệt trong thẻ `<text>`**:
+  - Ký tự `&` (và) $\rightarrow$ **Bắt buộc viết là `&amp;`** (hoặc dùng từ "và").
+  - Ký tự `<` $\rightarrow$ **Bắt buộc viết là `&lt;`** (hoặc dùng ký tự phẳng `‹`).
+  - Ký tự `>` $\rightarrow$ **Bắt buộc viết là `&gt;`** (hoặc dùng ký tự phẳng `›`).
+- **Thuộc tính tọa độ và kích thước thuần số**:
+  - Tuyệt đối không để biểu thức số học dạng chuỗi trong thuộc tính XML (như `y="452+104"`, `x="38+20"`).
+  - Toàn bộ giá trị thuộc tính (`x`, `y`, `cx`, `cy`, `width`, `height`, `rx`, `ry`, `stroke-width`) phải là số thực hoặc số nguyên cụ thể đã tính toán trước (`y="556"`).
+
