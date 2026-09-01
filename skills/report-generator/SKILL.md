@@ -47,7 +47,7 @@ Không được coi một artifact là evidence nếu artifact đó chưa tồn 
 
 ---
 
-# 3. Ba Quy tắc Vận hành Cốt lõi
+# 3. Các Quy tắc Vận hành Cốt lõi
 
 ### Quy tắc 1: Bắt buộc Bám sát Proposal (Proposal-Based Mandate)
 - Báo cáo phải phát triển trực tiếp từ Proposal (`docs/proposal.md`).
@@ -77,11 +77,20 @@ Không được coi một artifact là evidence nếu artifact đó chưa tồn 
 - Dự án có bao nhiêu Persona thì trong báo cáo bắt buộc phải đưa vào **ĐẦY ĐỦ TẤT CẢ** các Persona đó (`deliverables/01-user-research/persona/`), tuyệt đối không được bỏ sót bất kỳ Persona nào.
 - Tương ứng với mỗi Persona, **BẮT BUỘC phải có một bản Đề xuất giá trị (Value Proposition Canvas) đối ứng trực tiếp 1-1** (`deliverables/01-user-research/value-proposition/`). Có bao nhiêu Persona thì phải có bấy nhiêu Value Proposition Canvas tương ứng, thể hiện đầy đủ Hồ sơ khách hàng (Customer Profile: Tác vụ, Điểm đau, Điểm mong muốn) và Bản đồ giá trị (Value Map: Sản phẩm & Dịch vụ, Trợ thủ giải tỏa đau đớn, Yếu tố tạo lợi ích).
 
+### Quy tắc 5: Linh hoạt theo Thực tế Đồ án & Xử lý Phần con khi thiếu dữ liệu / Chỉ có 1 phương án (Adaptability & Honesty over Forced Templates)
+- **Bộ khung 9 chương lớn là chuẩn mực bắt buộc**, nhưng đối với **các tiểu mục / phần con của từng chương**: Nếu phần đó đồ án **không có thông tin thực tế để thực hiện** hoặc **chỉ áp dụng một phương án/luồng duy nhất** (ví dụ điển hình: mục 5.6 yêu cầu so sánh Phương án A, B, C... nhưng đồ án này chỉ nghiên cứu và phát triển một phương án thiết kế duy nhất), thì:
+  1. **Tuyệt đối KHÔNG tự ý bịa đặt thông tin, không tạo ra các phương án giả (A, B, C...)** chỉ để lấp đầy cấu trúc template.
+  2. **Được phép chỉ trình bày 1 phương án duy nhất** (hoặc không cần thực hiện tiểu mục nếu không có thông tin áp dụng), đồng thời **bắt buộc phải ghi rõ lý do hợp lý** (ví dụ: nhóm tập trung toàn bộ nguồn lực để tối ưu hóa chuyên sâu 1 phương án thiết kế duy nhất bám sát trực tiếp bài toán Proposal và kết quả nghiên cứu người dùng, giải quyết dứt điểm 4 điểm đau cốt lõi, tránh phân tán vào các phương án kém tối ưu).
+  3. Báo cáo phải phản ánh trung thực tiến trình và bằng chứng thực tế của đồ án (Honesty & Traceability).
+
 ---
 
 # 4. Cấu trúc báo cáo bắt buộc (9 Chương chuẩn HCI)
 
-Nếu project yêu cầu báo cáo HCI/UX theo cấu trúc này, phải sử dụng đầy đủ các chapter sau với 100% tiêu đề tiếng Việt:
+Nếu project yêu cầu báo cáo HCI/UX theo cấu trúc này, phải sử dụng đầy đủ các chapter sau với 100% tiêu đề tiếng Việt.
+
+> [!NOTE]
+> **Nguyên tắc linh hoạt đối với các tiểu mục con**: Khung 9 chương lớn là bắt buộc để đảm bảo chuẩn mực HCI. Tuy nhiên, ở các **tiểu mục con**, nếu đồ án không có thông tin thực tế để thực hiện hoặc chỉ triển khai một phương án duy nhất (như mục 5.6), sinh viên/Agent **không cần cưỡng ép thực hiện đủ các nhánh giả định**, mà chỉ cần trình bày đúng thực tế đồ án có kèm theo **lý do hợp lý**, luôn đặt tính trung thực của dữ liệu lên hàng đầu.
 
 ## Chương 1. Giới thiệu
 
@@ -340,16 +349,12 @@ Trình bày:
 
 ### 5.6. Các phương án thiết kế
 
-Nếu có nhiều phương án:
+Trình bày phương án thiết kế giao diện theo thực tế triển khai của đồ án:
 
-**Phương án A → Phương án B → Thiết kế tối ưu**
-
-Giải thích:
-
-* Ưu điểm
-* Nhược điểm
-* Đánh đổi (Trade-offs)
-* Lý do lựa chọn giải pháp tối ưu
+* **Trường hợp đồ án có nhiều phương án**:
+  Trình bày tiến trình so sánh: **Phương án A → Phương án B → Thiết kế tối ưu**. Giải thích ưu điểm, nhược điểm, đánh đổi (Trade-offs) và lý do lựa chọn giải pháp tối ưu.
+* **Trường hợp đồ án chỉ có 1 phương án thiết kế duy nhất**:
+  **Chỉ cần trình bày tập trung vào 1 phương án duy nhất đó**, tuyệt đối **KHÔNG bịa đặt thêm các phương án giả (A, B, C...)** để đối phó với cấu trúc mẫu. Bắt buộc **ghi rõ lý do hợp lý** vì sao chỉ có 1 phương án (ví dụ: thiết kế được tối ưu hóa trực tiếp và chặt chẽ từ kết quả nghiên cứu người dùng và Proposal, bám sát giải pháp To-Be cho 4 điểm đau cốt lõi; nhóm tập trung toàn bộ nguồn lực để hoàn thiện chuyên sâu trải nghiệm người dùng tối ưu thay vì phân tán sang các phương án thử nghiệm không khả thi).
 
 ---
 
@@ -651,13 +656,16 @@ Nếu evidence chỉ cho thấy improvement, viết:
 
 ---
 
-# 16. Missing Evidence
+# 16. Missing Evidence & Xử lý phần con không có dữ liệu thực tế
 
-Khi thiếu dữ liệu:
+Khi thiếu dữ liệu hoặc khi tiểu mục trong cấu trúc không có thông tin áp dụng:
 
-1. Xác định chính xác phần bị thiếu.
-2. Đánh dấu phần đó là incomplete/draft.
-3. Nêu artifact hoặc input cần bổ sung.
+1. **Xác định chính xác phần bị thiếu hoặc không áp dụng**: Phân biệt rõ giữa (a) dữ liệu kiểm thử bắt buộc nhưng chưa làm xong và (b) tiểu mục cấu trúc đồ án không áp dụng hoặc chỉ có 1 phương án thực tế (ví dụ mục 5.6 chỉ có 1 phương án thiết kế duy nhất).
+2. **Đối với tiểu mục đồ án chỉ có 1 phương án hoặc không có thông tin áp dụng**:
+   - Trình bày phương án/thực tế duy nhất của đồ án (hoặc không thực hiện tiểu mục nếu hoàn toàn không áp dụng).
+   - **Bắt buộc ghi rõ lý do hợp lý** (ví dụ: lý do chỉ tập trung triển khai 1 phương án thiết kế duy nhất giải quyết triệt để 4 điểm đau Proposal thay vì tạo các phương án thử nghiệm kém tối ưu).
+   - **Tuyệt đối KHÔNG tự tạo phương án giả (A, B, C...)** để đối phó với cấu trúc mẫu.
+3. **Đối với dữ liệu kiểm thử/đo lường chưa thực hiện**: Đánh dấu phần đó là incomplete/draft và nêu artifact hoặc input cần bổ sung.
 4. Không tự tạo dữ liệu để lấp khoảng trống.
 
 Ví dụ:
@@ -669,8 +677,6 @@ Không viết:
 > The task completion rate improved significantly.
 
 nếu chưa có dữ liệu.
-
----
 
 ---
 
@@ -724,7 +730,7 @@ Trước khi hoàn thành báo cáo, kiểm tra:
 ### Structure
 
 * [ ] Đủ Chương 1–9 chuẩn HCI
-* [ ] Đủ các mục con theo template tiếng Việt
+* [ ] Các mục con được trình bày trung thực theo dữ liệu thực tế (tiểu mục chỉ có 1 phương án hoặc không áp dụng đều có nêu lý do hợp lý, không tạo phương án/dữ liệu giả)
 * [ ] Hình ảnh (Figures) được đánh số và chú thích
 * [ ] Bảng biểu (Tables) được đánh số và chú thích
 * [ ] Danh mục Tài liệu tham khảo đầy đủ
