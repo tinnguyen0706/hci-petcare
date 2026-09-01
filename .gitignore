@@ -12,3 +12,4 @@ references/**/*.pptx
 __pycache__/
 *.py[cod]
 deliverables/
+docs/build
