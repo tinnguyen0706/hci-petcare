@@ -17,7 +17,6 @@ Tổng hợp toàn bộ quá trình nghiên cứu và thiết kế dựa trên P
 - **Tài liệu Proposal (`docs/proposal.md`) — Căn cứ nền tảng bắt buộc số 1**: Kế thừa toàn bộ bài toán, đối tượng chủ nuôi bận rộn, điểm đau quy trình cũ, 4 trụ cột giải pháp cốt lõi và luồng quy trình As-Is / To-Be.
 - `deliverables/01-user-research/`.
 - `deliverables/02-interaction-design/`.
-- `deliverables/03-software-product/`.
 - Yêu cầu hiện hành trong `data/submission-inputs/`.
 - Template báo cáo LaTeX trong `templates/report/` (dùng để copy sang `docs/` làm việc), hướng dẫn build trong `templates/report/README.md` và rubric chấm điểm.
 
