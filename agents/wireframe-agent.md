@@ -1,12 +1,12 @@
 # Wireframe Agent
 
-Điều phối và thiết kế Wireframe mobile-first cho **toàn bộ các màn hình có thể có của hệ thống ứng dụng** (tổng hợp từ toàn bộ Prototype) kết hợp **đầy đủ 5 trạng thái giao diện** theo rubric mục 7.
+Điều phối và thiết kế Wireframe mobile-first cho **toàn bộ các màn hình có thể có của hệ thống ứng dụng** (tổng hợp từ Storyboard và Scenario Future) kết hợp **đầy đủ 5 trạng thái giao diện** theo rubric mục 7, làm tiền đề kiến trúc cho Prototype.
 
 - Đọc [`rules/wireframe-rules.md`](../rules/wireframe-rules.md), [`rules/layout-and-typography-rules.md`](../rules/layout-and-typography-rules.md), [`rules/style-rules.md`](../rules/style-rules.md), [`rules/tool-rules.md`](../rules/tool-rules.md), [`templates/wireframe-template.md`](../templates/wireframe-template.md), [`AGENTS.md`](../AGENTS.md).
 
 ## Dùng agent này khi
 
-- Cần thiết kế bộ Wireframe tổng thể cho toàn bộ ứng dụng dựa trên các Prototype tương tác đã hoàn thiện (`deliverables/02-interaction-design/prototype/`).
+- Cần thiết kế bộ Wireframe tổng thể cho toàn bộ ứng dụng dựa trên Storyboard và Scenario Future đã hoàn thiện (`deliverables/02-interaction-design/storyboard/`, `deliverables/01-user-research/scenario-future/`) làm tiền đề trực tiếp cho Prototype.
 - Cần mô tả **toàn bộ các màn hình chức năng có thể có trong ứng dụng** (không chia cắt theo từng goal/persona lẻ tẻ mà xuất ra một bộ màn hình thống nhất cho toàn bộ sản phẩm).
 - Cần thể hiện **đầy đủ 5 trạng thái giao diện**: *Main Flow (Luồng chính)*, *Loading State (Đang tải)*, *Empty State (Trống dữ liệu)*, *Error State (Báo lỗi/Xung đột)*, và *Success State (Thành công)*.
 - Cần tạo layout trực quan, chuẩn hóa Kiến trúc thông tin (Information Architecture), bảo đảm tính khả dụng (Usability), khả năng tiếp cận (Accessibility) và tối ưu vùng chạm ngón cái (Thumb Zone).
@@ -14,7 +14,7 @@
 ## Tôn chỉ cốt lõi
 
 1. **Bộ Màn Hình Tổng Thể Toàn Ứng Dụng (App-wide Screen Coverage - BẮT BUỘC)**:
-   - Wireframe **KHÔNG chia nhỏ theo từng kịch bản hay goal lẻ tẻ** như Prototype.
+   - Wireframe **KHÔNG chia nhỏ theo từng kịch bản hay goal lẻ tẻ** như Storyboard mà bao quát kiến trúc toàn diện.
    - Wireframe là đầu ra của **toàn bộ các màn hình có thể có của sản phẩm**, bao quát trọn vẹn tất cả các phân hệ: Trang chủ, Đặt lịch & Chọn giờ, Hồ sơ y tế & Dị ứng, Theo dõi tiến độ Live Tracking 4 mốc, Xem ảnh live phòng cách ly, Quét mã QR tiếp nhận/bàn giao, Lịch sử chăm sóc & Chi tiêu, Đặt lại 1 chạm (1-Click Rebook), Thông báo đẩy...
 2. **Bao phủ Đầy Đủ 5 Trạng Thái Giao Diện (5 UI States Coverage)**:
    - Cung cấp đầy đủ 5 trạng thái giao diện chuẩn mực HCI:
@@ -39,7 +39,7 @@
 
 ## Input
 
-- **Tiền điều kiện bắt buộc (Mandatory Precondition)**: Bộ **Prototype** tương tác hoàn chỉnh tại `deliverables/02-interaction-design/prototype/` (bao gồm đầy đủ các kịch bản của Persona 1 & Persona 2).
+- **Tiền điều kiện bắt buộc (Mandatory Precondition)**: Bộ **Storyboard** hoàn chỉnh tại `deliverables/02-interaction-design/storyboard/` và **Scenario Future** tại `deliverables/01-user-research/scenario-future/` (bao gồm đầy đủ các kịch bản của Persona 1 & Persona 2).
 - Kịch bản tương tác (`deliverables/01-user-research/scenario-future/`).
 - Thông tin Persona (`deliverables/01-user-research/persona/personas.json`).
 - Quy tắc thiết kế ([`rules/wireframe-rules.md`](../rules/wireframe-rules.md), [`rules/layout-and-typography-rules.md`](../rules/layout-and-typography-rules.md), [`AGENTS.md`](../AGENTS.md)).
@@ -70,10 +70,10 @@ Toàn bộ hệ thống Wireframe được lưu tập trung trực tiếp tại 
 ## Workflow
 
 1. **Kiểm tra Tiền điều kiện (Precondition Gate - BẮT BUỘC)**:
-   - Kiểm tra sự tồn tại của các bộ Prototype tại `deliverables/02-interaction-design/prototype/`.
-   - Nếu thiếu Prototype: Báo lỗi và dừng lại ngay lập tức.
+   - Kiểm tra sự tồn tại của Storyboard tại `deliverables/02-interaction-design/storyboard/` và Scenario Future tại `deliverables/01-user-research/scenario-future/`.
+   - Nếu thiếu Storyboard hoặc Scenario Future: Báo lỗi và dừng lại ngay lập tức.
 2. **Tổng hợp danh mục màn hình toàn ứng dụng**:
-   - Rà soát toàn bộ các điểm chạm và màn hình xuất hiện trong tất cả các Prototype để lập danh sách đầy đủ các màn hình chức năng của sản phẩm.
+   - Rà soát toàn bộ các điểm chạm và màn hình xuất hiện trong Storyboard và Scenario Future để lập danh sách đầy đủ các màn hình chức năng của sản phẩm.
 3. **Thiết kế các trạng thái biên**:
    - Xây dựng các màn hình đặc tả 5 trạng thái giao diện (*Loading*, *Empty*, *Error*, *Success*).
 4. **Gọi Subagent `figma-agent`**:

@@ -7,8 +7,8 @@ Nguồn duy nhất là `docs/final-rubric.csv`. Bốn nhóm deliverable phải b
 3. Scenario 1 — `deliverables/01-user-research/`
 4. Scenario 2 mới — `deliverables/02-interaction-design/`
 5. Storyboard — `deliverables/02-interaction-design/`
-6. Prototype — `deliverables/02-interaction-design/`
-7. Wireframe — `deliverables/02-interaction-design/`
+6. Wireframe — `deliverables/02-interaction-design/`
+7. Prototype — `deliverables/02-interaction-design/`
 8. Software product — `deliverables/03-software-product/`
 9. Trình bày — `deliverables/04-final-submission/`
 10. Báo cáo — `deliverables/04-final-submission/`

@@ -7,7 +7,7 @@ Tệp này quy định các chuẩn mực, ràng buộc thiết kế, kiến tr�
 ## 1. Nguyên Tắc & Tôn Chỉ Cốt Lõi
 
 ### 1.1. Bộ Màn Hình Tổng Thể Toàn Ứng Dụng (App-wide Screen Coverage — BẮT BUỘC)
-- **Không chia cắt theo từng Persona hay Goal lẻ tẻ**: Khác với Storyboard và Prototype (được tổ chức theo từng kịch bản Persona–Goal), Wireframe là tài liệu kiến trúc giao diện tổng thể của **toàn bộ sản phẩm di động**.
+- **Không chia cắt theo từng Persona hay Goal lẻ tẻ**: Khác với Storyboard (được tổ chức theo từng kịch bản Persona–Goal), Wireframe là tài liệu kiến trúc giao diện tổng thể của **toàn bộ sản phẩm di động** làm tiền đề kiến trúc cho Prototype sau này.
 - **Bao quát đầy đủ tất cả các phân hệ chức năng**:
   1. *Phân hệ Trang chủ & Điều hướng cốt lõi*: Home Dashboard tổng quan dịch vụ, thanh điều hướng dưới đáy (Bottom Navigation), Trung tâm thông báo đẩy (Push Notifications Hub).
   2. *Phân hệ Đặt lịch & Lưới giờ*: Chọn dịch vụ chăm sóc (Tắm/Spa/Cắt tỉa), Chọn khung giờ còn trống (Interactive Timeslot Picker), Gán thú cưng & Đặt lịch đa thú cưng (Multi-pet Booking).
@@ -29,9 +29,9 @@ Mỗi thành phần và màn hình trong hệ thống Wireframe phải phản á
 
 ## 2. Tiền Điều Kiện Bắt Buộc (Strict Precondition Enforcement)
 
-- **Bắt buộc phải có Prototype trước khi tạo Wireframe**:
-  - Wireframe chỉ được phép tạo khi bộ Prototype tương tác hoàn chỉnh tại `deliverables/02-interaction-design/prototype/` đã tồn tại và hoàn thành đầy đủ cho cả Persona 1 và Persona 2.
-  - **Quy tắc dừng ngay lập tức (HALT)**: Nếu kiểm tra thấy thiếu Prototype, Agent **tuyệt đối KHÔNG ĐƯỢC PHÉP tạo Wireframe mà PHẢI BÁO LỖI VÀ DỪNG LẠI NGAY LẬP TỨC**, hướng dẫn người dùng kích hoạt `prototype-agent` trước.
+- **Bắt buộc phải có Storyboard và Scenario Future trước khi tạo Wireframe**:
+  - Wireframe chỉ được phép tạo khi bộ Storyboard hoàn chỉnh tại `deliverables/02-interaction-design/storyboard/` và kịch bản Scenario Future tại `deliverables/01-user-research/scenario-future/` đã tồn tại và hoàn thành đầy đủ cho cả Persona 1 và Persona 2.
+  - **Quy tắc dừng ngay lập tức (HALT)**: Nếu kiểm tra thấy thiếu Storyboard hoặc Scenario Future, Agent **tuyệt đối KHÔNG ĐƯỢC PHÉP tạo Wireframe mà PHẢI BÁO LỖI VÀ DỪNG LẠI NGAY LẬP TỨC**, hướng dẫn người dùng kích hoạt `storyboard-agent` hoặc `scenario-future-agent` trước.
 
 ---
 
@@ -134,8 +134,8 @@ Tài liệu Markdown chuẩn hóa lưu tại `deliverables/02-interaction-design
 ## 7. Tiêu Chuẩn Nghiệm Thu Đạt Chuẩn Rubric Điểm Tối Đa (1.0)
 
 Một bộ Wireframe chỉ được nghiệm thu đạt chuẩn mức 1.0 (trọng số 10%) của Rubric khi đáp ứng đủ các tiêu chí:
-1. **Bao quát toàn bộ 100% tất cả các màn hình có thể có của ứng dụng**: Bao phủ trọn vẹn mọi phân hệ, mọi hành trình người dùng đã phát hiện từ Prototype/Scenario, đầy đủ màn hình nghiệp vụ tiệm và các trạng thái biên.
-2. **Kế thừa và mở rộng toàn diện từ Prototype**: Không bỏ sót bất kỳ màn hình nào từ các kịch bản của Persona 1 và Persona 2.
+1. **Bao quát toàn bộ 100% tất cả các màn hình có thể có của ứng dụng**: Bao phủ trọn vẹn mọi phân hệ, mọi hành trình người dùng đã phát hiện từ Storyboard & Scenario Future, đầy đủ màn hình nghiệp vụ tiệm và các trạng thái biên.
+2. **Kế thừa và mở rộng toàn diện từ Storyboard & Scenario Future**: Không bỏ sót bất kỳ màn hình nào từ các kịch bản của Persona 1 và Persona 2, xác lập nền tảng kiến trúc vững chắc cho bước làm Prototype tiếp theo.
 3. **Giống giao diện thật & Chi tiết cao**: Thể hiện đầy đủ thành phần vi mô (Status Bar, Dynamic Island, Navigation, Card, Button, Badge, Timeline Stepper, QR, Home Indicator).
 4. **Màu sắc hài hòa, thanh lịch**: Sử dụng đúng bộ Design Tokens chuẩn, tương phản sắc nét, màu trạng thái rõ ràng.
 5. **Có sử dụng tools thiết kế**: Sinh mã SVG vector phân cấp layer ngữ nghĩa `<g id="...">` tương thích 100% khi kéo thả vào Figma Canvas.

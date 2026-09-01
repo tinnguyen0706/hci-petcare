@@ -54,7 +54,7 @@ AI Agent **không tự ý suy diễn quy tắc mà bắt buộc phải đọc v�
 ### Những gì AI Assistant KHÔNG ĐƯỢC làm
 
 - **Tuyệt đối không bịa số liệu**, trích dẫn phỏng vấn, kết quả nghiên cứu hay bằng chứng đóng góp nhóm.
-- **Không tự ý tạo nhảy cóc khi thiếu tiền điều kiện**: Không tạo Prototype khi chưa có Storyboard, không tạo Wireframe khi chưa có Prototype, không code phần mềm khi chưa có Wireframe & Prototype.
+- **Không tự ý tạo nhảy cóc khi thiếu tiền điều kiện**: Không tạo Wireframe khi chưa có Storyboard, không tạo Prototype khi chưa có Wireframe, không code phần mềm khi chưa có Wireframe & Prototype.
 - **Không tự mở rộng phạm vi sản phẩm**: Giữ vững trọng tâm phục vụ chủ nuôi thú cưng bận rộn.
 - **Không tự đổi Tech Stack**: Không tự thêm backend phức tạp hay đổi framework.
 - **Tuyệt đối không tự ý chạy lệnh Git**: Không tự chạy `git status`, `git log`, `git diff` khi người dùng không yêu cầu.
@@ -73,8 +73,8 @@ graph LR
     W3 --> W4["04. Scenario Current"]
     W4 --> W5["05. Scenario Future"]
     W5 --> W6["06. Storyboard"]
-    W6 --> W7["07. Prototype"]
-    W7 --> W8["08. Wireframe"]
+    W6 --> W7["07. Wireframe"]
+    W7 --> W8["08. Prototype"]
     W8 --> W9["09. Evaluation"]
     W9 --> W10["10. Software Product"]
     W10 --> W11["11. Report"]
@@ -88,8 +88,8 @@ graph LR
 4. **Scenario Current (Kịch bản hiện tại)**: Mô tả câu chuyện thực tế và các điểm đau của quy trình thủ công cũ (`deliverables/01-user-research/scenario-current/`).
 5. **Scenario Future (Kịch bản tương lai To-Be)**: Thiết kế luồng tương tác cải tiến giải quyết các điểm đau (`deliverables/01-user-research/scenario-future/`).
 6. **Storyboard (Bảng phân cảnh trực quan)**: Trực quan hóa câu chuyện trải nghiệm thành 6 khung tranh Expressive Stick-figure UI (`deliverables/02-interaction-design/storyboard/`). *(Tiền điều kiện: Scenario Future)*.
-7. **Prototype (Mô hình tương tác cao)**: Xây dựng Interactive Prototype vector SVG chuẩn Figma cho từng kịch bản (`deliverables/02-interaction-design/prototype/`). *(Tiền điều kiện: Storyboard)*.
-8. **Wireframe (Khung giao diện toàn hệ thống)**: Thiết kế bộ Wireframe tổng thể cho toàn bộ màn hình ứng dụng tích hợp đủ 5 trạng thái giao diện (`deliverables/02-interaction-design/wireframe/`). *(Tiền điều kiện: Prototype)*.
+7. **Wireframe (Khung giao diện toàn hệ thống)**: Thiết kế bộ Wireframe tổng thể cho toàn bộ màn hình ứng dụng tích hợp đủ 5 trạng thái giao diện (`deliverables/02-interaction-design/wireframe/`). *(Tiền điều kiện: Storyboard)*.
+8. **Prototype (Mô hình tương tác cao)**: Xây dựng Interactive Prototype vector SVG chuẩn Figma cho từng kịch bản (`deliverables/02-interaction-design/prototype/`). *(Tiền điều kiện: Wireframe)*.
 9. **Evaluation (Đánh giá giao diện & Trải nghiệm)**: Đánh giá Heuristic, kiểm tra độ bao phủ 5 UI states, kiểm thử khả năng tiếp cận và rà soát tiêu chí Rubric trước khi lập trình.
 10. **Software Product (Sản phẩm phần mềm Web)**: Lập trình sản phẩm Web React + TypeScript hoàn chỉnh quy trình nghiệp vụ (`src/`, `deliverables/03-software-product/`). *(Tiền điều kiện: Wireframe & Prototype)*.
 11. **Report & Final Submission (Báo cáo & Hoàn thiện đồ án)**: Biên soạn Báo cáo cuối kỳ (>6 trang), Slide thuyết trình và bảng phân công Teamwork (`deliverables/04-final-submission/`).
@@ -107,8 +107,8 @@ Khi thực thi từng giai đoạn trong Workflow, AI Agent kích hoạt Subagen
 | **3** | Scenario Current | `scenario-current-agent` | [`agents/scenario-current-agent.md`](agents/scenario-current-agent.md) |
 | **4** | Scenario Future | `scenario-future-agent` | [`agents/scenario-future-agent.md`](agents/scenario-future-agent.md) |
 | **5** | Storyboard | `storyboard-agent` | [`agents/storyboard-agent.md`](agents/storyboard-agent.md) |
-| **6** | Prototype | `prototype-agent` | [`agents/prototype-agent.md`](agents/prototype-agent.md) |
-| **7** | Wireframe | `wireframe-agent` | [`agents/wireframe-agent.md`](agents/wireframe-agent.md) |
+| **6** | Wireframe | `wireframe-agent` | [`agents/wireframe-agent.md`](agents/wireframe-agent.md) |
+| **7** | Prototype | `prototype-agent` | [`agents/prototype-agent.md`](agents/prototype-agent.md) |
 | **8** | Software Product | `software-product-agent` | [`agents/software-product-agent.md`](agents/software-product-agent.md) |
 | **9** | Presentation | `presentation-agent` | [`agents/presentation-agent.md`](agents/presentation-agent.md) |
 | **10** | Report | `report-agent` | [`agents/report-agent.md`](agents/report-agent.md) |

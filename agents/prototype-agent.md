@@ -1,13 +1,13 @@
 # Prototype Agent
 
-Điều phối việc xây dựng bộ Prototype SVG nhất quán từ **Storyboard bắt buộc**, đồng thời đối chiếu Scenario Future để bảo toàn hành vi và phản hồi hệ thống.
+Điều phối việc xây dựng bộ Interactive Prototype SVG nhất quán từ **Wireframe tổng thể** và **Storyboard bắt buộc**, đồng thời đối chiếu Scenario Future để bảo toàn hành vi và phản hồi hệ thống.
 
 - Đọc `skills/prototype-generator/SKILL.md`, `skills/figma-svg-generator/SKILL.md`, `rules/tool-rules.md`, `rules/layout-and-typography-rules.md`, `AGENTS.md`.
 
 ## Dùng agent này khi
 
-- Cần chuyển hóa Storyboard và Scenario tương ứng thành bộ màn hình SVG theo Flow.
-- Cần mô phỏng trung thực các điểm chạm (Touchpoints), phản hồi của hệ thống (System Feedbacks) và sự chuyển đổi trạng thái giao diện theo diễn biến của câu chuyện.
+- Cần chuyển hóa Wireframe tổng thể cùng Storyboard và Scenario tương ứng thành bộ màn hình Interactive Prototype SVG theo Flow.
+- Cần mô phỏng trung thực các điểm chạm (Touchpoints), phản hồi của hệ thống (System Feedbacks) và sự chuyển đổi trạng thái giao diện theo diễn biến của câu chuyện dựa trên khung cấu trúc đã xác lập trong Wireframe.
 - Cần xuất bản các asset vector SVG tương thích Figma; người dùng tự import và kết nối Interaction.
 
 ## Tôn chỉ cốt lõi
@@ -34,7 +34,9 @@
 
 ## Input
 
-- **Tiền điều kiện bắt buộc (Mandatory Precondition)**: Bộ **Storyboard** hoàn chỉnh tương ứng tại `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/`.
+- **Tiền điều kiện bắt buộc (Mandatory Precondition)**:
+  1. Hệ thống **Wireframe** hoàn chỉnh tại `deliverables/02-interaction-design/wireframe/` (bao gồm các màn hình Wireframe SVG và tài liệu đặc tả `wireframe-spec.md`).
+  2. Bộ **Storyboard** hoàn chỉnh tương ứng tại `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/`.
 - **Kịch bản Scenario Future**: `deliverables/01-user-research/scenario-future/<persona-id>/scenario-future-<goal-id>.md`.
 - Thông tin Persona & Value Proposition (`deliverables/01-user-research/persona/personas.json`, `deliverables/01-user-research/value-proposition/`).
 - Design Tokens và quy chuẩn thiết kế trong `AGENTS.md`.

@@ -1,11 +1,11 @@
 ---
 name: prototype-generator
-description: Chuyển Storyboard bắt buộc và Scenario Future tương ứng thành bộ SVG Frame nhất quán, tương thích Figma; dùng khi tạo, cập nhật hoặc nghiệm thu Prototype SVG theo Persona và Goal cụ thể.
+description: Chuyển Wireframe tổng thể, Storyboard bắt buộc và Scenario Future tương ứng thành bộ Interactive Prototype SVG Frame nhất quán, tương thích Figma; dùng khi tạo, cập nhật hoặc nghiệm thu Prototype SVG theo Persona và Goal cụ thể.
 ---
 
 # Prototype Generator
 
-Tạo bộ Prototype SVG từ Storyboard bắt buộc và đối chiếu Scenario Future, không dùng một Flow cố định cho mọi Persona. Kết quả hoàn thành của skill này là các file SVG đã qua kiểm thử tĩnh. Việc import, nối Interaction và kiểm chứng trên Figma thuộc trách nhiệm của người dùng và nằm ngoài phạm vi skill.
+Tạo bộ Prototype SVG từ Wireframe tổng thể đã xác lập, Storyboard bắt buộc và đối chiếu Scenario Future, không dùng một Flow cố định cho mọi Persona. Kết quả hoàn thành của skill này là các file SVG đã qua kiểm thử tĩnh. Việc import, nối Interaction và kiểm chứng trên Figma thuộc trách nhiệm của người dùng và nằm ngoài phạm vi skill.
 
 ## Nguồn chuẩn bắt buộc
 
@@ -23,6 +23,10 @@ Chỉ đọc Storyboard và Scenario Future của Persona/Goal đã chọn, `del
 
 ## Đầu vào và tiền điều kiện
 
+Wireframe bắt buộc nằm tại:
+
+`deliverables/02-interaction-design/wireframe/` (gồm toàn bộ các file SVG màn hình và `wireframe-spec.md`)
+
 Storyboard bắt buộc nằm tại:
 
 `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/`
@@ -31,11 +35,11 @@ Scenario nằm tại:
 
 `deliverables/01-user-research/scenario-future/<persona-id>/scenario-future-<goal-id>.md`
 
-Nếu thiếu Storyboard tương ứng, dừng trước khi tạo thư mục hoặc file Prototype và báo rõ Persona/Goal còn thiếu. Không dùng đường dẫn Storyboard dự phòng và không tự dựng Prototype trực tiếp từ Scenario.
+Nếu thiếu Wireframe tổng thể hoặc thiếu Storyboard tương ứng, dừng trước khi tạo thư mục hoặc file Prototype và báo rõ artifact còn thiếu. Không dùng đường dẫn Storyboard dự phòng và không tự dựng Prototype trực tiếp từ Scenario khi chưa có Wireframe và Storyboard.
 
 Nếu người dùng chưa chọn Persona/Goal, chỉ liệt kê các luồng có đủ Storyboard và Scenario để họ chọn. Không sinh Prototype trước khi có lựa chọn.
 
-Storyboard quyết định mạch phân cảnh, bối cảnh trực quan và visual continuity; Scenario quyết định User Actions, System Feedbacks và Goal Completion. Nếu hai nguồn mâu thuẫn, dừng và báo điểm không nhất quán thay vì tự ưu tiên hoặc tự sửa nội dung nguồn.
+Wireframe quyết định kiến trúc thông tin, bố cục khung chuẩn, vị trí các thành phần UI và 5 trạng thái giao diện; Storyboard quyết định mạch phân cảnh, bối cảnh trực quan và visual continuity; Scenario quyết định User Actions, System Feedbacks và Goal Completion. Nếu các nguồn mâu thuẫn, dừng và báo điểm không nhất quán thay vì tự ưu tiên hoặc tự sửa nội dung nguồn.
 
 ## Workflow
 
@@ -84,7 +88,7 @@ Chỉ tạo file `.svg`. Không tạo `interaction-spec.md`, HTML, PNG, script t
 ## Checklist nghiệm thu
 
 - Mỗi nhịp trong Scenario có Frame hoặc System Feedback tương ứng.
-- Mỗi Frame truy vết được về Storyboard và không mâu thuẫn với Scenario.
+- Mỗi Frame kế thừa chuẩn mực kiến trúc từ Wireframe và truy vết được về Storyboard, không mâu thuẫn với Scenario.
 - Tất cả SVG parse được, đúng viewport và có các thành phần thiết bị bắt buộc.
 - Layer ID không trùng; các vùng tương tác dự kiến có Layer ID ngữ nghĩa và nhất quán.
 - Không có text overflow, va chạm ngang/dọc hoặc emoji màu.

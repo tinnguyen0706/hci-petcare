@@ -1,20 +1,21 @@
 # Kế hoạch thực thi Prototype Generator
 
-Áp dụng kế hoạch này khi tạo mới hoặc dựng lại trọn vẹn một Prototype từ Storyboard bắt buộc và Scenario Future tương ứng. Không dùng kế hoạch để mở rộng sản phẩm ngoài Goal đã chọn.
+Áp dụng kế hoạch này khi tạo mới hoặc dựng lại trọn vẹn một Prototype từ Wireframe tổng thể, Storyboard bắt buộc và Scenario Future tương ứng. Không dùng kế hoạch để mở rộng sản phẩm ngoài Goal đã chọn.
 
 ## Điều kiện bắt đầu
 
 - Đã xác định đúng `<persona-id>` và `<goal-id>`.
+- Hệ thống Wireframe tổng thể đã tồn tại tại `deliverables/02-interaction-design/wireframe/` (gồm các màn hình SVG và tài liệu đặc tả `wireframe-spec.md`).
 - Storyboard tương ứng tồn tại tại `deliverables/02-interaction-design/storyboard/<persona-id>/<goal-id>/`.
 - Scenario Future mục tiêu tồn tại và người dùng đã chọn rõ nếu có nhiều Scenario.
 - Persona và Value Proposition tương ứng có đủ dữ kiện cần dùng.
 - Đã đọc toàn bộ nguồn chuẩn bắt buộc trong `SKILL.md`.
 
-Nếu thiếu Storyboard, Scenario hoặc lựa chọn của người dùng, dừng trước khi tạo bất kỳ output Prototype nào. Nếu thiếu dữ kiện cụ thể, dùng nội dung phi định lượng có nguồn hoặc báo thiếu; không tự điền số liệu.
+Nếu thiếu Wireframe, Storyboard, Scenario hoặc lựa chọn của người dùng, dừng trước khi tạo bất kỳ output Prototype nào. Nếu thiếu dữ kiện cụ thể, dùng nội dung phi định lượng có nguồn hoặc báo thiếu; không tự điền số liệu.
 
-## Giai đoạn 1 — Đối chiếu Storyboard và Scenario
+## Giai đoạn 1 — Đối chiếu Wireframe, Storyboard và Scenario
 
-Đọc Storyboard để xác định panel, bối cảnh trực quan, cảm xúc và visual continuity; đọc Scenario để xác định hành vi và phản hồi hệ thống. Trích xuất thành bảng làm việc nội bộ:
+Đọc Wireframe tổng thể để kế thừa cấu trúc layout, component geometry và quy chuẩn phân cấp giao diện; đọc Storyboard để xác định panel, bối cảnh trực quan, cảm xúc và visual continuity; đọc Scenario để xác định hành vi và phản hồi hệ thống. Trích xuất thành bảng làm việc nội bộ:
 
 | Thành phần | Nội dung cần xác định |
 |---|---|
@@ -94,7 +95,7 @@ Chỉ chuyển sang bàn giao khi đạt toàn bộ gate:
 - Không có emoji màu, HTML, PNG, script, log hay Markdown phụ.
 - Không có nội dung hoặc số liệu không truy vết.
 - Mỗi User Action và System Feedback trong Scenario đã được ánh xạ.
-- Mỗi Frame đã được ánh xạ về Storyboard panel hoặc transition hợp lệ.
+- Mỗi Frame kế thừa cấu trúc Wireframe và ánh xạ về Storyboard panel hoặc transition hợp lệ.
 - App Shell, Typography roles, Component geometry, State Tokens, Navigation và naming convention giống nhau trên toàn bộ Frame.
 - Cùng semantic instance giữ nguyên Layer ID, cấu trúc nhóm và geometry giữa các SVG trạng thái liên quan.
 - Data State chỉ thay đổi sau User Action hoặc System Feedback có trong Storyboard/Scenario.

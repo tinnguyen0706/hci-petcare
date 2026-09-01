@@ -28,8 +28,8 @@ Chi tiết tiêu chí đánh giá được quy định tại [docs/final-rubric.
 | 3 | **Scenario 1 (Hiện tại)** | `deliverables/01-user-research/` | 5% | Mô tả rõ bối cảnh và khó khăn của quy trình cũ. |
 | 4 | **Scenario 2 (Mới)** | `deliverables/02-interaction-design/` | 5% | Thể hiện rõ các tương tác cải tiến của hệ thống mới. |
 | 5 | **Storyboard** | `deliverables/02-interaction-design/` | 10% | Kịch bản câu chuyện hấp dẫn, hình minh họa trực quan có chú thích. |
-| 6 | **Prototype (Figma)** | `deliverables/02-interaction-design/` | 10% | Bản mẫu tương tác cao trên Figma mô phỏng đầy đủ các luồng nghiệp vụ. |
-| 7 | **Wireframe** | `deliverables/02-interaction-design/` | 10% | Thiết kế wireframe mobile-first chi tiết, màu sắc hài hòa, tiện dụng. |
+| 6 | **Wireframe** | `deliverables/02-interaction-design/` | 10% | Thiết kế wireframe mobile-first chi tiết, màu sắc hài hòa, tiện dụng (tiền đề kiến trúc cho Prototype). |
+| 7 | **Prototype (Figma)** | `deliverables/02-interaction-design/` | 10% | Bản mẫu tương tác cao trên Figma mô phỏng đầy đủ các luồng nghiệp vụ kế thừa từ Wireframe. |
 | 8 | **Software Product** | `src/` & `deliverables/03-software-product/` | 10% | Ứng dụng Web React + TypeScript mobile-first hoàn chỉnh 100% luồng tương tác. |
 | 9 | **Trình bày** | `deliverables/04-final-submission/presentation/` | 10% | Slide thuyết trình, phân công nói và tài liệu chuẩn bị Q&A phản biện. |
 | 10 | **Báo cáo cuối kỳ** | `deliverables/04-final-submission/report/` | 10% | Báo cáo hoàn chỉnh đúng chuẩn format, đầy đủ nội dung (>6 trang). |
