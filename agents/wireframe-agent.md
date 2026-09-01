@@ -48,6 +48,7 @@
 ## Output
 
 Toàn bộ hệ thống Wireframe được lưu tập trung trực tiếp tại thư mục `deliverables/02-interaction-design/wireframe/` (không chia theo thư mục con `persona/goal`):
+
 - **Các file SVG màn hình Wireframe toàn ứng dụng (Master Screen Inventory)**:
   - *Phân hệ Trang chủ & Điều hướng*: Dashboard tổng quan lịch hẹn, Trung tâm thông báo đẩy.
   - *Phân hệ Đặt lịch & Lưới giờ*: Chọn dịch vụ, Lưới giờ real-time, Đặt lịch 1 bé, Đặt lịch đa thú cưng, Xác nhận đặt lịch tức thì.
