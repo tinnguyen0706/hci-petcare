@@ -48,9 +48,9 @@ Thư mục làm việc tại `docs/` (và đóng gói nộp tại `deliverables/
 1. **Khởi tạo & Cô lập Template**: Tuyệt đối KHÔNG sửa trực tiếp vào `templates/report/`. Mỗi lần viết báo cáo, sao chép toàn bộ template từ `templates/report/` sang `docs/`.
 2. **Nghiên cứu Proposal & Lập ma trận**: Đọc kỹ Proposal (`docs/proposal.md`) và ma trận phần báo cáo → evidence đã duyệt.
 3. **Soạn thảo nội dung**: Viết/cập nhật từng chương báo cáo LaTeX trong `docs/` theo đúng cấu trúc tiếng Việt chuẩn mực; đảm bảo 100% tiêu đề là tiếng Việt thuần túy, không mở ngoặc tiếng Anh.
-4. **Tự động build PDF**: Chạy build PDF ngay khi có thay đổi (ưu tiên XeLaTeX trên máy, fallback Docker).
+4. **Tự động build PDF & Kiểm tra tràn trang**: Chạy build PDF ngay khi có thay đổi (ưu tiên XeLaTeX trên máy, fallback Docker). Đọc file log `build/main.log` để đảm bảo không có lỗi cảnh báo `Overfull \vbox` hoặc `Overfull \hbox` do hình ảnh/bảng biểu gây ra.
 5. **Xuất bản `report.pdf`**: Sau khi biên dịch thành công `build/main.pdf`, tự động sao chép ra ngoài cùng thư mục `docs/` và đổi tên thành `report.pdf`.
-6. **Kiểm thử chất lượng**: Kiểm tra mọi claim, hình, bảng, link, thuật ngữ, tính nhất quán với Proposal và kiểm tra trực quan file `docs/report.pdf`.
+6. **Kiểm thử chất lượng**: Kiểm tra mọi claim, hình, bảng, link, thuật ngữ, tính nhất quán với Proposal, kiểm tra tràn lề (Zero Overfull) và kiểm tra trực quan file `docs/report.pdf`.
 7. **Nghiệm thu**: Đối chiếu checklist submission và ghi nhận trạng thái báo cáo (DRAFT / REVIEW-READY / SUBMISSION-READY).
 
 
