@@ -39,6 +39,7 @@ AI Agent **không tự ý suy diễn quy tắc mà bắt buộc phải đọc v�
   - Scenario Future: Đọc [`rules/scenario_future-rules.md`](rules/scenario_future-rules.md)
   - Storyboard: Đọc [`rules/storyboard-rules.md`](rules/storyboard-rules.md)
   - Wireframe: Đọc [`rules/wireframe-rules.md`](rules/wireframe-rules.md)
+  - Evaluation: Đọc [`rules/evaluation-rules.md`](rules/evaluation-rules.md)
 
 ---
 
