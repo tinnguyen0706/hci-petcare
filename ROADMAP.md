@@ -15,7 +15,7 @@ Tài liệu theo dõi **tiến độ thực tế** và **kế hoạch hành đ�
 | 5 | **Storyboard** | `02-interaction-design` | 🟢 Hoàn thành | Hai Storyboard có dữ liệu, chú thích và hình minh họa tại `storyboard/` |
 | 6 | **Wireframe** | `02-interaction-design` | 🟢 Hoàn thành | Toàn bộ 21 màn hình phân hệ và 5 màn hình trạng thái biên SVG cùng tài liệu đặc tả tại `deliverables/02-interaction-design/wireframe/` |
 | 7 | **Prototype** | `02-interaction-design` | 🟢 Hoàn thành | Bộ màn hình Interactive Prototype SVG cho kịch bản mục tiêu tại `deliverables/02-interaction-design/prototype/`; người dùng tự import và kết nối trên Figma |
-| 8 | **Evaluation** | `02-interaction-design` | 🟡 Đã lên kế hoạch | Usability Testing đầy đủ thành phần; thực hiện sau khi có Wireframe/Prototype kiểm thử được |
+| 8 | **Evaluation** | `02-interaction-design` | 🟢 Hoàn thành | Báo cáo Usability Testing, phân tích chỉ số thực nghiệm và đề xuất cải tiến tại `deliverables/02-interaction-design/evaluation/` |
 | 9 | **Software Product** | `03-software-product` | 🔴 Chưa bắt đầu | Web App React + TypeScript trong `src/` |
 | 10 | **Trình bày** | `04-final-submission` | 🔴 Chưa bắt đầu | Slide thuyết trình & kịch bản Q&A phản biện |
 | 11 | **Báo cáo cuối kỳ** | `04-final-submission` | 🔴 Chưa bắt đầu | Báo cáo hoàn chỉnh đúng format (>6 trang) |

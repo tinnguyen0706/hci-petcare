@@ -39,6 +39,7 @@ AI Agent **không tự ý suy diễn quy tắc mà bắt buộc phải đọc v�
   - Scenario Future: Đọc [`rules/scenario_future-rules.md`](rules/scenario_future-rules.md)
   - Storyboard: Đọc [`rules/storyboard-rules.md`](rules/storyboard-rules.md)
   - Wireframe: Đọc [`rules/wireframe-rules.md`](rules/wireframe-rules.md)
+  - Evaluation: Đọc [`rules/evaluation-rules.md`](rules/evaluation-rules.md)
 
 ---
 
@@ -109,10 +110,10 @@ Khi thực thi từng giai đoạn trong Workflow, AI Agent kích hoạt Subagen
 | **5** | Storyboard | `storyboard-agent` | [`agents/storyboard-agent.md`](agents/storyboard-agent.md) |
 | **6** | Wireframe | `wireframe-agent` | [`agents/wireframe-agent.md`](agents/wireframe-agent.md) |
 | **7** | Prototype | `prototype-agent` | [`agents/prototype-agent.md`](agents/prototype-agent.md) |
-| **8** | Software Product | `software-product-agent` | [`agents/software-product-agent.md`](agents/software-product-agent.md) |
-| **9** | Presentation | `presentation-agent` | [`agents/presentation-agent.md`](agents/presentation-agent.md) |
+| **8** | Evaluation | `evaluation-agent` | [`agents/evaluation-agent.md`](agents/evaluation-agent.md) |
+| **9** | Software Product | `software-product-agent` | [`agents/software-product-agent.md`](agents/software-product-agent.md) |
 | **10** | Report | `report-agent` | [`agents/report-agent.md`](agents/report-agent.md) |
-| **11** | Teamwork | `teamwork-agent` | [`agents/teamwork-agent.md`](agents/teamwork-agent.md) |
+| **11** | Presentation & Teamwork | `presentation-agent` / `teamwork-agent` | [`agents/presentation-agent.md`](agents/presentation-agent.md) / [`agents/teamwork-agent.md`](agents/teamwork-agent.md) |
 | **Hỗ trợ** | Figma SVG Vector | `figma-agent` | [`agents/figma-agent.md`](agents/figma-agent.md) |
 
 ---
