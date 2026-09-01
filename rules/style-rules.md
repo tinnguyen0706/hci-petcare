@@ -35,6 +35,7 @@ Toàn bộ giao diện sử dụng bảng màu trang nhã, hiện đại, tươn
 ## 3. Phong Cách Thiết Kế Tối Giản & Hiện Đại (Clean Modernism)
 
 - **Cấu trúc thẻ & Khoảng cách**: Sử dụng Card bo góc mềm mại (`border-radius: 6px – 16px`), đổ bóng mờ nhẹ tạo chiều sâu (`shadow-sm`, `shadow-md`), đệm thoáng đãng.
+- **Nút hành động chính (Primary CTA Buttons)**: Nhãn nút phải dùng **động từ hành động súc tích, dứt khoát** (Action Verbs: `Tiếp tục`, `Đặt lịch ngay`, `Xác nhận đặt lịch`, `Theo dõi tiến độ`, `Bật thông báo`, `Đến tiệm đón bé`...). Tuyệt đối không viết nhãn nút dài dòng, mang tính giải thích/thông báo như một thẻ Card.
 - **Tiến độ trực quan**: Sử dụng Timeline Stepper 4 mốc rõ ràng (*Đã nhận ➔ Đang chăm sóc ➔ Hoàn tất ➔ Chờ đón*).
 - **Khả năng tiếp cận (Accessibility)**: Trạng thái không chỉ truyền đạt bằng màu sắc mà luôn kết hợp chữ và nhãn rõ ràng (Multimodal Perception).
 

@@ -36,11 +36,16 @@ Toàn bộ màn hình di động được thiết kế trên khung chuẩn của
 | Cỡ Chữ (Font Size) | Vai Trò (Typography Role) | Giới Hạn Ký Tự / Dòng | Khoảng Cách Dòng Tối Thiểu ($\Delta y$) |
 | :---: | :--- | :---: | :---: |
 | **17 – 19px** | Header, Tiêu đề chính màn hình | **Tối đa 28 ký tự** | $\Delta y \ge 26\text{px}$ |
+| **16px Bold** | **Nút CTA chính (Primary Button)** | **Tối đa 24 ký tự** | Động từ hành động ngắn gọn, dứt khoát |
 | **14 – 16px** | Tên dịch vụ, Tiêu đề thẻ Card, Subheading | **Tối đa 36 ký tự** | $\Delta y \ge 22\text{px}$ |
 | **12 – 13px** | Thân bài, Ghi chú y tế, Dặn dò KTV | **Tối đa 46 ký tự** | $\Delta y \ge 19\text{px}$ |
 | **10 – 11px** | Nhãn nhỏ, Caption thời gian, Badge tag | **Tối đa 54 ký tự** | $\Delta y \ge 16\text{px}$ |
 
-> **⚠️ BẮT BUỘC:** Khi nội dung dài hơn giới hạn trên, Agent phải **chủ động tách thành 2 dòng riêng biệt** ($\Delta y \ge 19\text{px}$) hoặc rút gọn câu từ súc tích.
+> **⚠️ NGUYÊN TẮC THIẾT KẾ NÚT CTA (BUTTON MICROCOPY):** 
+> - Nhãn nút CTA phải **súc tích, dứt khoát, dùng động từ hành động trực tiếp** theo đúng ngữ cảnh thao tác của màn hình (Action-oriented). Trần tối đa $\le 24$ ký tự để đảm bảo bố cục chuẩn mobile, không giới hạn cận dưới.
+> - **Không viết nhãn nút dài như một câu thông báo, câu dặn dò hay thẻ trạng thái**. Mọi thông tin ngữ cảnh, điều kiện, ghi chú phải được trình bày trong các Card nội dung phía trên.
+> - **Tính tổng quát và phân tách dữ liệu (Data Decoupling)**: Tuyệt đối **KHÔNG gán cứng giá trị dữ liệu cụ thể vào nhãn nút** (ví dụ: cấm dùng *"Chọn khung 09:00 sáng"*, *"Đặt lịch 14:00"*, *"Chọn bé 4.5kg"*). Phải dùng nhãn hành động tổng quát như *"Chọn khung giờ này"*, *"Tiếp tục"*, *"Xác nhận đặt lịch"*, *"Khóa lưu ý vào ca"*. Giá trị cụ thể chỉ được trình bày trong Card/Badge phía trên để tránh gây hiểu nhầm nút bị cố định cứng.
+> - Khi nội dung text khác dài hơn giới hạn trên, Agent phải **chủ động tách thành 2 dòng riêng biệt** ($\Delta y \ge 19\text{px}$) hoặc rút gọn câu từ súc tích.
 
 ---
 
