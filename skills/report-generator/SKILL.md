@@ -73,6 +73,9 @@ Không được coi một artifact là evidence nếu artifact đó chưa tồn 
 - Mỗi lần bắt đầu viết hoặc cập nhật báo cáo, Agent **BẮT BUỘC phải sao chép (copy) toàn bộ template từ `templates/report/` sang `docs/` (hoặc `docs/report/`)**, sau đó mới thực hiện việc viết bài, chỉnh sửa các file `.tex` trong `content/`, gắn hình ảnh và biên dịch PDF tại thư mục làm việc trong `docs/`.
 - Tuyệt đối không ghi đè bài làm thật vào thư mục template mẫu.
 
+### Quy tắc 4: Bao phủ Toàn bộ Persona & Đề xuất giá trị Đối ứng 1-1 (Full Persona & 1-1 Value Proposition Coverage)
+- Dự án có bao nhiêu Persona thì trong báo cáo bắt buộc phải đưa vào **ĐẦY ĐỦ TẤT CẢ** các Persona đó (`deliverables/01-user-research/persona/`), tuyệt đối không được bỏ sót bất kỳ Persona nào.
+- Tương ứng với mỗi Persona, **BẮT BUỘC phải có một bản Đề xuất giá trị (Value Proposition Canvas) đối ứng trực tiếp 1-1** (`deliverables/01-user-research/value-proposition/`). Có bao nhiêu Persona thì phải có bấy nhiêu Value Proposition Canvas tương ứng, thể hiện đầy đủ Hồ sơ khách hàng (Customer Profile: Tác vụ, Điểm đau, Điểm mong muốn) và Bản đồ giá trị (Value Map: Sản phẩm & Dịch vụ, Trợ thủ giải tỏa đau đớn, Yếu tố tạo lợi ích).
 
 ---
 
@@ -121,7 +124,6 @@ Trình bày:
 * Đối tượng người dùng mục tiêu (Chủ nuôi thú cưng bận rộn)
 * Những phần không được thực hiện (Out-of-scope: không xây lại toàn bộ ERP quản lý cơ sở)
 * Các giới hạn kỹ thuật hoặc nghiên cứu nếu có
-
 
 ---
 
@@ -182,13 +184,23 @@ Không tạo điểm đau mới nếu nghiên cứu và Proposal không hỗ tr�
 
 ### 2.5. Chân dung người dùng
 
-Nếu dự án có artifact Persona, trình bày:
+Bắt buộc trình bày **ĐẦY ĐỦ TẤT CẢ** các Persona có trong dự án (`deliverables/01-user-research/persona/`), không được bỏ sót bất kỳ Persona nào:
 
-* Chân dung đại diện chính (Primary Persona - Chị Lan, 28 tuổi, nhân viên văn phòng bận rộn nuôi Poodle dị ứng)
-* Chân dung phụ nếu có (Secondary Persona)
-* Mục tiêu (Goals), Hành vi (Behaviors), Điểm đau (Pain points), Nhu cầu (Needs)
+* Persona 1: Nguyễn Hoàng Lan (26 tuổi, Chuyên viên Marketing) — Chủ nuôi cẩn trọng, nuôi mèo Mochi có tiền sử dị ứng.
+* Persona 2: Lê Hoàng Minh (22 tuổi, Sinh viên / Lập trình viên tập sự) — Chủ nuôi bận rộn, nuôi 2 thú cưng (chó Poodle Bơ & mèo Miu).
+* Bất kỳ Persona bổ sung nào khác đã được duyệt trong dự án.
 
-Persona phải truy vết được về nghiên cứu và Proposal. Không tự bịa Persona thiếu căn cứ.
+Với mỗi Persona, trình bày đầy đủ: Bối cảnh, Mục tiêu (Goals), Hành vi (Behaviors), Điểm đau (Pain points), Nhu cầu (Needs).
+
+### 2.6. Đề xuất giá trị
+
+Bắt buộc trình bày bản Đề xuất giá trị (Value Proposition Canvas) **ĐỐI ỨNG 1-1 TƯƠNG ỨNG VỚI TỪNG PERSONA** (`deliverables/01-user-research/value-proposition/`):
+(Nguyên tắc: Có bao nhiêu Persona thì phải có bấy nhiêu bản Đề xuất giá trị tương ứng).
+
+Với mỗi Persona, trình bày đủ:
+* Hồ sơ khách hàng (Customer Profile): Tác vụ (Customer Jobs), Điểm đau (Pains), Điểm mong muốn (Gains).
+* Bản đồ giá trị (Value Map): Sản phẩm & Dịch vụ (Products & Services), Trợ thủ giải tỏa đau đớn (Pain Relievers), Yếu tố tạo lợi ích (Gain Creators).
+
 
 ---
 
@@ -673,6 +685,13 @@ Trước khi hoàn thành báo cáo, kiểm tra:
 * [ ] 4 trụ cột tính năng cốt lõi được kế thừa trung thực: Đặt lịch tức thì, Hồ sơ dặn dò dị ứng/thuốc, Theo dõi tiến độ 4 mốc thời gian thực, Lịch sử chăm sóc cá nhân hóa
 * [ ] So sánh quy trình hiện tại (As-Is) và quy trình đề xuất (To-Be) nhất quán với 6 bước trong Proposal
 * [ ] Không tự ý mở rộng phạm vi sản phẩm vượt ngoài định hướng Proposal đã duyệt
+
+### Persona & Value Proposition Coverage (Bắt buộc)
+
+* [ ] Đưa vào đầy đủ 100% tất cả các Persona của dự án (`deliverables/01-user-research/persona/`), không bỏ sót Persona nào
+* [ ] Mỗi Persona đều có bản Đề xuất giá trị (Value Proposition Canvas) đối ứng 1-1 tương ứng (`deliverables/01-user-research/value-proposition/`)
+* [ ] Tỷ lệ đối ứng chuẩn: Số lượng Persona = Số lượng bản Đề xuất giá trị
+
 
 ### Heading Language (100% Tiếng Việt)
 

@@ -9,13 +9,14 @@ Tổng hợp toàn bộ quá trình nghiên cứu và thiết kế dựa trên P
 - Cần soạn, cập nhật hoặc hoàn thiện báo cáo cuối kỳ HCI/UX.
 - Báo cáo phải bắt buộc viết dựa trên Proposal (`docs/proposal.md`) và tuân thủ tiêu đề 100% tiếng Việt (không mở ngoặc tiếng Anh).
 - **Quy tắc cô lập template**: Mỗi lần viết báo cáo, bắt buộc sao chép template từ `templates/report/` sang `docs/` rồi mới làm; **tuyệt đối KHÔNG sửa trực tiếp vào thư mục `templates/report/`**.
+- **Quy tắc Persona & Value Proposition**: Có bao nhiêu Persona phải đưa vào **ĐẦY ĐỦ HẾT** và tương ứng có bao nhiêu Persona thì phải có **bấy nhiêu bản Đề xuất giá trị (Value Proposition Canvas) đối ứng 1-1**.
 - Các deliverable 1–8 đã duyệt và có evidence kiểm thử thực tế.
 - Cần đối chiếu format, cấu trúc và tiêu chuẩn rubric submission.
 
 ## Input bắt buộc
 
 - **Tài liệu Proposal (`docs/proposal.md`) — Căn cứ nền tảng bắt buộc số 1**: Kế thừa toàn bộ bài toán, đối tượng chủ nuôi bận rộn, điểm đau quy trình cũ, 4 trụ cột giải pháp cốt lõi và luồng quy trình As-Is / To-Be.
-- `deliverables/01-user-research/`.
+- `deliverables/01-user-research/` (đầy đủ các Persona tại `persona/` và Value Proposition Canvas tương ứng tại `value-proposition/`).
 - `deliverables/02-interaction-design/`.
 - Yêu cầu hiện hành trong `data/submission-inputs/`.
 - Template báo cáo LaTeX trong `templates/report/` (dùng để copy sang `docs/` làm việc), hướng dẫn build trong `templates/report/README.md` và rubric chấm điểm.
@@ -31,7 +32,8 @@ Thư mục làm việc tại `docs/` (và đóng gói nộp tại `deliverables/
 ## Cấu trúc 9 chương chuẩn HCI (100% Tiếng Việt, Tuyệt đối không mở ngoặc Tiếng Anh)
 
 - **Chương 1. Giới thiệu** (`content/01_gioi_thieu.tex`): 1.1 Bối cảnh đề tài, 1.2 Phát biểu bài toán, 1.3 Mục tiêu đề tài, 1.4 Phạm vi đề tài.
-- **Chương 2. Nghiên cứu người dùng** (`content/02_nghien_cuu_nguoi_dung.tex`): 2.1 Đối tượng người dùng mục tiêu, 2.2 Phương pháp nghiên cứu, 2.3 Kết quả nghiên cứu, 2.4 Nhu cầu và điểm đau của người dùng, 2.5 Chân dung người dùng.
+- **Chương 2. Nghiên cứu người dùng** (`content/02_nghien_cuu_nguoi_dung.tex`): 2.1 Đối tượng người dùng mục tiêu, 2.2 Phương pháp nghiên cứu, 2.3 Kết quả nghiên cứu, 2.4 Nhu cầu và điểm đau của người dùng, 2.5 Chân dung người dùng (đầy đủ tất cả Persona), 2.6 Đề xuất giá trị (đối ứng 1-1 với từng Persona).
+
 - **Chương 3. Yêu cầu và mục tiêu thiết kế** (`content/03_yeu_cau_muc_tieu.tex`): 3.1 Yêu cầu người dùng, 3.2 Mục tiêu trải nghiệm người dùng, 3.3 Mục tiêu thiết kế.
 - **Chương 4. Phân tích hệ thống và trải nghiệm hiện tại** (`content/04_phan_tich_hien_tai.tex`): 4.1 Hệ thống và quy trình hiện tại, 4.2 Phân tích tác vụ, 4.3 Luồng người dùng và quy trình tác vụ, 4.4 Các vấn đề về trải nghiệm người dùng.
 - **Chương 5. Quá trình thiết kế** (`content/05_qua_trinh_thiet_ke.tex`): 5.1 Kiến trúc thông tin, 5.2 Luồng thao tác người dùng, 5.3 Phác thảo và phát triển ý tưởng, 5.4 Bảng phân cảnh, 5.5 Khung giao diện, 5.6 Các phương án thiết kế.
