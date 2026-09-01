@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UsabilityTestDataSchema",
+  "type": "object",
+  "required": ["metadata", "participants", "summaryMetrics"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["systemName", "evaluationDate", "fidelityLevel", "totalParticipants"],
+      "properties": {
+        "systemName": { "type": "string" },
+        "evaluationDate": { "type": "string" },
+        "fidelityLevel": { "type": "string" },
+        "totalParticipants": { "type": "integer" }
+      }
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "personaRef", "tasks", "likertScores"],
+        "properties": {
+          "id": { "type": "string" },
+          "personaRef": { "type": "string" },
+          "tasks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["taskId", "completed", "durationSeconds", "errorsCount", "notes"],
+              "properties": {
+                "taskId": { "type": "string" },
+                "completed": { "type": "boolean" },
+                "durationSeconds": { "type": "number" },
+                "errorsCount": { "type": "integer" },
+                "notes": { "type": "string" }
+              }
+            }
+          },
+          "likertScores": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            }
+          }
+        }
+      }
+    },
+    "summaryMetrics": {
+      "type": "object",
+      "required": ["taskMetrics", "averageLikert"],
+      "properties": {
+        "taskMetrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["taskId", "completionRatePercent", "averageDurationSeconds", "averageErrors"],
+            "properties": {
+              "taskId": { "type": "string" },
+              "completionRatePercent": { "type": "number" },
+              "averageDurationSeconds": { "type": "number" },
+              "averageErrors": { "type": "number" }
+            }
+          }
+        },
+        "averageLikert": {
+          "type": "object",
+          "required": ["overallMean"],
+          "properties": {
+            "overallMean": { "type": "number" }
+          },
+          "additionalProperties": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
