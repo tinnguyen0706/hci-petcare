@@ -590,17 +590,23 @@ Nếu một claim không có evidence, không được trình bày claim đó nh
 Mỗi figure/table phải có:
 
 * Number
-* Title/caption
+* Title/caption (100% tiếng Việt thuần túy, không mở ngoặc tiếng Anh)
 * Context trong nội dung
 * Source hoặc artifact reference nếu cần
 
-Không chèn hình chỉ để làm báo cáo dài.
+Không chèn hình chỉ để làm báo cáo dài. Bảng phải phục vụ một mục đích phân tích cụ thể.
 
-Khi reference figure trong nội dung, dùng cách nhất quán:
+### Quy tắc Bố cục & Chống tràn hình ảnh LaTeX (Figure Layout & Overflow Prevention):
 
-> As shown in Figure 4, ...
-
-Bảng phải phục vụ một mục đích phân tích cụ thể.
+1. **Cấm gộp 2 hàng màn hình di động dọc (No Multi-row Vertical Screens)**:
+   - Các màn hình mockup điện thoại iPhone ($430 \times 932\text{px}$) có tỷ lệ khung hình dọc rất lớn ($h/w \approx 2.17$). Chiều cao một màn hình chiếm từ $11\text{cm} - 15\text{cm}$, trong khi chiều cao in ấn trang A4 chỉ có $24.2\text{cm}$.
+   - **BẮT BUỘC**: Tuyệt đối không xếp 2 hàng màn hình điện thoại trong cùng một khối float `\begin{figure}[H]`. Phải tách thành các figure riêng biệt (ví dụ: Hình A cho luồng 1 với 2–3 màn hình ngang, Hình B cho luồng 2 với 2 màn hình ngang) hoặc dàn ngang 1 hàng 4 màn hình (`width=0.23\textwidth`).
+2. **Quy tắc giới hạn chiều cao hình ảnh dọc (Height Bounding Rule)**:
+   - Đối với các hình ảnh khổ dọc tỷ lệ lớn (như Chân dung Persona khổ A4 $1.41$): Bắt buộc khai báo giới hạn chiều cao an toàn `height=0.60\textheight, keepaspectratio` và `width=0.82\textwidth` để đảm bảo vừa khít trong khung trang, không đè lên header hoặc tràn qua footer.
+3. **Quy tắc hình phong cảnh / Storyboard (Widescreen 16:9)**:
+   - Với hình 16:9 (như Storyboard, Value Proposition Canvas): Sử dụng `width=0.88\textwidth - 0.92\textwidth, keepaspectratio`.
+4. **Quy tắc khoảng cách và phân trang (Figure Spacing & Pagination)**:
+   - Giữa các minipage con, dùng `\hfill` hoặc `\qquad\qquad` cân đối; không chèn quá nhiều `\vspace` lớn gây đẩy khối hình sang trang sau một cách bất thường.
 
 ---
 
@@ -799,10 +805,11 @@ Agent kiểm tra môi trường hệ thống để quyết định phương th�
 ### 18.3. Quy tắc bắt buộc sau khi Build
 
 1. **Kiểm tra Log & Exit Code**: Đảm bảo quá trình biên dịch trả về exit code 0, không có lỗi fatal (missing package, unescaped character, broken syntax).
-2. **Kiểm tra File đầu ra `report.pdf`**:
+2. **Kiểm tra tự động lỗi tràn biên (Overfull Detection)**: Đọc file log `build/main.log` để kiểm tra các cảnh báo `Overfull \vbox` (tràn chiều cao dọc) và `Overfull \hbox` (tràn chiều rộng ngang). Nếu phát hiện cảnh báo Overfull do hình ảnh/bảng biểu, Agent **bắt buộc phải điều chỉnh lại kích thước hoặc tách khối hình trong file `.tex` tương ứng và biên dịch lại** cho đến khi không còn lỗi tràn trang.
+3. **Kiểm tra File đầu ra `report.pdf`**:
    - File PDF gốc được tạo tại `<thư_mục_chứa_file_tex>/build/main.pdf`.
    - File xuất bản cuối cùng **BẮT BUỘC** phải xuất hiện tại `<thư_mục_chứa_file_tex>/report.pdf` (nằm ở ngoài cùng thư mục báo cáo, cùng cấp với `main.tex`) và có timestamp mới nhất.
-3. **Không đánh dấu hoàn thành nếu build lỗi hoặc thiếu `report.pdf`**: Tuyệt đối không hoàn tất tác vụ hoặc báo cáo thành công nếu lệnh build thất bại hoặc file `report.pdf` chưa được sao chép ra ngoài cùng.
+4. **Không đánh dấu hoàn thành nếu build lỗi hoặc thiếu `report.pdf`**: Tuyệt đối không hoàn tất tác vụ hoặc báo cáo thành công nếu lệnh build thất bại hoặc file `report.pdf` chưa được sao chép ra ngoài cùng.
 
 ---
 
@@ -820,7 +827,7 @@ Chỉ gọi báo cáo là **submission-ready** khi:
 8. Không có:
    * Broken links
    * Missing figures / tables
-   * Overflowing text
+   * Overflowing text / figures (Không còn cảnh báo `Overfull \vbox` hay `Overfull \hbox` trong log)
    * Blank pages bất thường
    * Broken characters / font issues
    * Incorrect page numbering

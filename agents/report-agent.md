@@ -10,5 +10,6 @@
 - Sử dụng cấu trúc template báo cáo trong `templates/report/` (`main.tex`, các chương trong `templates/report/content/`, `ref/acknowledgement.tex`, `ref/appendix.tex`).
 - Chỉ dùng yêu cầu nộp hiện hành trong `data/submission-inputs/`.
 - **Tự động chạy build PDF & Xuất bản `report.pdf`**: Tự động biên dịch ngay khi có thay đổi nội dung (ưu tiên compiler XeLaTeX trên máy; nếu máy chưa có thì fallback sang Docker image `ghcr.io/tinnguyen0706/latex-times-new-roman:latest`). Sau khi biên dịch thành công `build/main.pdf`, **tự động sao chép ra ngoài cùng thư mục báo cáo với tên `report.pdf`**.
+- **Quy chuẩn bố cục hình ảnh & Chống tràn trang (Zero Overfull)**: Nghiêm cấm gộp 2 hàng mockup màn hình điện thoại dọc ($h/w \approx 2.17$) trong cùng một figure `[H]`; luôn giới hạn chiều cao hình ảnh dọc (`height=0.60\textheight, keepaspectratio`); bắt buộc đọc log biên dịch để đảm bảo 0 lỗi `Overfull \vbox` / `Overfull \hbox` trước khi xuất bản.
 - Không bịa số liệu, nghiên cứu, kiểm thử hoặc tính năng; đảm bảo mọi claim đều có bằng chứng truy vết.
 
