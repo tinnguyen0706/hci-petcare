@@ -14,17 +14,19 @@ Tệp này quy định các chuẩn mực, ràng buộc và tiêu chí nghiệm 
 
 ---
 
-## 2. Nguyên Tắc KHÔNG Gán Cứng Thông Tin (Zero-Hardcoding Principle)
+## 2. Nguyên Tắc Trung Thực Dữ Liệu & Tuyệt Đối KHÔNG Bịa Số Liệu (Strict Data Integrity)
 
-1. **Tuyệt đối KHÔNG gán cứng thông tin nhân khẩu học / Persona**:
+1. **Tuyệt đối KHÔNG tự ý bịa hoặc sinh số liệu kiểm thử giả**:
+   - Tuân thủ nghiêm ngặt [`rules/quality-rules.md`](quality-rules.md): AI Agent **tuyệt đối KHÔNG ĐƯỢC PHÉP tự bịa số liệu thời gian (giây), tỷ lệ hoàn thành (%), số lỗi thao tác hay câu trả lời khảo sát Likert**.
+   - Mọi phân tích và báo cáo đánh giá **bắt buộc phải tính toán từ dữ liệu thực tế** được ghi nhận từ các phiên kiểm thử người dùng và lưu trữ trong thư mục `data/evaluation/` (cụ thể là `task_metrics.csv` và `likert_survey.csv`).
+2. **Quy trình 2 pha rõ ràng (Two-Phase Execution)**:
+   - **Pha 1 (Chuẩn bị kiểm thử - Preparation)**: Khi chưa có dữ liệu test thực tế, Agent tạo bộ công cụ kiểm thử: Kế hoạch (`usability-test-plan.md`), Kịch bản tác vụ (`02_predefined_tasks.md`), Phiếu khảo sát Likert (`03_post_test_likert_survey.md`), và Khung mẫu nhập dữ liệu CSV rỗng trong thư mục `data/evaluation/` (`task_metrics.csv`, `likert_survey.csv`). Sau đó **DỪNG LẠI (HALT)** để người dùng tiến hành test thực tế và điền kết quả vào file.
+   - **Pha 2 (Phân tích & Báo cáo - Analysis & Reporting)**: Khi các file trong thư mục `data/evaluation/` đã có dữ liệu thực tế, Agent đọc file, tính toán các chỉ số thống kê mô tả, phân tích lỗi và xuất Báo cáo đánh giá hoàn chỉnh (`deliverables/02-interaction-design/evaluation/usability-evaluation-report.md`).
+3. **Tuyệt đối KHÔNG gán cứng thông tin nhân khẩu học / Persona**:
    - Tên, vai trò, số lượng người tham gia, phân bổ nhóm thử nghiệm bắt buộc phải được đọc động từ tệp `deliverables/01-user-research/persona/personas.json`.
-   - Mỗi người tham gia thử nghiệm (Participant) phải gắn mã tham chiếu (`personaRef`) tương ứng với Persona thực tế trong project.
-2. **Tuyệt đối KHÔNG gán cứng số lượng hay mã màn hình cố định**:
-   - Danh mục màn hình và số lượng màn hình được kiểm thử phải được quét và trích xuất động từ thư mục `deliverables/02-interaction-design/wireframe/`.
-3. **Nhiệm vụ kiểm thử (Pre-defined Tasks) dẫn xuất từ kịch bản thực tế**:
-   - Các tác vụ kiểm thử được xây dựng trực tiếp từ các luồng tương tác trong `deliverables/01-user-research/scenario-future/` và các màn hình Wireframe tương ứng, không gán cứng cố định một kịch bản giả định ngoài dự án.
-4. **Trung thực với dữ liệu**:
-   - Số liệu thời gian thao tác (giây) và tỷ lệ hoàn thành (%) phải phản ánh đúng độ phức tạp thực tế của các tác vụ trên giao diện.
+   - Mỗi người tham gia thử nghiệm (Participant) phải gắn mã tham chiếu (`persona_id` / `personaRef`) tương ứng với Persona thực tế trong project.
+4. **Nhiệm vụ kiểm thử (Pre-defined Tasks) dẫn xuất từ kịch bản thực tế**:
+   - Các tác vụ kiểm thử được xây dựng trực tiếp từ các luồng tương tác trong `deliverables/01-user-research/scenario-future/` và các màn hình Wireframe tương ứng.
 
 ---
 
@@ -73,8 +75,9 @@ Mọi vấn đề khả dụng phát hiện được phải được gắn nhãn
 
 ## 7. Yêu Cầu Đầu Ra & Tính Truy Vết (Deliverables & Traceability)
 
-Toàn bộ kết quả đánh giá phải được lưu trữ tập trung tại `deliverables/02-interaction-design/evaluation/`:
+Toàn bộ kết quả đánh giá được xuất ra tại thư mục `deliverables/02-interaction-design/evaluation/`:
 1. `usability-test-plan.md`: Kế hoạch kiểm thử chi tiết.
-2. `usability-test-data.json`: Dữ liệu thô của các phiên thử nghiệm (được ánh xạ từ tập Persona thực tế).
-3. `usability-evaluation-report.md`: Báo cáo đánh giá tổng hợp 8 phần hoàn chỉnh (khớp nối trực tiếp với cấu trúc Báo cáo cuối kỳ).
-4. **Tính truy vết**: Mọi lỗi phát hiện và khuyến nghị cải tiến phải liên kết trực tiếp với mã màn hình Wireframe cụ thể và làm đầu vào trực tiếp cho `software-product-agent`.
+2. `usability-evaluation-report.md`: Báo cáo đánh giá tổng hợp 8 phần hoàn chỉnh (khớp nối trực tiếp với cấu trúc Báo cáo cuối kỳ).
+3. **Tính truy vết**: Mọi lỗi phát hiện và khuyến nghị cải tiến phải liên kết trực tiếp với mã màn hình Wireframe cụ thể và làm đầu vào trực tiếp cho `software-product-agent`.
+
+*(Toàn bộ dữ liệu thực nghiệm thô được quản lý tại thư mục `data/evaluation/`).*

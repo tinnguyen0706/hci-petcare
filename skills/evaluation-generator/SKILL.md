@@ -1,6 +1,6 @@
 ---
 name: evaluation-generator
-description: Hướng dẫn chuyên sâu về phương pháp Usability Test, cách lượng hóa tiêu chí thành công, thu thập chỉ số Performance & Likert, và quy trình phân tích cải tiến UI.
+description: Hướng dẫn chuyên sâu về phương pháp Usability Test, chuẩn bị công cụ kiểm thử, phân tích dữ liệu thực nghiệm khách quan và quy trình đề xuất cải tiến UI.
 ---
 
 # Kỹ Năng Đánh Giá Tính Khả Dụng (Usability Evaluation Generator)
@@ -27,55 +27,61 @@ Usability Test là phương pháp thực nghiệm trung tâm trong Tương tác 
 - **Chỉ số cảm nhận (Self-reported Metrics - Chủ quan)**:
   - Điểm đánh giá mức độ hài lòng trên thang đo Likert 5 mức độ thu thập ngay sau khi hoàn thành các tác vụ.
 
-### 1.4. Lượng Hóa Tiêu Chí Thành Công (Operationalize)
-Trong HCI, một mục tiêu chỉ có thể kiểm chứng khi được **lượng hóa thành các con số cụ thể** trước khi test:
-- Không dùng câu hỏi cảm tính mơ hồ như *"Giao diện có đẹp không?"*.
-- Đặt ngưỡng định lượng rõ ràng: *"Hoàn thành tác vụ trong vòng thời gian quy định không cần trợ giúp; tỷ lệ hoàn thành đạt ngưỡng kỳ vọng $\ge 85\%$"*.
+### 1.4. Nguyên Tắc Tính Trung Thực Dữ Liệu
+- **Tuyệt đối KHÔNG tự ý bịa dữ liệu**: Mọi chỉ số thời gian, tỷ lệ hoàn thành, số lỗi và điểm Likert bắt buộc phải được tính toán từ các phiên thử nghiệm thực tế lưu trữ trong thư mục `data/evaluation/` (cụ thể là `task_metrics.csv` và `likert_survey.csv`).
 
 ---
 
-## 2. Quy Trình 7 Bước Kiểm Thử Tính Khả Dụng
+## 2. Quy Trình 2 Pha Chuẩn Hóa (Two-Phase Execution)
 
-Kỹ năng thực hiện đánh giá tuân thủ quy trình 7 bước:
+Quy trình đánh giá được chia làm 2 pha tách biệt nhằm bảo đảm tính trung thực khoa học:
 
 ```
-[1. Xác định mục tiêu] ──► [2. Định nghĩa tác vụ] ──► [3. Chọn người tham gia]
-                                                              │
-[7. Đề xuất cải tiến] ◄── [6. Phân tích kết quả] ◄── [5. Tiến hành kiểm thử] ◄── [4. Phương thức thu thập]
+[PHA 1: CHUẨN BỊ & THIẾT LẬP]
+1. Xác định mục tiêu ──► 2. Định nghĩa tác vụ ──► 3. Chọn nhóm tham gia ──► 4. Xuất Test Plan & Mẫu CSV
+                                                                                   │
+                                                         (Tiến hành test thực tế / Điền data/evaluation/*.csv)
+                                                                                   │
+                                                                                   ▼
+[PHA 2: PHÂN TÍCH & BÁO CÁO]                                     5. Đọc data/evaluation/*.csv
+7. Xuất Báo cáo & Cải tiến UI ◄── 6. Phân tích lỗi (Severity 1-4) ◄── (Tính toán Metrics)
 ```
 
+### Pha 1: Chuẩn Bị & Thiết Lập Công Cụ Kiểm Thử (Test Preparation)
 1. **Bước 1 — Xác định mục tiêu**: Thiết lập câu hỏi nghiên cứu dựa trên 5 mục tiêu Usability cho các phân hệ tương tác chính của sản phẩm.
 2. **Bước 2 — Định nghĩa tác vụ (Pre-defined Tasks)**: Xây dựng các kịch bản nhiệm vụ cụ thể, rõ ràng, không thiên kiến, ánh xạ trực tiếp từ các luồng Scenario Future và màn hình Wireframe tương ứng.
-3. **Bước 3 — Chọn người tham gia**: Tuyển chọn nhóm người tham gia (thường từ 5–12 người) được phân bổ và ánh xạ động trực tiếp từ tập Persona có trong `deliverables/01-user-research/persona/personas.json`.
-4. **Bước 4 — Xác định phương thức thu thập**: Kết hợp ghi nhận thời gian thao tác, tỷ lệ thành công và bảng hỏi Likert sau test.
-5. **Bước 5 — Tiến hành kiểm thử**: Người dùng thao tác trên bộ hình ảnh Wireframe/Prototype trực quan.
-6. **Bước 6 — Phân tích kết quả**: Tính toán tỷ lệ hoàn thành trung bình, thời gian thực hiện trung bình, và điểm Likert trung bình.
-7. **Bước 7 — Chỉ ra lỗi Usability & Đề xuất cải tiến**: Tổng hợp các phát hiện khó khăn của người dùng, phân cấp mức độ nghiêm trọng (Cosmetic / Minor / Major / Catastrophe) và đưa ra giải pháp thiết kế cụ thể cho giai đoạn code phần mềm.
+3. **Bước 3 — Chọn người tham gia**: Tuyển chọn nhóm người tham gia được phân bổ và ánh xạ động trực tiếp từ tập Persona có trong `deliverables/01-user-research/persona/personas.json`.
+4. **Bước 4 — Xuất Kế hoạch & Khung nhập dữ liệu CSV**: Xuất tệp `deliverables/02-interaction-design/evaluation/usability-test-plan.md` và khởi tạo các tệp CSV mẫu tại `data/evaluation/task_metrics.csv`, `data/evaluation/likert_survey.csv`. Sau đó dừng lại (HALT) chờ dữ liệu thực tế từ buổi test.
+
+### Pha 2: Phân Tích Thực Nghiệm & Báo Cáo (Analysis & Reporting)
+5. **Bước 5 — Đọc & Tính toán Chỉ số từ `data/evaluation/`**: Đọc dữ liệu từ `data/evaluation/task_metrics.csv` và `data/evaluation/likert_survey.csv`, tính toán tỷ lệ hoàn thành trung bình, thời gian thực hiện trung bình ($\bar{T}$), số lỗi trung bình và điểm Likert trung bình.
+6. **Bước 6 — Phân tích lỗi Usability**: Tổng hợp các phát hiện khó khăn quan sát được của người dùng từ các ghi chú, phân cấp mức độ nghiêm trọng (Cosmetic / Minor / Major / Catastrophe).
+7. **Bước 7 — Xuất Báo cáo & Đề xuất cải tiến**: Xuất báo cáo hoàn chỉnh `deliverables/02-interaction-design/evaluation/usability-evaluation-report.md` gồm 8 mục khớp với cấu trúc Báo cáo cuối kỳ và ma trận cải tiến thiết kế cho `software-product-agent`.
 
 ---
 
 ## 3. Cách Suy Luận & Phân Tích (Reasoning Strategy)
 
 ### 3.1. Đối Chiếu Hành Vi Khách Quan và Cảm Nhận Chủ Quan
-- Khi phân tích, luôn đặt kết quả *Performance metrics* cạnh *Self-reported Likert metrics*:
-  - Nếu Task có thời gian hoàn thành nhanh và điểm Likert cao ($\ge 4.0/5.0$) $\rightarrow$ Luồng tương tác đạt chuẩn, sẵn sàng lập trình.
-  - Nếu Task có tỷ lệ hoàn thành thấp ($< 80\%$) hoặc thời gian kéo dài $\rightarrow$ Tìm nguyên nhân tại bước tương tác cụ thể trong Wireframe (ví dụ: nút CTA chưa rõ, nhãn chữ khó hiểu).
+- Khi phân tích dữ liệu thực tế, luôn đặt kết quả *Performance metrics* cạnh *Self-reported Likert metrics*:
+  - Nếu Task có thời gian hoàn thành nhanh và điểm Likert cao $\rightarrow$ Luồng tương tác đạt chuẩn, sẵn sàng lập trình.
+  - Nếu Task có tỷ lệ hoàn thành thấp hoặc thời gian kéo dài $\rightarrow$ Tìm nguyên nhân tại bước tương tác cụ thể trong Wireframe (ví dụ: nút CTA chưa rõ, nhãn chữ khó hiểu).
 
 ### 3.2. Chuyển Đổi Phát Hiện (Findings) Thành Đề Xuất Cải Tiến (Actionable Recommendations)
 Mỗi vấn đề khả dụng phát hiện được phải được cấu trúc theo định dạng 4 thành phần:
 1. **Vấn đề quan sát được**: Người dùng ngập ngừng ở đâu? Thao tác nhầm ở màn hình nào?
 2. **Mức độ nghiêm trọng**: Minor hay Major?
 3. **Nguyên nhân UX**: Do vị trí nút bấm, độ tương phản màu sắc hay cấu trúc thông tin?
-4. **Giải pháp khắc phục cụ thể**: Đổi màu nút, tăng kích thước vùng chạm $\ge 44\text{px}$, hoặc bố trí lại thông tin cảnh báo ở nửa dưới màn hình.
+4. **Giải pháp khắc phục cụ thể**: Đổi màu nút, tăng kích thước vùng chạm $\ge 44\text{px}$, hoặc bố trí lại thông tin cảnh báo.
 
 ---
 
 ## 4. Xác Thực & Tiêu Chí Nghiệm Thu (Validation Checklist)
 
 Trước khi bàn giao kết quả đánh giá, kiểm tra các tiêu chí sau:
+- [ ] **Tính trung thực dữ liệu**: Toàn bộ số liệu trong báo cáo được trích xuất và tính toán trực tiếp từ các file CSV trong `data/evaluation/`, tuyệt đối không tự bịa số liệu.
 - [ ] **Bao phủ 5 mục tiêu**: Báo cáo có phân tích đầy đủ Effectiveness, Efficiency, Errors, Learnability, Satisfaction.
 - [ ] **Đủ các tác vụ cốt lõi**: Kiểm thử đúng các Pre-defined Tasks tương ứng với các luồng kịch bản tương lai (Scenario Future) của dự án.
 - [ ] **Người tham gia phản ánh đúng Persona**: Có đủ dữ liệu người tham gia đại diện cho tất cả các Persona đã được định nghĩa trong `personas.json`.
-- [ ] **Số liệu trung thực & Khớp ngưỡng**: Các giá trị tỷ lệ %, thời gian giây và điểm Likert được tính toán chính xác, không làm tròn sai lệch.
 - [ ] **Không chứa thành phần thừa**: Hoàn toàn không chứa các phép thống kê suy luận phức tạp ($t$-test, ANOVA) không thuộc phạm vi yêu cầu.
 - [ ] **Tính hành động cao**: Mọi khuyến nghị cải tiến đều chỉ rõ mã màn hình Wireframe cần sửa đổi và cung cấp hướng dẫn rõ ràng cho `software-product-agent`.
