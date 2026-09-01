@@ -46,8 +46,7 @@ Có thể giao phần SVG cho `figma-agent` khi agent đó thực sự khả d�
 ## Quy tắc sinh SVG
 
 - Tuân thủ chính xác viewport, Dynamic Island, Home Indicator, vùng an toàn, Typography và collision rules trong `rules/layout-and-typography-rules.md`.
-- Dùng font `Inter` và Design Tokens theo nguồn chuẩn; không tự thêm màu hoặc thay đổi Tech Stack.
-- Không dùng emoji màu. Dùng vector đơn sắc, ký tự hình học được cho phép hoặc Text Badge.
+- Nút CTA chính (Primary Button) phải dùng nhãn hành động ngắn gọn, súc tích (tối đa 24 ký tự, bám sát động từ thao tác theo ngữ cảnh màn hình), không viết dài dòng như một câu mô tả hay thẻ thông báo; tuyệt đối không gán cứng giá trị dữ liệu cụ thể (như giờ, ngày, tên riêng) vào nhãn nút mà phải dùng nhãn tổng quát (ví dụ: "Chọn khung giờ này", "Tiếp tục").
 - Dùng `<g id="...">` ngữ nghĩa; mỗi ID phải duy nhất trong Frame.
 - Chủ động tách dòng SVG; thẻ `<text>` không tự wrap.
 - Không đưa giá, cân nặng, tuổi, sản phẩm, tên nhân viên, mã lịch hẹn hoặc dữ liệu khác vào Prototype nếu không truy vết được từ Storyboard, Scenario, Persona hoặc Value Proposition. Không tự tạo ngoại lệ “dữ liệu mô phỏng”; khi thiếu dữ kiện, dùng nhãn phi định lượng bám sát Storyboard/Scenario hoặc dừng và báo thiếu đầu vào.
