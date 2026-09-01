@@ -2,7 +2,7 @@
 
 name: report-agent
 
-description: Soạn, kiểm tra và hoàn thiện báo cáo cuối kỳ HCI/UX từ research, requirements, system analysis, design artifacts, prototype, evaluation results và evidence đã được duyệt. Dùng khi cần tạo báo cáo theo cấu trúc HCI gồm Introduction, User Research, Requirements & Design Goals, Existing System Analysis, Design Process, Prototype Design, Design Evaluation, Final Design và Conclusion.
+description: Soạn, kiểm tra và hoàn thiện báo cáo cuối kỳ HCI/UX từ Proposal đã duyệt, user research, requirements, existing system analysis, design artifacts, prototype, evaluation results và evidence. Báo cáo bắt buộc viết dựa trên Proposal và tuân thủ tiêu đề 100% tiếng Việt (không mở ngoặc tiếng Anh), cấu trúc 9 chương chuẩn HCI: Giới thiệu, Nghiên cứu người dùng, Yêu cầu và mục tiêu thiết kế, Phân tích hệ thống và trải nghiệm hiện tại, Quá trình thiết kế, Thiết kế bản mẫu tương tác, Đánh giá thiết kế, Thiết kế cuối cùng và Kết luận.
 
 ---
 
@@ -12,11 +12,11 @@ description: Soạn, kiểm tra và hoàn thiện báo cáo cuối kỳ HCI/UX t
 
 Biến các artifact đã được duyệt thành một **báo cáo HCI/UX hoàn chỉnh, mạch lạc, có thể kiểm chứng và đúng yêu cầu submission**.
 
-Báo cáo phải thể hiện được toàn bộ quá trình:
+Toàn bộ nội dung báo cáo **BẮT BUỘC PHẢI VIẾT DỰA TRÊN PROPOSAL ĐÃ ĐƯỢC DUYỆT** (`docs/proposal.md` / `docs/proposal.pdf`). Báo cáo phải kế thừa và thể hiện xuyên suốt toàn bộ quá trình:
 
-**Problem → User Research → User Needs → Requirements → Existing System Analysis → Design → Prototype → Evaluation → Final Design → Conclusion**
+**Bài toán (Proposal) → Nghiên cứu người dùng → Nhu cầu & Điểm đau → Yêu cầu & Mục tiêu thiết kế → Phân tích hệ thống & Quy trình hiện tại → Quá trình thiết kế → Thiết kế bản mẫu tương tác → Đánh giá thiết kế → Thiết kế cuối cùng → Kết luận**
 
-Agent phải ưu tiên **tính trung thực của evidence, tính nhất quán và logic của quá trình thiết kế** hơn độ dài hoặc hình thức.
+Agent phải ưu tiên **tính trung thực của evidence, tính nhất quán với Proposal và logic của quá trình thiết kế** hơn độ dài hoặc hình thức.
 
 ---
 
@@ -24,570 +24,522 @@ Agent phải ưu tiên **tính trung thực của evidence, tính nhất quán v
 
 Trước khi viết báo cáo, đọc và kiểm tra các nguồn sau nếu chúng tồn tại:
 
-1. `PLAN.md`
-2. Project manifest / artifact manifest
-3. Project rules / submission requirements
-4. Template báo cáo LaTeX trong `templates/report/` (`main.tex`, thư mục `content/` gồm 9 chương từ `01_gioi_thieu.tex` đến `09_ket_luan.tex`, `ref/appendix.tex`) và hướng dẫn trong `templates/report/README.md`
-5. User research artifacts
-6. Requirements artifacts
-7. Existing system analysis
-8. User flow / task flow
-9. Information architecture
-10. Ideation / sketches / storyboards
-11. Wireframes
-12. Prototype
-13. Usability evaluation materials
-14. Evaluation results
-15. Screenshots / figures / tables
-16. Software implementation artifacts nếu có
-17. Approved references / citations
+1. **Tài liệu Proposal (`docs/proposal.md` hoặc `docs/proposal.pdf`)** — **Căn cứ nền tảng bắt buộc số 1**: Báo cáo bắt buộc phải kế thừa bài toán, đối tượng người dùng (chủ nuôi bận rộn), khó khăn trong quy trình cũ, 4 nhóm chức năng cốt lõi (Đặt lịch có xác nhận tức thì, Hồ sơ thú cưng & yêu cầu đặc biệt, Theo dõi tiến độ thời gian thực, Lịch sử chăm sóc cá nhân hóa) và luồng quy trình As-Is / To-Be từ Proposal. Tuyệt đối không được viết lệch khỏi định hướng đã cam kết trong Proposal.
+2. `PLAN.md` của skill
+3. Project manifest / artifact manifest
+4. Project rules / submission requirements
+5. Template báo cáo LaTeX trong `templates/report/` (`main.tex`, thư mục `content/` gồm 9 chương từ `01_gioi_thieu.tex` đến `09_ket_luan.tex`, `ref/appendix.tex`) và hướng dẫn trong `templates/report/README.md`
+6. User research artifacts
+7. Requirements artifacts
+8. Existing system analysis
+9. User flow / task flow
+10. Information architecture
+11. Ideation / sketches / storyboards
+12. Wireframes
+13. Prototype
+14. Usability evaluation materials
+15. Evaluation results
+16. Screenshots / figures / tables
+17. Software implementation artifacts nếu có
+18. Approved references / citations
 
 Không được coi một artifact là evidence nếu artifact đó chưa tồn tại hoặc chưa được xác nhận.
 
 ---
 
-# 3. Cấu trúc báo cáo bắt buộc
+# 3. Ba Quy tắc Vận hành Cốt lõi
 
-Nếu project yêu cầu báo cáo HCI/UX theo cấu trúc này, phải sử dụng đầy đủ các chapter sau.
+### Quy tắc 1: Bắt buộc Bám sát Proposal (Proposal-Based Mandate)
+- Báo cáo phải phát triển trực tiếp từ Proposal (`docs/proposal.md`).
+- Phải giữ trọn vẹn:
+  1. Tên đề tài: "Hệ thống hỗ trợ đặt lịch, gửi yêu cầu và theo dõi quá trình chăm sóc thú cưng".
+  2. Bối cảnh và bài toán: Chủ nuôi thú cưng bận rộn gặp khó khăn với quy trình thủ công cũ (chờ xác nhận, thất lạc dặn dò dị ứng/thuốc, thiếu thông tin tiến độ, không có lịch sử chăm sóc).
+  3. Persona đại diện nền tảng: Chị Lan, 28 tuổi, nhân viên văn phòng tại TP.HCM, nuôi chó Poodle có tiền sử dị ứng sữa tắm.
+  4. 4 trụ cột giải pháp cốt lõi:
+     - Đặt lịch có xác nhận tức thì
+     - Hồ sơ thú cưng và yêu cầu đặc biệt
+     - Theo dõi tiến độ theo thời gian thực (4 mốc: Đã nhận ➔ Đang chăm sóc ➔ Hoàn tất ➔ Chờ đón)
+     - Lịch sử chăm sóc cá nhân hóa
+  5. Đối chiếu quy trình: So sánh chi tiết 6 bước quy trình hiện tại (As-Is) với 6 bước quy trình đề xuất (To-Be).
 
-## 1. Introduction
+### Quy tắc 2: Tiêu đề 100% Tiếng Việt Thuần túy (Vietnamese Headings Only)
+- **Tất cả các tiêu đề chương (`\section`), mục (`\subsection`), tiểu mục (`\subsubsection`)** trong báo cáo và template LaTeX PHẢI được viết hoàn toàn bằng tiếng Việt chuẩn mực, học thuật.
+- **TUYỆT ĐỐI CẤM** đặt tiêu đề theo kiểu song ngữ mở ngoặc tiếng Anh kèm theo (như `Giới thiệu (Introduction)`, `Nghiên cứu người dùng (User Research)`, `Yêu cầu và mục tiêu thiết kế (Requirements & Design Goals)`...).
+- **TUYỆT ĐỐI CẤM** để tiêu đề bằng tiếng Anh thuần túy (như `Project Background`, `Problem Statement`, `Target Users`...).
+- Các thuật ngữ chuyên ngành (Persona, Storyboard, Wireframe, Prototype, Usability Testing, Think-aloud, SUS...) vẫn được sử dụng trong nội dung văn bản (body text), nhưng riêng TIÊU ĐỀ thì 100% tiếng Việt, không mở ngoặc tiếng Anh.
 
-### 1.1. Project Background
+### Quy tắc 3: Bảo toàn Template gốc — Sao chép sang `docs/` trước khi viết (Template Isolation)
+- Thư mục `templates/report/` là bộ khung chuẩn hóa (clean template) của dự án, phải luôn được bảo toàn nguyên vẹn. **TUYỆT ĐỐI KHÔNG SỬA TRỰC TIẾP VÀO `templates/report/`**.
+- Mỗi lần bắt đầu viết hoặc cập nhật báo cáo, Agent **BẮT BUỘC phải sao chép (copy) toàn bộ template từ `templates/report/` sang `docs/` (hoặc `docs/report/`)**, sau đó mới thực hiện việc viết bài, chỉnh sửa các file `.tex` trong `content/`, gắn hình ảnh và biên dịch PDF tại thư mục làm việc trong `docs/`.
+- Tuyệt đối không ghi đè bài làm thật vào thư mục template mẫu.
+
+
+---
+
+# 4. Cấu trúc báo cáo bắt buộc (9 Chương chuẩn HCI)
+
+Nếu project yêu cầu báo cáo HCI/UX theo cấu trúc này, phải sử dụng đầy đủ các chapter sau với 100% tiêu đề tiếng Việt:
+
+## Chương 1. Giới thiệu
+
+### 1.1. Bối cảnh đề tài
 
 Trình bày:
 
-* Bối cảnh của vấn đề
+* Bối cảnh của vấn đề (kế thừa trực tiếp từ Proposal)
 * Hệ thống/sản phẩm đang được nghiên cứu
-* Context trong đó hệ thống được sử dụng
+* Ngữ cảnh thực tế trong đó hệ thống được sử dụng
 * Tại sao vấn đề đáng quan tâm
 
 Không biến phần này thành literature review dài nếu rubric không yêu cầu.
 
-### 1.2. Problem Statement
+### 1.2. Phát biểu bài toán
 
 Trình bày:
 
-* Vấn đề người dùng đang gặp phải
-* Những hạn chế của hệ thống/giao diện hiện tại
-* Consequences của vấn đề đối với user hoặc task
+* Vấn đề người dùng đang gặp phải trong quy trình thủ công
+* Những hạn chế của hệ thống/giao diện/quy trình hiện tại (đối chiếu Proposal: chờ phản hồi, xác nhận không rõ ràng, thất lạc dặn dò đặc biệt, thiếu minh bạch tiến độ)
+* Tác động của vấn đề đối với người dùng hoặc quy trình chăm sóc
 
-Problem statement phải dựa trên research hoặc evidence hiện có.
+Phát biểu bài toán phải nhất quán với Proposal và được chứng minh bởi research/evidence.
 
-### 1.3. Project Objectives
+### 1.3. Mục tiêu đề tài
 
 Trình bày:
 
-* Đồ án muốn cải thiện điều gì
+* Đồ án muốn cải thiện điều gì theo mục tiêu trong Proposal
 * Mục tiêu UX/Usability
 * Những kết quả dự kiến đạt được
 
-Objectives phải phù hợp với scope và evidence thực tế.
+Mục tiêu phải phù hợp với scope và evidence thực tế.
 
-### 1.4. Project Scope
+### 1.4. Phạm vi đề tài
 
 Trình bày:
 
-* Những chức năng/task nằm trong phạm vi
-* Những đối tượng người dùng nằm trong phạm vi
-* Những phần không được thực hiện
+* Những chức năng/tác vụ nằm trong phạm vi (In-scope: 4 trụ cột tính năng phục vụ chủ nuôi)
+* Đối tượng người dùng mục tiêu (Chủ nuôi thú cưng bận rộn)
+* Những phần không được thực hiện (Out-of-scope: không xây lại toàn bộ ERP quản lý cơ sở)
 * Các giới hạn kỹ thuật hoặc nghiên cứu nếu có
+
 
 ---
 
-# 4. User Research
+## Chương 2. Nghiên cứu người dùng
 
-## 2.1. Target Users
+### 2.1. Đối tượng người dùng mục tiêu
 
 Mô tả:
 
-* Người dùng mục tiêu
+* Người dùng mục tiêu (Chủ nuôi thú cưng bận rộn theo Proposal)
 * Đặc điểm liên quan đến hệ thống
-* Context of use
-* Các task chính của họ
+* Ngữ cảnh sử dụng (Context of use)
+* Các tác vụ chính của họ
 
-Chỉ mô tả characteristics có evidence.
+Chỉ mô tả đặc điểm có căn cứ từ dữ liệu nghiên cứu và Proposal.
 
-## 2.2. Research Methods
+### 2.2. Phương pháp nghiên cứu
 
 Trình bày các phương pháp thực sự được sử dụng, ví dụ:
 
-* Interview
-* Observation
-* Survey
-* Questionnaire
-* Contextual inquiry
-* Usability testing
+* Phỏng vấn sâu (Interview)
+* Quan sát thực tế (Observation)
+* Khảo sát bằng bảng hỏi (Survey / Questionnaire)
+* Kiểm thử khả năng sử dụng (Usability testing)
 
-Với mỗi method nếu có đủ evidence, nêu:
+Với mỗi phương pháp nếu có đủ bằng chứng, nêu:
 
-* Purpose
-* Participants
-* Procedure
-* Data collected
+* Mục đích (Purpose)
+* Người tham gia (Participants)
+* Quy trình thực hiện (Procedure)
+* Dữ liệu thu thập được (Data collected)
 
-Không được tự tạo participant hoặc research method chưa được thực hiện.
+Không được tự tạo đối tượng tham gia hoặc phương pháp nghiên cứu chưa được thực hiện.
 
-## 2.3. Research Findings
+### 2.3. Kết quả nghiên cứu
 
-Đây là phần **findings**, không phải nhật ký quá trình nghiên cứu.
+Đây là phần **kết quả phát hiện (findings)**, không phải nhật ký quá trình nghiên cứu.
 
 Ưu tiên trình bày các phát hiện có ý nghĩa đối với thiết kế, ví dụ:
 
-* Users frequently make errors when...
-* Users have difficulty finding...
-* Users expect...
-* Users prefer...
-* Users are confused by...
+* Người dùng thường gặp khó khăn hoặc sai sót khi đặt lịch...
+* Người dùng kỳ vọng được cập nhật tiến độ liên tục...
+* Người dùng lo lắng việc dặn dò đặc biệt/dị ứng bị quên...
 
-Mỗi finding quan trọng phải có evidence tương ứng.
+Mỗi phát hiện quan trọng phải có bằng chứng tương ứng.
 
-## 2.4. User Needs / Pain Points
+### 2.4. Nhu cầu và điểm đau của người dùng
 
-Tổng hợp research findings thành các:
+Tổng hợp kết quả nghiên cứu thành các:
 
-* User needs
-* Pain points
-* Frustrations
-* Expectations
-* Opportunities for improvement
+* Nhu cầu người dùng (User needs)
+* Điểm đau (Pain points - đối chiếu với 5 khó khăn trong Proposal)
+* Sự thất vọng và rào cản (Frustrations)
+* Kỳ vọng (Expectations)
+* Cơ hội cải tiến (Opportunities for improvement)
 
-Không tạo pain point mới nếu research không hỗ trợ.
+Không tạo điểm đau mới nếu nghiên cứu và Proposal không hỗ trợ.
 
-## 2.5. Personas
+### 2.5. Chân dung người dùng
 
-Nếu project có persona artifact, trình bày:
+Nếu dự án có artifact Persona, trình bày:
 
-* Primary persona
-* Secondary persona nếu cần
-* Goals
-* Behaviors
-* Pain points
-* Needs
-* Context
+* Chân dung đại diện chính (Primary Persona - Chị Lan, 28 tuổi, nhân viên văn phòng bận rộn nuôi Poodle dị ứng)
+* Chân dung phụ nếu có (Secondary Persona)
+* Mục tiêu (Goals), Hành vi (Behaviors), Điểm đau (Pain points), Nhu cầu (Needs)
 
-Persona phải trace được về research.
-
-Nếu không có đủ research để xây dựng persona đáng tin cậy, không tự bịa persona.
+Persona phải truy vết được về nghiên cứu và Proposal. Không tự bịa Persona thiếu căn cứ.
 
 ---
 
-# 5. Requirements and Design Goals
+## Chương 3. Yêu cầu và mục tiêu thiết kế
 
-## 3.1. User Requirements
+### 3.1. Yêu cầu người dùng
 
-Chuyển User Needs / Pain Points thành requirements có thể hành động.
+Chuyển Nhu cầu & Điểm đau thành yêu cầu hành động được (bám sát 4 trụ cột tính năng trong Proposal):
 
-Ví dụ:
+1. Đặt lịch và nhận xác nhận tức thì trên ứng dụng.
+2. Lưu hồ sơ thú cưng và tự động đính kèm thông tin dị ứng/thuốc/dặn dò vào đơn đặt.
+3. Theo dõi tiến độ chăm sóc theo thời gian thực qua 4 mốc rõ ràng.
+4. Tra cứu lịch sử chăm sóc cá nhân hóa (dịch vụ, sản phẩm, ghi chú).
 
-> Users need a simple way to verify the selected file before submission.
+Mỗi yêu cầu nên truy vết được:
 
-Mỗi requirement nên trace được:
+**Kết quả nghiên cứu → Nhu cầu người dùng → Yêu cầu người dùng**
 
-**Research Finding → User Need → User Requirement**
+### 3.2. Mục tiêu trải nghiệm người dùng
 
-## 3.2. Usability Goals
+Xác định các mục tiêu trải nghiệm định lượng và định tính:
 
-Có thể sử dụng các mục tiêu:
+* Tính hiệu quả (Effectiveness)
+* Hiệu suất hoàn thành tác vụ (Efficiency)
+* Tính dễ học (Learnability)
+* Phòng ngừa lỗi và sai sót (Error prevention)
+* Sự hài lòng và an tâm của chủ nuôi (User satisfaction)
+* Khả năng ghi nhớ (Memorability)
 
-* Effectiveness
-* Efficiency
-* Learnability
-* Error prevention
-* User satisfaction
-* Memorability
-* Accessibility nếu thuộc scope
+Mục tiêu trải nghiệm phải liên quan trực tiếp đến vấn đề được phát hiện trong Proposal.
 
-Usability goals phải liên quan trực tiếp đến vấn đề được phát hiện.
+### 3.3. Mục tiêu thiết kế
 
-## 3.3. Design Goals
+Chuyển yêu cầu và mục tiêu trải nghiệm thành các mục tiêu thiết kế cụ thể:
 
-Chuyển requirements và usability goals thành design goals.
+* Thiết kế luồng đặt lịch trực quan từng bước (Stepper) có xác nhận tức thì.
+* Thiết kế thẻ cảnh báo dị ứng/dặn dò màu đỏ nổi bật trong hồ sơ và đơn tiếp nhận.
+* Thiết kế thanh tiến trình 4 mốc thời gian thực minh bạch.
+* Thiết kế kho lưu trữ lịch sử chăm sóc theo dòng thời gian chi tiết.
 
-Ví dụ:
-
-* Reduce the possibility of users submitting the wrong file.
-* Make the submission status immediately visible.
-* Simplify navigation between important tasks.
-* Provide clear feedback after user actions.
-
-Design goals phải được sử dụng để đánh giá design ở các chapter sau.
+Mục tiêu thiết kế phải được sử dụng để đánh giá bản mẫu ở các chương sau.
 
 ---
 
-# 6. Analysis of Existing System
+## Chương 4. Phân tích hệ thống và trải nghiệm hiện tại
 
-## 4.1. Existing System / Existing Interface
+### 4.1. Hệ thống và quy trình hiện tại
 
 Trình bày:
 
-* Hệ thống hiện tại
-* Các màn hình liên quan
-* Navigation hiện tại
-* Các chức năng chính liên quan đến scope
+* Quy trình hoặc kênh hiện tại (nhắn tin Fanpage/Zalo, gọi điện, ghi chép sổ tay)
+* Các màn hình hoặc kênh liên lạc liên quan
+* Các chức năng chính liên quan đến phạm vi đề tài
 
-Sử dụng screenshots hoặc figures nếu có.
+Sử dụng hình ảnh minh họa thực tế nếu có.
 
-## 4.2. Task Analysis
+### 4.2. Phân tích tác vụ
 
-Phân tích các task quan trọng mà user cần thực hiện.
+Phân tích các tác vụ quan trọng mà người dùng thực hiện trong quy trình cũ (bám sát 6 bước As-Is trong Proposal):
 
-Ví dụ:
+1. Chủ nuôi gọi điện hoặc nhắn tin hỏi lịch trống.
+2. Chủ nuôi chờ phản hồi và chưa biết chắc lịch được ghi nhận.
+3. Chủ nuôi khai báo lại dị ứng hoặc yêu cầu đặc biệt.
+4. Chủ nuôi bàn giao thú cưng tại cơ sở.
+5. Trong thời gian chăm sóc, chủ nuôi không có cập nhật và phải gọi điện hỏi.
+6. Cơ sở thông báo khi hoàn tất; thông tin không được lưu thành lịch sử nhất quán.
 
-**Login → Select Assignment → Upload File → Verify File → Submit**
+### 4.3. Luồng người dùng và quy trình tác vụ
 
-Có thể sử dụng:
+Trình bày sơ đồ luồng tương tác hiện tại của người dùng và các điểm nghẽn (bottlenecks).
 
-* Task decomposition
-* Hierarchical task analysis
-* Step-by-step task analysis
+Nếu có sơ đồ trong artifact, ưu tiên sử dụng artifact thay vì tự tạo lại logic khác.
 
-Chỉ phân tích task thực sự thuộc scope.
+### 4.4. Các vấn đề về trải nghiệm người dùng
 
-## 4.3. User Flow / Task Flow
+Tổng hợp các vấn đề trải nghiệm của quy trình cũ:
 
-Trình bày flow hiện tại của user.
+* Vấn đề 1: Chờ xác nhận lâu, không chủ động được thời gian.
+* Vấn đề 2: Dặn dò đặc biệt (dị ứng da/thuốc) dễ bị quên hoặc thất lạc.
+* Vấn đề 3: Thiếu minh bạch tiến độ, gây bất an và làm gián đoạn công việc hai bên.
+* Vấn đề 4: Thiếu lịch sử chăm sóc có cấu trúc để tra cứu lại.
 
-Nếu có diagram artifact, ưu tiên sử dụng artifact thay vì tự tạo lại logic khác.
+Không chỉ liệt kê bề nổi; phải giải thích **tại sao đó là vấn đề trải nghiệm người dùng**.
 
-## 4.4. Usability Problems
-
-Tổng hợp các usability problems của hệ thống hiện tại.
-
-Mỗi problem nên có:
-
-* Problem
-* Evidence
-* Impact on user/task
-* Related research finding nếu có
-
-Ví dụ:
-
-| Problem                                    | Evidence                  | Impact                                           |
-| ------------------------------------------ | ------------------------- | ------------------------------------------------ |
-| Users cannot clearly see submission status | Research / usability test | Users are uncertain whether submission succeeded |
-
-Không chỉ liệt kê lỗi giao diện; phải giải thích **tại sao đó là usability problem**.
 
 ---
 
-# 7. Design Process
+## Chương 5. Quá trình thiết kế
 
-## 5.1. Information Architecture
-
-Trình bày:
-
-* Sitemap
-* Navigation structure
-* Content organization
-
-Chỉ sử dụng những artifact thực tế của project.
-
-## 5.2. User Flow
-
-Trình bày các flow được thiết kế lại.
-
-Nếu flow thay đổi so với existing system, giải thích lý do.
-
-## 5.3. Ideation
+### 5.1. Kiến trúc thông tin
 
 Trình bày:
 
-* Brainstorming
-* Sketching
-* Design alternatives
-* Các ý tưởng được xem xét
-* Design decisions
+* Sơ đồ cấu trúc ứng dụng (Sitemap)
+* Cấu trúc điều hướng (Navigation structure)
+* Tổ chức nội dung và các phân hệ chức năng
 
-Không cần liệt kê mọi ý tưởng nếu không có giá trị đối với final design.
+Chỉ sử dụng những artifact thực tế của dự án.
 
-## 5.4. Storyboards
+### 5.2. Luồng thao tác người dùng
 
-Nếu có storyboard:
+Trình bày các luồng thao tác được thiết kế lại (bám sát quy trình đề xuất trong Proposal):
 
-* Trình bày scenario
-* User context
-* User action
-* System response
-* Desired experience
+* Luồng đặt lịch dịch vụ và đính kèm ghi chú dị ứng/dặn dò đặc biệt
+* Luồng theo dõi tiến độ chăm sóc từ xa theo thời gian thực
 
-Storyboard phải hỗ trợ giải thích design context.
+Nếu luồng thay đổi so với quy trình cũ, giải thích rõ lý do cải tiến.
 
-Nếu project không sử dụng storyboard, không tạo artifact giả.
-
-## 5.5. Wireframes
+### 5.3. Phác thảo và phát triển ý tưởng
 
 Trình bày:
 
-* Low-fidelity wireframes
-* Các màn hình chính
-* Các iteration quan trọng
+* Quá trình phác thảo ý tưởng (Ideation & Sketching)
+* Các phương án sơ bộ được xem xét
+* Các quyết định thiết kế cốt lõi
 
-Tập trung vào evolution của thiết kế.
+Không cần liệt kê mọi ý tưởng nếu không có giá trị đối với thiết kế cuối cùng.
 
-## 5.6. Design Alternatives
+### 5.4. Bảng phân cảnh
+
+Nếu có kịch bản phân cảnh (Storyboard):
+
+* Trình bày kịch bản bối cảnh người dùng (Scenario)
+* Ngữ cảnh và hành động của chủ nuôi
+* Phản hồi của hệ thống
+* Trải nghiệm mong muốn đạt được
+
+Bảng phân cảnh phải hỗ trợ giải thích bối cảnh sử dụng của chủ nuôi thú cưng bận rộn.
+
+### 5.5. Khung giao diện
+
+Trình bày:
+
+* Khung giao diện độ chi tiết thấp (Low-fidelity wireframes) theo chuẩn Mobile-first
+* Các màn hình chính (Trang chủ, Đặt lịch, Theo dõi, Hồ sơ)
+* Sự tiến triển qua các vòng lặp thiết kế (Iterations)
+
+### 5.6. Các phương án thiết kế
 
 Nếu có nhiều phương án:
 
-**Design A → Design B → Design C → Final Design**
+**Phương án A → Phương án B → Thiết kế tối ưu**
 
 Giải thích:
 
 * Ưu điểm
 * Nhược điểm
-* Trade-offs
-* Lý do lựa chọn
-
-Không bắt buộc phải có nhiều alternatives nếu project thực tế chỉ có một hướng thiết kế.
+* Đánh đổi (Trade-offs)
+* Lý do lựa chọn giải pháp tối ưu
 
 ---
 
-# 8. Prototype Design
+## Chương 6. Thiết kế bản mẫu tương tác
 
-## 6.1. Prototype Overview
+### 6.1. Tổng quan bản mẫu
 
 Trình bày:
 
-* Prototype được xây dựng bằng công cụ nào
-* Fidelity level
-* Các chức năng được mô phỏng
-* Phạm vi prototype
+* Công cụ xây dựng bản mẫu (Figma High-fidelity Interactive Prototype)
+* Mức độ chi tiết (Fidelity level)
+* Các chức năng được mô phỏng theo 4 trụ cột trong Proposal
+* Phạm vi mô phỏng
 
 Phải phân biệt rõ:
 
-**Prototype ≠ Fully Functional Software**
+**Bản mẫu tương tác (Prototype) ≠ Phần mềm hoàn chỉnh toàn diện (Fully Functional Software)**
 
-Không mô tả prototype như một hệ thống backend hoàn chỉnh nếu backend không tồn tại.
+Không mô tả bản mẫu như một hệ thống backend cơ sở dữ liệu hoàn chỉnh nếu backend chưa tồn tại.
 
-## 6.2. Prototype Screens
+### 6.2. Các màn hình bản mẫu
 
-Trình bày các màn hình chính.
+Trình bày các màn hình chính của bản mẫu:
 
-Mỗi screen nên có:
+* Màn hình Trang chủ & Đặt lịch nhanh
+* Màn hình Đặt lịch dịch vụ & Đính kèm hồ sơ dặn dò/dị ứng
+* Màn hình Theo dõi tiến độ thời gian thực (4 mốc)
+* Màn hình Hồ sơ thú cưng & Lịch sử chăm sóc
 
-* Screen name
-* Purpose
-* Main UI elements
-* Related user task
+Mỗi màn hình cần nêu rõ:
 
-Không đưa screenshot không có chú thích hoặc vai trò rõ ràng.
+* Tên màn hình
+* Mục đích sử dụng
+* Các thành phần giao diện chính
+* Tác vụ người dùng tương ứng
 
-## 6.3. Interaction Design
+### 6.3. Thiết kế tương tác
 
-Giải thích các interaction quan trọng:
+Giải thích các hành vi tương tác quan trọng:
 
-* Button behavior
-* Navigation
-* Feedback
-* Error handling
-* Confirmation
-* Undo
-* Notifications
-* Empty states
-* Loading states nếu có
+* Hành vi nút bấm và trạng thái (Button states, Feedback)
+* Điều hướng và xác nhận thao tác (Navigation, Modal confirmation)
+* Phản hồi trạng thái (Feedback, Notification)
+* Ngăn ngừa và xử lý lỗi (Error handling, Validation)
+* Trạng thái rỗng và đang tải (Empty states, Loading states)
 
-Chỉ mô tả interaction thực sự tồn tại trong prototype/software.
+Chỉ mô tả tương tác thực sự tồn tại trong bản mẫu hoặc mã nguồn.
 
-## 6.4. Design Rationale
+### 6.4. Lý giải thiết kế
 
-Đây là phần quan trọng để chứng minh thiết kế dựa trên HCI process.
+Đây là phần quan trọng để chứng minh thiết kế dựa trên quy trình HCI khoa học:
 
-Ưu tiên format:
-
-**Research Finding → Design Decision → Expected UX Improvement**
+**Kết quả nghiên cứu / Điểm đau Proposal → Quyết định thiết kế → Cải thiện trải nghiệm mong đợi**
 
 Ví dụ:
 
-> Research revealed that users frequently submitted the wrong file. Therefore, a file preview and confirmation step were added to help users verify their selection before submission.
-
-Mỗi design decision quan trọng phải có rationale.
+> Nghiên cứu và Proposal chỉ ra rằng chủ nuôi luôn bất an khi không biết thú cưng đang ở bước nào và dặn dò dị ứng dễ bị quên. Do đó, thiết kế bổ sung thẻ dặn dò dị ứng màu đỏ nổi bật tự động đính kèm và thanh tiến trình 4 mốc thời gian thực để chủ nuôi luôn an tâm theo dõi từ xa.
 
 ---
 
-# 9. Design Evaluation
+## Chương 7. Đánh giá thiết kế
 
-## 7.1. Evaluation Objectives
+### 7.1. Mục tiêu đánh giá
 
-Nêu rõ design muốn kiểm tra điều gì.
+Nêu rõ đợt đánh giá nhằm kiểm tra điều gì:
 
-Ví dụ:
+* Giao diện mới có giúp chủ nuôi đặt lịch nhanh chóng và chính xác hơn không?
+* Tính năng theo dõi tiến độ 4 mốc có mang lại sự an tâm và minh bạch không?
+* Giao diện có giảm thiểu sai sót trong việc ghi nhận dặn dò đặc biệt/dị ứng không?
+* Mức độ hài lòng của người dùng đối với thiết kế mới ra sao?
 
-* Does the redesigned interface help users complete the task more effectively?
-* Does the new navigation reduce task completion time?
-* Does the redesigned interface reduce user errors?
-* Are users more satisfied with the new design?
+Mục tiêu đánh giá phải bám sát mục tiêu trải nghiệm và mục tiêu thiết kế.
 
-Evaluation objectives phải liên quan đến usability/design goals.
+### 7.2. Phương pháp đánh giá
 
-## 7.2. Evaluation Method
+Trình bày phương pháp thực tế đã sử dụng:
 
-Trình bày method thực tế:
+* Kiểm thử tính khả dụng (Usability testing) kết hợp giao thức nghĩ thành tiếng (Think-aloud)
+* Đo lường thang đo tính khả dụng hệ thống (System Usability Scale - SUS)
+* Khảo sát hoặc phỏng vấn sau kiểm thử (Post-test questionnaire / interview)
 
-* Usability testing
-* A/B testing
-* Comparative usability testing
-* Think-aloud
-* Questionnaire
+Không được tuyên bố A/B testing nếu dự án không thực hiện A/B testing.
 
-Không được tuyên bố A/B testing nếu project không thực hiện A/B testing.
-
-## 7.3. Participants
+### 7.3. Người tham gia đánh giá
 
 Trình bày:
 
-* Number of participants
-* User characteristics
-* Recruitment criteria
+* Số lượng người tham gia
+* Đặc điểm người dùng (Chủ nuôi thú cưng)
+* Tiêu chí tuyển chọn
 
-Chỉ sử dụng participant data thực tế.
+Chỉ sử dụng dữ liệu người tham gia thực tế, không bịa số liệu.
 
-Không được bịa sample size hoặc demographic information.
+### 7.4. Tác vụ kiểm thử
 
-## 7.4. Tasks
+Liệt kê các tác vụ người tham gia thực hiện trong kịch bản kiểm thử:
 
-Liệt kê các task participants phải thực hiện.
+* Tác vụ 1: Đặt lịch dịch vụ tắm & cắt tỉa, chọn khung giờ còn trống và kiểm tra dặn dò dị ứng.
+* Tác vụ 2: Theo dõi tiến độ chăm sóc thú cưng trên màn hình Live Tracking.
+* Tác vụ 3: Tra cứu lịch sử chăm sóc và ghi chú của lượt chăm sóc trước.
 
-Task phải phản ánh những interaction quan trọng của prototype.
+### 7.5. Chỉ số đo lường
 
-## 7.5. Metrics
+Trình bày các chỉ số đo lường định lượng và định tính:
 
-Có thể sử dụng:
+* Tỷ lệ hoàn thành tác vụ (Task completion rate - %)
+* Thời gian thực hiện tác vụ (Time on task - giây)
+* Tỷ lệ lỗi / Số lỗi phát sinh (Error rate / Number of errors)
+* Điểm số hài lòng SUS (SUS score)
 
-* Task completion rate
-* Task completion time
-* Error rate
-* Number of errors
-* Satisfaction score
-* SUS nếu thực sự sử dụng
-* Other defined metrics
+Không tự tạo chỉ số sau khi đánh giá đã kết thúc.
 
-Không tự tạo metrics sau khi evaluation đã kết thúc.
+### 7.6. Quy trình đánh giá
 
-## 7.6. Procedure
+Mô tả các bước tổ chức:
 
-Mô tả:
+1. Chuẩn bị người tham gia và thiết bị
+2. Thực hiện tác vụ theo kịch bản
+3. Quan sát và ghi nhận hành vi/lời nói
+4. Điền phiếu đánh giá / Phỏng vấn nhanh
+5. Tổng hợp và phân tích dữ liệu
 
-1. Participant preparation
-2. Task execution
-3. Observation / measurement
-4. Questionnaire/interview nếu có
-5. Data collection
-
-## 7.7. Results
+### 7.7. Kết quả đánh giá
 
 Trình bày kết quả bằng:
 
-* Tables
-* Charts
-* Descriptive statistics
-* Statistical tests nếu thực sự được thực hiện
+* Bảng số liệu tổng hợp
+* Biểu đồ trực quan
+* Thống kê mô tả
 
-Phải giữ nguyên số liệu từ evaluation artifacts.
+Phải giữ nguyên số liệu từ các artifact đánh giá thực tế.
 
-Không làm tròn hoặc thay đổi số liệu theo cách gây hiểu nhầm.
-
-## 7.8. Discussion
-
-Không chỉ lặp lại Results.
+### 7.8. Thảo luận và phân tích
 
 Giải thích:
 
-* Kết quả có ý nghĩa gì?
-* Design goal có đạt được không?
-* Problem ban đầu có được cải thiện không?
-* Có usability issue nào vẫn tồn tại?
-* Có trade-off nào xuất hiện không?
-
-Ví dụ:
-
-> The redesigned interface increased task completion from 60% to 80%, suggesting that the new file-verification step helped users avoid submission errors.
-
-Không được suy luận nhân quả mạnh hơn mức evidence cho phép.
+* Kết quả đo lường phản ánh điều gì?
+* Các mục tiêu thiết kế ban đầu có đạt được không?
+* Các điểm đau nêu trong Proposal có được giải quyết triệt để không?
+* Còn tồn tại vấn đề trải nghiệm nào cần tiếp tục tinh chỉnh?
 
 ---
 
-# 10. Final Design
+## Chương 8. Thiết kế cuối cùng
 
-## 8.1. Final Prototype
+### 8.1. Bản mẫu hoàn thiện
 
-Trình bày phiên bản thiết kế cuối cùng sau evaluation.
+Trình bày phiên bản thiết kế cuối cùng sau khi đã tiếp thu và hoàn thiện từ kết quả đánh giá. Nêu rõ những điểm điều chỉnh sau đợt kiểm thử.
 
-Nếu final design khác prototype được evaluation, phải giải thích những thay đổi sau evaluation.
+### 8.2. Các cải tiến thiết kế then chốt
 
-## 8.2. Key Design Improvements
+Tổng hợp các cải tiến then chốt so với quy trình cũ:
 
-Tổng hợp các cải tiến quan trọng.
+| Vấn đề quy trình cũ (Proposal) | Giải pháp thiết kế mới | Cải thiện trải nghiệm đạt được |
+| :--- | :--- | :--- |
+| Chờ xác nhận lịch hẹn lâu | Đặt lịch có xác nhận tức thì | Chủ động thời gian, biết chắc lịch được nhận |
+| Thất lạc dặn dò đặc biệt/dị ứng | Tự động đính kèm hồ sơ thú cưng | Loại bỏ 100% rủi ro quên dặn dò nguy hiểm |
+| Mù mờ về tiến độ chăm sóc | Thanh tiến trình 4 mốc thời gian thực | Minh bạch thông tin, an tâm tuyệt đối |
+| Không có lịch sử lưu trữ | Nhật ký chăm sóc cá nhân hóa | Dễ dàng tra cứu lại dịch vụ và sản phẩm |
 
-Ưu tiên bảng:
+### 8.3. So sánh trước và sau cải tiến
 
-| Problem                            | Design Solution             | UX Improvement           |
-| ---------------------------------- | --------------------------- | ------------------------ |
-| Users submit wrong file            | File preview + confirmation | Reduce submission errors |
-| Users cannot see submission status | Clear status indicator      | Improve visibility       |
-| Users are unsure before submission | Confirmation step           | Increase confidence      |
+So sánh trực quan và định lượng giữa:
 
-Mỗi improvement phải trace được về problem hoặc research finding.
-
-## 8.3. Before vs. After
-
-So sánh:
-
-* Existing design
-* Redesigned/final design
-* Main change
-* Expected or measured improvement
-
-Nếu có evaluation data, ưu tiên dùng measured improvement thay vì chỉ nói expected improvement.
+* Quy trình/giao diện cũ (As-Is)
+* Thiết kế cải tiến hoàn thiện (To-Be)
+* Các chỉ số đo lường cải thiện thực tế
 
 ---
 
-# 11. Conclusion
+## Chương 9. Kết luận
 
-## 9.1. Summary
+### 9.1. Tổng kết đề tài
 
-Tóm tắt:
+Tóm tắt ngắn gọn hành trình của đề tài:
 
-**Initial Problem → Research → Design Solution → Evaluation → Final Result**
+**Vấn đề ban đầu (Proposal) → Nghiên cứu người dùng → Yêu cầu & Thiết kế → Bản mẫu tương tác → Đánh giá kiểm thử → Kết quả hoàn thiện**
 
-Không lặp lại toàn bộ báo cáo.
+### 9.2. Đóng góp của đề tài
 
-## 9.2. Contributions
+Nêu cụ thể những đóng góp của đồ án:
 
-Nêu những gì project đã đóng góp:
+* Cải thiện trải nghiệm đặt lịch và theo dõi chăm sóc thú cưng cho chủ nuôi bận rộn.
+* Bản mẫu tương tác hoàn chỉnh giải quyết triệt để 4 điểm đau cốt lõi trong Proposal.
+* Bộ dữ liệu nghiên cứu và kết quả đánh giá tính khả dụng thực tế.
 
-* UX improvement
-* Usability improvement
-* Design solution
-* Prototype
-* Research findings
-* Evaluation evidence
+### 9.3. Hạn chế của đề tài
 
-Chỉ nêu contribution có căn cứ.
+Nêu các giới hạn khách quan:
 
-## 9.3. Limitations
+* Quy mô mẫu khảo sát và kiểm thử còn khiêm tốn.
+* Bản mẫu tập trung vào trải nghiệm ứng dụng phía chủ nuôi, chưa tích hợp phần cứng camera giám sát trực tiếp tại cơ sở.
+* Thời gian kiểm thử giới hạn trong phạm vi đồ án môn học.
 
-Nêu các giới hạn thực tế, ví dụ:
+### 9.4. Hướng phát triển tương lai
 
-* Small sample size
-* Limited participant diversity
-* Prototype chưa fully functional
-* Limited testing duration
-* Limited research scope
-* Technical constraints
+Đề xuất định hướng mở rộng:
 
-Không cố che giấu limitation.
+* Mở rộng kiểm thử với nhóm người dùng đa dạng hơn.
+* Phát triển phân hệ dành cho nhân viên cơ sở chăm sóc để cập nhật mốc tiến độ tự động qua quét mã QR.
+* Tích hợp nhắc lịch tiêm chủng và gợi ý dịch vụ chăm sóc định kỳ cá nhân hóa.
 
-## 9.4. Future Work
-
-Đề xuất những việc có thể thực hiện tiếp:
-
-* Test với larger sample
-* Test với different user groups
-* Improve accessibility
-* Implement full functionality
-* Conduct additional usability testing
-* Improve design based on remaining issues
-
-Future work phải xuất phát từ limitation hoặc unresolved problem.
 
 ---
 
@@ -708,22 +660,38 @@ nếu chưa có dữ liệu.
 
 ---
 
+---
+
 # 17. Consistency Check
 
 Trước khi hoàn thành báo cáo, kiểm tra:
 
+### Proposal Alignment (Bắt buộc)
+
+* [ ] Tên đề tài, bối cảnh và bài toán khớp hoàn toàn với Proposal (`docs/proposal.md`)
+* [ ] Đối tượng người dùng mục tiêu và Persona nền tảng bám sát Proposal (chủ nuôi thú cưng bận rộn)
+* [ ] 4 trụ cột tính năng cốt lõi được kế thừa trung thực: Đặt lịch tức thì, Hồ sơ dặn dò dị ứng/thuốc, Theo dõi tiến độ 4 mốc thời gian thực, Lịch sử chăm sóc cá nhân hóa
+* [ ] So sánh quy trình hiện tại (As-Is) và quy trình đề xuất (To-Be) nhất quán với 6 bước trong Proposal
+* [ ] Không tự ý mở rộng phạm vi sản phẩm vượt ngoài định hướng Proposal đã duyệt
+
+### Heading Language (100% Tiếng Việt)
+
+* [ ] 100% tiêu đề chương (`\section`), mục (`\subsection`), tiểu mục (`\subsubsection`) là tiếng Việt thuần túy
+* [ ] Tuyệt đối không có tiêu đề dạng song ngữ mở ngoặc tiếng Anh kèm theo (như `Giới thiệu (Introduction)`, `Nghiên cứu người dùng (User Research)`...)
+* [ ] Tuyệt đối không có tiêu đề tiếng Anh thuần túy (như `Project Background`, `Target Users`...)
+
 ### Content
 
-* [ ] Background phù hợp với Problem Statement
-* [ ] Problem được hỗ trợ bởi User Research
-* [ ] Research Findings dẫn đến User Needs
-* [ ] User Needs dẫn đến Requirements
-* [ ] Requirements dẫn đến Design Goals
-* [ ] Design Problems được giải quyết bằng Design Decisions
-* [ ] Prototype phản ánh Design Decisions
-* [ ] Evaluation kiểm tra Design Goals
-* [ ] Results được dùng để giải thích Final Design
-* [ ] Conclusion phản ánh đúng Results
+* [ ] Bối cảnh đề tài phù hợp với Phát biểu bài toán
+* [ ] Vấn đề được hỗ trợ bởi Nghiên cứu người dùng
+* [ ] Kết quả nghiên cứu dẫn đến Nhu cầu người dùng
+* [ ] Nhu cầu người dùng dẫn đến Yêu cầu người dùng
+* [ ] Yêu cầu người dùng dẫn đến Mục tiêu thiết kế
+* [ ] Vấn đề quy trình cũ được giải quyết bằng các Quyết định thiết kế
+* [ ] Bản mẫu phản ánh đúng các Quyết định thiết kế
+* [ ] Đánh giá kiểm thử đo lường đúng Mục tiêu thiết kế
+* [ ] Kết quả đánh giá được dùng để giải thích Thiết kế cuối cùng
+* [ ] Kết luận phản ánh trung thực Kết quả đạt được
 
 ### Evidence
 
@@ -732,32 +700,30 @@ Trước khi hoàn thành báo cáo, kiểm tra:
 * [ ] Không có fabricated results
 * [ ] Không có fabricated citations
 * [ ] Không có unsupported claims
-* [ ] Prototype không bị mô tả thành fully functional software
+* [ ] Bản mẫu không bị mô tả thành fully functional software
 
 ### Structure
 
-* [ ] Đủ Chapter 1–9
-* [ ] Đủ subsection theo template
-* [ ] Figures được đánh số
-* [ ] Tables được đánh số
-* [ ] References đầy đủ
-* [ ] Appendix chứa supplementary materials nếu cần
+* [ ] Đủ Chương 1–9 chuẩn HCI
+* [ ] Đủ các mục con theo template tiếng Việt
+* [ ] Hình ảnh (Figures) được đánh số và chú thích
+* [ ] Bảng biểu (Tables) được đánh số và chú thích
+* [ ] Danh mục Tài liệu tham khảo đầy đủ
+* [ ] Phụ lục (Appendix) chứa Ma trận Bằng chứng và Bảng đóng góp thành viên
 
 ### Submission
 
-* [ ] Title đúng yêu cầu hiện hành
-* [ ] Format đúng yêu cầu hiện hành
-* [ ] Page/word limit đúng yêu cầu
-* [ ] File naming đúng yêu cầu
-* [ ] Required sections đầy đủ
-* [ ] Links/attachments hoạt động
-* [ ] PDF render không lỗi
+* [ ] Tiêu đề đúng yêu cầu hiện hành
+* [ ] Định dạng đúng yêu cầu hiện hành
+* [ ] Dung lượng / số trang đúng quy định (>6 trang)
+* [ ] File PDF hoàn tất `report.pdf` đã được sao chép ra ngoài cùng thư mục báo cáo
+* [ ] PDF render không lỗi cú pháp hoặc tràn chữ
 
 ---
 
-# 18. Quy trình tự động Build LaTeX thông minh (Dual-Mode Automated Build)
+# 18. Quy trình tự động Build LaTeX thông minh & Xuất bản `report.pdf`
 
-Mỗi khi có **bất kỳ thay đổi nào** trong nội dung báo cáo (file `.tex`, hình ảnh, bảng biểu, trích dẫn, references hoặc file phụ trợ), `report-agent` **PHẢI tự động chạy tiến trình build PDF** theo cơ chế 2 trường hợp (Dual-Mode):
+Mỗi khi có **bất kỳ thay đổi nào** trong nội dung báo cáo (file `.tex`, hình ảnh, bảng biểu, trích dẫn, references hoặc file phụ trợ), `report-agent` **PHẢI tự động chạy tiến trình build PDF** theo cơ chế 2 trường hợp (Dual-Mode), sau đó **tự động sao chép file `build/main.pdf` ra ngoài cùng thư mục báo cáo với tên `report.pdf`**:
 
 ### 18.1. Cơ chế tự động phát hiện & Lựa chọn công cụ
 
@@ -767,13 +733,15 @@ Agent kiểm tra môi trường hệ thống để quyết định phương th�
 [Kiểm tra xelatex trên máy]
        │
        ├─► (Có sẵn compiler) ──► Trường hợp 1: Biên dịch trực tiếp qua Local XeLaTeX (Nhanh, không cần Docker)
+       │                         └──► Sao chép: build/main.pdf ➔ report.pdf
        │
        └─► (Chưa cài compiler) ─► Trường hợp 2: Biên dịch qua Docker Container (Chứa sẵn TeX Live + Font)
+                                 └──► Sao chép: build/main.pdf ➔ report.pdf
 ```
 
 ---
 
-### 18.2. Chi tiết 2 Trường hợp Biên dịch
+### 18.2. Chi tiết 2 Trường hợp Biên dịch & Tự động sao chép `report.pdf`
 
 #### Trường hợp 1: Sử dụng Compiler có sẵn trên máy (Local XeLaTeX)
 - **Áp dụng khi**: Máy host đã cài sẵn `MiKTeX` hoặc `TeX Live` (lệnh `xelatex` khả dụng).
@@ -782,10 +750,11 @@ Agent kiểm tra môi trường hệ thống để quyết định phương th�
   cd <thư_mục_chứa_file_tex>
   if (!(Test-Path build)) { New-Item -ItemType Directory build }
   xelatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=build <file_chính>.tex
+  if (Test-Path build/<file_chính>.pdf) { Copy-Item build/<file_chính>.pdf -Destination report.pdf -Force }
   ```
-- **Ví dụ cho sample hoặc final report:**
+- **Ví dụ cụ thể:**
   ```powershell
-  cd templates\report; if (!(Test-Path build)) { New-Item -ItemType Directory build }; xelatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=build main.tex
+  cd templates\report; if (!(Test-Path build)) { New-Item -ItemType Directory build }; xelatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=build main.tex; if (Test-Path build/main.pdf) { Copy-Item build/main.pdf -Destination report.pdf -Force }
   ```
 
 #### Trường hợp 2: Biên dịch qua Docker Image (Fallback Docker)
@@ -794,6 +763,7 @@ Agent kiểm tra môi trường hệ thống để quyết định phương th�
 - **Lệnh thực thi (PowerShell):**
   ```powershell
   docker run --rm --volume "${PWD}:/workspace" --workdir /workspace/<thư_mục_chứa_file_tex> ghcr.io/tinnguyen0706/latex-times-new-roman:latest latexmk -synctex=1 -interaction=nonstopmode -file-line-error -xelatex -outdir=build <file_chính>.tex
+  if (Test-Path <thư_mục_chứa_file_tex>/build/<file_chính>.pdf) { Copy-Item <thư_mục_chứa_file_tex>/build/<file_chính>.pdf -Destination <thư_mục_chứa_file_tex>/report.pdf -Force }
   ```
 - **Lệnh thực thi (Linux/Bash):**
   ```bash
@@ -801,16 +771,19 @@ Agent kiểm tra môi trường hệ thống để quyết định phương th�
     --volume "$PWD:/workspace" \
     --workdir /workspace/<thư_mục_chứa_file_tex> \
     ghcr.io/tinnguyen0706/latex-times-new-roman:latest \
-    latexmk -synctex=1 -interaction=nonstopmode -file-line-error -xelatex -outdir=build <file_chính>.tex
+    latexmk -synctex=1 -interaction=nonstopmode -file-line-error -xelatex -outdir=build <file_chính>.tex && \
+  cp <thư_mục_chứa_file_tex>/build/<file_chính>.pdf <thư_mục_chứa_file_tex>/report.pdf
   ```
 
 ---
 
 ### 18.3. Quy tắc bắt buộc sau khi Build
 
-1. **Kiểm tra Log & Exit Code**: Đảm bảo quá trình biên dịch trả về exit code 0, không có lỗi fatal (missing package, unescaped character như `&`, broken syntax).
-2. **Kiểm tra File đầu ra**: File PDF đầu ra phải xuất hiện tại `<thư_mục_chứa_file_tex>/build/<tên_file>.pdf` và có timestamp mới nhất.
-3. **Không đánh dấu hoàn thành nếu build lỗi**: Tuyệt đối không hoàn tất tác vụ hoặc báo cáo thành công nếu lệnh build PDF thất bại hoặc file PDF chưa được render.
+1. **Kiểm tra Log & Exit Code**: Đảm bảo quá trình biên dịch trả về exit code 0, không có lỗi fatal (missing package, unescaped character, broken syntax).
+2. **Kiểm tra File đầu ra `report.pdf`**:
+   - File PDF gốc được tạo tại `<thư_mục_chứa_file_tex>/build/main.pdf`.
+   - File xuất bản cuối cùng **BẮT BUỘC** phải xuất hiện tại `<thư_mục_chứa_file_tex>/report.pdf` (nằm ở ngoài cùng thư mục báo cáo, cùng cấp với `main.tex`) và có timestamp mới nhất.
+3. **Không đánh dấu hoàn thành nếu build lỗi hoặc thiếu `report.pdf`**: Tuyệt đối không hoàn tất tác vụ hoặc báo cáo thành công nếu lệnh build thất bại hoặc file `report.pdf` chưa được sao chép ra ngoài cùng.
 
 ---
 
@@ -818,29 +791,25 @@ Agent kiểm tra môi trường hệ thống để quyết định phương th�
 
 Chỉ gọi báo cáo là **submission-ready** khi:
 
-1. Nội dung đã hoàn chỉnh.
-2. Evidence đã được kiểm tra.
-3. Citation đã được kiểm tra.
-4. Structure đúng yêu cầu.
-5. Formatting đúng yêu cầu.
+1. Nội dung đã hoàn chỉnh và bám sát Proposal.
+2. 100% tiêu đề chương và mục là Tiếng Việt thuần túy, không mở ngoặc tiếng Anh.
+3. Evidence đã được kiểm tra và truy vết đầy đủ.
+4. Citation đã được kiểm tra.
+5. Structure đúng yêu cầu 9 chương chuẩn HCI.
 6. PDF đã được tự động build và render thành công (qua Local XeLaTeX hoặc Docker).
-7. PDF đã được mở/kiểm tra trực quan.
+7. File `report.pdf` đã hiện diện ở ngoài cùng thư mục báo cáo và được kiểm tra trực quan.
 8. Không có:
-
    * Broken links
-   * Missing figures
-   * Missing tables
+   * Missing figures / tables
    * Overflowing text
    * Blank pages bất thường
-   * Broken characters
+   * Broken characters / font issues
    * Incorrect page numbering
    * Inconsistent headings
 
 Nếu còn lỗi, trạng thái phải là:
 
 **DRAFT / NEEDS REVISION**
-
-Không gọi là submission-ready khi chưa qua validation.
 
 ---
 
@@ -850,15 +819,14 @@ Agent phải phân biệt rõ ba trạng thái:
 
 ### DRAFT
 
-Báo cáo còn thiếu evidence hoặc chưa hoàn thiện.
+Báo cáo còn thiếu evidence, chưa bám sát Proposal hoặc chưa hoàn thiện nội dung.
 
 ### REVIEW-READY
 
-Nội dung đã tương đối hoàn chỉnh nhưng còn cần human review hoặc format validation.
+Nội dung đã hoàn chỉnh theo Proposal, tiêu đề 100% tiếng Việt, đã build ra `report.pdf` nhưng còn cần human review hoặc format validation.
 
 ### SUBMISSION-READY
 
-Đã hoàn tất content, evidence, citation, formatting và PDF validation.
+Đã hoàn tất content bám sát Proposal, evidence, citation, formatting, tiêu đề 100% tiếng Việt, PDF validation và file `report.pdf` hoàn chỉnh ở ngoài cùng thư mục báo cáo.
 
-Không tự nâng trạng thái chỉ vì đã viết đủ các chapter.
 

@@ -2,44 +2,54 @@
 
 ## Mục đích
 
-Tổng hợp research, design, implementation và evaluation thành báo cáo tự chứa, đúng format và có claim truy vết được.
+Tổng hợp toàn bộ quá trình nghiên cứu và thiết kế dựa trên Proposal đã duyệt, user research, requirements, existing system analysis, design artifacts, prototype, evaluation results và evidence thành báo cáo tự chứa, đúng format chuẩn môn học và có claim truy vết được.
 
 ## Dùng skill này khi
 
-- Các deliverable 1–8 đã duyệt và có evidence kiểm thử thật.
-- Cần soạn, cập nhật hoặc kiểm tra báo cáo cuối kỳ.
-- Cần đối chiếu title, format và nội dung với yêu cầu nộp hiện hành.
+- Cần soạn, cập nhật hoặc hoàn thiện báo cáo cuối kỳ HCI/UX.
+- Báo cáo phải bắt buộc viết dựa trên Proposal (`docs/proposal.md`) và tuân thủ tiêu đề 100% tiếng Việt (không mở ngoặc tiếng Anh).
+- **Quy tắc cô lập template**: Mỗi lần viết báo cáo, bắt buộc sao chép template từ `templates/report/` sang `docs/` rồi mới làm; **tuyệt đối KHÔNG sửa trực tiếp vào thư mục `templates/report/`**.
+- Các deliverable 1–8 đã duyệt và có evidence kiểm thử thực tế.
+- Cần đối chiếu format, cấu trúc và tiêu chuẩn rubric submission.
 
 ## Input bắt buộc
 
+- **Tài liệu Proposal (`docs/proposal.md`) — Căn cứ nền tảng bắt buộc số 1**: Kế thừa toàn bộ bài toán, đối tượng chủ nuôi bận rộn, điểm đau quy trình cũ, 4 trụ cột giải pháp cốt lõi và luồng quy trình As-Is / To-Be.
 - `deliverables/01-user-research/`.
 - `deliverables/02-interaction-design/`.
 - `deliverables/03-software-product/`.
 - Yêu cầu hiện hành trong `data/submission-inputs/`.
-- Đọc template báo cáo LaTeX trong `templates/report/` (`main.tex`, thư mục `content/` gồm 9 chương và `ref/appendix.tex`), hướng dẫn build trong `templates/report/README.md`, proposal và rubric.
+- Template báo cáo LaTeX trong `templates/report/` (dùng để copy sang `docs/` làm việc), hướng dẫn build trong `templates/report/README.md` và rubric chấm điểm.
 
 ## Output
 
-`deliverables/04-final-submission/report/` gồm source LaTeX (`main.tex`, `content/`, `ref/`), hình/bảng có nguồn và bản PDF đã build/kiểm tra (`build/main.pdf`).
+Thư mục làm việc tại `docs/` (và đóng gói nộp tại `deliverables/04-final-submission/report/`) gồm:
+- Source LaTeX hoàn chỉnh (`main.tex`, `content/`, `ref/`, `title/`, `style.sty`).
+- Thư mục hình ảnh / bảng biểu minh họa.
+- File PDF biên dịch tạm thời trong `build/main.pdf`.
+- **File PDF hoàn tất cuối cùng `report.pdf`** được tự động sao chép ra ngoài cùng thư mục báo cáo trong `docs/` (ngang cấp với `main.tex`).
 
-## Cấu trúc 9 chương chuẩn HCI (tương ứng các file trong template LaTeX)
+## Cấu trúc 9 chương chuẩn HCI (100% Tiếng Việt, Tuyệt đối không mở ngoặc Tiếng Anh)
 
-- **Chương 1. Giới thiệu (Introduction)** (`content/01_gioi_thieu.tex`): 1.1 Project Background, 1.2 Problem Statement, 1.3 Project Objectives, 1.4 Project Scope.
-- **Chương 2. Nghiên cứu người dùng (User Research)** (`content/02_nghien_cuu_nguoi_dung.tex`): 2.1 Target Users, 2.2 Research Methods, 2.3 Research Findings, 2.4 User Needs / Pain Points, 2.5 Personas.
-- **Chương 3. Yêu cầu và mục tiêu thiết kế (Requirements & Design Goals)** (`content/03_yeu_cau_muc_tieu.tex`): 3.1 User Requirements, 3.2 Usability Goals, 3.3 Design Goals.
-- **Chương 4. Phân tích hệ thống và trải nghiệm hiện tại (Existing System Analysis)** (`content/04_phan_tich_hien_tai.tex`): 4.1 Existing System / Interface, 4.2 Task Analysis, 4.3 User Flow / Task Flow, 4.4 Usability Problems.
-- **Chương 5. Quá trình thiết kế (Design Process)** (`content/05_qua_trinh_thiet_ke.tex`): 5.1 Information Architecture, 5.2 User Flow, 5.3 Ideation, 5.4 Storyboards, 5.5 Wireframes, 5.6 Design Alternatives.
-- **Chương 6. Thiết kế Prototype (Prototype Design)** (`content/06_thiet_ke_prototype.tex`): 6.1 Prototype Overview, 6.2 Prototype Screens, 6.3 Interaction Design, 6.4 Design Rationale.
-- **Chương 7. Đánh giá thiết kế (Design Evaluation)** (`content/07_danh_gia_thiet_ke.tex`): 7.1 Evaluation Objectives, 7.2 Evaluation Method, 7.3 Participants, 7.4 Tasks, 7.5 Metrics, 7.6 Procedure, 7.7 Results, 7.8 Discussion.
-- **Chương 8. Thiết kế cuối cùng (Final Design)** (`content/08_thiet_ke_cuoi_cung.tex`): 8.1 Final Prototype, 8.2 Key Design Improvements, 8.3 Before vs. After.
-- **Chương 9. Kết luận (Conclusion)** (`content/09_ket_luan.tex`): 9.1 Summary, 9.2 Contributions, 9.3 Limitations, 9.4 Future Work.
-- **Tài liệu tham khảo (References)** (`ref/ref.tex`, `ref/ref.bib`) & **Phụ lục (Appendix)** (`ref/appendix.tex`).
+- **Chương 1. Giới thiệu** (`content/01_gioi_thieu.tex`): 1.1 Bối cảnh đề tài, 1.2 Phát biểu bài toán, 1.3 Mục tiêu đề tài, 1.4 Phạm vi đề tài.
+- **Chương 2. Nghiên cứu người dùng** (`content/02_nghien_cuu_nguoi_dung.tex`): 2.1 Đối tượng người dùng mục tiêu, 2.2 Phương pháp nghiên cứu, 2.3 Kết quả nghiên cứu, 2.4 Nhu cầu và điểm đau của người dùng, 2.5 Chân dung người dùng.
+- **Chương 3. Yêu cầu và mục tiêu thiết kế** (`content/03_yeu_cau_muc_tieu.tex`): 3.1 Yêu cầu người dùng, 3.2 Mục tiêu trải nghiệm người dùng, 3.3 Mục tiêu thiết kế.
+- **Chương 4. Phân tích hệ thống và trải nghiệm hiện tại** (`content/04_phan_tich_hien_tai.tex`): 4.1 Hệ thống và quy trình hiện tại, 4.2 Phân tích tác vụ, 4.3 Luồng người dùng và quy trình tác vụ, 4.4 Các vấn đề về trải nghiệm người dùng.
+- **Chương 5. Quá trình thiết kế** (`content/05_qua_trinh_thiet_ke.tex`): 5.1 Kiến trúc thông tin, 5.2 Luồng thao tác người dùng, 5.3 Phác thảo và phát triển ý tưởng, 5.4 Bảng phân cảnh, 5.5 Khung giao diện, 5.6 Các phương án thiết kế.
+- **Chương 6. Thiết kế bản mẫu tương tác** (`content/06_thiet_ke_prototype.tex`): 6.1 Tổng quan bản mẫu, 6.2 Các màn hình bản mẫu, 6.3 Thiết kế tương tác, 6.4 Lý giải thiết kế.
+- **Chương 7. Đánh giá thiết kế** (`content/07_danh_gia_thiet_ke.tex`): 7.1 Mục tiêu đánh giá, 7.2 Phương pháp đánh giá, 7.3 Người tham gia đánh giá, 7.4 Tác vụ kiểm thử, 7.5 Chỉ số đo lường, 7.6 Quy trình đánh giá, 7.7 Kết quả đánh giá, 7.8 Thảo luận và phân tích.
+- **Chương 8. Thiết kế cuối cùng** (`content/08_thiet_ke_cuoi_cung.tex`): 8.1 Bản mẫu hoàn thiện, 8.2 Các cải tiến thiết kế then chốt, 8.3 So sánh trước và sau cải tiến.
+- **Chương 9. Kết luận** (`content/09_ket_luan.tex`): 9.1 Tổng kết đề tài, 9.2 Đóng góp của đề tài, 9.3 Hạn chế của đề tài, 9.4 Hướng phát triển tương lai.
+- **Lời cảm ơn** (`ref/acknowledgement.tex`), **Tài liệu tham khảo** (`ref/ref.tex`, `ref/ref.bib`) & **Phụ lục** (`ref/appendix.tex`).
 
 ## Workflow
 
-1. Đọc và tải cấu trúc template báo cáo LaTeX trong `templates/report/` (`main.tex`, `content/`, `ref/`), lập ma trận phần báo cáo → evidence.
-2. Viết/cập nhật từng chương báo cáo LaTeX theo đúng cấu trúc và cú pháp của template.
-3. Tự động chạy build PDF ngay sau khi có thay đổi trong source báo cáo: ưu tiên dùng compiler cục bộ (`xelatex` trên máy host); nếu máy chưa có compiler thì fallback tự động sang Docker image `ghcr.io/tinnguyen0706/latex-times-new-roman:latest`.
-4. Kiểm tra mọi claim, hình, bảng, link và thuật ngữ; kiểm tra file PDF đã render trong thư mục `build/`.
-5. Đối chiếu format, title, độ dài và danh mục yêu cầu hiện hành.
-6. Ghi version, gap và human sign-off còn thiếu.
+1. **Khởi tạo & Cô lập Template**: Tuyệt đối KHÔNG sửa trực tiếp vào `templates/report/`. Mỗi lần viết báo cáo, sao chép toàn bộ template từ `templates/report/` sang `docs/`.
+2. **Nghiên cứu Proposal & Lập ma trận**: Đọc kỹ Proposal (`docs/proposal.md`) và ma trận phần báo cáo → evidence đã duyệt.
+3. **Soạn thảo nội dung**: Viết/cập nhật từng chương báo cáo LaTeX trong `docs/` theo đúng cấu trúc tiếng Việt chuẩn mực; đảm bảo 100% tiêu đề là tiếng Việt thuần túy, không mở ngoặc tiếng Anh.
+4. **Tự động build PDF**: Chạy build PDF ngay khi có thay đổi (ưu tiên XeLaTeX trên máy, fallback Docker).
+5. **Xuất bản `report.pdf`**: Sau khi biên dịch thành công `build/main.pdf`, tự động sao chép ra ngoài cùng thư mục `docs/` và đổi tên thành `report.pdf`.
+6. **Kiểm thử chất lượng**: Kiểm tra mọi claim, hình, bảng, link, thuật ngữ, tính nhất quán với Proposal và kiểm tra trực quan file `docs/report.pdf`.
+7. **Nghiệm thu**: Đối chiếu checklist submission và ghi nhận trạng thái báo cáo (DRAFT / REVIEW-READY / SUBMISSION-READY).
+
+
