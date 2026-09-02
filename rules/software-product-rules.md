@@ -7,6 +7,9 @@ Rule này áp dụng cho việc xây dựng và nghiệm thu ứng dụng web Re
 - `docs/final-rubric.csv` là nguồn duy nhất cho mức điểm: mức cao nhất yêu cầu cài đặt trọn vẹn 100% quy trình nghiệp vụ có tính năng tương tác mới/cải tiến.
 - Prototype quyết định chuỗi tương tác và System Feedback đã duyệt.
 - Wireframe quyết định Information Architecture, Component, Design Tokens và các UI state.
+- **Prototype Coverage Contract bắt buộc:** trước khi sửa code phải kiểm kê toàn bộ SVG trong `deliverables/02-interaction-design/prototype/`. Mỗi SVG phải được ánh xạ tới ít nhất một route/state React, User Action, System Feedback và automated test trong `deliverables/03-software-product/prototype-coverage.md`.
+- Không được coi một màn hình Wireframe có nội dung tương tự là đã thay thế Prototype. Wireframe chỉ được dùng làm khung bố cục; mọi bước trung gian, nhánh rẽ, trạng thái trước/sau thao tác và phản hồi có trong Prototype phải xuất hiện trong luồng app hoặc được ánh xạ rõ vào một state động tương đương.
+- Nếu còn bất kỳ SVG Prototype nào có trạng thái `Thiếu`, `Tĩnh`, `Không có handler` hoặc `Chưa test`, Software Product chưa được tuyên bố hoàn chỉnh.
 - Scenario Future, Persona và dữ liệu nghiên cứu quyết định nội dung nghiệp vụ. Không dùng chi tiết không truy vết được chỉ vì nó xuất hiện trong một màn hình minh họa.
 - Người dùng cuối là Pet Owner. Không hiện thực dashboard nhân viên, điều phối viên hoặc quản trị trừ khi đó chỉ là System Feedback nhìn từ phía Pet Owner đã có trong thiết kế được duyệt.
 
@@ -79,5 +82,6 @@ Chỉ được kết luận đạt 100% khi tất cả gate sau đều đạt:
 8. **Responsive:** không tràn ngang ở viewport mục tiêu và vẫn dùng được ở các kích thước kiểm tra hợp lý.
 9. **Frontend-only:** không có backend/live API hoặc tuyên bố real-time sai bản chất.
 10. **Verification:** typecheck, automated tests và production build đều đã chạy thành công; kết quả được ghi trung thực.
+11. **Prototype coverage:** 100% SVG Prototype có mapping route/state/action/feedback/test; các chuỗi Persona/Goal chạy được từ entry point đến Goal Completed mà không phải sửa URL thủ công.
 
 Nếu bất kỳ gate nào chưa đạt, báo phần trăm theo bằng chứng hiện có hoặc ghi “chưa đủ cơ sở kết luận”; không làm tròn thành 100%.

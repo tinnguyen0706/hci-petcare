@@ -12,4 +12,8 @@ references/**/*.pptx
 __pycache__/
 *.py[cod]
 deliverables/
-docs/build
+node_modules
+dist/
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
