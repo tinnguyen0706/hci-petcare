@@ -6,6 +6,9 @@
 
 1. Xác nhận Prototype, Wireframe và `wireframe-spec.md` tồn tại, có nội dung thực.
 2. Kiểm kê các Persona/Goal và màn hình Prototype có liên quan.
+   - Liệt kê 100% SVG Prototype, không chỉ các màn hình trùng tên Wireframe.
+   - Tạo/cập nhật `deliverables/03-software-product/prototype-coverage.md` với các cột Prototype → route/state → User Action → System Feedback → test → trạng thái.
+   - Đếm số màn hình nguồn, số đã ánh xạ và số còn thiếu. Chỉ được chuyển giai đoạn khi số còn thiếu bằng 0 hoặc đã ghi rõ blocker.
 3. Đọc `wireframe-spec.md`, lập bảng làm việc nội bộ ánh xạ:
    - quy trình nghiệp vụ;
    - User Action;
@@ -14,6 +17,7 @@
    - dữ liệu nguồn;
    - trạng thái Main, Loading, Empty, Error và Success.
 4. Nếu Prototype và Wireframe mâu thuẫn về hành vi, dừng và báo xung đột; không tự chọn một bên.
+5. Nếu Prototype có bước trung gian mà Wireframe không có, giữ bố cục/design tokens của Wireframe nhưng bắt buộc bổ sung bước và hành vi từ Prototype vào app.
 
 ## Giai đoạn 2 — Chốt Coverage Contract 100%
 

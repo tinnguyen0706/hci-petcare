@@ -31,6 +31,8 @@ Bắt buộc phải có artifact thực trong cả hai thư mục:
 
 Wireframe phải có `wireframe-spec.md` và các SVG Main Flow cần thiết. Nếu thiếu một tiền điều kiện, dừng trước khi tạo hoặc sửa mã Software Product và báo đúng artifact còn thiếu.
 
+Việc thư mục Prototype chỉ “tồn tại” chưa đủ. Phải kiểm kê toàn bộ SVG theo Persona/Goal và lập `deliverables/03-software-product/prototype-coverage.md`. Không được bắt đầu tuyên bố hoàn chỉnh khi còn Prototype chưa có route/state/action/feedback/test tương ứng.
+
 ## Phạm vi kỹ thuật
 
 - React + TypeScript, CSS hiện đại, mobile-first.
@@ -60,4 +62,5 @@ Chỉ báo Software Product đạt 100% khi:
 - Không có dữ liệu bịa hoặc tuyên bố sai về backend/real-time.
 - Lệnh typecheck, test và production build đã chạy thành công trên phiên bản bàn giao.
 - Ma trận truy vết và kết quả kiểm thử có bằng chứng tái kiểm chứng được.
+- 100% màn hình Prototype đã được ánh xạ và toàn bộ chuỗi Persona/Goal thao tác được trong app; Wireframe không được dùng để che lấp bước Prototype còn thiếu.
 
