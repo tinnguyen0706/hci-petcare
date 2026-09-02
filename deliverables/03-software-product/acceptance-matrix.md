@@ -26,14 +26,14 @@ Toàn bộ code, entry, package/config và dependency của Software Product n�
 |---|---|---|
 | Precondition | 32 Wireframe SVG, Prototype theo các goal và `wireframe-spec.md` | Đạt |
 | Visual fidelity | Runtime dùng trực tiếp 32 SVG nguồn; không thiết kế lại Information Architecture | Đạt |
-| Prototype coverage | Đã inventory và ánh xạ đủ 42/42 Prototype; 21 SVG Prototype dùng trực tiếp, các state tương đương còn lại có handler/test; đủ 8/8 Goal | Đạt |
+| Prototype coverage | Đã inventory và ánh xạ đủ 37/37 Prototype; Persona 2 còn 3 Goal đúng thứ tự, luồng Intake dùng form chung theo `activeBooking`; đủ 7/7 Goal | Đạt |
 | Interaction | Mọi chuỗi chính có handler và state transition quan sát được; Back toàn cục trở về đúng màn trước; 52 màn có Bottom Navigation đều đủ bốn hotspot Trang chủ/Đặt lịch/Tiến độ/Hồ sơ | Đạt |
 | Improvement | Auto-attach dặn dò, instant confirmation, bốn mốc Tracking, Rebook | Đạt |
 | Consistency | Một `AppState` local dùng chung; Booking đồng bộ Pet/Service/ngày/giờ/tiến độ; ma trận Miu chỉ active đúng lựa chọn hiện tại, không tô cố định giờ khuyến nghị | Đạt |
 | Accessibility | Native button/input/dialog, accessible name, `aria-pressed`, focus-visible | Đạt qua code review/test |
 | Responsive | Canvas giữ tỷ lệ 430×932; mobile bỏ padding/khung desktop | Đạt qua CSS và ảnh render History/Notification 430×932 |
 | Frontend-only | Không có backend hoặc live API; mô phỏng được ghi rõ | Đạt |
-| Verification | Typecheck hiện tại thành công; baseline 28/28 test và build thành công. Bộ 37 test/build sau thay đổi đang chờ chạy lại do sandbox chặn tiến trình Vite (`spawn EPERM`) | Cần chạy lại |
+| Verification | Typecheck thành công; 39/39 test đạt; production build thành công với 67 modules transformed; 15/15 SVG Persona 2 đạt validator | Đạt |
 
 ## Giới hạn minh bạch
 

@@ -1,3 +1,9 @@
 \newpage
-\nocite{*}
-\printbibliography[title={Tài liệu tham khảo}, heading=bibintoc]
+\printbibheading[title={Tài liệu tham khảo}, heading=bibintoc]
+
+\printbibliography[heading=subbibliography, title={Tiếng Việt}, keyword=Viet]
+
+\DeclareNameAlias{sortname}{family-given}
+\DeclareNameAlias{default}{family-given}
+
+\printbibliography[heading=subbibliography, title={Tiếng Anh}, notkeyword=Viet]

@@ -8,9 +8,9 @@ import confirmation from '../deliverables/02-interaction-design/wireframe/07_boo
 import profiles from '../deliverables/02-interaction-design/wireframe/08_pet_profiles_management_wireframe.svg'
 import medical from '../deliverables/02-interaction-design/wireframe/09_medical_profile_allergies_wireframe.svg'
 import vaccination from '../deliverables/02-interaction-design/wireframe/10_digital_vaccination_health_book_wireframe.svg'
-import checkin from '../deliverables/02-interaction-design/wireframe/11_reception_qr_checkin_wireframe.svg'
+import checkin from '../deliverables/02-interaction-design/prototype/persona-1/goal-2/02_qr_intake_scan.svg'
 import intake from '../deliverables/02-interaction-design/wireframe/12_live_intake_handoff_confirmation_wireframe.svg'
-import handover from '../deliverables/02-interaction-design/wireframe/13_handover_protocol_dual_layer_wireframe.svg'
+import handover from '../deliverables/02-interaction-design/prototype/persona-1/goal-2/06_confirmed_handoff_peace_of_mind.svg'
 import tracking1 from '../deliverables/02-interaction-design/wireframe/14_live_tracking_step1_received_wireframe.svg'
 import tracking2 from '../deliverables/02-interaction-design/wireframe/15_live_tracking_step2_in_progress_wireframe.svg'
 import tracking3 from '../deliverables/02-interaction-design/wireframe/16_live_tracking_step3_care_completed_wireframe.svg'
@@ -38,25 +38,20 @@ import pushReady from '../deliverables/02-interaction-design/prototype/persona-1
 import productVerified from '../deliverables/02-interaction-design/prototype/persona-1/goal-4/04_herbal_shampoo_product_verified.svg'
 import technicianNotes from '../deliverables/02-interaction-design/prototype/persona-1/goal-4/05_technician_notes_skin_health.svg'
 import productSaved from '../deliverables/02-interaction-design/prototype/persona-1/goal-4/06_save_product_for_next_care.svg'
-import costBreakdown from '../deliverables/02-interaction-design/prototype/persona-2/goal-4/02_service_cost_breakdown.svg'
-import monthlySummary from '../deliverables/02-interaction-design/prototype/persona-2/goal-4/04_monthly_expense_summary.svg'
-import budgetPlan from '../deliverables/02-interaction-design/prototype/persona-2/goal-4/05_next_month_budget_plan.svg'
+import costBreakdown from '../deliverables/02-interaction-design/prototype/persona-2/goal-3/02_service_cost_breakdown.svg'
+import monthlySummary from '../deliverables/02-interaction-design/prototype/persona-2/goal-3/04_monthly_expense_summary.svg'
+import budgetPlan from '../deliverables/02-interaction-design/prototype/persona-2/goal-3/05_next_month_budget_plan.svg'
 import miuTimeMatrix from '../deliverables/02-interaction-design/prototype/persona-2/goal-1/01_time_matrix_view.svg'
 import miuSlotSelected from '../deliverables/02-interaction-design/prototype/persona-2/goal-1/02_slot_selection.svg'
 import miuService from '../deliverables/02-interaction-design/prototype/persona-2/goal-1/03_service_selection.svg'
 import miuReview from '../deliverables/02-interaction-design/prototype/persona-2/goal-1/04_booking_review.svg'
 import miuSuccess from '../deliverables/02-interaction-design/prototype/persona-2/goal-1/05_instant_lock_success.svg'
-import miuProfileSafety from '../deliverables/02-interaction-design/prototype/persona-2/goal-2/01_pet_profile_safety_notes.svg'
-import miuBookingWarning from '../deliverables/02-interaction-design/prototype/persona-2/goal-2/02_booking_auto_link_warning.svg'
-import miuHandoff from '../deliverables/02-interaction-design/prototype/persona-2/goal-2/03_store_handoff_intake_view.svg'
-import miuIsolation from '../deliverables/02-interaction-design/prototype/persona-2/goal-2/04_isolation_protocol_confirmed.svg'
-import miuSafety from '../deliverables/02-interaction-design/prototype/persona-2/goal-2/05_live_care_safety_status.svg'
 
-export const screenAssets = { home, notifications, notificationSettings, service, timeslot, multiPet, confirmation, profiles, medical, vaccination, checkin, intake, handover, tracking1, tracking2, tracking3, tracking4, parallelTracking, camera, discharge, inspection, review, history, session, rebook, budget, invoice, loading, empty, error, networkError, success, appointmentCheckin, medicalAlert, careProtocol, safetyLocked, pushReady, productVerified, technicianNotes, productSaved, costBreakdown, monthlySummary, budgetPlan, miuTimeMatrix, miuSlotSelected, miuService, miuReview, miuSuccess, miuProfileSafety, miuBookingWarning, miuHandoff, miuIsolation, miuSafety } as const
+export const screenAssets = { home, notifications, notificationSettings, service, timeslot, multiPet, confirmation, profiles, medical, vaccination, checkin, intake, handover, tracking1, tracking2, tracking3, tracking4, parallelTracking, camera, discharge, inspection, review, history, session, rebook, budget, invoice, loading, empty, error, networkError, success, appointmentCheckin, medicalAlert, careProtocol, safetyLocked, pushReady, productVerified, technicianNotes, productSaved, costBreakdown, monthlySummary, budgetPlan, miuTimeMatrix, miuSlotSelected, miuService, miuReview, miuSuccess } as const
 export type ScreenId = keyof typeof screenAssets
 
 export const screenNames: Record<ScreenId, string> = {
-  home:'Trang chủ', notifications:'Trung tâm thông báo', notificationSettings:'Cài đặt thông báo', service:'Chọn gói dịch vụ', timeslot:'Chọn khung giờ', multiPet:'Đặt lịch nhiều thú cưng', confirmation:'Xác nhận lịch hẹn', profiles:'Quản lý hồ sơ thú cưng', medical:'Hồ sơ y tế và dị ứng', vaccination:'Sổ sức khỏe và tiêm chủng', checkin:'Mã QR tiếp nhận', intake:'Xác nhận tiếp nhận', handover:'Biên bản bàn giao', tracking1:'Tiến độ mốc 1', tracking2:'Tiến độ mốc 2', tracking3:'Tiến độ mốc 3', tracking4:'Tiến độ mốc 4', parallelTracking:'Theo dõi song song', camera:'Ảnh phòng cách ly', discharge:'Mã QR nhận bé', inspection:'Báo cáo trước và sau', review:'Đánh giá dịch vụ', history:'Lịch sử chăm sóc', session:'Chi tiết lượt chăm sóc', rebook:'Đặt lại một chạm', budget:'Ngân sách tháng', invoice:'Hóa đơn điện tử', loading:'Đang tải', empty:'Chưa có lịch đang chạy', error:'Xung đột dị ứng', networkError:'Mất kết nối', success:'Đặt lịch thành công',
+  home:'Trang chủ', notifications:'Trung tâm thông báo', notificationSettings:'Cài đặt thông báo', service:'Chọn gói dịch vụ', timeslot:'Chọn khung giờ', multiPet:'Đặt lịch nhiều thú cưng', confirmation:'Xác nhận lịch hẹn', profiles:'Quản lý hồ sơ thú cưng', medical:'Hồ sơ y tế và dị ứng', vaccination:'Sổ sức khỏe và tiêm chủng', checkin:'Mã QR tiếp nhận', intake:'Xác nhận tiếp nhận', handover:'Tiếp nhận hoàn tất', tracking1:'Tiến độ mốc 1', tracking2:'Tiến độ mốc 2', tracking3:'Tiến độ mốc 3', tracking4:'Tiến độ mốc 4', parallelTracking:'Theo dõi song song', camera:'Ảnh phòng cách ly', discharge:'Mã QR nhận bé', inspection:'Báo cáo trước và sau', review:'Đánh giá dịch vụ', history:'Lịch sử chăm sóc', session:'Chi tiết lượt chăm sóc', rebook:'Đặt lại một chạm', budget:'Ngân sách tháng', invoice:'Hóa đơn điện tử', loading:'Đang tải', empty:'Chưa có lịch đang chạy', error:'Xung đột dị ứng', networkError:'Mất kết nối', success:'Đặt lịch thành công',
   appointmentCheckin:'Lịch hẹn tiếp nhận', medicalAlert:'Cảnh báo y tế tiếp nhận', careProtocol:'Đối chiếu phương án chăm sóc', safetyLocked:'Cam kết an toàn đã khóa', pushReady:'Thông báo sẵn sàng đón', productVerified:'Sản phẩm đã xác minh', technicianNotes:'Ghi chú tình trạng da', productSaved:'Đã lưu sản phẩm ưu tiên', costBreakdown:'Phân tích chi phí', monthlySummary:'Tổng chi tiêu tháng', budgetPlan:'Kế hoạch tài chính tháng tới',
-  miuTimeMatrix:'Ma trận thời gian thú cưng', miuSlotSelected:'Khung giờ phù hợp đã chọn', miuService:'Chọn dịch vụ cho Miu', miuReview:'Rà soát lịch hẹn của Miu', miuSuccess:'Đã khóa lịch cho Miu', miuProfileSafety:'Dặn dò an toàn của Miu', miuBookingWarning:'Dặn dò Miu đã tự động liên kết', miuHandoff:'Bàn giao Miu tại quầy', miuIsolation:'Xác nhận buồng cách ly của Miu', miuSafety:'Trạng thái chăm sóc an toàn của Miu',
+  miuTimeMatrix:'Ma trận thời gian thú cưng', miuSlotSelected:'Khung giờ phù hợp đã chọn', miuService:'Chọn dịch vụ cho Miu', miuReview:'Rà soát lịch hẹn của Miu', miuSuccess:'Đã khóa lịch cho Miu',
 }

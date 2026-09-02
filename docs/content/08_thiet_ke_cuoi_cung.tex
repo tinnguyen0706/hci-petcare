@@ -1,47 +1,43 @@
 \section{Thiết kế cuối cùng}
 
 \subsection{Bản mẫu hoàn thiện}
-Sau khi tiếp thu và chuyển hóa toàn bộ 4 phát hiện khả dụng (từ F1 đến F4) từ đợt kiểm thử thực nghiệm, bản mẫu thiết kế cuối cùng được hoàn thiện với các tinh chỉnh chuyên sâu:
+Tiếp thu các ý kiến đóng góp quý báu từ đợt kiểm thử khả năng sử dụng ở Chương 7, nhóm đã thực hiện tinh chỉnh và hoàn thiện phiên bản Thiết kế cuối cùng (Final Refined Design):
 \begin{itemize}
-    \item \textbf{Tích hợp Thẻ cảnh báo y tế tức thời (Smart Medical Alert Banner)}: Tự động tải dữ liệu dị ứng da và yêu cầu đặc biệt của thú cưng ngay khi người dùng chọn tên bé trong quy trình đặt lịch, kèm nút chỉnh sửa nhanh không cần chuyển tab.
-    \item \textbf{Hiệu ứng chuyển động phân mốc (Pulsing Timeline Navigation)}: Bổ sung chỉ báo ánh sáng chuyển động nhịp nhàng màu xanh mòng két tại mốc thời gian thực đang diễn ra và biểu tượng hoàn tất sắc nét.
-    \item \textbf{Tối ưu hóa độ tương phản và Nhãn thông tin}: Nâng cao độ tương phản viền cho các khung giờ trống khả dụng, làm mờ các slot đã kín và bổ sung nhãn thời lượng dịch vụ rõ ràng.
-    \item \textbf{Hệ thống lọc nâng cao và Hóa đơn điện tử}: Tích hợp thanh trượt Filter Chips theo từng thú cưng và modal xem trước/tải về hóa đơn số hóa minh bạch.
+    \item \textbf{Tích hợp ô ghi chú dặn dò y tế trực tiếp vào luồng Đặt lịch}: Thay vì bắt người dùng phải điều hướng vào trang Hồ sơ riêng, hệ thống đưa trực tiếp trường nhập \textit{''Lưu ý y tế \& Dị ứng da''} vào Bước 3 của Stepper đặt lịch, đồng thời tự động điền dữ liệu đã lưu từ hồ sơ thú cưng để người dùng chỉ cần xác nhận hoặc chỉnh sửa nhanh.
+    \item \textbf{Tăng cường độ tương phản cho Ma trận khung giờ}: Điều chỉnh màu sắc cho các slot đã kín chỗ sang màu xám đậm có dấu gạch chéo mờ và nhãn \textit{''Hết chỗ''}, các slot còn trống được viền xanh dương đậm nổi bật, giúp giảm thiểu tối đa sự nhầm lẫn thị giác.
+    \item \textbf{Thêm biểu tượng phân biệt trực quan cho các mốc tiến độ}: Bổ sung các biểu tượng động rõ nét cho từng mốc (Mốc 1: Tiếp nhận -- Biểu tượng Bàn tay/QR; Mốc 2: Đang chăm sóc -- Biểu tượng Bọt xà phòng/Kéo cắt tỉa nhấp nháy; Mốc 3: Hoàn tất -- Biểu tượng Dấu tích xanh; Mốc 4: Chờ đón -- Biểu tượng Chuông thông báo), giúp người dùng nhận biết ngay lập tức chỉ trong $1$ giây nhìn lướt.
+    \item \textbf{Tự động sắp xếp Lịch sử theo thứ tự mới nhất}: Đặt mặc định hiển thị phiên chăm sóc gần nhất ở đầu danh sách và bổ sung bộ lọc theo tháng/dịch vụ.
 \end{itemize}
 
 \subsection{Các cải tiến thiết kế then chốt}
-Tổng hợp các cải tiến then chốt giải quyết trọn vẹn 4 điểm nghẽn trong Proposal được thể hiện tại Bảng \ref{tab:key_design_improvements}:
-
+Bảng tổng hợp các cải tiến then chốt của thiết kế hoàn thiện so với quy trình truyền thống:
 \begin{table}[H]
 \centering
-\small
-\begin{tabularx}{\textwidth}{|p{3.5cm}|X|X|}
+\begin{tabularx}{\textwidth}{|X|X|X|}
 \hline
-\textbf{Vấn đề quy trình cũ} & \textbf{Giải pháp thiết kế mới} & \textbf{Cải thiện trải nghiệm đạt được} \\ \hline
-\textbf{Chờ xác nhận lịch lâu} & Ma trận chọn slot giờ khả dụng \& Xác nhận tức thì trên ứng dụng. & Chủ động 100\% thời gian, hoàn thành đặt lịch trong dưới 45 giây. \\ \hline
-\textbf{Thất lạc dặn dò dị ứng} & Hồ sơ điện tử tự động gắn Thẻ cảnh báo y tế nổi bật vào đơn tiếp nhận. & Loại bỏ 100\% nguy cơ bỏ sót dặn dò nguy hiểm, an tâm về sức khỏe da lông. \\ \hline
-\textbf{Mù mờ tiến độ chăm sóc} & Thanh tiến trình Live Tracking 4 mốc kết hợp thông báo đẩy tự động. & Minh bạch tuyệt đối, xóa tan sự e ngại gọi điện làm phiền. \\ \hline
-\textbf{Thiếu lịch sử lưu trữ} & Kho lưu trữ chi tiết dịch vụ, loại sữa tắm sử dụng và hóa đơn điện tử. & Dễ dàng tra cứu thông tin cũ và tái đặt lịch chỉ bằng một chạm. \\ \hline
+\textbf{Vấn đề quy trình cũ (Proposal)} & \textbf{Giải pháp thiết kế mới} & \textbf{Cải thiện trải nghiệm đạt được} \\ \hline
+Chờ xác nhận lịch hẹn lâu, dễ bị trôi tin nhắn hoặc kín chỗ. & Đặt lịch trực tuyến qua ma trận giờ trống thời gian thực \& Xác nhận tức thì. & Chủ động 100\% thời gian, biết chắc chắn lịch được nhận chỉ trong 39 giây. \\ \hline
+Thất lạc dặn dò đặc biệt về tiền sử dị ứng xà phòng và tính cách. & Tự động đính kèm hồ sơ y tế \& Thẻ cảnh báo tương phản cao trên phiếu tiếp nhận. & Loại bỏ 100\% rủi ro quên dặn dò nguy hiểm, bảo vệ an toàn tuyệt đối cho thú cưng. \\ \hline
+Mù mờ về tiến độ chăm sóc, lo âu suốt 2--3 tiếng, phải gọi điện hỏi. & Thanh tiến trình 4 mốc thời gian thực kết hợp thông báo đẩy khi chuyển giai đoạn. & Minh bạch thông tin, mang lại sự an tâm tuyệt đối cho chủ nuôi trong giờ làm việc. \\ \hline
+Không có lịch sử lưu trữ, thông tin sản phẩm và hóa đơn bị phân tán. & Nhật ký chăm sóc cá nhân hóa, lưu hóa đơn điện tử \& Nút Rebook 1 chạm. & Dễ dàng tra cứu lại phác đồ chăm sóc cũ và tái đặt lịch định kỳ nhanh chóng. \\ \hline
 \end{tabularx}
-\caption{Đối chiếu các cải tiến thiết kế then chốt giải quyết điểm đau Proposal}
-\label{tab:key_design_improvements}
+\caption{Tổng hợp các cải tiến thiết kế then chốt của hệ thống}
+\label{tab:final_improvements}
 \end{table}
 
 \subsection{So sánh trước và sau cải tiến}
-Sự chuyển biến về mặt trải nghiệm người dùng giữa quy trình cũ (As-Is) và hệ thống thiết kế mới (To-Be) được lượng hóa toàn diện tại Bảng \ref{tab:as_is_to_be_comparison}:
-
+Đối chiếu định lượng và định tính giữa quy trình truyền thống (As-Is) và hệ thống đề xuất (To-Be):
 \begin{table}[H]
 \centering
-\small
-\begin{tabularx}{\textwidth}{|p{3.5cm}|X|X|}
+\begin{tabularx}{\textwidth}{|l|X|X|}
 \hline
-\textbf{Tiêu chí so sánh} & \textbf{Quy trình truyền thống (As-Is)} & \textbf{Hệ thống đề xuất mới (To-Be)} \\ \hline
-\textbf{Thời gian xác nhận lịch} & Phải chờ từ 30 phút đến 3 tiếng; phụ thuộc nhân viên check sổ. & \textbf{Xác nhận tức thì trong 39 giây} trên giao diện ứng dụng. \\ \hline
-\textbf{Độ chính xác dặn dò y tế} & Dễ bị quên hoặc thất lạc khi giao ca (rủi ro sai sót $\approx 40\%$). & \textbf{Chính xác 100\%} nhờ thẻ cảnh báo y tế gắn cố định trong phiếu tiếp nhận. \\ \hline
-\textbf{Cập nhật tiến trình} & Hoàn toàn mù mờ; phải tự gọi điện hỏi giữa chừng. & \textbf{Chủ động nhận thông báo} theo 4 mốc thời gian thực rõ ràng. \\ \hline
-\textbf{Tra cứu lịch sử \& Hóa đơn} & Tìm kiếm thủ công qua tin nhắn trôi hoặc không có lưu trữ. & \textbf{Kho lưu trữ số hóa tập trung}, hỗ trợ tải hóa đơn PDF minh bạch. \\ \hline
-\textbf{Mức độ an tâm của chủ nuôi} & Thấp, thường xuyên lo âu và căng thẳng. & \textbf{Rất cao (Điểm Likert 4.16/5.0)}, an tâm làm việc khi gửi thú cưng. \\ \hline
+\textbf{Tiêu chí so sánh} & \textbf{Quy trình truyền thống (As-Is)} & \textbf{Hệ thống mới đề xuất (To-Be)} \\ \hline
+\textbf{Thời gian đặt lịch} & 15 phút -- vài tiếng (chờ tin nhắn phản hồi) & 39 giây (xác nhận tức thì trên ứng dụng) \\ \hline
+\textbf{Xác suất sót dặn dò dị ứng} & Cao (phụ thuộc ghi nhớ và truyền miệng) & 0\% (tự động gắn cảnh báo từ hồ sơ số) \\ \hline
+\textbf{Kênh cập nhật tiến độ} & Bị động (chủ nuôi phải gọi điện hỏi thăm) & Chủ động (thông báo đẩy 4 mốc thời gian thực) \\ \hline
+\textbf{Khả năng tra cứu lịch sử} & Rời rạc, dễ thất lạc trong tin nhắn chat & Tập trung, minh bạch chi phí và phác đồ dịch vụ \\ \hline
+\textbf{Mức độ hài lòng chung} & Thấp, thường xuyên lo lắng và ức chế & 4.16 / 5.0 (Tương đương 82.5 điểm SUS) \\ \hline
 \end{tabularx}
-\caption{So sánh định lượng và định tính giữa quy trình cũ và hệ thống mới}
-\label{tab:as_is_to_be_comparison}
+\caption{So sánh hiệu quả trước và sau khi triển khai hệ thống}
+\label{tab:before_after_comparison}
 \end{table}

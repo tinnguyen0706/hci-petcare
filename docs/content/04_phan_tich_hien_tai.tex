@@ -1,57 +1,34 @@
 \section{Phân tích hệ thống và trải nghiệm hiện tại}
 
 \subsection{Hệ thống và quy trình hiện tại}
-Hiện nay, phần lớn các cơ sở dịch vụ thú cưng quy mô vừa và nhỏ tại Việt Nam vẫn áp dụng phương thức vận hành truyền thống kết hợp bán thủ công. Quy trình giao tiếp và tiếp nhận dịch vụ giữa chủ nuôi và cơ sở chủ yếu diễn ra qua các kênh:
-\begin{itemize}
-    \item \textbf{Cuộc gọi thoại trực tiếp}: Chủ nuôi gọi hotline của tiệm để hỏi lịch trống và đặt chỗ.
-    \item \textbf{Ứng dụng nhắn tin mạng xã hội (Zalo, Facebook Messenger)}: Chủ nuôi nhắn tin hỏi giá, gửi ảnh tình trạng lông/móng của thú cưng và chốt giờ hẹn.
-    \item \textbf{Ghi chép sổ tay hoặc bảng tính Excel tại quầy}: Lễ tân tiếp nhận thông tin khách hàng, ghi tay vào sổ hẹn hoặc nhập vào file tính nội bộ.
-\end{itemize}
+Hiện nay, đa số các cơ sở chăm sóc, spa thú cưng quy mô vừa và nhỏ tại Việt Nam vẫn đang vận hành dựa trên các công cụ liên lạc phổ thông như gọi điện thoại trực tiếp, nhắn tin qua trang mạng xã hội (Facebook Fanpage, Instagram) hoặc ứng dụng nhắn tin tức thời (Zalo). Việc ghi chép lịch hẹn, lưu trữ thông tin khách hàng và theo dõi dịch vụ phần lớn được thực hiện bằng sổ tay thủ công hoặc các bảng tính Excel rời rạc.
 
-Các kênh này hoạt động hoàn toàn rời rạc, không có cơ chế đồng bộ dữ liệu thời gian thực và phụ thuộc hoàn toàn vào trí nhớ cũng như sự cẩn thận của từng cá nhân nhân viên tiếp nhận.
+Quy trình giao tiếp truyền thống này bộc lộ sự thiếu chuyên biệt, phụ thuộc hoàn toàn vào trí nhớ của nhân viên tiếp tân và không thể đáp ứng được khối lượng yêu cầu chăm sóc ngày càng tăng của nhóm khách hàng đô thị bận rộn.
 
 \subsection{Phân tích tác vụ}
-Quy trình tác vụ hiện tại (As-Is Process) bao gồm 6 bước tuần tự bám sát tài liệu Proposal và dữ liệu nghiên cứu thực tế:
-
+Căn cứ theo tài liệu Đề xuất đồ án (\texttt{docs/proposal.md}), quy trình chăm sóc thú cưng hiện tại (Quy trình As-Is) bao gồm 6 bước tuần tự với nhiều điểm nghẽn nghiêm trọng:
 \begin{enumerate}
-    \item \textbf{Bước 1 --- Hỏi lịch trống}: Chủ nuôi chủ động gọi điện thoại hoặc gửi tin nhắn đến tiệm để hỏi xem khung giờ mong muốn (ví dụ: sáng thứ Bảy) còn chỗ hay không.
-    \item \textbf{Bước 2 --- Chờ đợi phản hồi}: Chủ nuôi phải chờ nhân viên tiệm kiểm tra sổ hẹn. Trong nhiều trường hợp, tin nhắn bị trôi hoặc nhân viên đang bận chăm sóc thú cưng khác khiến thời gian phản hồi kéo dài từ 30 phút đến vài tiếng, tạo ra cảm giác bất an và mất chủ động.
-    \item \textbf{Bước 3 --- Khai báo lại dặn dò đặc biệt}: Khi chốt lịch hoặc khi đưa thú cưng đến tiệm, chủ nuôi phải nhắc lại từ đầu các thông tin về tiền sử dị ứng sữa tắm, tính cách sợ tiếng máy sấy hoặc yêu cầu buồng cách ly.
-    \item \textbf{Bước 4 --- Bàn giao thú cưng tại cơ sở}: Chủ nuôi đưa thú cưng đến tiệm, nhắc miệng một lần nữa với lễ tân và rời đi để tiếp tục công việc cá nhân.
-    \item \textbf{Bước 5 --- Chờ đợi trong sự mù mờ}: Suốt thời gian 2--3 tiếng thú cưng làm dịch vụ tại cơ sở, chủ nuôi hoàn toàn không có thông tin cập nhật. Nếu muốn biết tình trạng, chủ nuôi buộc phải gọi điện hoặc nhắn tin hỏi thăm giữa chừng, làm gián đoạn công việc của cả hai bên.
-    \item \textbf{Bước 6 --- Nhận thông báo đón và kết thúc dịch vụ}: Cơ sở gọi điện thông báo khi thú cưng đã hoàn tất dịch vụ. Chủ nuôi đến đón, thanh toán bằng tiền mặt hoặc chuyển khoản thủ công; mọi thông tin về sản phẩm đã sử dụng và tình trạng sức khỏe của thú cưng không được lưu trữ lại thành lịch sử số hóa.
+    \item \textbf{Bước 1 -- Hỏi lịch trống}: Chủ nuôi chủ động gọi điện hoặc gửi tin nhắn đến tiệm để hỏi xem các khung giờ trong ngày/tuần còn nhận thú cưng hay không.
+    \item \textbf{Bước 2 -- Chờ xác nhận}: Chủ nuôi phải chờ nhân viên kiểm tra lịch và phản hồi thủ công. Trong thời gian chờ (thường kéo dài từ 15 phút đến vài tiếng), người dùng rơi vào trạng thái bị động, không chắc chắn lịch hẹn của mình có được ghi nhận hay không.
+    \item \textbf{Bước 3 -- Khai báo lại thông tin dị ứng/dặn dò}: Chủ nuôi phải tự nhớ và nhắc lại các tiền sử bệnh lý, dị ứng sữa tắm hoặc đặc điểm hành vi của thú cưng qua tin nhắn hoặc lúc bàn giao tại tiệm.
+    \item \textbf{Bước 4 -- Bàn giao thú cưng}: Chủ nuôi đưa thú cưng đến tiệm, lặp lại các dặn dò với nhân viên tiếp tân. Nhân viên ghi chép vội vàng ra giấy nhớ hoặc chỉ truyền miệng lại cho kỹ thuật viên spa.
+    \item \textbf{Bước 5 -- Chờ đợi mù mờ trong quá trình chăm sóc}: Trong suốt 2 đến 3 tiếng thú cưng làm dịch vụ, chủ nuôi hoàn toàn không nhận được bất kỳ cập nhật nào. Nếu muốn biết tình hình bé đã xong chưa, họ buộc phải gọi điện hỏi, gây phiền hà và phân tâm cho cả hai bên.
+    \item \textbf{Bước 6 -- Thông báo đón và kết thúc dịch vụ}: Cơ sở gọi điện hoặc nhắn tin báo chủ nuôi đến đón khi đã xong toàn bộ quy trình. Sau khi thanh toán, các thông tin chi tiết về sản phẩm đã sử dụng và ghi chú sức khỏe da lông không được lưu lại thành hồ sơ có cấu trúc.
 \end{enumerate}
 
 \subsection{Luồng người dùng và quy trình tác vụ}
-Sự phân mảnh của quy trình hiện tại tạo ra ba nút thắt cổ chai (Bottlenecks) nghiêm trọng trong luồng tương tác người dùng:
-
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[node distance=1.3cm, auto,
-    block/.style={rectangle, draw=red!60, fill=red!5, very thick, text width=12cm, minimum height=0.9cm, inner sep=6pt, rounded corners=3pt},
-    arrow/.style={thick, ->, >=stealth}]
-    
-    \node [block] (b1) {\textbf{1. Khởi tạo}: Chủ nuôi gọi điện / nhắn tin Zalo $\rightarrow$ \textcolor{red}{\textbf{Nút thắt 1}}: Chờ đợi nhân viên kiểm tra sổ hẹn};
-    \node [block, below of=b1] (b2) {\textbf{2. Dặn dò}: Nhắc miệng tiền sử dị ứng / tính cách $\rightarrow$ \textcolor{red}{\textbf{Nút thắt 2}}: Rủi ro quên truyền đạt cho thợ tắm};
-    \node [block, below of=b2] (b3) {\textbf{3. Bàn giao}: Đưa thú cưng tới tiệm $\rightarrow$ Rời đi và bắt đầu làm việc};
-    \node [block, below of=b3] (b4) {\textbf{4. Chờ đợi}: 2--3 tiếng mù mờ $\rightarrow$ \textcolor{red}{\textbf{Nút thắt 3}}: Lo lắng, ngại gọi hỏi, không biết tiến độ};
-    \node [block, below of=b4] (b5) {\textbf{5. Đón về}: Nhận cuộc gọi đón $\rightarrow$ Thanh toán $\rightarrow$ Thất lạc thông tin chăm sóc cũ};
-    
-    \draw [arrow] (b1) -- (b2);
-    \draw [arrow] (b2) -- (b3);
-    \draw [arrow] (b3) -- (b4);
-    \draw [arrow] (b4) -- (b5);
-\end{tikzpicture}
-\caption{Sơ đồ luồng tương tác hiện tại và các nút thắt trải nghiệm}
-\label{fig:current_process_flow}
-\end{figure}
+Quy trình hiện tại chứa đựng nhiều điểm gãy vỡ trong hành trình tương tác (Broken Interaction Loops). Người dùng phải liên tục thực hiện các thao tác ngoại tuyến mang tính rủi ro cao:
+\begin{itemize}
+    \item \textbf{Điểm nghẽn tiếp nhận (Booking Bottleneck)}: Phụ thuộc vào tốc độ trả lời tin nhắn của nhân viên; khi tiệm đông khách, tin nhắn của khách hàng dễ bị trôi và bỏ quên.
+    \item \textbf{Điểm đứt gãy thông tin (Information Disconnect)}: Thông tin dặn dò y tế bị truyền đạt qua nhiều khâu trung gian (Chủ nuôi $\rightarrow$ Tiếp tân $\rightarrow$ Giấy nhớ $\rightarrow$ Kỹ thuật viên), dẫn đến xác suất thất lạc hoặc hiểu sai lệch rất lớn.
+    \item \textbf{Vùng tối thông tin (The Black-box Window)}: Khoảng thời gian chăm sóc trở thành ''vùng tối'' gây bất an tâm lý lớn nhất cho người dùng.
+\end{itemize}
 
 \subsection{Các vấn đề về trải nghiệm người dùng}
-Từ góc độ Tương tác Người -- Máy (HCI) và Tâm lý học Người dùng (User Psychology) \cite{cooper2014about}, các vấn đề của quy trình cũ được lý giải như sau:
-
-\begin{itemize}
-    \item \textbf{Vấn đề 1: Phá vỡ tính kiểm soát của người dùng (Loss of User Control)}: Người dùng không thể tự quyết định thời gian hay nhìn thấy trạng thái tài nguyên của hệ thống (Visibility of System Status theo 10 nguyên lý Nielsen \cite{nielsen1994usability}). Việc phải chờ đợi phản hồi biến người dùng từ vị thế chủ động thành thụ động.
-    \item \textbf{Vấn đề 2: Gia tăng gánh nặng nhận thức và căng thẳng tâm lý (Cognitive Load \& Anxiety)}: Việc phải liên tục ghi nhớ và nhắc lại tiền sử bệnh của thú cưng mỗi lần đi spa đặt gánh nặng ghi nhớ lên người dùng, đồng thời gây ra tâm lý bất an thường trực về an toàn tính mạng của thú cưng.
-    \item \textbf{Vấn đề 3: Thiếu phản hồi trạng thái liên tục (Lack of Real-time Feedback)}: Trong suốt quá trình thực hiện dịch vụ, khoảng trống thông tin 2--3 tiếng vi phạm nguyên lý phản hồi tức thì trong tương tác, dẫn đến việc hình thành rào cản tâm lý e ngại giao tiếp.
-    \item \textbf{Vấn đề 4: Phân mảnh dữ liệu dài hạn (Data Fragmentation)}: Việc thiếu một giao diện số hóa tập trung làm mất đi giá trị tích lũy của dữ liệu chăm sóc sức khỏe thú cưng qua thời gian.
-\end{itemize}
+Qua phân tích sâu các điểm gãy vỡ, nhóm tổng hợp bốn vấn đề trải nghiệm người dùng cốt lõi của quy trình cũ:
+\begin{enumerate}
+    \item \textbf{Sự thất vọng vì thời gian phản hồi chậm (High Latency \& Uncertainty)}: Người dùng không có quyền kiểm soát và không nhìn thấy trạng thái sẵn sàng của dịch vụ, gây lãng phí thời gian và làm gián đoạn lịch trình công việc cá nhân.
+    \item \textbf{Nguy cơ mất an toàn sức khỏe cho thú cưng (Safety \& Health Risk)}: Việc bỏ sót dặn dò về tiền sử viêm da dị ứng là một lỗi nghiêm trọng (Critical Usability \& Operational Error), có thể gây tổn hại trực tiếp đến sức khỏe thú cưng và phá hủy hoàn toàn niềm tin của khách hàng đối với cơ sở spa.
+    \item \textbf{Cảm xúc lo âu và căng thẳng tâm lý (Anxiety \& Lack of Transparency)}: Việc thiếu cơ chế minh bạch trạng thái khiến chủ nuôi luôn trong trạng thái lo lắng, không biết thú cưng của mình có đang được đối xử tốt và an toàn hay không.
+    \item \textbf{Mất dấu dữ liệu chăm sóc dài hạn (Data Loss \& Lack of Continuity)}: Khách hàng không thể xây dựng được một phác đồ chăm sóc nhất quán cho thú cưng do thiếu công cụ lưu trữ lịch sử dịch vụ tập trung.
+\end{enumerate}

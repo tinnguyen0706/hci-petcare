@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Báo cáo cuối kỳ - Hệ thống hỗ trợ chăm sóc thú cưng</title>
+<style>
+  @page {
+    size: A4;
+    margin: 25mm 20mm 25mm 20mm;
+    @bottom-right {
+      content: "Trang " counter(page);
+      font-family: "Times New Roman", Times, serif;
+      font-size: 11pt;
+    }
+  }
+  body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 13pt;
+    line-height: 1.5;
+    color: #111;
+    margin: 0;
+    padding: 0;
+  }
+  .cover-page {
+    page-break-after: always;
+    text-align: center;
+    padding-top: 40px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-header h2 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    text-transform: uppercase;
+  }
+  .cover-header h1 {
+    font-size: 16pt;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    text-transform: uppercase;
+  }
+  .cover-header h3 {
+    font-size: 13pt;
+    font-weight: normal;
+    margin: 0;
+  }
+  .cover-logo {
+    margin: 30px auto;
+  }
+  .cover-logo img {
+    height: 110px;
+  }
+  .cover-title {
+    margin: 40px 0;
+  }
+  .cover-title .report-name {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #173B72;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+  .cover-title .project-title {
+    font-size: 20pt;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #000;
+  }
+  .cover-info {
+    width: 100%;
+    margin-top: 40px;
+    font-size: 13pt;
+  }
+  .cover-info-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .cover-info-table td {
+    padding: 6px;
+    vertical-align: top;
+  }
+  .cover-footer {
+    margin-top: 40px;
+    font-size: 13pt;
+  }
+  
+  .page-break {
+    page-break-after: always;
+  }
+  
+  h1 {
+    font-size: 16pt;
+    font-weight: bold;
+    color: #000;
+    margin-top: 25px;
+    margin-bottom: 12px;
+    page-break-after: avoid;
+  }
+  h2 {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #000;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 13pt;
+    font-weight: bold;
+    font-style: italic;
+    color: #000;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    page-break-after: avoid;
+  }
+  p {
+    margin: 0 0 10px 0;
+    text-align: justify;
+    text-indent: 1.25cm;
+  }
+  p.no-indent {
+    text-indent: 0;
+  }
+  ul, ol {
+    margin: 5px 0 12px 25px;
+    padding-left: 15px;
+  }
+  li {
+    margin-bottom: 4px;
+    text-align: justify;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 11.5pt;
+    page-break-inside: avoid;
+  }
+  table, th, td {
+    border: 1px solid #333;
+  }
+  th {
+    background-color: #f0f4f8;
+    color: #000;
+    font-weight: bold;
+    padding: 8px;
+    text-align: center;
+  }
+  td {
+    padding: 7px 9px;
+    vertical-align: middle;
+  }
+  .table-caption {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 6px;
+    margin-bottom: 15px;
+    font-size: 11pt;
+  }
+  .figure-container {
+    text-align: center;
+    margin: 20px 0;
+    page-break-inside: avoid;
+  }
+  .figure-container img {
+    max-width: 90%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .figure-caption {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 8px;
+    font-size: 11pt;
+  }
+  blockquote {
+    border-left: 3px solid #173B72;
+    margin: 10px 0 10px 20px;
+    padding-left: 12px;
+    font-style: italic;
+  }
+  .toc {
+    background: #fafbfc;
+    border: 1px solid #e1e4e8;
+    padding: 15px 25px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+  }
+  .toc ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .toc li {
+    margin-bottom: 6px;
+  }
+  .toc a {
+    text-decoration: none;
+    color: #173B72;
+  }
+</style>
+</head>
+<body>
+
+<!-- TRANG BÌA -->
+<div class="cover-page">
+  <div class="cover-header">
+    <h2>ĐẠI HỌC QUỐC GIA TP. HỒ CHÍ MINH</h2>
+    <h1>TRƯỜNG ĐẠI HỌC KHOA HỌC TỰ NHIÊN</h1>
+    <h3>KHOA CÔNG NGHỆ THÔNG TIN</h3>
+    <p class="no-indent" style="text-align: center; font-size: 12pt; margin-top: 5px;">Môn học: Tương tác Người – Máy (CSC12106)</p>
+  </div>
+
+  <div class="cover-logo">
+    <img src="../templates/report/img/hcmus-logo.png" alt="HCMUS Logo">
+  </div>
+
+  <div class="cover-title">
+    <div class="report-name">BÁO CÁO CUỐI KỲ ĐỒ ÁN MÔN HỌC</div>
+    <div class="project-title">HỆ THỐNG HỖ TRỢ ĐẶT LỊCH, GỬI YÊU CẦU VÀ THEO DÕI QUÁ TRÌNH CHĂM SÓC THÚ CƯNG</div>
+  </div>
+
+  <div class="cover-info">
+    <table class="cover-info-table" style="border: none;">
+      <tr style="border: none;">
+        <td style="border: none; width: 50%; text-align: left;">
+          <strong>Giảng viên hướng dẫn:</strong><br>
+          Cô Lê Thị Nhàn<br>
+          Thầy Lương Vĩ Minh
+        </td>
+        <td style="border: none; width: 50%; text-align: left;">
+          <strong>Sinh viên thực hiện:</strong><br>
+          23127327 – Lưu Ngô Quốc Bảo<br>
+          23127328 – Nguyễn Quốc Bảo<br>
+          23127498 – Nguyễn Trọng Tín
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="cover-footer">
+    <p class="no-indent" style="text-align: center;">TP. Hồ Chí Minh, Tháng 09/2026</p>
+  </div>
+</div>
+
+<!-- LỜI CẢM ƠN -->
+<h1>Lời cảm ơn</h1>
+<p>Nhóm sinh viên thực hiện đồ án xin trân trọng gửi lời cảm ơn chân thành và sâu sắc nhất đến các Thầy, Cô phụ trách môn học <strong>Tương tác Người – Máy (CSC12106)</strong> – Khoa Công nghệ Thông tin, Trường Đại học Khoa học Tự nhiên, Đại học Quốc gia TP. Hồ Chí Minh:</p>
+<ul>
+  <li><strong>Cô Lê Thị Nhàn</strong> – Giảng viên lý thuyết.</li>
+  <li><strong>Thầy Lương Vĩ Minh</strong> – Giảng viên thực hành.</li>
+</ul>
+<p>Thầy Cô đã tận tình truyền đạt những kiến thức nền tảng quý báu về phương pháp luận thiết kế lấy người dùng làm trung tâm (User-Centered Design), quy trình phân tích trải nghiệm người dùng, nguyên lý đánh giá Heuristic và các tiêu chuẩn tương tác hiện đại. Những nhận xét định hướng sắc bén của Thầy Cô trong suốt học kỳ là kim chỉ nam giúp nhóm định hình và hoàn thiện đề tài này.</p>
+<p>Nhóm cũng xin gửi lời cảm ơn chân thành đến tất cả các anh, chị chủ nuôi thú cưng đã nhiệt tình tham gia các đợt phỏng vấn sâu, khảo sát người dùng và các buổi kiểm thử tính khả dụng (Usability Testing), đóng góp những phản hồi thực tế vô cùng quý báu cho đồ án.</p>
+<p style="text-align: right; font-style: italic; margin-top: 30px;">Tập thể Nhóm sinh viên thực hiện đồ án</p>
+
+<div class="page-break"></div>
+
+<!-- NỘI DUNG 9 CHƯƠNG -->
+
+<h1>Chương 1. Giới thiệu</h1>
+
+<h2>1.1. Bối cảnh đề tài</h2>
+<p>Trong những năm gần đây, xu hướng nuôi thú cưng tại các đô thị lớn ở Việt Nam, đặc biệt là Thành phố Hồ Chí Minh, đang gia tăng mạnh mẽ. Thú cưng không chỉ đơn thuần là vật nuôi giữ nhà mà đã trở thành những người bạn đồng hành, thành viên quan trọng trong gia đình (Pet Humanization). Đi kèm với xu hướng đó là nhu cầu ngày càng cao về các dịch vụ chăm sóc vệ sinh, spa, tắm cắt tỉa lông định kỳ nhằm đảm bảo sức khỏe thể chất và thẩm mỹ cho thú cưng.</p>
+<p>Tuy nhiên, đối tượng chủ nuôi thú cưng phần lớn là những người trẻ, nhân viên văn phòng hoặc sinh viên có lịch trình làm việc và học tập bận rộn. Họ thường phải sắp xếp đưa đón thú cưng vào các khung giờ nghỉ trưa, sau giờ hành chính hoặc dịp cuối tuần. Trong bối cảnh đó, việc giao tiếp và sử dụng dịch vụ tại các cơ sở chăm sóc thú cưng hiện nay vẫn mang nặng tính thủ công, phụ thuộc vào tin nhắn rời rạc hoặc các cuộc gọi điện thoại gián đoạn. Thực trạng này đặt ra nhu cầu cấp thiết về một giải pháp công nghệ số hóa hỗ trợ toàn diện trải nghiệm của chủ nuôi thú cưng.</p>
+
+<h2>1.2. Phát biểu bài toán</h2>
+<p>Qua quá trình khảo sát thực tế và nghiên cứu người dùng, quy trình tiếp nhận và chăm sóc thú cưng truyền thống bộc lộ năm khó khăn, điểm đau (pain points) lớn:</p>
+<ol>
+  <li><strong>Khó khăn trong việc đặt lịch và chờ phản hồi:</strong> Chủ nuôi phải liên hệ qua điện thoại hoặc nhắn tin Fanpage/Zalo để hỏi các khung giờ còn trống. Việc chờ đợi nhân viên kiểm tra sổ sách gây mất thời gian, không chủ động được lịch trình và dễ dẫn đến lỡ mất khung giờ mong muốn.</li>
+  <li><strong>Xác nhận lịch hẹn thiếu rõ ràng:</strong> Các xác nhận thủ công qua tin nhắn dễ bị trôi tin, ghi nhầm ngày giờ hoặc không có mã số lịch hẹn để đối soát khi đến tiệm.</li>
+  <li><strong>Thất lạc thông tin dị ứng và dặn dò đặc biệt:</strong> Mỗi thú cưng thường có những đặc điểm thể trạng riêng biệt (như cơ địa viêm da dị ứng với xà phòng nhiều hương liệu, mẫn cảm với máy sấy, hoặc tính cách nhút nhát, sợ tiếng ồn). Trong quy trình cũ, chủ nuôi phải lặp đi lặp lại lời dặn dò mỗi lần đưa bé đi spa. Những ghi chú này thường bị nhân viên tiếp tân quên ghi lại, hoặc không được bàn giao đầy đủ cho kỹ thuật viên trực tiếp thực hiện, dẫn đến nguy cơ tái phát bệnh da liễu hoặc gây hoảng loạn cho thú cưng.</li>
+  <li><strong>Thiếu cập nhật tiến độ trong thời gian chăm sóc:</strong> Suốt khoảng thời gian 2 đến 3 tiếng gửi thú cưng tại tiệm, chủ nuôi hoàn toàn không có thông tin về việc bé đang ở bước nào (đã được tắm chưa, đang sấy lông hay cắt tỉa). Để nắm thông tin, họ buộc phải gọi điện hỏi thăm, làm gián đoạn công việc của cả hai bên.</li>
+  <li><strong>Không có hệ thống lưu trữ lịch sử chăm sóc:</strong> Các thông tin về loại dịch vụ đã sử dụng, sản phẩm sữa tắm phù hợp, tình trạng da lông và ghi chú của kỹ thuật viên sau buổi chăm sóc không được tổng hợp thành hồ sơ nhất quán, gây khó khăn cho việc theo dõi sức khỏe lâu dài của thú cưng.</li>
+</ol>
+
+<h2>1.3. Mục tiêu đề tài</h2>
+<p>Đề tài hướng tới mục tiêu nghiên cứu, phân tích trải nghiệm người dùng và xây dựng hệ thống tương tác số hóa tối ưu hỗ trợ chủ nuôi thú cưng bận rộn, giải quyết dứt điểm các điểm đau nêu trên thông qua bốn mục tiêu cụ thể:</p>
+<ul>
+  <li><strong>Mục tiêu 1:</strong> Cung cấp giao diện đặt lịch trực quan với khả năng hiển thị khung giờ trống theo thời gian thực và xác nhận lịch hẹn tức thì trên ứng dụng.</li>
+  <li><strong>Mục tiêu 2:</strong> Xây dựng hồ sơ thú cưng điện tử lưu trữ cố định các cảnh báo dị ứng, thuốc và thói quen hành vi, tự động đính kèm vào lịch hẹn và hiển thị nổi bật trên phiếu tiếp nhận của kỹ thuật viên.</li>
+  <li><strong>Mục tiêu 3:</strong> Thiết lập cơ chế theo dõi tiến độ chăm sóc theo thời gian thực qua 4 mốc minh bạch (<em>Đã nhận</em> &rarr; <em>Đang chăm sóc</em> &rarr; <em>Hoàn tất</em> &rarr; <em>Chờ đón</em>) kết hợp thông báo đẩy chủ động.</li>
+  <li><strong>Mục tiêu 4:</strong> Số hóa toàn bộ lịch sử chăm sóc cá nhân hóa và hóa đơn điện tử, giúp chủ nuôi dễ dàng tra cứu lại chi tiết sản phẩm và phác đồ chăm sóc trước đây.</li>
+  <li><strong>Mục tiêu trải nghiệm (UX Goal):</strong> Tối ưu hóa tính khả dụng (Usability), đạt tỷ lệ hoàn thành tác vụ 100%, giảm thiểu sai sót thao tác về 0 và nâng cao điểm số hài lòng người dùng (SUS > 80).</li>
+</ul>
+
+<h2>1.4. Phạm vi đề tài</h2>
+<ul>
+  <li><strong>Trong phạm vi (In-scope):</strong> Tập trung hoàn toàn vào hành trình trải nghiệm của chủ nuôi thú cưng (Pet Owner) trên nền tảng ứng dụng di động/web chuẩn Mobile-first (kích thước chuẩn 430 &times; 932px). Hệ thống bao gồm 4 phân hệ tính năng cốt lõi: Đặt lịch tức thì, Hồ sơ thú cưng & Cảnh báo y tế, Theo dõi tiến độ 4 mốc thời gian thực, Lịch sử dịch vụ & Chi phí.</li>
+  <li><strong>Ngoài phạm vi (Out-of-scope):</strong> Đồ án không bao gồm việc xây dựng toàn bộ hệ thống hoạch định nguồn lực doanh nghiệp (ERP) quản lý nhân sự, kho bãi hay chuỗi cung ứng phức tạp tại cơ sở spa; không can thiệp vào nghiệp vụ kế toán chuyên sâu phía doanh nghiệp.</li>
+  <li><strong>Giới hạn kỹ thuật và nghiên cứu:</strong> Quá trình đánh giá tính khả dụng được thực hiện với nhóm người dùng đại diện tại TP.HCM trên bản mẫu tương tác và sản phẩm phần mềm mô phỏng môi trường dữ liệu cục bộ.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h1>Chương 2. Nghiên cứu người dùng</h1>
+
+<h2>2.1. Đối tượng người dùng mục tiêu</h2>
+<p>Đối tượng người dùng mục tiêu của hệ thống là những chủ nuôi thú cưng (Pet Owners) đang sinh sống và làm việc tại các đô thị lớn (tiêu biểu là TP. Hồ Chí Minh). Họ là những người trực tiếp lựa chọn gói dịch vụ, thực hiện đặt lịch, khai báo yêu cầu chăm sóc, đưa đón và theo dõi tình trạng thú cưng.</p>
+<ul>
+  <li><strong>Độ tuổi:</strong> Từ 20 đến 35 tuổi (chủ yếu là sinh viên đại học, nhân viên văn phòng, chuyên viên phân tích, người làm việc tự do).</li>
+  <li><strong>Mức độ am hiểu công nghệ:</strong> Cao; có thói quen sử dụng điện thoại thông minh hàng ngày cho các tác vụ thương mại điện tử, đặt dịch vụ và thanh toán không tiền mặt.</li>
+  <li><strong>Lối sống và quỹ thời gian:</strong> Bận rộn với lịch học tập và làm việc dày đặc, không có nhiều thời gian rảnh để gọi điện trao đổi dài dòng hoặc ngồi chờ trực tiếp tại cơ sở spa.</li>
+  <li><strong>Tâm lý và kỳ vọng:</strong> Coi thú cưng như con cái hoặc thành viên ruột thịt; rất quan tâm đến sức khỏe, sự an toàn và tính thoải mái của thú cưng, nhưng luôn có tâm lý e ngại việc dặn dò đặc biệt (về bệnh ngoài da, dị ứng hoặc tính cách nhút nhát) bị nhân viên bỏ quên.</li>
+</ul>
+
+<h2>2.2. Phương pháp nghiên cứu</h2>
+<p>Để thu thập dữ liệu chân thực và sâu sắc về hành vi và khó khăn của người dùng, nhóm đã áp dụng kết hợp hai phương pháp nghiên cứu định tính và định lượng chuẩn HCI:</p>
+<ol>
+  <li><strong>Phỏng vấn sâu theo ngữ cảnh (Contextual In-depth Interview):</strong> Thực hiện phỏng vấn trực tiếp và bán cấu trúc với 6 chủ nuôi thú cưng có hồ sơ đa dạng.</li>
+  <li><strong>Khảo sát bằng bảng câu hỏi trực tuyến (Online Survey):</strong> Thu thập ý kiến phản hồi về tần suất chăm sóc thú cưng và mức độ hài lòng với các kênh truyền thống.</li>
+</ol>
+
+<h2>2.3. Kết quả nghiên cứu</h2>
+<ul>
+  <li><strong>Về thời gian đặt lịch:</strong> 83.3% người tham gia cho biết họ cảm thấy phiền phức khi phải nhắn tin hỏi giờ trống và chờ cơ sở phản hồi; 50% từng gặp sự cố bị trùng lịch hoặc đến nơi nhưng tiệm quá đông phải chờ đợi hàng giờ.</li>
+  <li><strong>Về ghi nhớ thông tin dị ứng & an toàn y tế:</strong> 100% chủ nuôi có thú cưng bị dị ứng da hoặc có tính cách đặc biệt bày tỏ sự bức xúc vì lần nào gửi cũng phải dặn đi dặn lại nhân viên.</li>
+  <li><strong>Về nhu cầu theo dõi tiến độ:</strong> 100% người dùng thừa nhận họ có cảm giác bất an, lo lắng trong suốt thời gian thú cưng ở tiệm. Họ muốn biết rõ thú cưng đang làm đến bước nào mà không cần phải gọi điện làm phiền nhân viên.</li>
+  <li><strong>Về quản lý lịch sử dịch vụ:</strong> Đa số người dùng không thể nhớ chính xác lần trước mình đã dùng loại sữa tắm nào, dịch vụ cắt tỉa gì hay chi phí bao nhiêu.</li>
+</ul>
+
+<h2>2.4. Nhu cầu và điểm đau của người dùng</h2>
+<table>
+  <tr>
+    <th style="width: 8%;">STT</th>
+    <th style="width: 46%;">Điểm đau của người dùng</th>
+    <th style="width: 46%;">Nhu cầu tương ứng của người dùng</th>
+  </tr>
+  <tr>
+    <td style="text-align: center;">1</td>
+    <td>Chờ đợi lâu khi hỏi lịch, xác nhận thủ công dễ bị sót hoặc nhầm lẫn thời gian.</td>
+    <td>Xem trực tiếp ma trận khung giờ còn trống và nhận xác nhận lịch hẹn tức thì trên ứng dụng.</td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">2</td>
+    <td>Thất lạc dặn dò đặc biệt về tiền sử dị ứng xà phòng, bệnh ngoài da, thuốc và tính cách.</td>
+    <td>Hồ sơ thú cưng điện tử lưu vĩnh viễn cảnh báo y tế và tự động gắn vào phiếu tiếp nhận của kỹ thuật viên.</td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">3</td>
+    <td>Bất an suốt 2–3 tiếng chăm sóc, không biết tình trạng thú cưng, ngại gọi điện hỏi.</td>
+    <td>Theo dõi tiến độ thời gian thực qua 4 mốc rõ ràng và nhận thông báo đẩy khi chuyển giai đoạn.</td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">4</td>
+    <td>Thông tin chi phí, loại dịch vụ và sản phẩm đã dùng bị trôi tin, không thể tra cứu lại.</td>
+    <td>Kho lưu trữ lịch sử chăm sóc cá nhân hóa, hiển thị chi tiết hóa đơn điện tử và phác đồ đã sử dụng.</td>
+  </tr>
+</table>
+<div class="table-caption">Bảng 2.1: Tổng hợp điểm đau và nhu cầu cốt lõi của người dùng</div>
+
+<h2>2.5. Chân dung người dùng</h2>
+
+<h3>Chân dung người dùng 1: Nguyễn Hoàng Lan (Primary Persona)</h3>
+<ul>
+  <li><strong>Vai trò:</strong> Chân dung người dùng chính (Primary Persona).</li>
+  <li><strong>Thông tin cá nhân:</strong> 28 tuổi, Nữ, Chuyên viên Phân tích Dữ liệu tại Quận 1, TP.HCM; thu nhập 22.000.000 VNĐ/tháng.</li>
+  <li><strong>Thú cưng:</strong> Chó Poodle 2 tuổi (tên Bơ, 4.5kg), có tiền sử viêm da dị ứng với xà phòng nhiều hương liệu và nhút nhát với tiếng máy sấy công suất lớn.</li>
+  <li><strong>Trích dẫn:</strong> <em>"Mình rất bận nên chỉ mong đặt lịch nhanh có xác nhận ngay, gửi bé đi tắm có thể theo dõi tiến độ từ xa và tiệm luôn nhớ bé bị dị ứng da để chăm sóc an toàn."</em></li>
+  <li><strong>Mục tiêu:</strong> Đặt lịch nhanh có xác nhận ngay; tiệm thực hiện đúng dặn dò dị ứng da; theo dõi tiến độ 4 mốc từ xa; lưu trữ lịch sử chăm sóc.</li>
+</ul>
+
+<div class="figure-container">
+  <img src="../deliverables/01-user-research/persona/persona-1.png" style="max-height: 480px;" alt="Persona 1">
+  <div class="figure-caption">Hình 2.1: Chân dung người dùng chính – Nguyễn Hoàng Lan</div>
+</div>
+
+<h3>Chân dung người dùng 2: Trần Minh Khoa (Secondary Persona)</h3>
+<ul>
+  <li><strong>Vai trò:</strong> Chân dung người dùng phụ (Secondary Persona).</li>
+  <li><strong>Thông tin cá nhân:</strong> 21 tuổi, Nam, Sinh viên Đại học năm 3 tại TP. Thủ Đức, TP.HCM; thu nhập 5.000.000 VNĐ/tháng.</li>
+  <li><strong>Thú cưng:</strong> Mèo Anh lông ngắn 1.5 tuổi (tên Miu, 3.8kg), nhút nhát, sợ tiếng ồn lớn, từng bị trầy xước do nhốt chung buồng.</li>
+  <li><strong>Trích dẫn:</strong> <em>"Mèo của mình rất nhút nhát nên mình rất sợ gửi tiệm bị nhốt chung với bé dữ. Mình chỉ muốn biết rõ tiến độ chăm sóc và có hồ sơ lưu lại dặn dò để tiệm không quên."</em></li>
+  <li><strong>Mục tiêu:</strong> Biết khung giờ vắng khách để đặt lịch; nắm bắt tình trạng mèo từ xa; tra cứu lại chi phí và lưu hóa đơn dịch vụ.</li>
+</ul>
+
+<div class="figure-container">
+  <img src="../deliverables/01-user-research/persona/persona-2.png" style="max-height: 480px;" alt="Persona 2">
+  <div class="figure-caption">Hình 2.2: Chân dung người dùng phụ – Trần Minh Khoa</div>
+</div>
+
+<h2>2.6. Đề xuất giá trị</h2>
+
+<h3>Đề xuất giá trị đối ứng cho Persona 1: Nguyễn Hoàng Lan</h3>
+<div class="figure-container">
+  <img src="../deliverables/01-user-research/value-proposition/value-proposition-1.png" style="width: 88%;" alt="Value Proposition 1">
+  <div class="figure-caption">Hình 2.3: Bản đề xuất giá trị đối ứng cho Persona 1 – Nguyễn Hoàng Lan</div>
+</div>
+
+<h3>Đề xuất giá trị đối ứng cho Persona 2: Trần Minh Khoa</h3>
+<div class="figure-container">
+  <img src="../deliverables/01-user-research/value-proposition/value-proposition-2.png" style="width: 88%;" alt="Value Proposition 2">
+  <div class="figure-caption">Hình 2.4: Bản đề xuất giá trị đối ứng cho Persona 2 – Trần Minh Khoa</div>
+</div>
+
+<div class="page-break"></div>
+
+<h1>Chương 3. Yêu cầu và mục tiêu thiết kế</h1>
+
+<h2>3.1. Yêu cầu người dùng</h2>
+<ol>
+  <li><strong>Yêu cầu về Đặt lịch và Xác nhận tức thì:</strong> Hiển thị ma trận khung giờ còn trống theo thời gian thực; tự động khóa các slot đã kín chỗ; sinh mã đặt lịch định danh để đối soát tại tiệm; hỗ trợ đặt lịch cho một hoặc nhiều thú cưng song song.</li>
+  <li><strong>Yêu cầu về Hồ sơ thú cưng và Cảnh báo y tế:</strong> Lưu trữ cố định tiền sử dị ứng, thuốc và tính cách đặc thù; tự động trích xuất và đính kèm vào phiếu tiếp nhận của kỹ thuật viên; cảnh báo xung đột dịch vụ (màu đỏ) và gợi ý gói Hypoallergenic an toàn.</li>
+  <li><strong>Yêu cầu về Theo dõi tiến độ thời gian thực:</strong> Cung cấp thanh tiến trình 4 mốc (<em>Đã tiếp nhận</em> &rarr; <em>Đang chăm sóc</em> &rarr; <em>Hoàn tất dịch vụ</em> &rarr; <em>Chờ khách đón</em>); gửi Push Notification khi chuyển mốc; cho phép gửi thêm dặn dò khẩn cấp trong phiên làm việc.</li>
+  <li><strong>Yêu cầu về Lịch sử chăm sóc cá nhân hóa:</strong> Tự động lưu trữ chi tiết gói dịch vụ, sản phẩm sữa tắm đã dùng, hình ảnh kết quả trước/sau spa, hóa đơn điện tử và tính năng đặt lại nhanh (Rebook) chỉ với một chạm.</li>
+</ol>
+
+<h2>3.2. Mục tiêu trải nghiệm người dùng</h2>
+<ul>
+  <li><strong>Tính hiệu quả (Effectiveness):</strong> Người dùng hoàn thành chính xác 100% các tác vụ nghiệp vụ.</li>
+  <li><strong>Hiệu suất hoàn thành (Efficiency):</strong> Giảm thời gian đặt lịch xuống dưới 45 giây; rút ngắn thời gian kiểm tra tiến độ từ xa xuống dưới 20 giây.</li>
+  <li><strong>Tính dễ học (Learnability):</strong> Thao tác trực quan, không cần đọc hướng dẫn.</li>
+  <li><strong>Phòng ngừa sai sót (Error Prevention):</strong> Loại bỏ 100% nguy cơ sót dặn dò dị ứng bằng cơ chế tự động đính kèm.</li>
+  <li><strong>Sự an tâm và hài lòng (User Satisfaction):</strong> Đạt điểm số đánh giá tính khả dụng hệ thống SUS trên 80 điểm.</li>
+</ul>
+
+<h2>3.3. Mục tiêu thiết kế</h2>
+<ul>
+  <li>Thiết kế luồng Stepper phân bước trực quan.</li>
+  <li>Thẻ cảnh báo an toàn y tế màu Amber/Red tương phản cao.</li>
+  <li>Thanh tiến trình 4 mốc thời gian thực chuẩn hóa.</li>
+  <li>Chuẩn Mobile-first (430 &times; 932px) đạt tiêu chuẩn tiếp cận WCAG AA.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h1>Chương 4. Phân tích hệ thống và trải nghiệm hiện tại</h1>
+
+<h2>4.1. Hệ thống và quy trình hiện tại</h2>
+<p>Hiện nay, đa số các cơ sở spa thú cưng vẫn vận hành dựa trên nhắn tin Zalo/Fanpage, gọi điện thoại và ghi chép sổ tay thủ công. Quy trình này phụ thuộc hoàn toàn vào trí nhớ nhân viên, không đáp ứng được nhu cầu của khách hàng đô thị bận rộn.</p>
+
+<h2>4.2. Phân tích tác vụ (Quy trình As-Is 6 bước)</h2>
+<ol>
+  <li><strong>Bước 1 – Hỏi lịch trống:</strong> Chủ nuôi chủ động gọi điện hoặc nhắn tin hỏi giờ trống.</li>
+  <li><strong>Bước 2 – Chờ xác nhận:</strong> Chờ nhân viên kiểm tra lịch (từ 15 phút đến vài tiếng), ở trạng thái bị động.</li>
+  <li><strong>Bước 3 – Khai báo lại dặn dò:</strong> Tự nhớ và lặp lại tiền sử dị ứng/thuốc mỗi lần đi spa.</li>
+  <li><strong>Bước 4 – Bàn giao thú cưng:</strong> Đưa bé đến tiệm, dặn dò truyền miệng hoặc ghi giấy nhớ dễ thất lạc.</li>
+  <li><strong>Bước 5 – Chờ đợi mù mờ:</strong> Suốt 2–3 tiếng làm dịch vụ hoàn toàn không có thông tin, phải gọi điện hỏi.</li>
+  <li><strong>Bước 6 – Thông báo đón:</strong> Cơ sở gọi điện báo đón; thông tin dịch vụ không được lưu thành lịch sử nhất quán.</li>
+</ol>
+
+<h2>4.3. Luồng người dùng và quy trình tác vụ</h2>
+<ul>
+  <li><strong>Điểm nghẽn tiếp nhận (Booking Bottleneck):</strong> Phụ thuộc tốc độ trả lời tin nhắn.</li>
+  <li><strong>Điểm đứt gãy thông tin (Information Disconnect):</strong> Thất lạc dặn dò qua các khâu trung gian tiếp tân – kỹ thuật viên.</li>
+  <li><strong>Vùng tối thông tin (The Black-box Window):</strong> Khoảng thời gian chăm sóc gây bất an tâm lý lớn.</li>
+</ul>
+
+<h2>4.4. Các vấn đề về trải nghiệm người dùng</h2>
+<ol>
+  <li>Sự thất vọng vì thời gian phản hồi chậm và bất định.</li>
+  <li>Nguy cơ mất an toàn sức khỏe cho thú cưng do bỏ quên dặn dò dị ứng da.</li>
+  <li>Cảm xúc lo âu và căng thẳng tâm lý trong giờ làm việc.</li>
+  <li>Mất dấu dữ liệu chăm sóc dài hạn.</li>
+</ol>
+
+<div class="page-break"></div>
+
+<h1>Chương 5. Quá trình thiết kế</h1>
+
+<h2>5.1. Kiến trúc thông tin</h2>
+<p>Kiến trúc thông tin tổ chức tinh gọn theo 4 phân hệ chính gắn liền với thanh điều hướng đáy (Bottom Navigation):</p>
+<ul>
+  <li><strong>Trang chủ:</strong> Tổng quan lịch hẹn sắp tới, lối tắt Rebook 1 chạm, thông báo và tình trạng nhanh của thú cưng.</li>
+  <li><strong>Đặt lịch:</strong> Chọn thú cưng, danh mục dịch vụ, ma trận chọn giờ trống và xác nhận đính kèm lưu ý y tế.</li>
+  <li><strong>Tiến độ:</strong> Trung tâm live tracking 4 mốc, nút gửi thêm dặn dò và mã QR nhận bé.</li>
+  <li><strong>Hồ sơ:</strong> Quản lý danh sách thú cưng, hồ sơ y tế chuyên sâu, lịch sử dịch vụ và hóa đơn điện tử.</li>
+</ul>
+
+<h2>5.2. Luồng thao tác người dùng (Quy trình To-Be 6 bước)</h2>
+<ol>
+  <li><strong>Bước 1 – Đăng nhập và chọn thông tin:</strong> Chọn thú cưng, dịch vụ và trực tiếp chọn khung giờ còn trống trên ma trận.</li>
+  <li><strong>Bước 2 – Xác nhận tức thì & Đính kèm cảnh báo:</strong> Xác nhận ngay, tự động gắn dặn dò dị ứng từ hồ sơ vào đơn.</li>
+  <li><strong>Bước 3 – Tiếp nhận tại tiệm qua mã QR:</strong> Quét mã QR, hiển thị ngay cảnh báo y tế màu đỏ nổi bật cho kỹ thuật viên.</li>
+  <li><strong>Bước 4 – Theo dõi tiến độ 4 mốc thời gian thực:</strong> Cập nhật trạng thái tự động và gửi Push Notification.</li>
+  <li><strong>Bước 5 – Nhận thông báo đón tức thời:</strong> Nhận thông báo đến đón kèm ảnh đối chiếu kết quả trước/sau spa.</li>
+  <li><strong>Bước 6 – Lưu trữ lịch sử chăm sóc tự động:</strong> Lưu đầy đủ dịch vụ, loại sữa tắm và hóa đơn điện tử.</li>
+</ol>
+
+<h2>5.3. Phác thảo và phát triển ý tưởng</h2>
+<p>Nhóm tiến hành phác thảo nhanh trên giấy (Sketches / Crazy Eights), thử nghiệm chuyển đổi từ lịch tháng sang ma trận chip thời gian theo ngày, chuyển cảnh báo y tế từ popup sang thẻ cố định và chuẩn hóa thanh tiến trình 4 mốc.</p>
+
+<h2>5.4. Bảng phân cảnh</h2>
+<div class="figure-container">
+  <img src="../deliverables/02-interaction-design/storyboard/persona-1/goal-1/storyboard.png" style="width: 90%;" alt="Storyboard">
+  <div class="figure-caption">Hình 5.1: Bảng phân cảnh trải nghiệm – Kịch bản đặt lịch và theo dõi tiến độ của Nguyễn Hoàng Lan</div>
+</div>
+
+<h2>5.5. Khung giao diện</h2>
+<p>Nhóm đã thiết kế bộ 32 màn hình Wireframe Mobile-first (430 &times; 932px) tích hợp đầy đủ 5 trạng thái giao diện: Default, Empty, Loading, Error/Conflict và Success.</p>
+
+<h2>5.6. Các phương án thiết kế</h2>
+<p>Nhóm áp dụng nguyên tắc thiết kế tập trung chuyên sâu: Thay vì tạo các phương án thử nghiệm kém tối ưu mang tính hình thức (A, B, C), nhóm tập trung toàn lực hoàn thiện <strong>một phương án thiết kế tối ưu duy nhất</strong> bám sát trực tiếp bài toán Proposal, tối ưu hóa ma trận giờ trống, tự động gắn cảnh báo y tế, chuẩn hóa thanh 4 mốc và tích hợp Rebook 1 chạm.</p>
+
+<div class="page-break"></div>
+
+<h1>Chương 6. Thiết kế bản mẫu tương tác</h1>
+
+<h2>6.1. Tổng quan bản mẫu</h2>
+<p>Bản mẫu tương tác High-fidelity trên tỷ lệ màn hình iPhone 14 Pro Max (430 &times; 932px) gồm 37 màn hình tương tác vector SVG chuẩn Figma, bao phủ trọn vẹn 7 mục tiêu trải nghiệm của cả hai Persona (4 mục tiêu cho Persona 1 và 3 mục tiêu cho Persona 2).</p>
+
+<h2>6.2. Các màn hình bản mẫu</h2>
+<ol>
+  <li><strong>Màn hình Đặt lịch và Ma trận khung giờ trống:</strong> Chọn thú cưng, gói dịch vụ, hiển thị trực quan slot trống/đang chọn/đã kín.</li>
+  <li><strong>Màn hình Tiếp nhận an toàn & Cảnh báo y tế 2 lớp:</strong> Quét mã QR tiếp nhận, hiển thị thẻ cảnh báo dị ứng da nhạy cảm.</li>
+  <li><strong>Màn hình Theo dõi tiến độ 4 mốc thời gian thực:</strong> Thanh tiến trình 4 mốc, ảnh kiểm tra sức khỏe và nút gửi thêm dặn dò.</li>
+  <li><strong>Màn hình Hồ sơ thú cưng & Lịch sử cá nhân hóa:</strong> Quản lý hồ sơ y tế, hóa đơn điện tử và nút Rebook 1 chạm.</li>
+</ol>
+
+<h2>6.3. Thiết kế tương tác</h2>
+<ul>
+  <li>Phản hồi thao tác tức thì (Instant Feedback) với hiệu ứng Active/Pressed states.</li>
+  <li>Xử lý xung đột dị ứng (Allergy Conflict Recovery) với cảnh báo lỗi và gợi ý đổi sang gói Hypoallergenic.</li>
+  <li>Trạng thái rỗng và đang tải thân thiện, ngăn ngừa thao tác nhầm bằng modal confirmation.</li>
+</ul>
+
+<h2>6.4. Lý giải thiết kế</h2>
+<table>
+  <tr>
+    <th style="width: 33%;">Vấn đề trong nghiên cứu & Proposal</th>
+    <th style="width: 33%;">Quyết định thiết kế trong Prototype</th>
+    <th style="width: 34%;">Cải thiện trải nghiệm mong đợi</th>
+  </tr>
+  <tr>
+    <td>Chờ tiệm kiểm tra lịch trống và trả lời tin nhắn lâu.</td>
+    <td>Ma trận khung giờ trống tương tác thời gian thực & Khóa slot kín.</td>
+    <td>Biết ngay giờ khả dụng, đặt lịch và nhận xác nhận tức thì dưới 45 giây.</td>
+  </tr>
+  <tr>
+    <td>Dặn dò dị ứng xà phòng dễ bị nhân viên quên/bỏ sót.</td>
+    <td>Tự động trích xuất từ hồ sơ y tế và gắn thẻ cảnh báo màu đỏ nổi bật.</td>
+    <td>Loại bỏ 100% rủi ro quên dặn dò nguy hiểm, mang lại sự an tâm tuyệt đối.</td>
+  </tr>
+  <tr>
+    <td>Bất an, mù mờ về tiến độ suốt 2–3 tiếng thú cưng ở tiệm.</td>
+    <td>Thanh tiến trình 4 mốc chuẩn hóa kết hợp thông báo đẩy.</td>
+    <td>Minh bạch quá trình chăm sóc, không cần gọi điện hỏi thăm.</td>
+  </tr>
+  <tr>
+    <td>Thông tin dịch vụ cũ bị trôi tin, không nhớ loại dầu tắm đã dùng.</td>
+    <td>Kho lưu trữ lịch sử cá nhân hóa kèm ảnh trước/sau và nút Rebook 1 chạm.</td>
+    <td>Dễ dàng tra cứu lại phác đồ chăm sóc và tái đặt lịch định kỳ nhanh chóng.</td>
+  </tr>
+</table>
+<div class="table-caption">Bảng 6.1: Lý giải các quyết định thiết kế bản mẫu tương tác dựa trên bằng chứng</div>
+
+<div class="page-break"></div>
+
+<h1>Chương 7. Đánh giá thiết kế</h1>
+
+<h2>7.1. Mục tiêu đánh giá</h2>
+<p>Kiểm chứng thực nghiệm tốc độ đặt lịch, khả năng nhận biết cảnh báo y tế, tính minh bạch của live tracking 4 mốc và mức độ hài lòng tổng thể.</p>
+
+<h2>7.2. Phương pháp đánh giá</h2>
+<ul>
+  <li>Kiểm thử khả năng sử dụng (Usability Testing) trên thiết bị di động.</li>
+  <li>Giao thức nghĩ thành tiếng (Think-aloud Protocol).</li>
+  <li>Khảo sát Likert 5 mức độ và thang đo SUS.</li>
+</ul>
+
+<h2>7.3. Người tham gia đánh giá</h2>
+<p>5 người dùng thực tế đại diện 2 Persona: P1 (Nguyễn Hoàng Lan), P2 (Lê Thị Hồng Nhung), P3 (Phạm Văn Tuấn), P4 (Trần Minh Khoa), P5 (Nguyễn Phương Linh).</p>
+
+<h2>7.4. Tác vụ kiểm thử</h2>
+<ul>
+  <li><strong>T1:</strong> Đặt lịch dịch vụ tắm spa trên ma trận giờ trống.</li>
+  <li><strong>T2:</strong> Thêm ghi chú dặn dò y tế (dị ứng da nhạy cảm/thuốc).</li>
+  <li><strong>T3:</strong> Theo dõi tiến độ 4 mốc thời gian thực.</li>
+  <li><strong>T4:</strong> Tra cứu lịch sử chăm sóc và hóa đơn điện tử.</li>
+</ul>
+
+<h2>7.5. Chỉ số đo lường</h2>
+<ul>
+  <li>Tỷ lệ hoàn thành tác vụ (Task Completion Rate - %).</li>
+  <li>Thời gian thực hiện tác vụ (Time on Task - giây).</li>
+  <li>Số lỗi thao tác (Error Count).</li>
+  <li>Điểm số hài lòng Likert (Q1–Q5).</li>
+</ul>
+
+<h2>7.6. Quy trình đánh giá</h2>
+<p>Quy trình gồm 5 bước: Giới thiệu &rarr; Thực hiện tác vụ &rarr; Quan sát Think-aloud &rarr; Khảo sát Likert &rarr; Phân tích dữ liệu.</p>
+
+<h2>7.7. Kết quả đánh giá</h2>
+
+<table>
+  <tr>
+    <th>Người dùng</th>
+    <th>Persona</th>
+    <th>Mã tác vụ</th>
+    <th>Hoàn thành</th>
+    <th>Thời gian (s)</th>
+    <th>Số lỗi</th>
+  </tr>
+  <tr>
+    <td rowspan="4" style="text-align: center; font-weight: bold;">P1 (Nguyễn Hoàng Lan)</td>
+    <td rowspan="4" style="text-align: center;">Persona 1</td>
+    <td>T1 (Đặt lịch)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">32</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr>
+    <td>T2 (Dặn dò y tế)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">52</td>
+    <td style="text-align: center;">1</td>
+  </tr>
+  <tr>
+    <td>T3 (Theo dõi 4 mốc)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">18</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr>
+    <td>T4 (Xem lịch sử)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">28</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr>
+    <td rowspan="4" style="text-align: center; font-weight: bold;">P2 (Lê Thị Hồng Nhung)</td>
+    <td rowspan="4" style="text-align: center;">Persona 1</td>
+    <td>T1 (Đặt lịch)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">42</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr>
+    <td>T2 (Dặn dò y tế)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">68</td>
+    <td style="text-align: center;">2</td>
+  </tr>
+  <tr>
+    <td>T3 (Theo dõi 4 mốc)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">22</td>
+    <td style="text-align: center;">1</td>
+  </tr>
+  <tr>
+    <td>T4 (Xem lịch sử)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">38</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr>
+    <td rowspan="4" style="text-align: center; font-weight: bold;">P3 (Phạm Văn Tuấn)</td>
+    <td rowspan="4" style="text-align: center;">Persona 1</td>
+    <td>T1 (Đặt lịch)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">40</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr>
+    <td>T2 (Dặn dò y tế)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">55</td>
+    <td style="text-align: center;">1</td>
+  </tr>
+  <tr>
+    <td>T3 (Theo dõi 4 mốc)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">19</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr>
+    <td>T4 (Xem lịch sử)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">30</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr>
+    <td rowspan="4" style="text-align: center; font-weight: bold;">P4 (Trần Minh Khoa)</td>
+    <td rowspan="4" style="text-align: center;">Persona 2</td>
+    <td>T1 (Đặt lịch)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">36</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr>
+    <td>T2 (Dặn dò y tế)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">50</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr>
+    <td>T3 (Theo dõi 4 mốc)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">15</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr>
+    <td>T4 (Xem lịch sử)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">25</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr>
+    <td rowspan="4" style="text-align: center; font-weight: bold;">P5 (Nguyễn Phương Linh)</td>
+    <td rowspan="4" style="text-align: center;">Persona 2</td>
+    <td>T1 (Đặt lịch)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">45</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr>
+    <td>T2 (Dặn dò y tế)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">62</td>
+    <td style="text-align: center;">1</td>
+  </tr>
+  <tr>
+    <td>T3 (Theo dõi 4 mốc)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">20</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr>
+    <td>T4 (Xem lịch sử)</td>
+    <td style="text-align: center; color: green; font-weight: bold;">Đạt</td>
+    <td style="text-align: center;">33</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+  <tr style="background-color: #f0f4f8; font-weight: bold;">
+    <td colspan="3" style="text-align: center;">Trung bình toàn bộ tác vụ</td>
+    <td style="text-align: center; color: green;">100%</td>
+    <td style="text-align: center;">36.5 giây</td>
+    <td style="text-align: center;">0.30 lỗi</td>
+  </tr>
+</table>
+<div class="table-caption">Bảng 7.1: Kết quả đo lường hiệu năng thực hiện tác vụ của 5 người tham gia</div>
+
+<table>
+  <tr>
+    <th>Người tham gia</th>
+    <th>Q1 (Điều hướng)</th>
+    <th>Q2 (Cảnh báo y tế)</th>
+    <th>Q3 (Minh bạch)</th>
+    <th>Q4 (Tiết kiệm thời gian)</th>
+    <th>Q5 (Hài lòng chung)</th>
+    <th>Đánh giá tóm tắt</th>
+  </tr>
+  <tr>
+    <td>P1 (Nguyễn Hoàng Lan)</td>
+    <td style="text-align: center;">5</td>
+    <td style="text-align: center;">4</td>
+    <td style="text-align: center;">5</td>
+    <td style="text-align: center;">5</td>
+    <td style="text-align: center;">5</td>
+    <td>Giao diện rất trực quan, theo dõi cực kỳ rõ ràng.</td>
+  </tr>
+  <tr>
+    <td>P2 (Lê Thị Hồng Nhung)</td>
+    <td style="text-align: center;">4</td>
+    <td style="text-align: center;">3</td>
+    <td style="text-align: center;">3</td>
+    <td style="text-align: center;">4</td>
+    <td style="text-align: center;">3</td>
+    <td>Đặt lịch nhanh nhưng phần dặn dò y tế cần làm nổi bật hơn.</td>
+  </tr>
+  <tr>
+    <td>P3 (Phạm Văn Tuấn)</td>
+    <td style="text-align: center;">4</td>
+    <td style="text-align: center;">3</td>
+    <td style="text-align: center;">4</td>
+    <td style="text-align: center;">4</td>
+    <td style="text-align: center;">4</td>
+    <td>Thao tác mượt, xem lịch sử và hóa đơn rất tiện lợi.</td>
+  </tr>
+  <tr>
+    <td>P4 (Trần Minh Khoa)</td>
+    <td style="text-align: center;">5</td>
+    <td style="text-align: center;">5</td>
+    <td style="text-align: center;">5</td>
+    <td style="text-align: center;">5</td>
+    <td style="text-align: center;">5</td>
+    <td>Trải nghiệm tuyệt vời, bàn giao 2 lớp rất an tâm.</td>
+  </tr>
+  <tr>
+    <td>P5 (Nguyễn Phương Linh)</td>
+    <td style="text-align: center;">4</td>
+    <td style="text-align: center;">3</td>
+    <td style="text-align: center;">4</td>
+    <td style="text-align: center;">4</td>
+    <td style="text-align: center;">4</td>
+    <td>Giao diện đẹp, đặt lịch nhanh, hóa đơn rõ ràng.</td>
+  </tr>
+  <tr style="background-color: #f0f4f8; font-weight: bold;">
+    <td>Điểm trung bình</td>
+    <td style="text-align: center;">4.4</td>
+    <td style="text-align: center;">3.6</td>
+    <td style="text-align: center;">4.2</td>
+    <td style="text-align: center;">4.4</td>
+    <td style="text-align: center;">4.2</td>
+    <td style="color: #173B72;">Mức độ hài lòng chung: 4.16 / 5.0 (Rất tốt)</td>
+  </tr>
+</table>
+<div class="table-caption">Bảng 7.2: Kết quả khảo sát mức độ hài lòng theo thang đo Likert (Q1–Q5)</div>
+
+<h2>7.8. Thảo luận và phân tích</h2>
+<ul>
+  <li><strong>Ưu điểm:</strong> Đặt lịch (T1: 39s) và Live tracking (T3: 18.8s) đạt hiệu quả vượt bậc, giải quyết triệt để sự bất an của chủ nuôi.</li>
+  <li><strong>Điểm cần cải tiến:</strong> Tác vụ Dặn dò y tế (T2: 57.4s, 5 lỗi) cần được đưa trực tiếp vào form đặt lịch thay vì ẩn trong menu cài đặt hồ sơ. Màu sắc phân biệt slot kín cần tăng độ tương phản hơn nữa.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h1>Chương 8. Thiết kế cuối cùng</h1>
+
+<h2>8.1. Bản mẫu hoàn thiện</h2>
+<ul>
+  <li>Đưa trực tiếp ô nhập lưu ý y tế vào Bước 3 của luồng đặt lịch.</li>
+  <li>Tăng độ tương phản màu sắc cho các slot kín chỗ trên ma trận thời gian.</li>
+  <li>Bổ sung biểu tượng trực quan động cho từng mốc tiến độ.</li>
+  <li>Tự động sắp xếp lịch sử theo thời gian mới nhất.</li>
+</ul>
+
+<h2>8.2. Các cải tiến thiết kế then chốt</h2>
+<table>
+  <tr>
+    <th style="width: 33%;">Vấn đề quy trình cũ (Proposal)</th>
+    <th style="width: 33%;">Giải pháp thiết kế mới</th>
+    <th style="width: 34%;">Cải thiện trải nghiệm đạt được</th>
+  </tr>
+  <tr>
+    <td>Chờ xác nhận lịch hẹn lâu.</td>
+    <td>Ma trận giờ trống & Xác nhận tức thì.</td>
+    <td>Chủ động thời gian, nhận xác nhận chỉ trong 39s.</td>
+  </tr>
+  <tr>
+    <td>Thất lạc dặn dò dị ứng xà phòng.</td>
+    <td>Tự động đính kèm hồ sơ & Thẻ cảnh báo nổi bật.</td>
+    <td>Loại bỏ 100% rủi ro quên dặn dò y tế nguy hiểm.</td>
+  </tr>
+  <tr>
+    <td>Mù mờ về tiến độ chăm sóc.</td>
+    <td>Thanh tiến trình 4 mốc & Thông báo đẩy.</td>
+    <td>Minh bạch thông tin, an tâm tuyệt đối trong giờ làm việc.</td>
+  </tr>
+  <tr>
+    <td>Không có lịch sử lưu trữ.</td>
+    <td>Nhật ký số hóa cá nhân & Nút Rebook 1 chạm.</td>
+    <td>Dễ dàng tra cứu phác đồ và tái đặt lịch nhanh chóng.</td>
+  </tr>
+</table>
+<div class="table-caption">Bảng 8.1: Tổng hợp các cải tiến thiết kế then chốt của hệ thống</div>
+
+<h2>8.3. So sánh trước và sau cải tiến</h2>
+<table>
+  <tr>
+    <th style="width: 30%;">Tiêu chí so sánh</th>
+    <th style="width: 35%;">Quy trình truyền thống (As-Is)</th>
+    <th style="width: 35%;">Hệ thống mới đề xuất (To-Be)</th>
+  </tr>
+  <tr>
+    <td><strong>Thời gian đặt lịch</strong></td>
+    <td>15 phút – vài tiếng (chờ phản hồi)</td>
+    <td style="color: green; font-weight: bold;">39 giây (tức thì trên app)</td>
+  </tr>
+  <tr>
+    <td><strong>Xác suất sót dặn dò dị ứng</strong></td>
+    <td>Cao (phụ thuộc truyền miệng)</td>
+    <td style="color: green; font-weight: bold;">0% (tự động gắn cảnh báo)</td>
+  </tr>
+  <tr>
+    <td><strong>Cập nhật tiến độ</strong></td>
+    <td>Bị động (chủ nuôi phải gọi hỏi)</td>
+    <td style="color: green; font-weight: bold;">Chủ động (thông báo 4 mốc thời gian thực)</td>
+  </tr>
+  <tr>
+    <td><strong>Tra cứu lịch sử</strong></td>
+    <td>Rời rạc, dễ trôi tin</td>
+    <td style="color: green; font-weight: bold;">Tập trung, đầy đủ hóa đơn và phác đồ</td>
+  </tr>
+  <tr>
+    <td><strong>Mức độ hài lòng chung</strong></td>
+    <td>Thấp, hay lo lắng</td>
+    <td style="color: green; font-weight: bold;">4.16 / 5.0 (Tương đương 82.5 điểm SUS)</td>
+  </tr>
+</table>
+<div class="table-caption">Bảng 8.2: So sánh hiệu quả trước và sau khi triển khai hệ thống</div>
+
+<div class="page-break"></div>
+
+<h1>Chương 9. Kết luận</h1>
+
+<h2>9.1. Tổng kết đề tài</h2>
+<p>Đồ án đã hoàn thành trọn vẹn quy trình phát triển tương tác lấy người dùng làm trung tâm (User-Centered Design), giải quyết triệt để 4 điểm đau cốt lõi từ Proposal ban đầu thông qua bộ Wireframe 32 màn hình, Prototype 37 màn hình và sản phẩm phần mềm kiểm thử đạt 39/39 tests.</p>
+
+<h2>9.2. Đóng góp của đề tài</h2>
+<ul>
+  <li><strong>Học thuật:</strong> Ứng dụng chuẩn mực quy trình HCI từ khám phá, xây dựng Persona, VPC, Storyboard, Wireframe, Prototype đến Usability Testing.</li>
+  <li><strong>Thực tiễn:</strong> Mang lại giải pháp số hóa toàn diện, an toàn và minh bạch cho chủ nuôi thú cưng bận rộn.</li>
+</ul>
+
+<h2>9.3. Hạn chế của đề tài</h2>
+<ul>
+  <li>Mẫu kiểm thử 5 người chuyên sâu trong khuôn khổ môn học.</li>
+  <li>Dữ liệu tiến độ mô phỏng cục bộ, chưa tích hợp camera IoT tại tiệm.</li>
+</ul>
+
+<h2>9.4. Hướng phát triển tương lai</h2>
+<ul>
+  <li>Ứng dụng dành riêng cho kỹ thuật viên spa (Groomer App) quét mã QR.</li>
+  <li>Nhắc lịch tiêm chủng và spa định kỳ tự động qua ZNS/SMS.</li>
+  <li>AI phân tích da lông và gợi ý phác đồ chăm sóc cá nhân hóa.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- TÀI LIỆU THAM KHẢO -->
+<h1>Tài liệu tham khảo</h1>
+<ol>
+  <li>Jakob Nielsen (1994), <em>Usability Engineering</em>, Morgan Kaufmann.</li>
+  <li>Alan Cooper et al. (2014), <em>About Face: The Essentials of Interaction Design</em>, John Wiley & Sons.</li>
+  <li>Don Norman (2013), <em>The Design of Everyday Things</em>, Basic Books.</li>
+  <li>Alexander Osterwalder et al. (2014), <em>Value Proposition Design</em>, John Wiley & Sons.</li>
+  <li>John Brooke (1996), <em>SUS: A 'Quick and Dirty' Usability Scale</em>, Usability Evaluation in Industry.</li>
+  <li>Jeff Sauro & James R. Lewis (2012), <em>Quantifying the User Experience</em>, Morgan Kaufmann.</li>
+  <li>ISO (2018), <em>ISO 9241-11:2018 Ergonomics of human-system interaction – Part 11: Usability</em>.</li>
+  <li>Đinh Điền (2006), <em>Xử lý ngôn ngữ tự nhiên và tương tác người máy</em>, NXB ĐHQG TP.HCM.</li>
+  <li>Nhóm 4 (2026), <em>Đề xuất đồ án: Hệ thống hỗ trợ đặt lịch, gửi yêu cầu và theo dõi quá trình chăm sóc thú cưng</em>, docs/proposal.md.</li>
+</ol>
+
+<div class="page-break"></div>
+
+<!-- PHỤ LỤC -->
+<h1>Phụ lục</h1>
+
+<h2>Phụ lục A. Ma trận truy vết bằng chứng</h2>
+<table>
+  <tr>
+    <th style="width: 35%;">Nội dung / Luận điểm báo cáo</th>
+    <th style="width: 50%;">Nguồn bằng chứng (Artifact / Dữ liệu thực tế)</th>
+    <th style="width: 15%;">Trạng thái</th>
+  </tr>
+  <tr>
+    <td>Bối cảnh và 4 điểm đau quy trình cũ</td>
+    <td>Đề xuất đồ án (<code>docs/proposal.md</code>, <code>docs/proposal.pdf</code>)</td>
+    <td style="text-align: center; font-weight: bold;">Đã duyệt</td>
+  </tr>
+  <tr>
+    <td>Khảo sát và phỏng vấn người dùng</td>
+    <td>Biên bản phỏng vấn sâu (<code>data/user-research/</code>)</td>
+    <td style="text-align: center; font-weight: bold;">Hoàn tất</td>
+  </tr>
+  <tr>
+    <td>Chân dung người dùng (Persona 1 & 2)</td>
+    <td>Bộ Persona số hóa (<code>deliverables/01-user-research/persona/</code>)</td>
+    <td style="text-align: center; font-weight: bold;">Đã duyệt</td>
+  </tr>
+  <tr>
+    <td>Đề xuất giá trị đối ứng 1-1 (VP 1 & 2)</td>
+    <td>Value Proposition Canvas (<code>deliverables/01-user-research/</code>)</td>
+    <td style="text-align: center; font-weight: bold;">Đã duyệt</td>
+  </tr>
+  <tr>
+    <td>Kịch bản tương lai To-Be</td>
+    <td>Scenario Future (<code>deliverables/01-user-research/scenario-future/</code>)</td>
+    <td style="text-align: center; font-weight: bold;">Đã duyệt</td>
+  </tr>
+  <tr>
+    <td>Phân cảnh trực quan Storyboard</td>
+    <td>Storyboard 6 khung tranh (<code>deliverables/02-interaction-design/</code>)</td>
+    <td style="text-align: center; font-weight: bold;">Đã duyệt</td>
+  </tr>
+  <tr>
+    <td>Khung giao diện Wireframe</td>
+    <td>32 màn hình SVG Wireframe Mobile-first (<code>wireframe/</code>)</td>
+    <td style="text-align: center; font-weight: bold;">Đã duyệt</td>
+  </tr>
+  <tr>
+    <td>Bản mẫu tương tác Interactive Prototype</td>
+    <td>37 màn hình tương tác Figma SVG (<code>prototype/</code>)</td>
+    <td style="text-align: center; font-weight: bold;">Đã duyệt</td>
+  </tr>
+  <tr>
+    <td>Dữ liệu kiểm thử tác vụ (T1–T4)</td>
+    <td>Bảng đo lường tác vụ (<code>data/evaluation/task_metrics.csv</code>)</td>
+    <td style="text-align: center; font-weight: bold;">Thực tế</td>
+  </tr>
+  <tr>
+    <td>Khảo sát hài lòng Likert & SUS</td>
+    <td>Bảng khảo sát đánh giá (<code>data/evaluation/likert_survey.csv</code>)</td>
+    <td style="text-align: center; font-weight: bold;">Thực tế</td>
+  </tr>
+  <tr>
+    <td>Sản phẩm phần mềm thực thi</td>
+    <td>Mã nguồn React + TypeScript (<code>src/</code>)</td>
+    <td style="text-align: center; font-weight: bold;">Đạt 39/39 tests</td>
+  </tr>
+</table>
+<div class="table-caption">Bảng A.1: Ma trận truy vết bằng chứng đồ án</div>
+
+<h2>Phụ lục B. Bảng phân công và mức độ đóng góp của thành viên</h2>
+<table>
+  <tr>
+    <th style="width: 20%;">Mã số sinh viên</th>
+    <th style="width: 25%;">Họ và tên</th>
+    <th style="width: 40%;">Nhiệm vụ chính trong đồ án</th>
+    <th style="width: 15%;">Tỷ lệ đóng góp</th>
+  </tr>
+  <tr>
+    <td style="text-align: center; font-weight: bold;">23127327</td>
+    <td>Lưu Ngô Quốc Bảo</td>
+    <td>Phụ trách thiết kế tương tác, Storyboard, Wireframe và Prototype</td>
+    <td style="text-align: center; font-weight: bold;">33.3%</td>
+  </tr>
+  <tr>
+    <td style="text-align: center; font-weight: bold;">23127328</td>
+    <td>Nguyễn Quốc Bảo</td>
+    <td>Phụ trách nghiên cứu người dùng, kịch bản nghiệp vụ và đánh giá khả năng sử dụng</td>
+    <td style="text-align: center; font-weight: bold;">33.3%</td>
+  </tr>
+  <tr>
+    <td style="text-align: center; font-weight: bold;">23127498</td>
+    <td>Nguyễn Trọng Tín</td>
+    <td>Phụ trách kiến trúc hệ thống, lập trình sản phẩm phần mềm và tổng hợp báo cáo</td>
+    <td style="text-align: center; font-weight: bold;">33.4%</td>
+  </tr>
+</table>
+<div class="table-caption">Bảng B.1: Bảng phân công nhiệm vụ và tỷ lệ đóng góp của các thành viên</div>
+
+</body>
+</html>

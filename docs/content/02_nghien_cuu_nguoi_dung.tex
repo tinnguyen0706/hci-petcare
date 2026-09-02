@@ -1,133 +1,143 @@
 \section{Nghiên cứu người dùng}
 
 \subsection{Đối tượng người dùng mục tiêu}
-Đối tượng người dùng mục tiêu của hệ thống là \textbf{Chủ nuôi thú cưng (Pet Owners)} sinh sống và làm việc tại các đô thị lớn. Nhóm người dùng này có các đặc điểm nhân khẩu học và hành vi nổi bật:
+Đối tượng người dùng mục tiêu của hệ thống là những chủ nuôi thú cưng (Pet Owners) đang sinh sống và làm việc tại các đô thị lớn (tiêu biểu là TP. Hồ Chí Minh). Họ là những người trực tiếp lựa chọn gói dịch vụ, thực hiện đặt lịch, khai báo yêu cầu chăm sóc, đưa đón và theo dõi tình trạng thú cưng.
+
+Đặc điểm nhân khẩu học và hành vi nổi bật của nhóm đối tượng này bao gồm:
 \begin{itemize}
-    \item \textbf{Độ tuổi}: Từ 18 đến 35 tuổi (chủ yếu là nhân viên văn phòng, chuyên viên tri thức, sinh viên đại học).
-    \item \textbf{Đặc điểm thú cưng}: Nuôi chó (Poodle, Corgi, Pomeranian...) hoặc mèo (Mèo Anh lông ngắn, Ba Tư, mèo ta...), có nhu cầu chăm sóc vệ sinh, tắm spa hoặc cắt tỉa định kỳ từ 2 đến 4 tuần một lần. Nhiều thú cưng có cơ địa da nhạy cảm hoặc tính cách nhút nhát, sợ tiếng ồn.
-    \item \textbf{Mức độ am hiểu công nghệ}: Cao, thường xuyên sử dụng điện thoại thông minh cho các tiện ích đời sống hàng ngày (đặt xe, giao đồ ăn, thanh toán không tiền mặt).
-    \item \textbf{Ngữ cảnh sử dụng}: Thao tác đặt lịch trong giờ giải lao, trước khi đi làm hoặc vào buổi tối; theo dõi trạng thái chăm sóc từ xa trong giờ làm việc tại công ty hoặc khi đang học tập tại trường.
+    \item \textbf{Độ tuổi}: Từ 20 đến 35 tuổi (chủ yếu là sinh viên đại học, nhân viên văn phòng, chuyên viên phân tích, người làm việc tự do).
+    \item \textbf{Mức độ am hiểu công nghệ}: Cao; có thói quen sử dụng điện thoại thông minh hàng ngày cho các tác vụ thương mại điện tử, đặt dịch vụ và thanh toán không tiền mặt.
+    \item \textbf{Lối sống và quỹ thời gian}: Bận rộn với lịch học tập và làm việc dày đặc, không có nhiều thời gian rảnh để gọi điện trao đổi dài dòng hoặc ngồi chờ trực tiếp tại cơ sở spa.
+    \item \textbf{Tâm lý và kỳ vọng}: Coi thú cưng như con cái hoặc thành viên ruột thịt; rất quan tâm đến sức khỏe, sự an toàn và tính thoải mái của thú cưng, nhưng luôn có tâm lý e ngại việc dặn dò đặc biệt (về bệnh ngoài da, dị ứng hoặc tính cách nhút nhát) bị nhân viên bỏ quên.
 \end{itemize}
 
 \subsection{Phương pháp nghiên cứu}
-Để nắm bắt chính xác hành vi và các rào cản thực tế, nhóm nghiên cứu đã triển khai kết hợp hai phương pháp nghiên cứu định tính và định lượng:
+Để thu thập dữ liệu chân thực và sâu sắc về hành vi và khó khăn của người dùng, nhóm đã áp dụng kết hợp hai phương pháp nghiên cứu định tính và định lượng chuẩn HCI:
 \begin{enumerate}
-    \item \textbf{Phỏng vấn sâu bán cấu trúc (Semi-structured In-depth Interview)}: Thực hiện phỏng vấn trực tiếp 1-1 với chủ nuôi thú cưng để đào sâu cảm xúc, thói quen giao tiếp với tiệm và những trải nghiệm tiêu cực từng gặp phải (minh chứng chi tiết tại \texttt{data/user-research/06\_interview\_member.md}).
-    \item \textbf{Khảo sát trực tuyến qua bảng hỏi (Online Structured Questionnaire)}: Thu thập ý kiến từ 5 đối tượng đại diện thuộc nhiều nhóm độ tuổi và bối cảnh nuôi dưỡng khác nhau (dữ liệu thu thập từ ngày 06/08/2026 đến 13/08/2026 tại \texttt{data/user-research/}).
+    \item \textbf{Phỏng vấn sâu theo ngữ cảnh (Contextual In-depth Interview)}: Thực hiện phỏng vấn trực tiếp và bán cấu trúc với 6 chủ nuôi thú cưng có hồ sơ đa dạng (từ chủ nuôi có thú cưng bị dị ứng mạn tính đến sinh viên nuôi mèo nhút nhát). Mục đích nhằm đào sâu vào cảm xúc, trải nghiệm thực tế trong các lần đưa thú cưng đi spa trước đây, cũng như nguyên nhân sâu xa của sự bất an khi giao thú cưng cho tiệm.
+    \item \textbf{Khảo sát bằng bảng câu hỏi trực tuyến (Online Survey)}: Thu thập ý kiến phản hồi về tần suất chăm sóc thú cưng, mức độ hài lòng với các kênh liên lạc truyền thống (gọi điện thoại, nhắn tin Fanpage/Zalo) và các tính năng mong đợi nhất trên một ứng dụng chuyên biệt.
 \end{enumerate}
 
 \subsection{Kết quả nghiên cứu}
-Quá trình phân tích dữ liệu nghiên cứu thực tế đã chỉ ra những phát hiện cốt lõi:
+Từ các dữ liệu phỏng vấn và khảo sát thực tế tại thư mục dữ liệu nghiên cứu (\texttt{data/user-research/}), nhóm đã tổng hợp được các phát hiện then chốt sau:
 \begin{itemize}
-    \item \textbf{Thực trạng đặt lịch}: 80\% người tham gia cho biết họ đặt lịch qua tin nhắn Zalo/Messenger hoặc đến trực tiếp. Việc hỏi lịch thường xuyên gặp tình trạng phản hồi chậm, dẫn đến việc lỡ mất khung giờ mong muốn khi tiệm đã kín chỗ.
-    \item \textbf{Sự cố dặn dò y tế và an toàn}: Hơn 60\% chủ nuôi từng gặp sự cố nhân viên quên dặn dò đặc biệt (dùng sai loại sữa tắm gây ngứa cho chó da nhạy cảm, hoặc nhốt chung mèo nhút nhát với chó lớn gây hoảng loạn).
-    \item \textbf{Tâm lý lo lắng khi gửi thú cưng}: 100\% chủ nuôi bày tỏ mong muốn được biết tình trạng của thú cưng trong suốt thời gian chăm sóc. Tuy nhiên, họ đều có xu hướng ngại gọi điện hoặc nhắn tin hỏi thăm vì sợ làm phiền nhân viên đang làm việc, dẫn đến tâm lý hoang mang, bất an.
+    \item \textbf{Về thời gian đặt lịch}: $83.3\%$ người tham gia cho biết họ cảm thấy phiền phức khi phải nhắn tin hỏi giờ trống và chờ cơ sở phản hồi; $50\%$ từng gặp sự cố bị trùng lịch hoặc đến nơi nhưng tiệm quá đông phải chờ đợi hàng giờ.
+    \item \textbf{Về ghi nhớ thông tin dị ứng \& an toàn y tế}: $100\%$ chủ nuôi có thú cưng bị dị ứng da hoặc có tính cách đặc biệt bày tỏ sự bức xúc vì lần nào gửi cũng phải dặn đi dặn lại nhân viên. Đã có trường hợp thú cưng bị tái phát viêm da nặng hoặc trầy xước do tiệm sơ suất dùng sai dầu tắm hoặc nhốt chung với thú cưng hung dữ.
+    \item \textbf{Về nhu cầu theo dõi tiến độ}: $100\%$ người dùng thừa nhận họ có cảm giác bất an, lo lắng trong suốt thời gian thú cưng ở tiệm. Họ muốn biết rõ thú cưng đang làm đến bước nào mà không cần phải gọi điện làm phiền nhân viên.
+    \item \textbf{Về quản lý lịch sử dịch vụ}: Đa số người dùng không thể nhớ chính xác lần trước mình đã dùng loại sữa tắm nào, dịch vụ cắt tỉa gì hay chi phí bao nhiêu do thông tin bị phân tán trong các tin nhắn chat cũ.
 \end{itemize}
 
-\begin{quote}
-\textit{“Đừng hỏi shop tình trạng hiện tại của pet như thế nào, họ không trả lời đâu. Suốt thời gian gửi bé mình chỉ biết ngồi chờ đến khi tiệm gọi đón.”} --- (Trích biên bản phỏng vấn \texttt{data/user-research/06\_interview\_member.md})
-\end{quote}
-
 \subsection{Nhu cầu và điểm đau của người dùng}
-Tổng hợp từ nghiên cứu thực tế, ma trận nhu cầu và điểm đau của người dùng được chuẩn hóa trong Bảng \ref{tab:user_pain_points}:
-
+Tổng hợp từ kết quả nghiên cứu, nhóm đã xác định 4 nhóm nhu cầu cốt lõi đối ứng trực tiếp với 4 điểm đau lớn của người dùng:
 \begin{table}[H]
 \centering
-\small
-\begin{tabularx}{\textwidth}{|p{3.2cm}|X|X|}
+\begin{tabularx}{\textwidth}{|l|X|X|}
 \hline
-\textbf{Nhóm vấn đề} & \textbf{Điểm đau thực tế (Pain Points)} & \textbf{Nhu cầu \& Kỳ vọng (User Needs)} \\ \hline
-\textbf{Đặt lịch} & Chờ tiệm phản hồi lâu, không biết trước khung giờ trống, dễ bị trùng lịch hoặc hết chỗ. & Thấy ngay ma trận giờ trống khả dụng và nhận xác nhận lịch hẹn tức thì trên ứng dụng. \\ \hline
-\textbf{Dặn dò y tế} & Lần nào cũng phải nhắc lại tiền sử dị ứng; nhân viên dễ quên hoặc không bàn giao ca. & Hồ sơ thú cưng tự động lưu tiền sử y tế và gắn thẻ cảnh báo trực tiếp vào đơn tiếp nhận. \\ \hline
-\textbf{Theo dõi tiến độ} & Hoàn toàn mù mờ thông tin trong 2--3 tiếng chăm sóc; ngại gọi điện làm phiền. & Nhận thông báo chủ động theo thời gian thực qua 4 mốc chăm sóc rõ ràng. \\ \hline
-\textbf{Lịch sử dịch vụ} & Thông tin trôi trong tin nhắn chat, không có nơi tra cứu loại sản phẩm đã dùng hoặc giá tiền. & Kho lưu trữ tập trung lịch sử chăm sóc, sản phẩm đã sử dụng và hóa đơn điện tử minh bạch. \\ \hline
+\textbf{STT} & \textbf{Điểm đau của người dùng} & \textbf{Nhu cầu tương ứng của người dùng} \\ \hline
+1 & Chờ đợi lâu khi hỏi lịch, xác nhận thủ công dễ bị sót hoặc nhầm lẫn thời gian. & Xem trực tiếp ma trận khung giờ còn trống và nhận xác nhận lịch hẹn tức thì trên ứng dụng. \\ \hline
+2 & Thất lạc dặn dò đặc biệt về tiền sử dị ứng xà phòng, bệnh ngoài da, thuốc và tính cách. & Hồ sơ thú cưng điện tử lưu vĩnh viễn cảnh báo y tế và tự động gắn vào phiếu tiếp nhận của kỹ thuật viên. \\ \hline
+3 & Bất an suốt 2--3 tiếng chăm sóc, không biết tình trạng thú cưng, ngại gọi điện hỏi. & Theo dõi tiến độ thời gian thực qua 4 mốc rõ ràng và nhận thông báo đẩy khi chuyển giai đoạn. \\ \hline
+4 & Thông tin chi phí, loại dịch vụ và sản phẩm đã dùng bị trôi tin, không thể tra cứu lại. & Kho lưu trữ lịch sử chăm sóc cá nhân hóa, hiển thị chi tiết hóa đơn điện tử và phác đồ đã sử dụng. \\ \hline
 \end{tabularx}
-\caption{Tổng hợp nhu cầu và điểm đau cốt lõi của chủ nuôi thú cưng}
-\label{tab:user_pain_points}
+\caption{Tổng hợp điểm đau và nhu cầu cốt lõi của người dùng}
+\label{tab:pains_needs}
 \end{table}
 
 \subsection{Chân dung người dùng}
-Dựa trên kết quả phân tích dữ liệu nghiên cứu, nhóm xây dựng hai Persona đại diện bao phủ toàn diện các phân khúc người dùng mục tiêu của hệ thống:
+Dựa trên kết quả nghiên cứu định tính và định lượng, nhóm xây dựng hai Persona đại diện hoàn chỉnh cho hai phân khúc người dùng mục tiêu của hệ thống:
 
-\subsubsection{Chân dung đại diện chính: Nguyễn Hoàng Lan}
-Nguyễn Hoàng Lan (28 tuổi) là đại diện cho phân khúc chủ nuôi bận rộn, coi trọng độ chính xác và an toàn y tế cho thú cưng có cơ địa da nhạy cảm.
+\subsubsection{Chân dung người dùng 1: Nguyễn Hoàng Lan}
+\begin{itemize}
+    \item \textbf{Vai trò}: Chân dung người dùng chính (Primary Persona).
+    \item \textbf{Thông tin cá nhân}: 28 tuổi, Nữ, Chuyên viên Phân tích Dữ liệu (Data Analyst) tại Quận 1, TP.HCM; thu nhập 22.000.000 VNĐ/tháng.
+    \item \textbf{Thông tin thú cưng}: Chó Poodle 2 tuổi (tên Bơ, 4.5kg). Bơ có tiền sử viêm da dị ứng với xà phòng nhiều hương liệu và nhút nhát với tiếng máy sấy công suất lớn.
+    \item \textbf{Trích dẫn}: \textit{''Mình rất bận nên chỉ mong đặt lịch nhanh có xác nhận ngay, gửi bé đi tắm có thể theo dõi tiến độ từ xa và tiệm luôn nhớ bé bị dị ứng da để chăm sóc an toàn.''}
+    \item \textbf{Mục tiêu cốt lõi}:
+    \begin{enumerate}
+        \item Đặt lịch dịch vụ chăm sóc nhanh chóng, có xác nhận tức thì mà không cần chờ đợi.
+        \item Đảm bảo tiệm tiếp nhận và thực hiện đúng lưu ý đặc biệt về tiền sử dị ứng xà phòng của Bơ.
+        \item Theo dõi tiến độ 4 mốc thời gian thực để chủ động thời gian đón bé mà không cần gọi điện.
+        \item Lưu trữ và tra cứu lịch sử các lần chăm sóc trước (sản phẩm, chi phí, ghi chú kỹ thuật viên).
+    \end{enumerate}
+    \item \textbf{Điểm đau chính}: Phải gọi điện/nhắn tin hỏi lịch; lần nào cũng phải nhắc lại tiền sử dị ứng; lo lắng suốt 2--3 tiếng làm dịch vụ; thông tin cũ bị thất lạc trong tin nhắn.
+    \item \textbf{Bằng chứng truy vết}: \texttt{deliverables/01-user-research/persona/personas.json}, \texttt{data/user-research/06\_interview\_member.md}, \texttt{docs/proposal.md}.
+\end{itemize}
 
 \begin{figure}[H]
 \centering
-\includegraphics[height=0.55\textheight, keepaspectratio]{img/persona-1.png}
-\caption{Chân dung người dùng đại diện chính --- Nguyễn Hoàng Lan}
+\includegraphics[height=0.60\textheight, keepaspectratio]{persona-1.png}
+\caption{Chân dung người dùng chính -- Nguyễn Hoàng Lan (Primary Persona)}
 \label{fig:persona_1}
 \end{figure}
 
+\subsubsection{Chân dung người dùng 2: Trần Minh Khoa}
 \begin{itemize}
-    \item \textbf{Bối cảnh}: Chuyên viên Phân tích Dữ liệu tại Quận 1, TP.HCM. Nuôi một chú chó Poodle 2 tuổi tên “Bơ” (4.5kg). Bơ có tiền sử viêm da dị ứng với xà phòng nhiều hương liệu và rất sợ tiếng máy sấy.
-    \item \textbf{Mục tiêu}: Đặt lịch nhanh chóng có xác nhận ngay; tiệm bắt buộc tuân thủ dùng đúng sữa tắm thảo dược dịu nhẹ; theo dõi được tiến trình từ xa trong giờ làm việc.
-    \item \textbf{Điểm đau}: Quá bận rộn để gọi điện trao đổi; sợ tiệm quên ghi chú dị ứng da của Bơ; bất an suốt 2--3 tiếng khi không có thông tin cập nhật.
+    \item \textbf{Vai trò}: Chân dung người dùng phụ (Secondary Persona).
+    \item \textbf{Thông tin cá nhân}: 21 tuổi, Nam, Sinh viên Đại học năm 3 tại TP. Thủ Đức, TP.HCM; thu nhập 5.000.000 VNĐ/tháng.
+    \item \textbf{Thông tin thú cưng}: Mèo Anh lông ngắn 1.5 tuổi (tên Miu, 3.8kg). Miu rất nhút nhát, sợ tiếng ồn lớn và người lạ, dễ hoảng loạn nếu gặp thú dữ. Từng bị sự cố trầy xước do tiệm cũ nhốt chung buồng.
+    \item \textbf{Trích dẫn}: \textit{''Mèo của mình rất nhút nhát nên mình rất sợ gửi tiệm bị nhốt chung với bé dữ. Mình chỉ muốn biết rõ tiến độ chăm sóc và có hồ sơ lưu lại dặn dò để tiệm không quên.''}
+    \item \textbf{Mục tiêu cốt lõi}:
+    \begin{enumerate}
+        \item Biết trước khung giờ vắng khách để đặt lịch, tránh cho mèo bị hoảng loạn.
+        \item Nắm bắt được tình trạng của mèo từ xa trong suốt quá trình làm dịch vụ để an tâm tuyệt đối.
+        \item Tra cứu lại chi phí, loại dịch vụ và lịch sử các lần chăm sóc để quản lý ngân sách sinh viên.
+    \end{enumerate}
+    \item \textbf{Điểm đau chính}: Đến tiệm mới biết hết chỗ; ám ảnh sự cố thú cưng bị tổn thương do bất cẩn; ngại gọi điện thoại làm phiền; không có nơi lưu trữ hóa đơn rõ ràng.
+    \item \textbf{Bằng chứng truy vết}: \texttt{deliverables/01-user-research/persona/personas.json}, \texttt{data/user-research/01\_respondent\_08-06.md}, \texttt{data/user-research/02\_respondent\_08-07\_0503.md}.
 \end{itemize}
-
-\subsubsection{Chân dung đại diện phụ: Trần Minh Khoa}
-Trần Minh Khoa (21 tuổi) là đại diện cho phân khúc sinh viên, người trẻ cẩn trọng, đề phòng rủi ro cho thú cưng có tính cách nhút nhát và có thói quen quản lý tài chính chặt chẽ.
 
 \begin{figure}[H]
 \centering
-\includegraphics[height=0.55\textheight, keepaspectratio]{img/persona-2.png}
-\caption{Chân dung người dùng đại diện phụ --- Trần Minh Khoa}
+\includegraphics[height=0.60\textheight, keepaspectratio]{persona-2.png}
+\caption{Chân dung người dùng phụ -- Trần Minh Khoa (Secondary Persona)}
 \label{fig:persona_2}
 \end{figure}
 
-\begin{itemize}
-    \item \textbf{Bối cảnh}: Sinh viên năm 3 tại TP. Thủ Đức, TP.HCM. Nuôi một bé mèo Anh lông ngắn 1.5 tuổi tên “Miu” (3.8kg). Miu rất nhút nhát, sợ tiếng ồn lớn và người lạ, dễ hoảng loạn nếu ở chung không gian với thú dữ.
-    \item \textbf{Mục tiêu}: Chọn được khung giờ vắng khách để đưa mèo đi spa; tiệm cam kết cách ly buồng riêng và thao tác nhẹ nhàng; nắm bắt tiến độ để đón ngay khi xong; minh bạch chi phí dịch vụ.
-    \item \textbf{Điểm đau}: Ám ảnh sự cố tiệm cũ nhốt chung buồng khiến Miu bị trầy xước; ngại gọi điện thoại làm phiền tiệm; không lưu được lịch sử hóa đơn để cân đối chi tiêu.
-\end{itemize}
-
 \subsection{Đề xuất giá trị}
-Áp dụng khung lý thuyết Đề xuất giá trị của Osterwalder \cite{osterwalder2014value}, nhóm thiết lập hai bản Đề xuất giá trị đối ứng 1-1 chặt chẽ với từng Persona:
+Tương ứng với hai Persona đại diện, nhóm đã thiết lập hai bản Đề xuất giá trị (Value Proposition Canvas) theo mô hình chuẩn của Osterwalder et al.\cite{osterwalder2014value}, thể hiện sự khớp nối 1--1 hoàn hảo giữa Hồ sơ khách hàng (Customer Profile) và Bản đồ giá trị (Value Map):
 
-\subsubsection{Đề xuất giá trị cho Chân dung chính (Nguyễn Hoàng Lan)}
-Bản đề xuất giá trị đối ứng trực tiếp với nhu cầu giải tỏa lo âu về y tế và tối ưu hóa thời gian cho Persona 1 được minh họa tại Hình \ref{fig:vp_1} và Bảng \ref{tab:vp_1}.
+\subsubsection{Đề xuất giá trị đối ứng cho Persona 1: Nguyễn Hoàng Lan}
+\begin{itemize}
+    \item \textbf{Hồ sơ khách hàng (Customer Profile)}:
+    \begin{itemize}
+        \item \textit{Tác vụ của khách hàng (Customer Jobs)}: Đặt lịch spa/cắt tỉa định kỳ nhanh chóng (J1); Dặn dò chi tiết tiền sử dị ứng xà phòng và tính nhút nhát của Poodle Bơ (J2); Theo dõi trạng thái chăm sóc từ xa trong giờ làm việc (J3); Tra cứu lại nhật ký dịch vụ và sản phẩm sử dụng trước đây (J4).
+        \item \textit{Điểm đau (Pains)}: Chờ đợi lâu khi hỏi lịch (P1); Tiệm quên dặn dò dị ứng gây tái phát bệnh ngoài da (P2 - Mức độ nghiêm trọng); Bất an không biết tiến độ của bé đến đâu (P3); Lịch sử chăm sóc bị thất lạc trong tin nhắn chat (P4).
+        \item \textit{Yếu tố tạo lợi ích mong đợi (Gains)}: Xem lịch trống và xác nhận tức thì (G1); An tâm tuyệt đối khi dặn dò dị ứng được hiển thị rõ ràng trên phiếu tiếp nhận (G2); Nhận thông báo chủ động theo 4 mốc thời gian thực (G3); Hồ sơ số hóa tập trung, tra cứu nhanh chỉ với một chạm (G4).
+    \end{itemize}
+    \item \textbf{Bản đồ giá trị (Value Map)}:
+    \begin{itemize}
+        \item \textit{Sản phẩm và Dịch vụ (Products \& Services)}: Đặt lịch trực tuyến với ma trận giờ trống thời gian thực (S1); Hồ sơ thú cưng tự động gắn cảnh báo dị ứng y tế (S2); Bảng theo dõi tiến độ 4 mốc kèm thông báo đẩy (S3); Kho lưu trữ lịch sử chăm sóc cá nhân hóa (S4).
+        \item \textit{Trợ thủ giải tỏa đau đớn (Pain Relievers)}: Khóa giữ chỗ và xác nhận lịch tức thì, xóa bỏ thời gian chờ phản hồi (PR1); Gắn nhãn dị ứng nổi bật vào phiếu bàn giao ca, triệt tiêu rủi ro bỏ sót dặn dò (PR2); Cập nhật tiến độ tự động qua thông báo đẩy, xóa tan bất an (PR3); Tự động lưu trữ chi tiết dịch vụ và loại sữa tắm sau mỗi lượt (PR4).
+        \item \textit{Yếu tố tạo lợi ích (Gain Creators)}: Tiết kiệm tối đa thời gian đặt lịch (GC1); Đảm bảo quy trình chăm sóc an toàn chuẩn y tế cho da nhạy cảm (GC2); Chủ động 100\% thời gian cá nhân nhờ thông báo khi chuyển mốc Chờ đón (GC3); Dễ dàng theo dõi sức khỏe dài hạn (GC4).
+    \end{itemize}
+\end{itemize}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.90\textwidth, keepaspectratio]{img/value-proposition-1.png}
-\caption{Bản Đề xuất giá trị đối ứng cho Chân dung Nguyễn Hoàng Lan}
+\includegraphics[width=0.90\textwidth, keepaspectratio]{value-proposition-1.png}
+\caption{Bản đề xuất giá trị đối ứng cho Persona 1 -- Nguyễn Hoàng Lan}
 \label{fig:vp_1}
 \end{figure}
 
-\begin{table}[H]
-\centering
-\small
-\begin{tabularx}{\textwidth}{|X|X|}
-\hline
-\textbf{Hồ sơ khách hàng (Customer Profile)} & \textbf{Bản đồ giá trị (Value Map)} \\ \hline
-\textbf{Tác vụ (Jobs)}: Đặt lịch nhanh; Dặn dò tiền sử viêm da dị ứng; Theo dõi trạng thái chăm sóc từ xa; Tra cứu lịch sử dịch vụ. & \textbf{Sản phẩm \& Dịch vụ}: Đặt lịch trực tuyến với ma trận giờ trống thời gian thực; Hồ sơ điện tử gắn nhãn y tế; Live Tracking 4 mốc; Kho lịch sử cá nhân hóa. \\ \hline
-\textbf{Điểm đau (Pains)}: Chờ phản hồi lâu; Tiệm quên tiền sử dị ứng gây viêm da tái phát; Bất an khi không biết tiến độ; Thất lạc thông tin chăm sóc cũ. & \textbf{Thuốc giảm đau (Pain Relievers)}: Xác nhận tức thì trên ứng dụng; Tự động gắn thẻ cảnh báo y tế màu vàng hổ phách nổi bật; Thông báo đẩy theo mốc; Tự động lưu phác đồ sản phẩm. \\ \hline
-\textbf{Lợi ích mong muốn (Gains)}: Tiết kiệm thời gian; An tâm tuyệt đối về an toàn da lông; Chủ động thời gian đón bé; Tra cứu hồ sơ chỉ bằng 1 chạm. & \textbf{Yếu tố tạo lợi ích (Gain Creators)}: Chọn slot giờ trực quan; Cam kết quy trình chăm sóc an toàn chuẩn y tế; Thông báo đón chính xác; Nhật ký số hóa dài hạn. \\ \hline
-\end{tabularx}
-\caption{Đối chiếu chi tiết Hồ sơ khách hàng và Bản đồ giá trị --- Persona 1}
-\label{tab:vp_1}
-\end{table}
-
-\subsubsection{Đề xuất giá trị cho Chân dung phụ (Trần Minh Khoa)}
-Bản đề xuất giá trị đối ứng trực tiếp với nhu cầu cách ly an toàn cho thú cưng nhút nhát và minh bạch chi phí cho Persona 2 được minh họa tại Hình \ref{fig:vp_2} và Bảng \ref{tab:vp_2}.
+\subsubsection{Đề xuất giá trị đối ứng cho Persona 2: Trần Minh Khoa}
+\begin{itemize}
+    \item \textbf{Hồ sơ khách hàng (Customer Profile)}:
+    \begin{itemize}
+        \item \textit{Tác vụ của khách hàng (Customer Jobs)}: Tìm và đặt lịch vào khung giờ vắng khách để tránh mèo bị hoảng loạn (J1); Nắm bắt trạng thái từ xa để kịp thời đến đón ngay khi hoàn tất (J2); Kiểm tra bảng giá minh bạch và lưu lại hóa đơn chi tiết (J3).
+        \item \textit{Điểm đau (Pains)}: Đến tiệm mới biết đông khách hoặc hết chỗ (P1); Rất lo lắng cho mèo nhút nhát nhưng ngại gọi điện thoại (P2); Không có nơi lưu trữ hóa đơn, khó quản lý chi tiêu (P3).
+        \item \textit{Yếu tố tạo lợi ích mong đợi (Gains)}: Chủ động chọn khung giờ thưa khách và nhận xác nhận lịch trước (G1); Cập nhật tiến độ theo từng mốc để đón mèo sớm nhất (G2); Minh bạch toàn bộ chi phí và lưu trữ hóa đơn điện tử (G3).
+    \end{itemize}
+    \item \textbf{Bản đồ giá trị (Value Map)}:
+    \begin{itemize}
+        \item \textit{Sản phẩm và Dịch vụ (Products \& Services)}: Hiển thị khung giờ trống và mật độ khách, hỗ trợ đặt lịch giữ chỗ tức thì (S1); Trình hiển thị tiến độ 4 mốc chuẩn xác và thông báo đẩy khi hoàn tất (S2); Sổ theo dõi lịch sử dịch vụ tích hợp bảng giá và hóa đơn điện tử (S3).
+        \item \textit{Trợ thủ giải tỏa đau đớn (Pain Relievers)}: Loại bỏ hoàn toàn tình trạng chờ đợi tại chỗ (PR1); Xóa tan sự e ngại gọi điện nhờ cơ chế tự động gửi thông báo theo mốc (PR2); Minh bạch 100\% giá dịch vụ và lưu trữ đầy đủ hóa đơn (PR3).
+        \item \textit{Yếu tố tạo lợi ích (Gain Creators)}: Giúp chủ nuôi chủ động chọn thời điểm yên tĩnh nhất cho thú cưng nhút nhát (GC1); Tối ưu thời gian đón ngay khi có thông báo Chờ đón (GC2); Dễ dàng đối soát chi phí và quản lý ngân sách nuôi thú cưng (GC3).
+    \end{itemize}
+\end{itemize}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.90\textwidth, keepaspectratio]{img/value-proposition-2.png}
-\caption{Bản Đề xuất giá trị đối ứng cho Chân dung Trần Minh Khoa}
+\includegraphics[width=0.90\textwidth, keepaspectratio]{value-proposition-2.png}
+\caption{Bản đề xuất giá trị đối ứng cho Persona 2 -- Trần Minh Khoa}
 \label{fig:vp_2}
 \end{figure}
-
-\begin{table}[H]
-\centering
-\small
-\begin{tabularx}{\textwidth}{|X|X|}
-\hline
-\textbf{Hồ sơ khách hàng (Customer Profile)} & \textbf{Bản đồ giá trị (Value Map)} \\ \hline
-\textbf{Tác vụ (Jobs)}: Đặt lịch vào khung giờ vắng khách; Yêu cầu buồng cách ly riêng; Nắm bắt tiến độ để đón sớm; Quản lý chi phí sinh viên. & \textbf{Sản phẩm \& Dịch vụ}: Hiển thị khung giờ vắng khách; Thẻ ghi chú hành vi nhút nhát; Hệ thống thông báo đẩy theo mốc; Sổ hóa đơn điện tử minh bạch. \\ \hline
-\textbf{Điểm đau (Pains)}: Đến nơi mới biết hết chỗ; Ám ảnh rủi ro nhốt chung với thú dữ; Ngại gọi điện thoại hỏi tiệm; Mất dấu thông tin chi tiêu cũ. & \textbf{Thuốc giảm đau (Pain Relievers)}: Giữ chỗ trực tiếp trước khi di chuyển; Thẻ cảnh báo hành vi bắt buộc tuân thủ buồng riêng; Xóa bỏ gọi điện thoại nhờ thông báo đẩy; Minh bạch 100\% giá tiền. \\ \hline
-\textbf{Lợi ích mong muốn (Gains)}: Chọn giờ yên tĩnh cho mèo; Được tiệm cam kết an toàn cách ly; Đón mèo sớm nhất có thể; Kiểm soát chi tiêu hiệu quả. & \textbf{Yếu tố tạo lợi ích (Gain Creators)}: Tối ưu môi trường chăm sóc cho mèo nhút nhát; An tâm với quy trình cách ly; Giảm tối đa thời gian lưu tại tiệm; Dễ dàng quản lý ngân sách sinh viên. \\ \hline
-\end{tabularx}
-\caption{Đối chiếu chi tiết Hồ sơ khách hàng và Bản đồ giá trị --- Persona 2}
-\label{tab:vp_2}
-\end{table}

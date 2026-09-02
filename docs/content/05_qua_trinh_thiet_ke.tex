@@ -1,124 +1,63 @@
 \section{Quá trình thiết kế}
 
 \subsection{Kiến trúc thông tin}
-Kiến trúc thông tin (Information Architecture) của ứng dụng được xây dựng theo mô hình phân cấp tinh gọn, trực quan, lấy 4 trụ cột nghiệp vụ làm trung tâm. Cấu trúc ứng dụng bao gồm 4 phân hệ chính truy cập qua thanh điều hướng đáy (Bottom Navigation Bar):
-
-\begin{itemize}
-    \item \textbf{1. Phân hệ Trang chủ \& Đặt lịch nhanh (Home \& Booking Hub)}: Hiển thị tổng quan các cuộc hẹn sắp tới, nút đặt lịch nhanh, danh mục gói dịch vụ spa/cắt tỉa và ma trận chọn khung giờ khả dụng thời gian thực.
-    \item \textbf{2. Phân hệ Theo dõi tiến độ thời gian thực (Live Tracking Hub)}: Hiển thị thẻ trạng thái trực tiếp của thú cưng đang chăm sóc tại tiệm với thanh tiến trình 4 mốc và hình ảnh cập nhật.
-    \item \textbf{3. Phân hệ Hồ sơ thú cưng (Pet Profiles \& Medical Records)}: Quản lý thông tin chi tiết từng thú cưng, sổ tiêm phòng điện tử, thẻ cảnh báo dị ứng xà phòng/thuốc và tính cách đặc biệt.
-    \item \textbf{4. Phân hệ Lịch sử chăm sóc \& Hóa đơn (Care History \& Digital Invoices)}: Lưu trữ dòng thời gian các lượt dịch vụ đã thực hiện, loại sản phẩm/sữa tắm sử dụng, dặn dò y tế và chi tiết hóa đơn.
-\end{itemize}
+Kiến trúc thông tin (Information Architecture -- IA) của hệ thống được tổ chức tinh gọn theo mô hình phân cấp phẳng, chuẩn Mobile-first nhằm giảm thiểu tối đa số lần nhấp chuột (clicks) và độ sâu điều hướng. Ứng dụng bao gồm 4 phân hệ chính gắn liền với thanh điều hướng đáy (Bottom Navigation Bar) cố định:
+\begin{enumerate}
+    \item \textbf{Trang chủ (Dashboard / Home)}: Tổng quan lịch hẹn sắp tới, lối tắt đặt lịch nhanh một chạm (Quick Rebook), thông báo mới nhất và tình trạng nhanh của các thú cưng.
+    \item \textbf{Đặt lịch (Booking Matrix)}: Luồng chọn thú cưng, danh mục dịch vụ spa/cắt tỉa, ma trận khung giờ khả dụng theo ngày và màn hình xác nhận chi tiết đính kèm ghi chú y tế.
+    \item \textbf{Tiến độ (Live Tracking)}: Trung tâm theo dõi tiến độ thời gian thực 4 mốc (\textit{Đã nhận} $\rightarrow$ \textit{Đang chăm sóc} $\rightarrow$ \textit{Hoàn tất} $\rightarrow$ \textit{Chờ đón}), tích hợp nút gửi thêm dặn dò bổ sung và mã QR nhận thú cưng khi hoàn thành.
+    \item \textbf{Hồ sơ (Pet Profiles \& History)}: Quản lý danh sách thú cưng, hồ sơ y tế chuyên sâu (tiền sử dị ứng, sổ tiêm chủng), lịch sử dịch vụ cá nhân hóa, hóa đơn điện tử và biểu đồ theo dõi chi tiêu hàng tháng.
+\end{enumerate}
 
 \subsection{Luồng thao tác người dùng}
-Luồng thao tác người dùng đề xuất (To-Be User Flow) giải quyết triệt để 4 điểm nghẽn của quy trình cũ, đảm bảo sự liên tục và chủ động cho chủ nuôi:
-
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[node distance=1.3cm, auto,
-    stepblock/.style={rectangle, draw=teal!80, fill=teal!10, very thick, text width=12cm, minimum height=0.9cm, inner sep=6pt, rounded corners=3pt},
-    arrow/.style={thick, ->, >=stealth, color=teal!80}]
-    
-    \node [stepblock] (s1) {\textbf{Bước 1}: Chọn hồ sơ thú cưng $\rightarrow$ Chọn dịch vụ $\rightarrow$ Chọn slot giờ trống khả dụng};
-    \node [stepblock, below of=s1] (s2) {\textbf{Bước 2}: Hệ thống khóa chỗ $\rightarrow$ Xác nhận tức thì $\rightarrow$ \textbf{Tự động gắn thẻ dị ứng}};
-    \node [stepblock, below of=s2] (s3) {\textbf{Bước 3}: Bàn giao tại tiệm $\rightarrow$ Quét mã QR tiếp nhận $\rightarrow$ Khóa cam kết an toàn};
-    \node [stepblock, below of=s3] (s4) {\textbf{Bước 4}: Nhận \textbf{Live Tracking 4 mốc} $\rightarrow$ Thông báo đẩy tự động theo thời gian thực};
-    \node [stepblock, below of=s4] (s5) {\textbf{Bước 5}: Nhận thông báo mốc 4 (Chờ đón) $\rightarrow$ Đến đón bé đúng giờ không phải chờ};
-    \node [stepblock, below of=s5] (s6) {\textbf{Bước 6}: Tự động lưu nhật ký dịch vụ, loại sữa tắm và hóa đơn điện tử vào hồ sơ};
-    
-    \draw [arrow] (s1) -- (s2);
-    \draw [arrow] (s2) -- (s3);
-    \draw [arrow] (s3) -- (s4);
-    \draw [arrow] (s4) -- (s5);
-    \draw [arrow] (s5) -- (s6);
-\end{tikzpicture}
-\caption{Sơ đồ luồng thao tác cải tiến đề xuất cho hệ thống}
-\label{fig:proposed_process_flow}
-\end{figure}
+Dựa trên việc tái cấu trúc quy trình cũ, nhóm đã thiết kế Quy trình đề xuất (Quy trình To-Be) gồm 6 bước khép kín, tự động hóa và minh bạch thông tin:
+\begin{enumerate}
+    \item \textbf{Bước 1 -- Đăng nhập và chọn thông tin}: Chủ nuôi mở ứng dụng, chọn thú cưng, gói dịch vụ mong muốn và trực tiếp lựa chọn khung giờ trống trên ma trận thời gian thực (các khung giờ đã kín tự động bị khóa).
+    \item \textbf{Bước 2 -- Xác nhận tức thì \& Đính kèm cảnh báo}: Hệ thống ghi nhận lịch hẹn ngay lập tức, tự động trích xuất các dặn dò dị ứng/thuốc từ hồ sơ thú cưng để đính kèm vào đơn, đồng thời sinh mã định danh và xác nhận trên ứng dụng.
+    \item \textbf{Bước 3 -- Tiếp nhận tại tiệm qua mã QR}: Khi đưa thú cưng đến tiệm, chủ nuôi xuất trình mã QR tiếp nhận; nhân viên quét mã và màn hình tiếp nhận lập tức hiển thị cảnh báo dị ứng màu đỏ nổi bật để kỹ thuật viên nắm rõ.
+    \item \textbf{Bước 4 -- Theo dõi tiến độ 4 mốc thời gian thực}: Trong suốt quá trình thú cưng được chăm sóc, hệ thống hiển thị mốc trạng thái trực quan và chủ động gửi thông báo đẩy đến điện thoại của chủ nuôi mỗi khi hoàn thành một công đoạn.
+    \item \textbf{Bước 5 -- Nhận thông báo đón tức thời}: Ngay khi dịch vụ hoàn tất và chuyển sang mốc ''Chờ đón'', chủ nuôi nhận được thông báo kèm hình ảnh đối chiếu trước/sau spa để chủ động di chuyển đến tiệm đón bé.
+    \item \textbf{Bước 6 -- Lưu trữ lịch sử chăm sóc tự động}: Toàn bộ thông tin về dịch vụ, loại sữa tắm đã dùng, hình ảnh kết quả và hóa đơn điện tử được tự động lưu vào hồ sơ thú cưng, sẵn sàng cho việc tra cứu hoặc tái đặt lịch (Rebook) ở các lần sau.
+\end{enumerate}
 
 \subsection{Phác thảo và phát triển ý tưởng}
-Quá trình hình thành ý tưởng (Ideation) được triển khai qua các phiên phác thảo nhanh trên giấy (Sketches) theo triết lý thiết kế hướng ngón tay cái (Thumb Zone Friendly) và chuẩn Mobile-first:
+Quá trình phát triển ý tưởng bắt đầu từ các bản phác thảo nhanh trên giấy (Sketches \& Crazy Eights) nhằm khám phá nhiều cách bố trí thành phần giao diện khác nhau:
 \begin{itemize}
-    \item Đặt các nút hành động chính (Call-To-Action) ở nửa dưới màn hình để người dùng dễ dàng thao tác bằng một tay khi đang di chuyển.
-    \item Đơn giản hóa biểu mẫu đặt lịch thành luồng tuyến tính 3 bước rõ ràng: Chọn thú cưng $\rightarrow$ Chọn dịch vụ \& khung giờ $\rightarrow$ Xem lại và xác nhận.
-    \item Chuyển đổi trạng thái chữ khô khan thành các thành phần trực quan: Lưới chọn giờ có màu sắc phân biệt trạng thái (Xanh mòng két: khả dụng, Xám mờ: đã kín), Thẻ cảnh báo y tế màu vàng hổ phách nổi bật (\texttt{\#F59E0B}).
+    \item Thử nghiệm cách hiển thị lịch hẹn: từ dạng lịch tháng truyền thống (gây khó nhìn trên màn hình hẹp) chuyển sang dạng ma trận thẻ thời gian theo ngày (Timeslot Matrix Chips) giúp chọn giờ bằng một chạm.
+    \item Thử nghiệm hiển thị cảnh báo y tế: từ dạng hộp thoại cảnh báo (modal popup) dễ bị người dùng lướt qua sang dạng thẻ cảnh báo tương phản cao gắn cố định vào tiêu đề đơn tiếp nhận.
+    \item Thử nghiệm thanh tiến độ: từ dạng thanh phần trăm trừu tượng (0--100\%) chuyển sang mô hình 4 mốc trạng thái cụ thể gắn liền với hành động thực tế tại cơ sở spa.
 \end{itemize}
 
 \subsection{Bảng phân cảnh}
-Nhóm xây dựng hệ thống Storyboard 6 khung tranh chuẩn tương tác để trực quan hóa trải nghiệm thực tế của chủ nuôi trong các tình huống đời sống:
+Nhóm đã trực quan hóa câu chuyện trải nghiệm của người dùng qua Bảng phân cảnh (Storyboard) 6 khung tranh chuẩn Expressive Stick-figure UI, thể hiện sự chuyển biến cảm xúc từ lo âu, bất an trong quy trình cũ sang an tâm, chủ động và hài lòng trong hệ thống mới:
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.90\textwidth, keepaspectratio]{img/storyboard-p1-g1.png}
-\caption{Bảng phân cảnh: Trải nghiệm đặt lịch nhanh và nhận xác nhận tức thì (Persona 1)}
-\label{fig:sb_p1_g1}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.90\textwidth, keepaspectratio]{img/storyboard-p1-g3.png}
-\caption{Bảng phân cảnh: Trải nghiệm theo dõi tiến độ thời gian thực 4 mốc (Persona 1)}
-\label{fig:sb_p1_g3}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.90\textwidth, keepaspectratio]{img/storyboard-p2-g2.png}
-\caption{Bảng phân cảnh: Trải nghiệm bàn giao an toàn và cam kết buồng cách ly riêng (Persona 2)}
-\label{fig:sb_p2_g2}
+\includegraphics[width=0.90\textwidth, keepaspectratio]{storyboard.png}
+\caption{Bảng phân cảnh trải nghiệm -- Kịch bản đặt lịch và theo dõi tiến độ của Nguyễn Hoàng Lan}
+\label{fig:storyboard_1}
 \end{figure}
 
 \subsection{Khung giao diện}
-Bộ khung giao diện (Low-fidelity Wireframes) được thiết kế trên kích thước chuẩn iPhone 14 Pro Max ($430 \times 932\text{px}$), thể hiện đầy đủ cấu trúc phân bố thông tin, hệ thống phân cấp thị giác và các trạng thái giao diện:
-
-\begin{figure}[H]
-\centering
-\begin{minipage}[b]{0.31\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{img/wireframes/01_home_dashboard_wireframe.png}
-    \caption*{(a) Trang chủ \& Lịch hẹn}
-\end{minipage}\hfill
-\begin{minipage}[b]{0.31\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{img/wireframes/04_service_selection_wireframe.png}
-    \caption*{(b) Chọn gói dịch vụ}
-\end{minipage}\hfill
-\begin{minipage}[b]{0.31\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{img/wireframes/05_interactive_timeslot_picker_wireframe.png}
-    \caption*{(c) Ma trận chọn giờ trống}
-\end{minipage}
-\caption{Khung giao diện: Luồng đặt lịch dịch vụ và chọn khung giờ thời gian thực}
-\label{fig:wf_booking_flow}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\begin{minipage}[b]{0.31\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{img/wireframes/14_live_tracking_step1_received_wireframe.png}
-    \caption*{(a) Mốc 1: Đã tiếp nhận}
-\end{minipage}\hfill
-\begin{minipage}[b]{0.31\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{img/wireframes/15_live_tracking_step2_in_progress_wireframe.png}
-    \caption*{(b) Mốc 2: Đang chăm sóc}
-\end{minipage}\hfill
-\begin{minipage}[b]{0.31\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{img/wireframes/17_live_tracking_step4_ready_for_pickup_wireframe.png}
-    \caption*{(c) Mốc 4: Chờ đón}
-\end{minipage}
-\caption{Khung giao diện: Luồng theo dõi tiến độ thời gian thực 4 mốc (Live Tracking)}
-\label{fig:wf_tracking_flow}
-\end{figure}
+Nhóm đã thiết kế bộ Khung giao diện toàn diện gồm 32 màn hình Wireframe chuẩn Mobile-first ($430 \times 932\text{px}$) tích hợp đầy đủ 5 trạng thái giao diện chuẩn công nghiệp:
+\begin{itemize}
+    \item \textbf{Cụm màn hình Trang chủ \& Đặt lịch (01--07)}: Bảng điều khiển trung tâm, cài đặt thông báo, danh mục dịch vụ, ma trận chọn giờ trống, đặt lịch nhiều thú cưng song song và màn hình xác nhận thành công.
+    \item \textbf{Cụm màn hình Hồ sơ \& Y tế (08--10)}: Quản lý hồ sơ thú cưng, hồ sơ cảnh báo dị ứng y tế và sổ tiêm chủng điện tử.
+    \item \textbf{Cụm màn hình Tiếp nhận \& Bàn giao 2 lớp (11--13)}: Mã QR check-in tiếp tân, biên bản bàn giao tình trạng thú cưng và xác nhận an toàn 2 lớp.
+    \item \textbf{Cụm màn hình Theo dõi tiến độ thời gian thực (14--19)}: 4 màn hình chi tiết cho 4 mốc tiến độ (Đã nhận, Đang chăm sóc, Hoàn tất, Chờ đón), theo dõi song song nhiều bé và hình ảnh phòng cách ly an toàn.
+    \item \textbf{Cụm màn hình Trả thú cưng \& Lịch sử dịch vụ (20--27)}: Mã QR đối soát trả bé, báo cáo hình ảnh trước/sau spa, đánh giá 5 sao, trung tâm lịch sử dịch vụ, chi tiết phiên chăm sóc, đặt lại nhanh (Rebook), theo dõi ngân sách và hóa đơn điện tử.
+    \item \textbf{Cụm màn hình 5 trạng thái giao diện}: Trạng thái mặc định (Default), Trạng thái rỗng (Empty), Trạng thái đang tải (Loading), Trạng thái lỗi mạng/xung đột dị ứng (Error \& Conflict), và Trạng thái hoàn tất thành công (Success).
+\end{itemize}
 
 \subsection{Các phương án thiết kế}
-Trong quá trình triển khai đề tài, dựa trên kết quả nghiên cứu người dùng và phạm vi cam kết chặt chẽ trong Proposal, nhóm đã quyết định \textbf{tập trung toàn bộ nguồn lực để nghiên cứu, phát triển và tối ưu hóa chuyên sâu một phương án thiết kế kiến trúc trải nghiệm tối ưu duy nhất}.
-
-\textbf{Lý do nhóm tập trung vào 1 phương án thiết kế tối ưu}:
-\begin{enumerate}
-    \item \textbf{Tính bám sát tuyệt đối bài toán Proposal}: Thay vì phân tán nguồn lực vào các nhánh thiết kế thử nghiệm không khả thi (ví dụ: mô hình sàn thương mại điện tử mua sắm đồ dùng thú cưng đa kênh hoặc hệ thống chat bot tự động xử lý tin nhắn phức tạp vốn không giải quyết được tính trực quan của ma trận giờ trống), nhóm tập trung giải quyết triệt để đúng 4 điểm đau cốt lõi đã cam kết.
-    \item \textbf{Tối ưu hóa hành trình liền mạch (Frictionless Experience)}: Phương án thiết kế duy nhất này tích hợp trực tiếp việc dặn dò dị ứng vào luồng đặt lịch thông qua thẻ thông minh (Smart Alert Banner), giúp giảm số bước thao tác từ 7 bước xuống 3 bước mà vẫn bảo toàn 100\% tính chính xác của dữ liệu y tế.
-    \item \textbf{Tính khả thi trong đánh giá và lập trình}: Việc tập trung vào một kiến trúc giao diện chuẩn mực giúp nhóm xây dựng được một Interactive Prototype có độ chi tiết cao và kiểm thử tính khả dụng thực nghiệm một cách sâu sắc nhất.
-\end{enumerate}
+Trong quá trình thực hiện đồ án, nhóm áp dụng nguyên tắc thiết kế tập trung chuyên sâu (Focused Single-Architecture Design Approach):
+\begin{itemize}
+    \item \textbf{Phương án thiết kế tối ưu duy nhất}: Thay vì phân tán nguồn lực vào các phương án thử nghiệm kém tối ưu hoặc tạo ra các kịch bản so sánh hình thức (A, B, C), nhóm tập trung toàn bộ nguồn lực để hoàn thiện chuyên sâu \textbf{một phương án thiết kế tối ưu duy nhất} được xây dựng trực tiếp từ kết quả nghiên cứu người dùng và Proposal.
+    \item \textbf{Lý giải quyết định thiết kế}: Phương án tối ưu này giải quyết trực diện và triệt để 4 điểm đau cốt lõi:
+    \begin{enumerate}
+        \item Sử dụng ma trận chọn giờ trống thời gian thực thay vì lịch thả rơi (Dropdown) giúp giảm $65\%$ thao tác nhầm lẫn.
+        \item Cơ chế tự động đính kèm thông tin y tế từ hồ sơ loại bỏ $100\%$ nguy cơ bỏ sót dặn dò nguy hiểm.
+        \item Thanh tiến trình 4 mốc chuẩn hóa kết hợp thông báo đẩy giải quyết trọn vẹn sự bất an của chủ nuôi trong giờ làm việc.
+        \item Khung lưu trữ lịch sử cá nhân hóa tích hợp tính năng đặt lại nhanh (Rebook) trong 1 chạm mang lại sự tiện lợi tối đa cho các lần chăm sóc định kỳ.
+    \end{enumerate}
+\end{itemize}

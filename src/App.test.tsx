@@ -6,11 +6,15 @@ import { screenAssets } from './screens'
 describe('PetCare Pro — giao diện Wireframe và tương tác React',()=>{
   beforeEach(()=>{localStorage.clear();window.location.hash='';window.scrollTo=()=>undefined})
 
-  it('giữ đủ 32 Wireframe và bổ sung 21 màn hình Prototype',()=>{
-    expect(Object.keys(screenAssets)).toHaveLength(53)
+  it('giữ đủ Wireframe và dùng chung form động cho Prototype cùng chức năng',()=>{
+    expect(Object.keys(screenAssets)).toHaveLength(48)
     expect(screenAssets.appointmentCheckin).toContain('appointment_checkin_card')
+    expect(screenAssets.checkin).toContain('qr_intake_scan')
+    expect(screenAssets.medicalAlert).toContain('03_medical_alert_intake_view')
+    expect(screenAssets.careProtocol).toContain('04_care_protocol_consultation')
+    expect(screenAssets.safetyLocked).toContain('05_intake_safety_commitment_locked')
+    expect(screenAssets.handover).toContain('06_confirmed_handoff_peace_of_mind')
     expect(screenAssets.miuTimeMatrix).toContain('time_matrix_view')
-    expect(screenAssets.miuSafety).toContain('live_care_safety_status')
     render(<App/>)
     expect(screen.getByRole('img',{name:'Giao diện gốc: Trang chủ'})).toHaveAttribute('src',expect.stringContaining('01_home_dashboard_wireframe'))
   })
@@ -66,6 +70,16 @@ describe('PetCare Pro — giao diện Wireframe và tương tác React',()=>{
     expect(screen.getByRole('button',{name:'Chọn hoặc đổi thú cưng'})).toHaveTextContent('Bơ + Miu')
   })
 
+  it('từ Bước 1 chọn dịch vụ luôn phải qua Bước 2 timeslot dù state còn giờ cũ',async()=>{
+    localStorage.setItem('petcare-wireframe-product-v6',JSON.stringify({...JSON.parse(localStorage.getItem('petcare-wireframe-product-v6')??'{}'),pets:[{id:'bo',name:'Bơ',species:'Chó Poodle',age:'2 tuổi',weight:'4.5kg',notes:'Dị ứng xà phòng hương liệu',tags:['Dị ứng xà phòng hương liệu']},{id:'miu',name:'Miu',species:'Mèo Anh lông ngắn',age:'1.5 tuổi',weight:'3.8kg',notes:'Nhút nhát',tags:['Buồng cách ly']}],primaryPetId:'bo',selectedPetIds:['bo'],serviceId:'hypo',day:'Thứ 2 (14/09/2026)',slot:'08:30 - 09:30'}))
+    const user=userEvent.setup();window.location.hash='service';render(<App/>)
+    await user.click(screen.getByRole('button',{name:'Tiếp tục chọn khung giờ'}));await act(async()=>{await new Promise(resolve=>window.setTimeout(resolve,460))})
+    expect(screen.getByRole('img',{name:'Giao diện gốc: Chọn khung giờ'})).toBeInTheDocument()
+    expect(screen.queryByRole('img',{name:'Giao diện gốc: Xác nhận lịch hẹn'})).not.toBeInTheDocument()
+    expect(screen.getByText('Chưa chọn ngày')).toBeInTheDocument()
+    expect(screen.getByText('Chưa chọn khung giờ')).toBeInTheDocument()
+  })
+
   it('Miu dùng đúng màn chọn giờ và dịch vụ riêng, không quay về nội dung da Bơ',async()=>{
     const user=userEvent.setup();render(<App/>);await user.click(screen.getByRole('button',{name:'Hồ sơ'}));await user.click(screen.getByRole('button',{name:'Chọn Miu làm thú cưng chính'}));await user.click(screen.getByRole('button',{name:'Đặt lịch cho Miu'}))
     expect(screen.getByRole('img',{name:'Giao diện gốc: Ma trận thời gian thú cưng'})).toBeInTheDocument();await user.click(screen.getByRole('button',{name:'Chọn khung giờ khuyên dùng 13:30 - 15:00 cho Miu'}));await user.click(screen.getByRole('button',{name:'Tiếp tục với khung giờ đã chọn'}));await user.click(screen.getByRole('button',{name:'Tiếp tục chọn dịch vụ cho thú cưng'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Chọn dịch vụ cho Miu'})).toBeInTheDocument()
@@ -91,6 +105,19 @@ describe('PetCare Pro — giao diện Wireframe và tương tác React',()=>{
     expect(JSON.parse(localStorage.getItem('petcare-wireframe-product-v6')??'{}').pets.map((pet:{name:string})=>pet.name)).toContain('Na')
   })
 
+  it('Chi tiết y tế từ hồ sơ hiển thị đúng thú cưng được nhấn',async()=>{
+    const user=userEvent.setup();render(<App/>);await user.click(screen.getByRole('button',{name:'Hồ sơ'}))
+    await user.click(screen.getByRole('button',{name:'Chi tiết y tế Miu'}))
+    const profile=screen.getByTestId('medical-profile-runtime')
+    expect(profile).toHaveTextContent('Miu')
+    expect(profile).toHaveTextContent('Mèo Anh lông ngắn')
+    expect(profile).toHaveTextContent('Buồng cách ly')
+    expect(profile).not.toHaveTextContent('Dị ứng xà phòng hương liệu')
+    await user.click(screen.getByRole('button',{name:'Quay lại'}))
+    await user.click(screen.getByRole('button',{name:'Chi tiết y tế Bơ'}))
+    expect(screen.getByTestId('medical-profile-runtime')).toHaveTextContent('Dị ứng xà phòng hương liệu')
+  })
+
   it('Notification filter và Settings hoạt động',async()=>{
     const user=userEvent.setup();render(<App/>);await user.click(screen.getByRole('button',{name:'Mở thông báo'}));await user.click(screen.getByRole('button',{name:'Lọc alerts'}));expect(screen.getByRole('button',{name:'Lọc alerts'})).toHaveAttribute('aria-pressed','true')
     expect(screen.getByRole('button',{name:'Lọc alerts'})).toHaveTextContent('Cảnh báo')
@@ -111,12 +138,13 @@ describe('PetCare Pro — giao diện Wireframe và tương tác React',()=>{
   it('Check-in đi đủ luồng an toàn Prototype rồi tới Tracking',async()=>{
     const user=userEvent.setup();window.location.hash='checkin';render(<App/>)
     expect(screen.getByRole('img',{name:'Giao diện gốc: Mã QR tiếp nhận'})).toBeInTheDocument()
-    await user.click(screen.getByRole('button',{name:'Xác nhận Check-in tại quầy'}))
+    await user.click(screen.getByRole('button',{name:'Nhân viên đã quét mã'}))
     await user.click(screen.getByRole('button',{name:'Đối chiếu phương án'}))
     await user.click(screen.getByRole('button',{name:'Khóa lưu ý vào ca'}))
     await user.click(screen.getByRole('button',{name:'Hoàn tất tiếp nhận'}))
-    await user.click(screen.getByRole('button',{name:'Bắt đầu theo dõi tiến độ'}))
-    expect(screen.getByRole('img',{name:'Giao diện gốc: Tiến độ mốc 1'})).toBeInTheDocument()
+    expect(screen.getByRole('img',{name:'Giao diện gốc: Tiếp nhận hoàn tất'})).toHaveAttribute('src',expect.stringContaining('06_confirmed_handoff_peace_of_mind'))
+    await user.click(screen.getByRole('button',{name:'Bật thông báo đẩy'}))
+    expect(screen.getByRole('status')).toHaveTextContent('Đã bật thông báo đẩy')
   })
 
   it('Tracking chuyển đủ bốn mốc',async()=>{
@@ -163,9 +191,9 @@ describe('PetCare Pro — giao diện Wireframe và tương tác React',()=>{
   it('Prototype Intake chạy đủ cảnh báo, đối chiếu, khóa cam kết và bàn giao',async()=>{
     const user=userEvent.setup();window.location.hash='appointmentCheckin';render(<App/>)
     await user.click(screen.getByRole('button',{name:'Mở mã QR tiếp nhận'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Mã QR tiếp nhận'})).toBeInTheDocument()
-    await user.click(screen.getByRole('button',{name:'Xác nhận Check-in tại quầy'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Cảnh báo y tế tiếp nhận'})).toBeInTheDocument()
+    await user.click(screen.getByRole('button',{name:'Nhân viên đã quét mã'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Cảnh báo y tế tiếp nhận'})).toBeInTheDocument()
     await user.click(screen.getByRole('button',{name:'Đối chiếu phương án'}));await user.click(screen.getByRole('button',{name:'Khóa lưu ý vào ca'}));await user.click(screen.getByRole('button',{name:'Hoàn tất tiếp nhận'}))
-    expect(screen.getByRole('img',{name:'Giao diện gốc: Biên bản bàn giao'})).toBeInTheDocument();const saved=JSON.parse(localStorage.getItem('petcare-wireframe-product-v6')??'{}');expect(saved.safetyLocks['active-seed']).toContain('Dị ứng xà phòng hương liệu')
+    expect(screen.getByRole('img',{name:'Giao diện gốc: Tiếp nhận hoàn tất'})).toHaveAttribute('src',expect.stringContaining('06_confirmed_handoff_peace_of_mind'));const saved=JSON.parse(localStorage.getItem('petcare-wireframe-product-v6')??'{}');expect(saved.safetyLocks['active-seed']).toContain('Dị ứng xà phòng hương liệu')
   })
 
   it('Prototype Tracking hiển thị thông báo đón bé trước mốc 4',async()=>{
@@ -174,7 +202,7 @@ describe('PetCare Pro — giao diện Wireframe và tương tác React',()=>{
   })
 
   it('Prototype History chạy đủ sản phẩm, ghi chú và lưu cho lần sau',async()=>{
-    const user=userEvent.setup();window.location.hash='session';render(<App/>);await user.click(screen.getByRole('button',{name:'Xem sản phẩm đã sử dụng'}));await user.click(screen.getByRole('button',{name:'Xem ghi chú da của KTV'}));await user.click(screen.getByRole('button',{name:'Lưu sản phẩm cho lần tới'}))
+    const user=userEvent.setup();window.location.hash='session';render(<App/>);expect(screen.getByTestId('session-product-card-link')).toHaveStyle({top:`${314/9.32}%`,height:`${136/9.32}%`});await user.click(screen.getByRole('button',{name:'Xem sản phẩm đã sử dụng'}));await user.click(screen.getByRole('button',{name:'Xem ghi chú da của KTV'}));await user.click(screen.getByRole('button',{name:'Lưu sản phẩm cho lần tới'}))
     expect(screen.getByRole('img',{name:'Giao diện gốc: Đã lưu sản phẩm ưu tiên'})).toBeInTheDocument();expect(screen.getByRole('button',{name:'Đặt lịch hẹn đợt tới'})).toBeInTheDocument();expect(JSON.parse(localStorage.getItem('petcare-wireframe-product-v6')??'{}').preferredProducts.bo).toContain('Hypo')
     await user.click(screen.getByRole('button',{name:'Đặt lịch'}));expect(screen.getByTestId('service-advisory')).toHaveTextContent('Ưu tiên:')
   })
@@ -184,20 +212,20 @@ describe('PetCare Pro — giao diện Wireframe và tương tác React',()=>{
     await user.click(screen.getByRole('button',{name:'Xem hóa đơn điện tử'}));await user.click(screen.getByRole('button',{name:'Xem tổng chi tiêu tháng'}));await user.click(screen.getByRole('button',{name:'Lập kế hoạch tháng tới'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Kế hoạch tài chính tháng tới'})).toBeInTheDocument();await user.click(screen.getByRole('button',{name:'Lưu kế hoạch tài chính'}));expect(screen.getByText(/Kế hoạch đã lưu:/)).toBeInTheDocument();expect(JSON.parse(localStorage.getItem('petcare-wireframe-product-v6')??'{}').financialPlan).toEqual({monthlyLimit:1000000,reminderEnabled:true})
   })
 
-  it('Persona 2 Goal 1 và Goal 2 chạy end-to-end từ Trang chủ với đúng dữ liệu Miu',async()=>{
-    const user=userEvent.setup();render(<App/>);await user.click(screen.getByRole('button',{name:'Hồ sơ'}));await user.click(screen.getByRole('button',{name:'Chi tiết y tế Miu'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Dặn dò an toàn của Miu'})).toBeInTheDocument()
-    await user.click(screen.getByRole('button',{name:'Đặt lịch chăm sóc cho Miu'}));await user.click(screen.getByRole('button',{name:'Chọn khung giờ khuyên dùng 13:30 - 15:00 cho Miu'}));await user.click(screen.getByRole('button',{name:'Tiếp tục với khung giờ đã chọn'}));await user.click(screen.getByRole('button',{name:'Tiếp tục chọn dịch vụ cho thú cưng'}));await user.click(screen.getByRole('button',{name:'Chọn Tắm vệ sinh tiêu chuẩn cho mèo'}));await user.click(screen.getByRole('button',{name:'Kiểm tra đặt lịch cho Miu'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Dặn dò Miu đã tự động liên kết'})).toBeInTheDocument()
-    await user.click(screen.getByRole('button',{name:'Xác nhận dặn dò tự động của Miu'}));await user.click(screen.getByRole('button',{name:'Xác nhận và khóa lịch cho Miu'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Đã khóa lịch cho Miu'})).toBeInTheDocument()
-    await user.click(screen.getByRole('button',{name:'Mở phiếu tiếp nhận và theo dõi Miu'}));await user.click(screen.getByRole('button',{name:'Mở mã QR tiếp nhận'}));await user.click(screen.getByRole('button',{name:'Xác nhận Check-in tại quầy'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Bàn giao Miu tại quầy'})).toBeInTheDocument()
-    await user.click(screen.getByRole('button',{name:'Xác nhận bàn giao Miu'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Xác nhận buồng cách ly của Miu'})).toBeInTheDocument();await user.click(screen.getByRole('button',{name:'Theo dõi tiến độ an toàn của Miu'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Trạng thái chăm sóc an toàn của Miu'})).toBeInTheDocument();await user.click(screen.getByRole('button',{name:'Bật thông báo tiến độ của Miu'}))
-    const saved=JSON.parse(localStorage.getItem('petcare-wireframe-product-v6')??'{}');expect(saved.activeBooking.petIds).toEqual(['miu']);expect(saved.safetyLocks[saved.activeBooking.id]).toContain('Buồng cách ly');expect(saved.notificationSettings.push).toBe(true)
+  it('booking của Miu tiếp tục dùng được luồng tiếp nhận chung của ứng dụng',async()=>{
+    const user=userEvent.setup();render(<App/>);await user.click(screen.getByRole('button',{name:'Hồ sơ'}));await user.click(screen.getByRole('button',{name:'Đặt lịch cho Miu'}));await user.click(screen.getByRole('button',{name:'Chọn khung giờ khuyên dùng 13:30 - 15:00 cho Miu'}));await user.click(screen.getByRole('button',{name:'Tiếp tục với khung giờ đã chọn'}));await user.click(screen.getByRole('button',{name:'Tiếp tục chọn dịch vụ cho thú cưng'}));await user.click(screen.getByRole('button',{name:'Chọn Tắm vệ sinh tiêu chuẩn cho mèo'}));await user.click(screen.getByRole('button',{name:'Kiểm tra đặt lịch cho Miu'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Rà soát lịch hẹn của Miu'})).toBeInTheDocument()
+    await user.click(screen.getByRole('button',{name:'Xác nhận và khóa lịch cho Miu'}));await user.click(screen.getByRole('button',{name:'Mở phiếu tiếp nhận của Miu'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Lịch hẹn tiếp nhận'})).toBeInTheDocument();expect(screen.getByTestId('qr-booking-context')).toHaveTextContent('#INTAKE-MIU-1330')
+    await user.click(screen.getByRole('button',{name:'Mở mã QR tiếp nhận'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Mã QR tiếp nhận'})).toHaveAttribute('src',expect.stringContaining('02_qr_intake_scan'));expect(screen.getByTestId('qr-code-block')).toHaveTextContent('MÃ TIẾP NHẬN: #INTAKE-MIU-1330');await user.click(screen.getByRole('button',{name:'Nhân viên đã quét mã'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Cảnh báo y tế tiếp nhận'})).toBeInTheDocument();expect(screen.getByTestId('shared-intake-form')).toHaveTextContent('Cảnh báo hồ sơ của Miu')
+    await user.click(screen.getByRole('button',{name:'Đối chiếu phương án'}));expect(screen.getByTestId('shared-intake-form')).toHaveTextContent('Phương án chăm sóc cho Miu');await user.click(screen.getByRole('button',{name:'Khóa lưu ý vào ca'}));expect(screen.getByTestId('shared-intake-form')).toHaveTextContent('Cam kết an toàn của Miu');await user.click(screen.getByRole('button',{name:'Hoàn tất tiếp nhận'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Tiếp nhận hoàn tất'})).toHaveAttribute('src',expect.stringContaining('06_confirmed_handoff_peace_of_mind'));expect(screen.getByTestId('shared-intake-form')).toHaveTextContent('Miu đã được tiếp nhận')
+    const saved=JSON.parse(localStorage.getItem('petcare-wireframe-product-v6')??'{}');expect(saved.activeBooking.petIds).toEqual(['miu']);expect(saved.safetyLocks[saved.activeBooking.id]).toContain('Buồng cách ly');expect(saved.activeBooking.status).toBe(2)
+    await user.click(screen.getByRole('button',{name:'Bật thông báo đẩy'}));expect(screen.getByRole('status')).toHaveTextContent('Đã bật thông báo đẩy')
   })
 
   it('nút Quay lại dùng đúng lịch sử điều hướng thay vì đích đến cố định',async()=>{
     const user=userEvent.setup();render(<App/>)
     await user.click(screen.getByRole('button',{name:'Tiến độ'}))
     expect(screen.getByRole('img',{name:'Giao diện gốc: Tiến độ mốc 2'})).toBeInTheDocument()
-    await user.click(screen.getByRole('button',{name:'Xem ảnh phòng chăm sóc'}))
+    await user.click(screen.getByRole('button',{name:'Xem camera trực tiếp phòng Spa'}))
     expect(screen.getByRole('img',{name:'Giao diện gốc: Ảnh phòng cách ly'})).toBeInTheDocument()
     await user.click(screen.getByRole('button',{name:'Quay lại'}))
     expect(screen.getByRole('img',{name:'Giao diện gốc: Tiến độ mốc 2'})).toBeInTheDocument()
@@ -218,7 +246,7 @@ describe('PetCare Pro — giao diện Wireframe và tương tác React',()=>{
   it('bốn màn Tracking dùng chung thanh Mốc, các màn phụ không bị lớp tiến độ đè lên',()=>{
     const routes=['tracking1','tracking2','tracking3','tracking4']
     for(const route of routes){window.location.hash=route;const view=render(<App/>);expect(screen.getByRole('navigation',{name:'Quy trình chăm sóc'})).toBeInTheDocument();for(const label of ['Chuyển đến Mốc 1: Đã nhận','Chuyển đến Mốc 2: Đang tắm','Chuyển đến Mốc 3: Sấy & Tỉa','Chuyển đến Mốc 4: Chờ đón'])expect(screen.getByRole('button',{name:label})).toBeInTheDocument();view.unmount()}
-    for(const route of ['intake','handover','parallelTracking','camera','pushReady','miuHandoff','miuIsolation','miuSafety','discharge','inspection']){window.location.hash=route;const view=render(<App/>);expect(screen.queryByRole('navigation',{name:'Quy trình chăm sóc'})).not.toBeInTheDocument();view.unmount()}
+    for(const route of ['intake','handover','parallelTracking','camera','pushReady','medicalAlert','careProtocol','safetyLocked','discharge','inspection']){window.location.hash=route;const view=render(<App/>);expect(screen.queryByRole('navigation',{name:'Quy trình chăm sóc'})).not.toBeInTheDocument();view.unmount()}
   })
 
   it('quay lại từ một Mốc vẫn tiếp tục chọn được Mốc khác',async()=>{
@@ -270,7 +298,7 @@ describe('PetCare Pro — giao diện Wireframe và tương tác React',()=>{
     await user.click(screen.getByRole('button',{name:'Kiểm tra đặt lịch cho Miu'}));expect(screen.getByRole('status')).toHaveTextContent('Hãy chọn một gói dịch vụ cho Miu.')
     const standard=screen.getByRole('button',{name:'Chọn Tắm vệ sinh tiêu chuẩn cho mèo'});const combo=screen.getByRole('button',{name:'Chọn Gói Spa & Cắt tỉa tạo kiểu'})
     await user.click(standard);expect(standard).toHaveAttribute('aria-pressed','true');await user.click(combo);expect(combo).toHaveAttribute('aria-pressed','true');expect(standard).toHaveAttribute('aria-pressed','false')
-    await user.click(screen.getByRole('button',{name:'Kiểm tra đặt lịch cho Miu'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Dặn dò Miu đã tự động liên kết'})).toBeInTheDocument()
+    await user.click(screen.getByRole('button',{name:'Kiểm tra đặt lịch cho Miu'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Rà soát lịch hẹn của Miu'})).toBeInTheDocument()
   })
 
   it('màn đánh giá cho sửa đủ sao, tag, lời nhắn, tip và KTV ưu tiên',async()=>{
@@ -283,7 +311,7 @@ describe('PetCare Pro — giao diện Wireframe và tương tác React',()=>{
 
   it('các quick action còn lại ở Intake và Network Error đều điều hướng được',async()=>{
     const user=userEvent.setup();window.location.hash='intake';const view=render(<App/>)
-    await user.click(screen.getByRole('button',{name:'Xem Chứng Thư Cam Kết An Toàn và Giao Ca'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Biên bản bàn giao'})).toBeInTheDocument();view.unmount()
+    await user.click(screen.getByRole('button',{name:'Xem Chứng Thư Cam Kết An Toàn và Giao Ca'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Tiếp nhận hoàn tất'})).toBeInTheDocument();view.unmount()
     window.location.hash='networkError';render(<App/>);await user.click(screen.getByRole('button',{name:'Mở mã QR Offline'}));expect(screen.getByRole('img',{name:'Giao diện gốc: Lịch hẹn tiếp nhận'})).toBeInTheDocument()
   })
 

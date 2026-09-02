@@ -28,9 +28,19 @@ const initialState: AppState = {
   history:seedHistory, preferredProducts:{}, safetyLocks:{}, careInstructions:{}, financialPlan:null,
 }
 const blankPet = { name:'', species:'', age:'', weight:'', notes:'' }
-const processScreenSteps:Partial<Record<ScreenId,TrackingStep>>={intake:1,handover:1,tracking1:1,tracking2:2,tracking3:3,tracking4:4,parallelTracking:2,camera:2,pushReady:4,miuHandoff:1,miuIsolation:2,miuSafety:2,discharge:4,inspection:4}
+const processScreenSteps:Partial<Record<ScreenId,TrackingStep>>={intake:1,handover:2,tracking1:1,tracking2:2,tracking3:3,tracking4:4,parallelTracking:2,camera:2,pushReady:4,discharge:4,inspection:4}
 const processStepperScreens = new Set<ScreenId>(['tracking1','tracking2','tracking3','tracking4'])
 const processStepLabels=['Đã nhận','Đang tắm','Sấy & Tỉa','Chờ đón']
+
+function getQrBookingContext(state:AppState){
+  const booking=state.activeBooking
+  const petId=booking?.petIds[0]??state.selectedPetIds[0]??state.primaryPetId
+  const pet=state.pets.find(item=>item.id===petId)??state.pets[0]
+  const service=services.find(item=>item.id===(booking?.serviceId??state.serviceId))
+  const slot=booking?.slot||state.slot||'Chưa chọn khung giờ'
+  const slotCode=(slot.match(/\d{2}:\d{2}/)?.[0]??'0000').replace(':','')
+  return {booking,pet,service,slot,code:`#INTAKE-${pet.id.toLocaleUpperCase('vi')}-${slotCode}`}
+}
 
 function readState(): AppState {
   try {
@@ -79,7 +89,7 @@ function App() {
   function selectPrimary(id:string){setState(current=>({...current,primaryPetId:id,selectedPetIds:[id],hypoOverride:false}));setToast(`Đã chọn ${state.pets.find(p=>p.id===id)?.name} làm hồ sơ chính.`)}
   function selectMatrixPet(id:string){const pet=state.pets.find(item=>item.id===id);setState(current=>({...current,primaryPetId:id,selectedPetIds:[id],serviceId:id==='miu'?'':current.serviceId,day:'Hôm nay',slot:'',hypoOverride:false}));setDialog(null);setToast(`Đang xem ma trận thời gian của ${pet?.name??'thú cưng'}.`)}
   function chooseService(id:Service['id']){setState(current=>({...current,serviceId:id,hypoOverride:false}))}
-  function continueService(){if(!state.selectedPetIds.length){setToast('Hãy chọn ít nhất một thú cưng.');return setDialog('pet-picker')}if(!state.serviceId)return setToast('Hãy chọn một dịch vụ.');if(conflict)return navigate('error');if(state.day&&state.slot)return navigate('confirmation');loadingTo('timeslot')}
+  function continueService(){if(!state.selectedPetIds.length){setToast('Hãy chọn ít nhất một thú cưng.');return setDialog('pet-picker')}if(!state.serviceId)return setToast('Hãy chọn một dịch vụ.');if(conflict)return navigate('error');setState(current=>({...current,day:'',slot:''}));loadingTo('timeslot')}
   function continueSlot(){if(!state.day||!state.slot)return setToast('Hãy tự chọn ngày và khung giờ còn trống.');navigate(state.selectedPetIds.length>1?'multiPet':'confirmation')}
   function confirmBooking(next?:ScreenId){if(!state.serviceId||!state.day||!state.slot)return setToast('Booking chưa đủ thông tin.');const target=typeof next==='string'?next:'success';const productRequests=selectedPets.map(pet=>state.preferredProducts[pet.id]).filter((value):value is string=>Boolean(value)).map(product=>`Sản phẩm ưu tiên: ${product}`);const safetyRequests=selectedPets.flatMap(pet=>pet.id==='miu'&&!state.autoLinkSafety?[]:pet.tags);const booking:Booking={id:`booking-${Date.now()}`,petIds:[...state.selectedPetIds],serviceId:state.serviceId,date:state.day,slot:state.slot,requests:[...safetyRequests,...productRequests],status:1};setState(current=>({...current,hasBooking:true,trackingStep:1,activeBooking:booking}));navigate(target)}
   function openPetForm(pet?:Pet){setEditingPetId(pet?.id??null);setPetDraft(pet?{name:pet.name,species:pet.species,age:pet.age,weight:pet.weight,notes:pet.notes}:blankPet);setDialog('pet-form')}
@@ -110,11 +120,14 @@ function App() {
         {screen==='miuTimeMatrix'&&<MiuTimeMatrixLayer state={state} setState={setState} openPetPicker={()=>setDialog('matrix-pet-picker')}/>} 
         {screen==='miuSlotSelected'&&<MiuSlotSelectionLayer state={state}/>} 
         {screen==='miuService'&&<MiuServiceLayer state={state} choose={chooseService}/>} 
-        {(screen==='miuBookingWarning'||screen==='miuReview'||screen==='miuSuccess')&&<MiuFlowSummary screen={screen} state={state}/>} 
+        {(screen==='miuReview'||screen==='miuSuccess')&&<MiuFlowSummary screen={screen} state={state}/>} 
         {screen==='review'&&<ReviewLayer state={state} setState={setState}/>} 
         {screen==='tracking1'&&<button type="button" className="tracking-instruction-button" aria-label="Gửi thêm dặn dò" data-testid="tracking-instruction-button" onClick={()=>setDialog('instruction')}>GỬI THÊM DẶN DÒ ›</button>}
         {screen==='profiles'&&<ProfileLayer state={state} select={selectPrimary} navigate={navigate} openMatrix={()=>bookPet(state.primaryPetId)}/>} 
+        {screen==='medical'&&<MedicalProfileLayer state={state}/>} 
         {(screen==='confirmation'||screen==='multiPet'||screen==='success')&&<BookingSummaryLayer state={state} compact={screen==='success'}/>} 
+        {(screen==='appointmentCheckin'||screen==='checkin')&&<QrBookingLayer screen={screen} state={state}/>} 
+        {(screen==='medicalAlert'||screen==='careProtocol'||screen==='safetyLocked'||screen==='handover')&&getQrBookingContext(state).pet.id!=='bo'&&<IntakeFlowLayer screen={screen} state={state}/>} 
         {processStepperScreens.has(screen)&&<ProcessStepper step={state.trackingStep} tracking={tracking}/>} 
         {(screen==='tracking1'||screen==='tracking2'||screen==='tracking3'||screen==='tracking4')&&<TrackingLayer state={state}/>} 
         {screen==='notifications'&&<NotificationLayer state={state} setState={setState} navigate={navigate} tracking={tracking}/>} 
@@ -186,10 +199,9 @@ function getHotspots(screen:ScreenId,a:Actions):Hotspot[]{
       spot('Gọi tiệm qua kênh hỗ trợ khẩn cấp',20,642,390,74,()=>{window.open('tel:02838229999','_self');a.setToast('Đang mở cuộc gọi đến PetCare.')}),
       spot('Tải lại trang',20,736,390,56,()=>a.loadingTo('checkin'))
     ])
-    case'profiles':return withBottom([back('home',a),spot('Chi tiết y tế Bơ',20,238,140,52,()=>a.navigate('medical')),spot('Sổ tiêm chủng Bơ',160,238,130,52,()=>a.navigate('vaccination')),spot('Đặt lịch cho Bơ',290,238,120,52,()=>a.bookPet('bo')),spot('Chi tiết y tế Miu',20,432,140,52,()=>a.navigate('miuProfileSafety')),spot('Sổ tiêm chủng Miu',160,432,130,52,()=>a.navigate('vaccination')),spot('Đặt lịch cho Miu',290,432,120,52,()=>a.bookPet('miu')),spot('Thêm hồ sơ thú cưng mới',20,512,390,88,()=>a.openPetForm()),spot('Thêm thú cưng mới từ nút chính',20,736,390,56,()=>a.openPetForm())])
+    case'profiles':return withBottom([back('home',a),spot('Chi tiết y tế Bơ',20,238,140,52,()=>{a.selectPrimary('bo');a.navigate('medical')}),spot('Sổ tiêm chủng Bơ',160,238,130,52,()=>a.navigate('vaccination')),spot('Đặt lịch cho Bơ',290,238,120,52,()=>a.bookPet('bo')),spot('Chi tiết y tế Miu',20,432,140,52,()=>{a.selectPrimary('miu');a.navigate('medical')}),spot('Sổ tiêm chủng Miu',160,432,130,52,()=>a.navigate('vaccination')),spot('Đặt lịch cho Miu',290,432,120,52,()=>a.bookPet('miu')),spot('Thêm hồ sơ thú cưng mới',20,512,390,88,()=>a.openPetForm()),spot('Thêm thú cưng mới từ nút chính',20,736,390,56,()=>a.openPetForm())])
     case'medical':return withBottom([back('profiles',a),spot('Sửa hồ sơ dị ứng',20,694,188,54,()=>a.openPetForm(a.state.pets.find(p=>p.id===a.state.primaryPetId))),spot('Đặt lịch ngay',220,694,190,54,()=>a.bookPet(a.state.primaryPetId))])
     case'vaccination':return withBottom([back('profiles',a),spot('Cập nhật sổ tiêm chủng',20,736,390,58,()=>a.setToast('Đã lưu cập nhật sổ tiêm chủng local.'))])
-    case'miuProfileSafety':return prototypeBottom([back('profiles',a),spot('Tự động gắn cảnh báo khi đặt lịch',330,464,72,50,()=>a.setState(c=>({...c,autoLinkSafety:!c.autoLinkSafety})),{selected:a.state.autoLinkSafety,className:'toggle'}),spot('Đặt lịch chăm sóc cho Miu',20,776,390,56,()=>a.bookPet('miu'))])
     case'miuTimeMatrix':return prototypeBottom([
       back('profiles',a),
       spot('Tiếp tục với khung giờ đã chọn',20,776,390,56,()=>a.state.slot?a.navigate('miuSlotSelected'):a.setToast('Hãy chọn một khung giờ còn trống cho thú cưng.'),{className:'miu-slot-continue',visualLabel:a.state.slot?`Tiếp tục với ${a.state.slot.slice(0,5)}`:'Chọn khung giờ để tiếp tục'})
@@ -202,36 +214,28 @@ function getHotspots(screen:ScreenId,a:Actions):Hotspot[]{
       spot('Đổi sang khung giờ 15:30',318,304,92,46,()=>chooseMatrixSlot('15:30 - 17:00'),{selected:a.state.slot==='15:30 - 17:00',className:'miu-mini-slot',visualLabel:'15:30'}),
       spot('Tiếp tục chọn dịch vụ cho thú cưng',20,776,390,56,()=>a.state.slot?a.navigate(a.state.primaryPetId==='miu'?'miuService':'service'):a.setToast('Hãy chọn khung giờ cho thú cưng trước khi tiếp tục.'))
     ])
-    case'miuService':return prototypeBottom([back('miuSlotSelected',a),spot('Kiểm tra đặt lịch cho Miu',20,776,390,56,()=>a.state.serviceId==='standard'||a.state.serviceId==='combo'?a.navigate('miuBookingWarning'):a.setToast('Hãy chọn một gói dịch vụ cho Miu.'))])
-    case'miuBookingWarning':return prototypeBottom([back('miuService',a),spot('Xác nhận dặn dò tự động của Miu',20,776,390,56,()=>a.navigate('miuReview'))])
-    case'miuReview':return prototypeBottom([back('miuBookingWarning',a),spot('Xác nhận và khóa lịch cho Miu',20,776,390,56,()=>a.confirmBooking('miuSuccess'))])
-    case'miuSuccess':return prototypeBottom([back('miuReview',a),spot('Mở phiếu tiếp nhận và theo dõi Miu',20,776,390,56,()=>a.navigate('appointmentCheckin'))])
+    case'miuService':return prototypeBottom([back('miuSlotSelected',a),spot('Kiểm tra đặt lịch cho Miu',20,776,390,56,()=>a.state.serviceId==='standard'||a.state.serviceId==='combo'?a.navigate('miuReview'):a.setToast('Hãy chọn một gói dịch vụ cho Miu.'))])
+    case'miuReview':return prototypeBottom([back('miuService',a),spot('Xác nhận và khóa lịch cho Miu',20,776,390,56,()=>a.confirmBooking('miuSuccess'))])
+    case'miuSuccess':return prototypeBottom([back('miuReview',a),spot('Mở phiếu tiếp nhận của Miu',20,776,390,56,()=>a.navigate('appointmentCheckin'))])
     case'appointmentCheckin':return prototypeBottom([back('success',a),spot('Mở mã QR tiếp nhận',20,776,390,56,()=>a.navigate('checkin'))])
-    case'checkin':return withBottom([back('appointmentCheckin',a),
-      spot('Xác nhận Check-in tại quầy',20,190,390,340,()=>a.navigate(a.state.activeBooking?.petIds.length===1&&a.state.activeBooking.petIds[0]==='miu'?'miuHandoff':'medicalAlert')),
-      spot('Gọi Hotline lễ tân',20,664,390,56,()=>{window.open('tel:02838229999','_self');a.setToast('Đang mở cuộc gọi đến lễ tân PetCare.')}),
-      spot('Lưu mã vào Ví vé Apple Wallet',20,736,390,58,()=>a.setToast('Đã lưu mã tiếp nhận #BK-8820 vào Ví vé trên thiết bị.'))
-    ])
+    case'checkin':return prototypeBottom([back('appointmentCheckin',a),spot('Nhân viên đã quét mã',20,776,390,56,()=>a.navigate('medicalAlert'))])
     case'medicalAlert':return prototypeBottom([back('checkin',a),spot('Đối chiếu phương án',20,776,390,56,()=>a.navigate('careProtocol'))])
     case'careProtocol':return prototypeBottom([back('medicalAlert',a),spot('Khóa lưu ý vào ca',20,776,390,56,()=>{a.setState(c=>c.activeBooking?{...c,safetyLocks:{...c.safetyLocks,[c.activeBooking.id]:[...c.activeBooking.requests]}}:c);a.navigate('safetyLocked')})])
     case'safetyLocked':return prototypeBottom([back('careProtocol',a),spot('Hoàn tất tiếp nhận',20,776,390,56,()=>a.navigate('handover'))])
-    case'miuHandoff':return prototypeBottom([back('checkin',a),spot('Xác nhận bàn giao Miu',20,776,390,56,()=>{a.setState(c=>c.activeBooking?{...c,safetyLocks:{...c.safetyLocks,[c.activeBooking.id]:[...c.activeBooking.requests]}}:c);a.navigate('miuIsolation')})])
-    case'miuIsolation':return prototypeBottom([back('miuHandoff',a),spot('Theo dõi tiến độ an toàn của Miu',20,776,390,56,()=>{a.setState(c=>({...c,hasBooking:true,trackingStep:2,activeBooking:c.activeBooking?{...c.activeBooking,status:2}:c.activeBooking}));a.navigate('miuSafety')})])
-    case'miuSafety':return prototypeBottom([back('miuIsolation',a),spot('Bật thông báo tiến độ của Miu',20,776,390,56,()=>{a.setState(c=>({...c,notificationSettings:{...c.notificationSettings,push:true,progress:true}}));a.setToast('Đã bật thông báo tiến độ cho Miu trên thiết bị.')})])
     case'intake':return withBottom([back('checkin',a),spot('Xem Chứng Thư Cam Kết An Toàn và Giao Ca',20,612,390,66,()=>a.navigate('handover')),spot('Theo dõi tiến độ live',20,736,390,58,()=>a.tracking(1))])
-    case'handover':return withBottom([back('intake',a),spot('Bắt đầu theo dõi tiến độ',20,736,390,58,()=>a.tracking(1))])
+    case'handover':return prototypeBottom([back('safetyLocked',a),spot('Bật thông báo đẩy',20,776,390,56,()=>{a.setState(c=>({...c,notificationSettings:{...c.notificationSettings,push:true,progress:true}}));a.setToast('Đã bật thông báo đẩy cho tiến độ chăm sóc.')} )])
     case'tracking1':return withBottom([back('home',a),spot('Xem chữ ký KTV và hình ảnh tiếp nhận',20,476,390,96,()=>a.navigate('handover'))])
     case'tracking2':return withBottom([back('tracking1',a),spot('Theo dõi song song',20,586,390,136,()=>a.navigate('parallelTracking')),spot('Xem camera trực tiếp phòng Spa',20,736,390,58,()=>a.navigate('camera'))])
     case'tracking3':return withBottom([back('tracking2',a),spot('Lấy mã QR đón bé xuất viện',20,736,390,58,()=>a.navigate('discharge'))])
     case'pushReady':return prototypeBottom([back('tracking3',a),spot('Mở thông tin phòng chờ đón bé',18,58,394,136,()=>a.tracking(4)),spot('Sang đón bé ngay',20,776,390,56,()=>a.tracking(4))])
     case'tracking4':return withBottom([back('tracking3',a),spot('Mở mã QR đối soát xuất viện',20,476,390,114,()=>a.navigate('discharge')),spot('Xuất mã QR đón bé ngay',20,736,390,58,()=>a.navigate('discharge'))])
-    case'parallelTracking':return withBottom([back('tracking2',a),spot('Xem chi tiết tiến độ của Bơ',286,292,108,52,()=>a.tracking(2)),spot('Xem chi tiết tiến độ của Miu',286,556,108,52,()=>a.navigate('miuSafety')),spot('Xem camera phòng cách ly A-02',20,622,390,58,()=>a.navigate('camera')),spot('Đồng bộ giờ đón',20,690,390,52,()=>a.setToast('Đã lưu lựa chọn đồng bộ giờ đón local.'))])
+    case'parallelTracking':return withBottom([back('tracking2',a),spot('Xem chi tiết tiến độ của Bơ',286,292,108,52,()=>a.tracking(2)),spot('Xem chi tiết tiến độ của Miu',286,556,108,52,()=>a.tracking(2)),spot('Xem camera phòng cách ly A-02',20,622,390,58,()=>a.navigate('camera')),spot('Đồng bộ giờ đón',20,690,390,52,()=>a.setToast('Đã lưu lựa chọn đồng bộ giờ đón local.'))])
     case'camera':return withBottom([back('tracking2',a),spot('Nhắn tin trực tiếp cho KTV Tuấn Minh',20,674,390,48,()=>a.setToast('Đã gửi tin nhắn cho KTV Tuấn Minh tại buồng A-02.')),spot('Quay lại tiến độ',20,736,390,58,()=>a.tracking(2))])
     case'discharge':return withBottom([back('tracking4',a),spot('Xem ảnh đối chiếu trước và sau dịch vụ',20,604,390,72,()=>a.navigate('inspection')),spot('Hoàn tất đón bé và đánh giá',20,736,390,58,()=>a.navigate('inspection'))])
     case'inspection':return withBottom([back('discharge',a),spot('Phóng to ảnh trước và sau để kiểm tra da',20,124,390,238,()=>a.setToast('Đã mở chế độ đối chiếu ảnh trước và sau ở kích thước lớn.')),spot('Đánh giá và hoàn tất dịch vụ',20,736,390,58,()=>a.navigate('review'))])
     case'review':return withBottom([back('inspection',a),spot('Gửi đánh giá và lưu hồ sơ',20,736,390,58,a.finishReview)])
     case'history':return withBottom([back('home',a)])
-    case'session':return withBottom([back('history',a),spot('Xem sản phẩm đã sử dụng',20,486,390,114,()=>a.navigate('productVerified')),spot('Tải hóa đơn PDF',20,616,390,52,()=>a.setToast('Đã chuẩn bị hóa đơn VAT #INV-9921 dạng PDF.')),spot('Đặt lại gói dịch vụ này',20,736,390,58,()=>a.rebook())])
+    case'session':return withBottom([back('history',a),spot('Xem sản phẩm đã sử dụng',20,314,390,136,()=>a.navigate('productVerified'),{testId:'session-product-card-link'}),spot('Tải hóa đơn PDF',20,616,390,52,()=>a.setToast('Đã chuẩn bị hóa đơn VAT #INV-9921 dạng PDF.')),spot('Đặt lại gói dịch vụ này',20,736,390,58,()=>a.rebook())])
     case'productVerified':return prototypeBottom([back('session',a),spot('Mở ghi chú da của KTV',20,516,390,114,()=>a.navigate('technicianNotes')),spot('Xem ghi chú da của KTV',20,776,390,56,()=>a.navigate('technicianNotes'))])
     case'technicianNotes':return prototypeBottom([back('productVerified',a),spot('Lưu sản phẩm cho lần tới',20,776,390,56,()=>{const entry=a.state.history.find(item=>item.petId==='bo');if(entry)a.setState(c=>({...c,preferredProducts:{...c.preferredProducts,[entry.petId]:entry.product}}));a.navigate('productSaved')})])
     case'productSaved':return prototypeBottom([back('technicianNotes',a),spot('Đặt lịch hẹn đợt tới',20,776,390,56,()=>a.rebook())])
@@ -306,7 +310,7 @@ function MiuServiceLayer({state,choose}:{state:AppState;choose:(id:Service['id']
   </button>})}</div>
 }
 
-function MiuFlowSummary({screen,state}:{screen:'miuBookingWarning'|'miuReview'|'miuSuccess';state:AppState}){
+function MiuFlowSummary({screen,state}:{screen:'miuReview'|'miuSuccess';state:AppState}){
   const service=services.find(item=>item.id===state.serviceId)
   const slot=state.slot||'Chưa chọn khung giờ'
   return <section className={`miu-flow-summary ${screen}`} aria-live="polite" data-testid="miu-flow-summary">
@@ -354,6 +358,24 @@ function ProfileLayer({state,select,navigate,openMatrix}:{state:AppState;select:
   return <>{state.pets.slice(0,2).map((pet,index)=>{const selected=state.primaryPetId===pet.id;const top=index===0?124:318;return <div key={pet.id} className={`profile-card-state ${selected?'selected':''}`} style={{top:`${top/9.32}%`}}><button type="button" className="profile-selector" onClick={()=>select(pet.id)} aria-label={`Chọn ${pet.name} làm thú cưng chính`} aria-pressed={selected}><span>{selected?'✓ ĐANG CHỌN':'CHỌN BÉ'}</span></button></div>})}{state.pets.length>2&&<div className="profile-count">+{state.pets.length-2} hồ sơ đã thêm</div>}<button type="button" className="profile-matrix-button" aria-label="Mở ma trận thời gian cho thú cưng đang chọn" onClick={openMatrix}>Ma trận thời gian <span aria-hidden="true">›</span></button><button type="button" className="profile-history-button" aria-label="Lịch sử & Nhật ký dịch vụ" onClick={()=>navigate('history')}>Lịch sử dịch vụ <span aria-hidden="true">›</span></button></>
 }
 
+function MedicalProfileLayer({state}:{state:AppState}){
+  const pet=state.pets.find(item=>item.id===state.primaryPetId)??state.pets[0]
+  const requests=pet.tags.length?pet.tags:[pet.notes].filter(Boolean)
+  return <section className="medical-profile-runtime" data-testid="medical-profile-runtime" aria-live="polite">
+    <header>
+      <span className="medical-profile-avatar">{pet.name.toLocaleUpperCase('vi').slice(0,3)}</span>
+      <span><small>HỒ SƠ ĐANG XEM</small><strong>{pet.name}</strong><em>{pet.species} · {pet.age} · {pet.weight}</em></span>
+    </header>
+    <article>
+      <h2>Lưu ý y tế và chăm sóc</h2>
+      <p>{pet.notes||'Chưa có ghi chú y tế hoặc dặn dò đặc biệt.'}</p>
+      <ul>{requests.map(item=><li key={item}><span aria-hidden="true">!</span><b>{item}</b></li>)}</ul>
+    </article>
+    <aside>Thông tin của {pet.name} sẽ được tự động đính kèm khi đặt lịch.</aside>
+    <div className="medical-profile-actions" aria-hidden="true"><span>SỬA HỒ SƠ</span><strong>ĐẶT LỊCH</strong></div>
+  </section>
+}
+
 function HomeBookingLayer({state,navigate,tracking}:{state:AppState;navigate:(id:ScreenId)=>void;tracking:(step:TrackingStep)=>void}){
   const booking=state.activeBooking;const pets=booking?state.pets.filter(p=>booking.petIds.includes(p.id)):[];const service=booking?services.find(s=>s.id===booking.serviceId):null;const step=trackingSteps[state.trackingStep-1]
   return <button type="button" className={`home-booking-runtime ${booking?'active':'empty'}`} onClick={()=>booking?tracking(state.trackingStep):navigate('service')} data-testid="home-active-booking">
@@ -376,6 +398,59 @@ function BookingSummaryLayer({state,compact}:{state:AppState;compact?:boolean}){
     <p><strong>{service?.name}</strong></p><div className="runtime-meta"><span>{booking.date}</span><span>{booking.slot}</span><span>{money((service?.price??0)*Math.max(1,pets.length))}</span></div>
     {!compact&&booking.requests.length>0&&<small>Dặn dò tự động: {booking.requests.join(' · ')}</small>}
   </section>
+}
+
+function IntakeFlowLayer({screen,state}:{screen:'medicalAlert'|'careProtocol'|'safetyLocked'|'handover';state:AppState}){
+  const {booking,pet,service,slot}=getQrBookingContext(state)
+  const requests=booking?.requests.length?booking.requests:pet.tags
+  const profileText=`${pet.notes} ${requests.join(' ')}`.toLocaleLowerCase('vi')
+  const needsQuiet=profileText.includes('nhút')||profileText.includes('sợ')||profileText.includes('cách ly')||profileText.includes('tiếng ồn')
+  const hasAllergy=profileText.includes('dị ứng')
+  const protocol=needsQuiet
+    ?['Bố trí không gian riêng, tránh thú cưng gây căng thẳng','Giảm tiếng ồn và thao tác tuần tự, nhẹ nhàng','Dừng chăm sóc và báo chủ nuôi nếu thú cưng hoảng sợ']
+    :hasAllergy
+      ?['Dùng sản phẩm Hypo không chứa hương liệu','Điều chỉnh máy sấy êm và thao tác nhẹ nhàng','Kiểm tra da trước, trong và sau khi chăm sóc']
+      :['Đối chiếu đầy đủ dặn dò trong hồ sơ','Thao tác nhẹ nhàng theo tình trạng thực tế','Báo chủ nuôi nếu phát sinh dấu hiệu bất thường']
+  const locked=booking?state.safetyLocks[booking.id]??requests:requests
+  const content={
+    medicalAlert:{pageTitle:'Đối chiếu hồ sơ',step:'BƯỚC 3 / 6',title:`Cảnh báo hồ sơ của ${pet.name}`,description:'Thông tin được lấy từ đúng hồ sơ gắn với booking đang tiếp nhận.',items:requests.length?requests:['Không có dặn dò đặc biệt'],feedback:`Đã mở đúng hồ sơ của ${pet.name}.`},
+    careProtocol:{pageTitle:'Phương án chăm sóc',step:'BƯỚC 4 / 6',title:`Phương án chăm sóc cho ${pet.name}`,description:'Chủ nuôi và nhân viên đối chiếu phương án trước khi khóa cam kết.',items:protocol,feedback:'Chưa chuyển sang chăm sóc cho đến khi cam kết được khóa.'},
+    safetyLocked:{pageTitle:'Cam kết an toàn',step:'BƯỚC 5 / 6',title:`Cam kết an toàn của ${pet.name}`,description:'Các dặn dò đã được khóa vào ca và dùng chung khi đổi nhân viên phụ trách.',items:locked.length?locked:protocol,feedback:'Cam kết đã lưu vào phiếu tiếp nhận.'},
+    handover:{pageTitle:'Hoàn tất tiếp nhận',step:'BƯỚC 6 / 6',title:`${pet.name} đã được tiếp nhận`,description:`${service?.name??'Dịch vụ chăm sóc'} · ${slot}`,items:locked.length?locked:protocol,feedback:'Bàn giao hoàn tất. Bước tiếp theo là Live Tracking Mốc 1: Đã nhận.'},
+  }[screen]
+  const ctaLabel={
+    medicalAlert:'ĐỐI CHIẾU PHƯƠNG ÁN',
+    careProtocol:'KHÓA LƯU Ý VÀO CA',
+    safetyLocked:'HOÀN TẤT TIẾP NHẬN',
+    handover:'BẬT THÔNG BÁO ĐẨY',
+  }[screen]
+  return <section className={`intake-flow-runtime ${screen}`} data-testid="shared-intake-form" aria-live="polite">
+    <h1 className="intake-flow-page-title">{content.pageTitle}</h1>
+    <header><span className="intake-avatar">{pet.name.toLocaleUpperCase('vi').slice(0,3)}</span><span><small>{content.step}</small><strong>{content.title}</strong><em>{pet.species} · {pet.weight}</em></span></header>
+    <article><p>{content.description}</p><ul>{content.items.map(item=><li key={item}><span aria-hidden="true">✓</span>{item}</li>)}</ul></article>
+    <aside>{content.feedback}</aside>
+    <div className="intake-flow-cta" aria-hidden="true">{ctaLabel} ›</div>
+  </section>
+}
+
+function QrBookingLayer({screen,state}:{screen:'appointmentCheckin'|'checkin';state:AppState}){
+  const {booking,pet,service,slot,code}=getQrBookingContext(state)
+  const requests=booking?.requests.length?booking.requests:pet.tags
+  const appointment=<section className="qr-appointment-card">
+    <span className="qr-pet-avatar">{pet.name.toLocaleUpperCase('vi').slice(0,3)}</span>
+    <span className="qr-pet-copy"><strong>Bé {pet.name} ({pet.species} · {pet.weight})</strong><small>{booking?.date||state.day||'Hôm nay'} · {slot} · {service?.name||'Dịch vụ chăm sóc'}</small><em>{pet.notes||'Không có dặn dò đặc biệt'}</em></span>
+  </section>
+  if(screen==='appointmentCheckin')return <div className="qr-booking-runtime appointment" data-testid="qr-booking-context" aria-live="polite">
+    {appointment}
+    <section className="qr-safety-card"><b>TỰ ĐỘNG ĐỒNG BỘ TỪ HỒ SƠ {pet.name.toLocaleUpperCase('vi')}</b><strong>Yêu cầu an toàn khi chăm sóc:</strong>{requests.length?requests.map(item=><span key={item}>• {item}</span>):<span>• Không có dặn dò đặc biệt</span>}<small>Thông tin của {pet.name} đã khóa vào mã QR tiếp nhận.</small></section>
+    <section className="qr-pass-card"><strong>Mã Check-in tiếp nhận tại quầy</strong><b>Mã lịch hẹn: {code}</b><span>Quét mã để đối chiếu hồ sơ của bé {pet.name}</span></section>
+    <p className="qr-ready-copy">Sẵn sàng bàn giao {pet.name} và đối chiếu dịch vụ</p>
+  </div>
+  return <div className="qr-booking-runtime checkin" data-testid="qr-booking-context" aria-live="polite">
+    {appointment}
+    <section className="qr-code-block" data-testid="qr-code-block"><strong>MÃ TIẾP NHẬN: {code}</strong><b>Đã tích hợp hồ sơ và dặn dò của {pet.name}</b><small>Xuất trình mã này tại quầy để nhân viên quét</small></section>
+    <section className="qr-checkin-warning"><b>CẢNH BÁO ĐÍNH KÈM TRONG MÃ</b><strong>Khi quét mã, màn hình tiếp nhận sẽ tự động hiện:</strong>{requests.length?requests.slice(0,3).map(item=><span key={item}>• {item}</span>):<span>• Không có dặn dò đặc biệt</span>}<small>Nhân viên tiếp nhận sẽ xác nhận trực tiếp với chủ nuôi.</small></section>
+  </div>
 }
 
 function ProcessStepper({step,tracking}:{step:TrackingStep;tracking:(step:TrackingStep)=>void}){
