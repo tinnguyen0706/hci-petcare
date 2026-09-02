@@ -1,0 +1,50 @@
+% Academic cover template based on university thesis layout.
+% Arguments: university (#1), school (#2), faculty (#3), logo path (#4), logo height (#5), accent color (#6).
+\providecommand{\makeuniversitycover}[6]{%
+  \begin{titlepage}
+    \thispagestyle{empty}
+
+    \begin{center}
+      {\large\bfseries #1\par}
+      \vspace{0.2cm}
+      {\Large\bfseries #2\par}
+      \vspace{0.3cm}
+      {\large #3\par}
+      \vspace{0.2cm}
+      {\normalsize\coursename\par}
+
+      \vfill
+      \includegraphics[height=#5]{#4}\par
+      \vfill
+
+      \begin{adjustbox}{max width=\textwidth, max totalheight=38mm, center}
+        \begin{minipage}{\textwidth}
+          \centering
+          \Huge\bfseries \reporttitle\par
+        \end{minipage}
+      \end{adjustbox}
+    \end{center}
+
+    \vfill
+
+    {\raggedright
+      {\Large\bfseries Giảng viên hướng dẫn:\par}
+      \vspace{0.15cm}
+      {\large\setstretch{1.15}\teachername\par}
+    \par}
+
+    \vspace{0.4cm}
+
+    {\raggedleft
+      {\Large\bfseries Sinh viên thực hiện:\par}
+      \vspace{0.15cm}
+      {\large\setstretch{1.15}\studentname\par}
+    \par}
+
+    \vfill
+
+    \begin{center}
+      {\large TP. Hồ Chí Minh, \today\par}
+    \end{center}
+  \end{titlepage}%
+}
