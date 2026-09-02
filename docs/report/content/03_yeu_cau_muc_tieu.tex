@@ -1,0 +1,70 @@
+\section{Yêu cầu và mục tiêu thiết kế}
+
+\subsection{Yêu cầu người dùng}
+Dựa trên kết quả nghiên cứu và Đề xuất giá trị ở Chương 2, các nhu cầu và điểm đau của người dùng được chuyển hóa thành 4 nhóm \textbf{Yêu cầu người dùng (User Requirements -- UR)} cốt lõi, bám sát 4 trụ cột giải pháp trong tài liệu đề xuất đề tài:
+
+\begin{enumerate}
+    \item \textbf{UR1 -- Đặt lịch trực tuyến và nhận xác nhận tức thì (Instant Booking Confirmation)}:
+    \begin{itemize}
+        \item Người dùng có thể xem danh sách dịch vụ kèm bảng giá công khai, thời lượng dự kiến và danh sách các khung giờ còn trống trong ngày/tuần.
+        \item Hệ thống phải tự động khóa các khung giờ đã kín chỗ, chỉ cho phép chọn các khung giờ khả dụng.
+        \item Sau khi xác nhận thông tin, hệ thống phải cấp mã đặt lịch và xác nhận giữ chỗ ngay lập tức trên ứng dụng, không bắt người dùng phải chờ nhân viên phản hồi thủ công.
+    \end{itemize}
+    \item \textbf{UR2 -- Hồ sơ thú cưng điện tử và tự động đính kèm cảnh báo y tế (Medical Profile \& Auto-attachment)}:
+    \begin{itemize}
+        \item Cho phép tạo và quản lý hồ sơ cho nhiều thú cưng (chó, mèo), lưu trữ giống loài, cân nặng, tiền sử viêm da dị ứng xà phòng, dặn dò tính cách (nhút nhát, sợ máy sấy, yêu cầu phòng cách ly).
+        \item Khi người dùng đặt lịch cho một thú cưng cụ thể, hệ thống phải tự động liên kết các cảnh báo y tế và dặn dò đặc biệt từ hồ sơ vào đơn tiếp nhận dịch vụ.
+        \item Thẻ cảnh báo y tế phải được làm nổi bật với màu sắc và biểu tượng tương phản cao trên phiếu bàn giao ca của cơ sở.
+    \end{itemize}
+    \item \textbf{UR3 -- Theo dõi tiến độ chăm sóc theo thời gian thực (Real-time Live Tracking)}:
+    \begin{itemize}
+        \item Cung cấp giao diện thanh tiến trình thời gian thực chuẩn hóa qua 4 mốc: \textbf{Mốc 1 (Đã nhận thú cưng)} $\rightarrow$ \textbf{Mốc 2 (Đang chăm sóc)} $\rightarrow$ \textbf{Mốc 3 (Hoàn tất dịch vụ)} $\rightarrow$ \textbf{Mốc 4 (Sẵn sàng chờ đón)}.
+        \item Mỗi mốc hiển thị thời gian ghi nhận thực tế và thời gian hoàn tất dự kiến; hỗ trợ gửi thông báo đẩy tự động khi trạng thái chuyển mốc.
+        \item Cho phép chủ nuôi xem hình ảnh kiểm tra sức khỏe sơ bộ tại tiệm và gửi dặn dò bổ sung trực tiếp cho kỹ thuật viên trong suốt ca chăm sóc.
+    \end{itemize}
+    \item \textbf{UR4 -- Kho lưu trữ lịch sử chăm sóc cá nhân hóa và hóa đơn điện tử (Care History \& Digital Invoice)}:
+    \begin{itemize}
+        \item Lưu trữ toàn bộ nhật ký các lượt chăm sóc theo dòng thời gian, bao gồm ngày giờ, gói dịch vụ, loại sản phẩm sữa tắm trị liệu đã dùng và ghi chú của kỹ thuật viên.
+        \item Cung cấp hóa đơn điện tử minh bạch từng hạng mục chi phí và biểu đồ theo dõi ngân sách chi tiêu hàng tháng.
+        \item Cho phép đặt lại nhanh (\textit{One-click Rebook}) dựa trên thông tin gói dịch vụ của lượt chăm sóc trước.
+    \end{itemize}
+\end{enumerate}
+
+Bảng \ref{tab:traceability_ur} thể hiện ma trận truy vết từ Phát hiện nghiên cứu $\rightarrow$ Điểm đau $\rightarrow$ Yêu cầu người dùng tương ứng.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|l|X|X|l|}
+\hline
+\textbf{Mã UR} & \textbf{Nguồn phát hiện nghiên cứu} & \textbf{Điểm đau giải quyết} & \textbf{Trụ cột đề tài} \\ \hline
+\textbf{UR1} & 100\% người dùng phàn nàn về việc chờ phản hồi tin nhắn đặt lịch (15--120 phút). & Chờ đợi lâu, dễ bị trùng lịch hoặc lỡ khung giờ mong muốn. & Đặt lịch tức thì \\ \hline
+\textbf{UR2} & 83.3\% chủ nuôi có thú cưng da nhạy cảm lo ngại tiệm quên dặn dò khi đổi ca trực. & Thất lạc lưu ý y tế, nguy cơ tái phát dị ứng da hoặc hoảng loạn. & Hồ sơ dặn dò y tế \\ \hline
+\textbf{UR3} & 90\% chủ nuôi bất an trong 2--3 tiếng chăm sóc nhưng ngại gọi điện làm phiền. & Trạng thái mù mờ thông tin, gián đoạn công việc hai bên. & Theo dõi 4 mốc \\ \hline
+\textbf{UR4} & 100\% người dùng không có công cụ lưu trữ lịch sử dịch vụ và đối soát chi phí. & Thất lạc hóa đơn, không nhớ loại dầu tắm cũ, khó quản lý chi tiêu. & Lịch sử cá nhân hóa \\ \hline
+\end{tabularx}
+\caption{Ma trận truy vết Yêu cầu người dùng từ dữ liệu nghiên cứu}
+\label{tab:traceability_ur}
+\end{table}
+
+\subsection{Mục tiêu trải nghiệm người dùng}
+Để đo lường chất lượng tương tác và tính khả dụng của giải pháp thiết kế, nhóm đã xác định 6 \textbf{Mục tiêu trải nghiệm người dùng (UX Goals)} dựa trên các nguyên lý chuẩn mực của Nielsen và Norman \cite{nielsen1994usability, norman2013design}:
+
+\begin{itemize}
+    \item \textbf{Tính hiệu quả (Effectiveness)}: Đảm bảo người dùng hoàn thành chính xác 100\% các tác vụ cốt lõi (đặt lịch, lưu dặn dò dị ứng, theo dõi tiến độ, tra cứu lịch sử) mà không gặp phải sự cố tắc nghẽn giao diện.
+    \item \textbf{Hiệu suất thao tác (Efficiency)}: Tối ưu hóa số bước thao tác và độ trễ nhận thức; đặt mục tiêu hoàn thành toàn bộ luồng đặt lịch trong vòng dưới 45 giây và xem trạng thái chăm sóc chỉ trong 1 lần chạm (dưới 20 giây).
+    \item \textbf{Tính dễ học (Learnability)}: Giao diện tuân thủ các mô hình tinh thần (\textit{mental models}) quen thuộc của ứng dụng di động hiện đại, giúp người dùng mới nắm bắt quy trình ngay từ lần đầu tiên mà không cần đọc tài liệu hướng dẫn.
+    \item \textbf{Phòng ngừa sai sót (Error Prevention)}: Thiết kế hệ thống phòng vệ chủ động: tự động vô hiệu hóa các khung giờ đã kín, cảnh báo xung đột gói dịch vụ với tiền sử dị ứng và xác nhận lại thông tin trước khi gửi đơn.
+    \item \textbf{Sự an tâm và hài lòng (Emotional Peace of Mind \& Satisfaction)}: Giải tỏa căng thẳng tâm lý cho chủ nuôi bằng cách cung cấp thông tin minh bạch theo thời gian thực; điểm đánh giá SUS đạt trên 80/100 điểm.
+    \item \textbf{Khả năng ghi nhớ (Memorability)}: Bố cục trực quan và quy trình chuẩn hóa giúp người dùng có thể thực hiện lại các tác vụ định kỳ một cách tự nhiên sau thời gian dài không sử dụng.
+\end{itemize}
+
+\subsection{Mục tiêu thiết kế}
+Từ các yêu cầu và mục tiêu trải nghiệm, nhóm đã cụ thể hóa thành 4 \textbf{Mục tiêu thiết kế (Design Goals -- DG)} định hướng trực tiếp cho việc xây dựng Wireframe và Prototype:
+
+\begin{enumerate}
+    \item \textbf{DG1 -- Thiết kế luồng đặt lịch trực quan dạng từng bước (Stepper Flow)}: Phân tách rõ ràng các bước: Chọn thú cưng $\rightarrow$ Chọn gói dịch vụ $\rightarrow$ Chọn ngày và ma trận giờ trống $\rightarrow$ Xác nhận tóm tắt. Sử dụng các thẻ bấm lớn (\textit{touch targets} $\ge 44 \times 44\text{px}$), phản hồi thị giác tức thì khi chọn khung giờ.
+    \item \textbf{DG2 -- Thiết kế hệ thống cảnh báo y tế nổi bật với độ tương phản cao}: Sử dụng các thành phần giao diện chuyên biệt (Badge màu đỏ \texttt{\#DC2626} cho dị ứng, màu vàng cam \texttt{\#D97706} cho lưu ý hành vi), luôn hiển thị đồng bộ từ màn hình Hồ sơ, Form đặt lịch cho đến Phiếu tiếp nhận QR và màn hình bàn giao ca.
+    \item \textbf{DG3 -- Thiết kế thanh tiến trình 4 mốc thời gian thực trực quan}: Xây dựng thành phần \textit{Timeline Stepper} 4 mốc với biểu tượng rõ ràng, phân biệt rành mạch giữa các trạng thái \textit{Đã hoàn thành} (Xanh lá \texttt{\#16A34A}), \textit{Đang diễn ra} (Xanh dương \texttt{\#173B72} có hiệu ứng nhịp thở) và \textit{Chưa đến} (Xám mờ \texttt{\#9CA3AF}).
+    \item \textbf{DG4 -- Thiết kế trung tâm quản lý lịch sử và chi phí thông minh}: Cung cấp thẻ tóm tắt chi phí, bộ lọc thông minh theo tháng/thú cưng, hiển thị chi tiết sản phẩm đã dùng kèm nút ``Đặt lại ngay'' giúp tái sử dụng thông tin cũ chỉ với một chạm.
+\end{enumerate}

@@ -1,0 +1,52 @@
+% Slide 1: Trang tiêu đề
+{
+\setbeamertemplate{footline}{} % Ẩn footline ở trang bìa
+\begin{frame}[plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    % Dải banner màu xanh thương hiệu ở đầu trang
+    \fill[PetcarePrimary] (current page.north west) rectangle ([yshift=-1.2cm]current page.north east);
+    % Logo trường HCMUS góc trên bên phải
+    \node[anchor=north east, inner sep=6pt] at (current page.north east) {
+      \includegraphics[height=1.0cm, keepaspectratio]{img/hcmus-logo.png}
+    };
+    % Tên trường góc trên bên trái
+    \node[anchor=north west, inner sep=10pt] at (current page.north west) {
+      \small \bfseries \color{white} TRƯỜNG ĐẠI HỌC KHOA HỌC TỰ NHIÊN -- ĐHQG-HCM
+    };
+  \end{tikzpicture}
+
+  \vspace{0.6cm}
+
+  \begin{center}
+    {\scriptsize \color{PetcareSecondary}\textbf{ĐỒ ÁN MÔN HỌC: TƯƠNG TÁC NGƯỜI -- MÁY (CSC12106)}}\\[2mm]
+    {\large \bfseries \color{PetcarePrimary} HỆ THỐNG HỖ TRỢ ĐẶT LỊCH, GỬI YÊU CẦU\\VÀ THEO DÕI QUÁ TRÌNH CHĂM SÓC THÚ CƯNG}\\[1.5mm]
+    {\footnotesize \color{PetcareDark}\textit{Giải pháp tương tác di động lấy chủ nuôi thú cưng bận rộn làm trung tâm (UCD)}}
+  \end{center}
+
+  \vspace{0.2cm}
+
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \begin{block}{\footnotesize \textbf{Sinh viên thực hiện (Nhóm 10)}}
+        \scriptsize
+        \textbf{23127327} -- Lưu Ngô Quốc Bảo\\
+        \textbf{23127328} -- Nguyễn Quốc Bảo\\
+        \textbf{23127498} -- Nguyễn Trọng Tín
+      \end{block}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{\footnotesize \textbf{Giảng viên hướng dẫn}}
+        \scriptsize
+        \textbf{Lê Thị Nhàn}\\
+        \textbf{Lương Vĩ Minh}\\[1.5mm]
+        \textit{Khoa Công nghệ Thông tin}
+      \end{block}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.2cm}
+  \begin{center}
+    {\tiny \color{gray} Thành phố Hồ Chí Minh, Tháng 09 năm 2026}
+  \end{center}
+\end{frame}
+}

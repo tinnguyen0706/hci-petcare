@@ -1,0 +1,66 @@
+\section{Giới thiệu}
+
+\subsection{Bối cảnh đề tài}
+Trong những năm gần đây, cùng với sự phát triển nhanh chóng của kinh tế và đô thị hóa tại Việt Nam, đặc biệt là tại các trung tâm đô thị lớn như Thành phố Hồ Chí Minh và Hà Nội, phong trào nuôi thú cưng (chó, mèo) đã có sự chuyển dịch sâu sắc. Thú cưng không còn đơn thuần là vật nuôi giữ nhà mà đã trở thành những người bạn đồng hành thân thiết, thậm chí được xem như thành viên chính thức trong gia đình (hiện tượng nhân hóa thú cưng -- \textit{pet humanization}). Kéo theo đó, nhu cầu chăm sóc sức khỏe, vệ sinh và làm đẹp chuyên nghiệp cho thú cưng (dịch vụ spa, tắm sấy, cắt tỉa lông, vệ sinh tai móng và trông giữ trong ngày) tăng trưởng với tốc độ vượt bậc.
+
+Tuy nhiên, phần lớn các cơ sở dịch vụ chăm sóc thú cưng hiện nay tại Việt Nam vẫn đang vận hành dựa trên các phương thức truyền thống, phân mảnh và thủ công. Các giao dịch đặt lịch và trao đổi thông tin chủ yếu diễn ra qua các cuộc gọi điện thoại, nhắn tin riêng lẻ trên các nền tảng mạng xã hội (Facebook Messenger, Zalo) hoặc ghi chép tay trên sổ sách, bảng trắng tiếp nhận tại chỗ. 
+
+Đối tượng khách hàng chính của các dịch vụ này là những \textbf{chủ nuôi thú cưng tại đô thị} -- những người đi làm, chuyên viên văn phòng, nhân viên kỹ thuật hoặc sinh viên có lịch trình sinh hoạt và làm việc bận rộn. Họ thường phải cân đối thời gian eo hẹp trong ngày làm việc hoặc vào các dịp cuối tuần để đưa thú cưng đi chăm sóc. Đối với nhóm người dùng này, thú cưng có vị trí tình cảm đặc biệt quan trọng, dẫn đến mức độ quan tâm và sự lo lắng về an toàn sức khỏe của vật nuôi khi gửi gắm tại cơ sở bên ngoài là rất lớn. Việc thiếu vắng một công cụ số hóa chuyên biệt, trực quan và minh bạch phục vụ trực tiếp cho chủ nuôi đã tạo ra nhiều rào cản và trải nghiệm bất tiện trong đời sống hàng ngày \cite{sharp2019interaction, dinhdien2006nlp}.
+
+\subsection{Phát biểu bài toán}
+Dựa trên tài liệu đề xuất đề tài (\textit{Proposal}) và các khảo sát thực tế ban đầu, quy trình chăm sóc thú cưng thủ công hiện tại bộc lộ bốn khó khăn và điểm đau cốt lõi:
+\begin{enumerate}
+    \item \textbf{Khó khăn trong việc đặt lịch và chờ đợi xác nhận}: Chủ nuôi khi có nhu cầu phải chủ động gọi điện hoặc nhắn tin hỏi các khung giờ còn trống. Việc chờ đợi nhân viên cơ sở kiểm tra sổ sách và phản hồi thường kéo dài từ 15 phút đến vài tiếng, khiến người dùng rơi vào thế bị động và dễ bị lỡ mất khung giờ mong muốn hoặc bị trùng lịch.
+    \item \textbf{Thất lạc và bỏ sót thông tin dặn dò đặc biệt}: Nhiều thú cưng có tiền sử bệnh lý, viêm da dị ứng với một số loại sữa tắm nhiều hương liệu, da nhạy cảm hoặc có đặc điểm tâm lý nhút nhát, sợ tiếng máy sấy, dễ hoảng loạn khi gặp người lạ. Trong quy trình cũ, chủ nuôi phải nhắc đi nhắc lại các lưu ý này mỗi lần gửi bé. Do thông tin trao đổi qua tin nhắn trôi nổi hoặc ghi chép rời rạc, nhân viên tiếp nhận dễ quên chuyển giao cho kỹ thuật viên trực tiếp tắm sấy (đặc biệt khi đổi ca trực), dẫn đến nguy cơ tái phát dị ứng da hoặc gây tổn thương tâm lý cho thú cưng.
+    \item \textbf{Sự thiếu minh bạch về tiến độ chăm sóc theo thời gian thực}: Trong khoảng thời gian từ 2 đến 3 tiếng gửi thú cưng tại cơ sở, chủ nuôi hoàn toàn không nắm được thông tin thú cưng đang ở giai đoạn nào (đã được nhận chưa, đang tắm, đang sấy hay đã xong). Tâm lý lo lắng thôi thúc họ phải gọi điện hoặc nhắn tin hỏi thăm, gây gián đoạn công việc của cả hai bên và tạo ra sự ức chế tâm lý kéo dài.
+    \item \textbf{Thiếu kho lưu trữ lịch sử chăm sóc và chi phí có cấu trúc}: Toàn bộ thông tin về các lần chăm sóc trước đây (ngày giờ, loại dịch vụ, sản phẩm sữa tắm trị liệu đã dùng, ghi chú sức khỏe da lông của kỹ thuật viên và hóa đơn thanh toán) không được lưu trữ tập trung. Khi cần tra cứu lại tiền sử chăm sóc hoặc đối soát chi phí, người dùng hoàn toàn không có công cụ hỗ trợ.
+\end{enumerate}
+
+Những hạn chế trên gây lãng phí thời gian, gây căng thẳng cho chủ nuôi và tiềm ẩn nguy cơ mất an toàn cho thú cưng. Do đó, bài toán cấp thiết đặt ra là phải thiết kế một \textbf{hệ thống hỗ trợ đặt lịch, gửi yêu cầu và theo dõi quá trình chăm sóc thú cưng} lấy chủ nuôi làm trung tâm, giải quyết triệt để các đứt gãy trong trải nghiệm tương tác người -- máy \cite{norman2013design}.
+
+\subsection{Mục tiêu đề tài}
+Đề tài hướng tới việc nghiên cứu, thiết kế và phát triển giải pháp giao diện tương tác số hóa nhằm đạt được các mục tiêu cụ thể sau:
+\begin{itemize}
+    \item \textbf{Mục tiêu chức năng và quy trình}:
+    \begin{itemize}
+        \item Cung cấp cơ chế đặt lịch trực tuyến với ma trận khung giờ trống thời gian thực, cho phép xác nhận giữ chỗ tức thì ngay trên ứng dụng mà không cần chờ phản hồi thủ công.
+        \item Xây dựng hồ sơ thú cưng điện tử cho phép lưu giữ cố định tiền sử dị ứng, dặn dò y tế và đặc điểm hành vi, tự động đính kèm vào phiếu tiếp nhận dịch vụ.
+        \item Cung cấp hệ thống theo dõi tiến độ chăm sóc theo thời gian thực qua 4 mốc trạng thái chuẩn hóa (\textit{Đã nhận} $\rightarrow$ \textit{Đang chăm sóc} $\rightarrow$ \textit{Hoàn tất} $\rightarrow$ \textit{Chờ đón}) kết hợp thông báo đẩy tự động.
+        \item Cung cấp nhật ký chăm sóc cá nhân hóa, lưu trữ chi tiết các dịch vụ, phác đồ sản phẩm sử dụng, ghi chú kỹ thuật viên và hóa đơn điện tử minh bạch.
+    \end{itemize}
+    \item \textbf{Mục tiêu trải nghiệm người dùng (UX / Usability Goals)}:
+    \begin{itemize}
+        \item \textit{Tính hiệu quả (Effectiveness)}: Tỷ lệ hoàn thành tác vụ đặt lịch, đính kèm dặn dò và tra cứu đạt 100\% ở người dùng thực tế.
+        \item \textit{Hiệu suất (Efficiency)}: Rút ngắn thời gian đặt lịch xuống dưới 45 giây và thời gian tra cứu tiến độ xuống dưới 20 giây.
+        \item \textit{Tính dễ học (Learnability)}: Giao diện trực quan, rõ ràng, người dùng lần đầu có thể thao tác thành thạo mà không cần tài liệu hướng dẫn phức tạp.
+        \item \textit{Phòng ngừa sai sót (Error Prevention)}: Triệt tiêu 100\% rủi ro bỏ sót dặn dò y tế/dị ứng nhờ cơ chế tự động đính kèm và cảnh báo thị giác nổi bật.
+        \item \textit{Sự an tâm và hài lòng (User Satisfaction \& Peace of Mind)}: Điểm đánh giá mức độ khả dụng hệ thống theo thang đo SUS (\textit{System Usability Scale}) đạt trên 80 điểm (mức \textit{Excellent}).
+    \end{itemize}
+\end{itemize}
+
+\subsection{Phạm vi đề tài}
+\subsubsection{Các chức năng trong phạm vi (In-scope)}
+\begin{itemize}
+    \item Thiết kế và hiện thực hóa giao diện ứng dụng di động theo chuẩn \textit{Mobile-first} dành riêng cho \textbf{Chủ nuôi thú cưng (Pet Owners)}.
+    \item Bộ 4 nhóm tính năng cốt lõi:
+    \begin{enumerate}
+        \item Phân hệ đặt lịch: Chọn thú cưng, chọn gói dịch vụ, tra cứu ma trận giờ trống và nhận mã xác nhận tức thì.
+        \item Phân hệ hồ sơ thú cưng: Quản lý thông tin sức khỏe, cảnh báo dị ứng da/thuốc và dặn dò tính cách.
+        \item Phân hệ theo dõi tiến độ (\textit{Live Tracking}): Hiển thị thanh tiến trình 4 mốc thời gian thực, hình ảnh kiểm tra sức khỏe và cơ chế gửi dặn dò bổ sung trong ca.
+        \item Phân hệ lịch sử \& chi phí: Nhật ký chăm sóc theo dòng thời gian, hóa đơn điện tử và biểu đồ quản lý ngân sách.
+    \end{enumerate}
+    \item Thực hiện đầy đủ chu trình thiết kế lấy người dùng làm trung tâm (UCD): từ Nghiên cứu người dùng, Xây dựng Persona, Đề xuất giá trị, Kịch bản (Scenario), Bảng phân cảnh (Storyboard), Khung giao diện (Wireframe), Bản mẫu tương tác (Prototype) đến Đánh giá khả năng sử dụng (Usability Evaluation) và Sản phẩm phần mềm Web (React + TypeScript).
+\end{itemize}
+
+\subsubsection{Các nội dung ngoài phạm vi (Out-of-scope)}
+\begin{itemize}
+    \item Đồ án không nhằm mục đích xây dựng lại toàn bộ hệ thống quản trị nguồn lực doanh nghiệp (ERP) hoặc phần mềm kế toán/quản lý kho bãi nội bộ cho chuỗi cơ sở spa thú cưng.
+    \item Không tích hợp hệ thống phần cứng camera truyền phát video trực tiếp (livestream) băng thông lớn; tiến độ được cập nhật qua các mốc sự kiện số hóa và hình ảnh kiểm tra y tế.
+    \item Không triển khai cổng thanh toán ngân hàng trực tuyến thực tế (chỉ mô phỏng giao dịch số hóa và xuất hóa đơn điện tử).
+\end{itemize}
+
+\subsubsection{Các giới hạn kỹ thuật và nghiên cứu}
+\begin{itemize}
+    \item Tập dữ liệu nghiên cứu và đối tượng kiểm thử được thu thập tại khu vực Thành phố Hồ Chí Minh trong khuôn khổ thời gian của học kỳ.
+    \item Sản phẩm phần mềm được tối ưu hóa cho trình duyệt di động chuẩn kích thước màn hình hiện đại ($430 \times 932\text{px}$), quản lý trạng thái động thông qua kiến trúc React State và lưu trữ cục bộ (\textit{Local Storage}).
+\end{itemize}

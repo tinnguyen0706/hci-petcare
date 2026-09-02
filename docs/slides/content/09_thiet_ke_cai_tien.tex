@@ -1,0 +1,48 @@
+% Slide 9: Thiết kế cuối cùng: 4 Cải tiến then chốt sau kiểm thử
+\begin{frame}{Thiết Kế Cuối Cùng: Tinh Chỉnh Sau Đánh Giá}
+  \framesubtitle{\color{PetcareSecondary}\textbf{Tối ưu hóa liên tục: 4 Cải tiến then chốt từ phản hồi thực nghiệm}}
+
+  \begin{columns}[T]
+    % Cột 1: 4 Cải tiến cụ thể
+    \begin{column}{0.54\textwidth}
+      \begin{itemize}
+        \setlength\itemsep{1.5mm}
+        \footnotesize
+        \item \textbf{1. Đưa thẻ Dặn dò y tế thẳng vào Form Đặt lịch:} Khắc phục 5 lỗi tìm kiếm ở T2; hệ thống tự nạp dị ứng đã lưu và cho phép sửa nhanh tại chỗ.
+        \item \textbf{2. Tăng tương phản Ma trận thời gian:} Viền xanh đậm \texttt{\#0D9488} cho giờ khả dụng; xám mờ \texttt{\#D1D5DB} kèm nhãn ``Hết chỗ'' rõ nét.
+        \item \textbf{3. Nâng cấp biểu tượng 4 mốc tiến độ:} Mốc 2 thêm hiệu ứng kéo spa; Mốc 3 dấu tích xanh hoàn tất; Mốc 4 chuông gọi đón trực quan.
+        \item \textbf{4. Tối ưu phân hệ Lịch sử \& Hóa đơn:} Hiển thị ca mới nhất ở đầu danh sách, kèm nút xem chi tiết phác đồ dầu tắm và Rebook 1 chạm.
+      \end{itemize}
+    \end{column}
+
+    % Cột 2: Bảng đối sánh Before & After
+    \begin{column}{0.44\textwidth}
+      \begin{table}
+        \centering
+        \tiny
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabularx}{\textwidth}{|l|X|X|}
+          \hline
+          \rowcolor{PetcarePrimary!15}
+          \textbf{Hạng mục} & \textbf{Trước kiểm thử} & \textbf{Sau cải tiến} \\ \hline
+          \textbf{Dặn dò dị ứng} & Nằm sâu trong menu Hồ sơ (5 lỗi). & Nằm ngay form Đặt lịch (\textbf{0 lỗi}). \\ \hline
+          \textbf{Ma trận giờ} & Màu sắc nhạt trên màn hình tối. & Tương phản cao, nhãn ``Hết chỗ''. \\ \hline
+          \textbf{Live Tracking} & 4 nút mốc tĩnh, màu đồng nhất. & Biểu tượng động \& phân biệt màu. \\ \hline
+          \textbf{Lịch sử DV} & Danh sách phẳng, không phân loại. & Ưu tiên ca gần nhất \& Rebook 1 chạm. \\ \hline
+        \end{tabularx}
+      \end{table}
+
+      \vspace{0.5mm}
+      \begin{center}
+        \scriptsize \color{PetcareSuccess}
+        \textbf{Kết quả:} Rút ngắn thời gian tác vụ T2 từ 57.4s xuống $<$ 35s.
+      \end{center}
+    \end{column}
+  \end{columns}
+
+  \vspace{1.5mm}
+  \begin{block}{\centering \scriptsize \textbf{Triết lý hoàn thiện}}
+    \centering \tiny
+    Lắng nghe tiếng nói người dùng thực tế $\rightarrow$ Loại bỏ ma sát tương tác $\rightarrow$ Đạt chuẩn trải nghiệm \textbf{Zero Friction UX}.
+  \end{block}
+\end{frame}
