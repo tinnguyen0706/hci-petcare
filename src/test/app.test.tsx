@@ -30,7 +30,7 @@ describe('PetCare Pro HCI — 4 Quy Trình Cốt Lõi & Giao Diện Scannable', 
     // Tab Đặt lịch
     const bookingTab = screen.getByRole('tab', { name: /Tab Đặt lịch hẹn/i });
     fireEvent.click(bookingTab);
-    expect(screen.getByText(/Chọn bé chăm sóc/i)).toBeInTheDocument();
+    expect(screen.getByText(/CHỌN HỒ SƠ/i)).toBeInTheDocument();
 
     // Tab Tiến độ
     const trackingTab = screen.getByRole('tab', { name: /Tab Theo dõi tiến độ 4 mốc/i });
@@ -48,33 +48,54 @@ describe('PetCare Pro HCI — 4 Quy Trình Cốt Lõi & Giao Diện Scannable', 
     expect(screen.getByText(/Bé Bơ — Derma-Care/i)).toBeInTheDocument();
   });
 
-  it('3. Quy trình 1: Đặt lịch đơn bé thành công và khóa chỗ tức thì (Auto-attach y tế)', () => {
+  it('3. Persona 1 Goal 1: Đặt lịch 5 bước chuẩn xác theo Prototype Figma (Bơ · Thứ Bảy · 09:00)', () => {
     render(<App />);
 
-    // Mở tab đặt lịch
+    // Mở tab đặt lịch (01_select_pet.svg)
     fireEvent.click(screen.getByRole('tab', { name: /Tab Đặt lịch hẹn/i }));
+    expect(screen.getByText(/CHỌN HỒ SƠ/i)).toBeInTheDocument();
+    expect(screen.getByText(/Poodle · Hồ sơ của Lan/i)).toBeInTheDocument();
+    expect(screen.getByText(/Sẵn sàng chọn dịch vụ/i)).toBeInTheDocument();
 
-    // Bước 1: Chọn thú cưng (Mặc định chọn Bơ) -> bấm Tiếp tục
-    fireEvent.click(screen.getByText(/Tiếp tục chọn dịch vụ/i));
+    // Bước 1 -> Bấm "Tiếp tục"
+    fireEvent.click(screen.getByRole('button', { name: /Tiếp tục/i }));
 
-    // Bước 2: Chọn dịch vụ Derma-Care an toàn -> bấm Chọn giờ hẹn
-    expect(screen.getByText(/Tắm Dược Liệu Trị Liệu Da/i)).toBeInTheDocument();
-    fireEvent.click(screen.getByText(/Chọn giờ hẹn/i));
+    // Bước 2 (02_select_service.svg)
+    expect(screen.getByText(/Poodle · Đã chọn/i)).toBeInTheDocument();
+    expect(screen.getByText(/CHỌN MỘT DỊCH VỤ/i)).toBeInTheDocument();
+    expect(screen.getByText(/Gói chăm sóc định kỳ/i)).toBeInTheDocument();
 
-    // Bước 3: Ma trận khung giờ -> bấm Rà soát đặt lịch
-    expect(screen.getByText(/Khung giờ khả dụng/i)).toBeInTheDocument();
-    fireEvent.click(screen.getByText(/Rà soát đặt lịch/i));
+    // Bước 2 -> Bấm "Tiếp tục"
+    fireEvent.click(screen.getByRole('button', { name: /Tiếp tục/i }));
 
-    // Bước 4: Rà soát & Auto-attach ghi chú y tế
-    expect(screen.getByText(/TỰ ĐỘNG ĐÍNH KÈM Y TẾ:/i)).toBeInTheDocument();
-    expect(screen.getByText(/DÙNG DERMA-CARE/i)).toBeInTheDocument();
+    // Bước 3 (03_choose_saturday_slot.svg)
+    expect(screen.getByText(/BUỔI SÁNG/i)).toBeInTheDocument();
+    expect(screen.getByText(/CÒN TRỐNG/i)).toBeInTheDocument();
 
-    // Bấm Xác nhận đặt lịch ngay
-    fireEvent.click(screen.getByText(/Xác nhận đặt lịch/i));
+    // Bước 3 -> Bấm "Chọn khung giờ này"
+    fireEvent.click(screen.getByRole('button', { name: /Chọn khung giờ này/i }));
 
-    // Bước 5: Thành công & Khóa chỗ tức thì
-    expect(screen.getByText(/ĐÃ KHÓA CHỖ THÀNH CÔNG/i)).toBeInTheDocument();
-    expect(screen.getByText(/Xuất trình mã QR tại quầy/i)).toBeInTheDocument();
+    // Bước 4 (04_review_booking.svg)
+    expect(screen.getByText(/Bơ · Tắm \+ cắt tỉa/i)).toBeInTheDocument();
+    expect(screen.getByText(/NGÀY HẸN/i)).toBeInTheDocument();
+    expect(screen.getByText(/BẮT ĐẦU/i)).toBeInTheDocument();
+    expect(screen.getByText(/Xác nhận tức thì/i)).toBeInTheDocument();
+    expect(screen.getByText(/Giữ chỗ ngay khi xác nhận/i)).toBeInTheDocument();
+
+    // Bước 4 -> Bấm "Xác nhận đặt lịch"
+    fireEvent.click(screen.getByRole('button', { name: /Xác nhận đặt lịch/i }));
+
+    // Bước 5 (05_booking_success.svg)
+    expect(screen.getByText(/HOÀN TẤT/i)).toBeInTheDocument();
+    expect(screen.getByText(/Đã đặt lịch/i)).toBeInTheDocument();
+    expect(screen.getByText(/Bơ · Thứ Bảy · 09:00/i)).toBeInTheDocument();
+    expect(screen.getByText(/BK-8902/i)).toBeInTheDocument();
+    expect(screen.getByText(/MÃ ĐÃ TẠO/i)).toBeInTheDocument();
+    expect(screen.getByText(/Lịch cuối tuần đã sẵn sàng/i)).toBeInTheDocument();
+
+    // Bấm "Xem lịch hẹn" -> chuyển sang màn hình Live Tracking
+    fireEvent.click(screen.getByRole('button', { name: /Xem lịch hẹn/i }));
+    expect(screen.getByText(/Tiến độ trực tiếp/i)).toBeInTheDocument();
   });
 
   it('4. Kích hoạt và tự động xử lý xung đột dị ứng y tế (1-Click Auto-Fix)', () => {
@@ -82,10 +103,10 @@ describe('PetCare Pro HCI — 4 Quy Trình Cốt Lõi & Giao Diện Scannable', 
 
     // Mở tab đặt lịch
     fireEvent.click(screen.getByRole('tab', { name: /Tab Đặt lịch hẹn/i }));
-    fireEvent.click(screen.getByText(/Tiếp tục chọn dịch vụ/i));
+    fireEvent.click(screen.getByRole('button', { name: /Tiếp tục/i }));
 
-    // Chọn Gói Tiêu Chuẩn (chứa hương liệu gây dị ứng da cho Bơ)
-    const standardServiceCard = screen.getByText(/Tắm & Vệ Sinh Tiêu Chuẩn/i);
+    // Chọn Gói Tắm tiêu chuẩn (chứa hương liệu gây dị ứng da cho Bơ)
+    const standardServiceCard = screen.getByText(/Tắm tiêu chuẩn/i);
     fireEvent.click(standardServiceCard);
 
     // Kỳ vọng modal Cảnh báo xung đột y tế xuất hiện
@@ -96,7 +117,7 @@ describe('PetCare Pro HCI — 4 Quy Trình Cốt Lõi & Giao Diện Scannable', 
     const autoFixBtn = screen.getByText(/Đổi sang Derma-Care dịu nhẹ/i);
     fireEvent.click(autoFixBtn);
 
-    // Modal đóng và gói Derma-Care được chọn an toàn
+    // Modal đóng và gói an toàn được giữ
     expect(screen.queryByText(/Nguy Cơ Kích Ứng Viêm Da!/i)).not.toBeInTheDocument();
   });
 

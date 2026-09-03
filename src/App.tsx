@@ -121,6 +121,7 @@ export const App: React.FC = () => {
   const [showBudgetModal, setShowBudgetModal] = useState(false);
   const [showRebookModal, setShowRebookModal] = useState(false);
   const [edgeStateType, setEdgeStateType] = useState<EdgeStateType>(null);
+  const [bookingStep, setBookingStep] = useState<1 | 2 | 3 | 4 | 5>(1);
 
   // Switch between Persona 1 (Lan & Bơ) and Persona 2 (Khoa & Miu)
   const handleSwitchPersona = () => {
@@ -140,6 +141,10 @@ export const App: React.FC = () => {
   };
 
   const handleBack = () => {
+    if (activeTab === 'booking' && bookingStep > 1) {
+      setBookingStep((prev) => (prev - 1) as 1 | 2 | 3 | 4 | 5);
+      return;
+    }
     if (flowHistory.length > 0) {
       const prevFlow = flowHistory[flowHistory.length - 1];
       setFlowHistory((prev) => prev.slice(0, prev.length - 1));
@@ -154,7 +159,10 @@ export const App: React.FC = () => {
     setActiveTab(tab);
     setFlowHistory([]);
     if (tab === 'home') setActiveFlow('dashboard');
-    if (tab === 'booking') setActiveFlow('booking_pet_select');
+    if (tab === 'booking') {
+      setActiveFlow('booking_pet_select');
+      setBookingStep(1);
+    }
     if (tab === 'tracking') setActiveFlow('live_tracking');
     if (tab === 'pets') setActiveFlow('pet_list');
   };
@@ -248,15 +256,23 @@ export const App: React.FC = () => {
 
   // Header Title & Subtitle Mapping
   const getHeaderInfo = () => {
+    if (activeTab === 'booking') {
+      switch (bookingStep) {
+        case 1:
+          return { title: 'Chọn thú cưng', subtitle: 'Hồ sơ của Lan' };
+        case 2:
+          return { title: 'Chọn dịch vụ', subtitle: 'Bé Bơ • Poodle' };
+        case 3:
+          return { title: 'Chọn khung giờ', subtitle: 'Thứ Bảy, 05/09/2026' };
+        case 4:
+          return { title: 'Xác nhận lịch', subtitle: 'Giữ chỗ ngay khi xác nhận' };
+        case 5:
+          return { title: 'HOÀN TẤT', subtitle: 'Đã đặt lịch thành công' };
+      }
+    }
     switch (activeFlow) {
       case 'dashboard':
         return { title: 'PetCare Pro', subtitle: `Chào mừng ${currentPersona === 'persona-1' ? 'Hoàng Lan' : 'Minh Khoa'}` };
-      case 'booking_pet_select':
-      case 'booking_service_select':
-      case 'booking_slot_matrix':
-      case 'booking_review':
-      case 'booking_success':
-        return { title: 'Đặt lịch chăm sóc', subtitle: 'Xác nhận tức thì • Bảo an 100%' };
       case 'booking_multi_pet':
         return { title: 'Đặt lịch gộp 2 bé', subtitle: 'Ưu đãi combo -10% • Song song' };
       case 'live_tracking':
@@ -330,13 +346,15 @@ export const App: React.FC = () => {
           />
         )}
 
-        {/* TAB 2: ĐẶT LỊCH ĐƠN BÉ (Booking Flow 5 bước) */}
+        {/* TAB 2: ĐẶT LỊCH ĐƠN BÉ (Booking Flow 5 bước - Persona 1 Goal 1) */}
         {activeTab === 'booking' && (
           <BookingFlow
             pets={pets}
             services={initialServices}
             timeSlots={availableTimeSlots}
             initialPetId={selectedPetId}
+            step={bookingStep}
+            onStepChange={(newStep) => setBookingStep(newStep)}
             onBookingComplete={handleBookingCreated}
             onGoToTracking={() => {
               setActiveTab('tracking');
