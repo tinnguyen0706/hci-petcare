@@ -126,6 +126,7 @@ export type ActiveFlow =
   | 'booking_multi_pet'
   | 'booking_review'
   | 'booking_success'
+  | 'intake_flow'
   | 'intake_qr'
   | 'intake_medical_alert'
   | 'intake_commitment'

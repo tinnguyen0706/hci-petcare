@@ -122,6 +122,7 @@ export const App: React.FC = () => {
   const [showRebookModal, setShowRebookModal] = useState(false);
   const [edgeStateType, setEdgeStateType] = useState<EdgeStateType>(null);
   const [bookingStep, setBookingStep] = useState<1 | 2 | 3 | 4 | 5>(1);
+  const [intakeStep, setIntakeStep] = useState<1 | 2 | 3 | 4 | 5>(1);
 
   // Switch between Persona 1 (Lan & Bơ) and Persona 2 (Khoa & Miu)
   const handleSwitchPersona = () => {
@@ -141,6 +142,16 @@ export const App: React.FC = () => {
   };
 
   const handleBack = () => {
+    if (activeFlow === 'intake_flow') {
+      if (intakeStep > 1) {
+        setIntakeStep((prev) => (prev - 1) as 1 | 2 | 3 | 4 | 5);
+        return;
+      } else {
+        setActiveFlow('dashboard');
+        setActiveTab('home');
+        return;
+      }
+    }
     if (activeTab === 'booking' && bookingStep > 1) {
       setBookingStep((prev) => (prev - 1) as 1 | 2 | 3 | 4 | 5);
       return;
@@ -254,8 +265,26 @@ export const App: React.FC = () => {
     }
   };
 
+  // Current Selected Pet & Entities
+  const currentPet = pets.find((p) => p.id === selectedPetId) || pets[0];
+
   // Header Title & Subtitle Mapping
   const getHeaderInfo = () => {
+    if (activeFlow === 'intake_flow') {
+      switch (intakeStep) {
+        case 1:
+          return { title: 'Mã tiếp nhận', subtitle: 'Đưa mã cho lễ tân quầy' };
+        case 2:
+          return { title: 'Đã tiếp nhận', subtitle: `Đúng hồ sơ ${currentPet.name}` };
+        case 3:
+          return { title: `Lưu ý của ${currentPet.name}`, subtitle: '2 cảnh báo quan trọng' };
+        case 4:
+          return { title: 'Phương án chăm sóc', subtitle: 'Đã đối chiếu an toàn' };
+        case 5:
+          return { title: 'Lưu ý đã được gắn', subtitle: 'Theo cùng bé trong ca' };
+      }
+      return { title: 'Tiếp nhận tại quầy', subtitle: 'Bảo an y tế CareGuard' };
+    }
     if (activeTab === 'booking') {
       switch (bookingStep) {
         case 1:
@@ -286,7 +315,6 @@ export const App: React.FC = () => {
 
   const headerInfo = getHeaderInfo();
   const unreadNotifCount = notifications.filter((n) => !n.isRead).length;
-  const currentPet = pets.find((p) => p.id === selectedPetId) || pets[0];
 
   return (
     <main className="mobile-device-container" role="application" aria-label="Ứng dụng PetCare Pro">
@@ -332,8 +360,30 @@ export const App: React.FC = () => {
                 setShowRebookModal(true);
               }
             }}
-            onNavigateToIntakeQr={() => setShowIntakeModal(true)}
+            onNavigateToIntakeQr={() => {
+              setActiveFlow('intake_flow');
+              setIntakeStep(1);
+            }}
             onMilestoneChange={handleMilestoneChange}
+          />
+        )}
+
+        {/* QUY TRÌNH TIẾP NHẬN TẠI QUẦY (Persona 1 Goal 2 - FULL SCREEN FLOW) */}
+        {activeFlow === 'intake_flow' && activeBooking && (
+          <IntakeFlow
+            booking={activeBooking}
+            pet={currentPet}
+            step={intakeStep}
+            onStepChange={(newStep) => setIntakeStep(newStep)}
+            onConfirmIntakeHandoff={() => {
+              handleMilestoneChange(1);
+              setActiveTab('tracking');
+              setActiveFlow('live_tracking');
+            }}
+            onCancel={() => {
+              setActiveTab('home');
+              setActiveFlow('dashboard');
+            }}
           />
         )}
 
@@ -347,7 +397,7 @@ export const App: React.FC = () => {
         )}
 
         {/* TAB 2: ĐẶT LỊCH ĐƠN BÉ (Booking Flow 5 bước - Persona 1 Goal 1) */}
-        {activeTab === 'booking' && (
+        {activeTab === 'booking' && activeFlow !== 'intake_flow' && (
           <BookingFlow
             pets={pets}
             services={initialServices}
@@ -359,6 +409,10 @@ export const App: React.FC = () => {
             onGoToTracking={() => {
               setActiveTab('tracking');
               setActiveFlow('live_tracking');
+            }}
+            onGoToIntake={() => {
+              setActiveFlow('intake_flow');
+              setIntakeStep(1);
             }}
             onGoHome={() => {
               setActiveTab('home');
@@ -507,23 +561,6 @@ export const App: React.FC = () => {
           setEdgeStateType('success');
         }}
       />
-
-      {/* Intake Tiếp nhận quầy Modal */}
-      {activeBooking && (
-        <Modal isOpen={showIntakeModal} onClose={() => setShowIntakeModal(false)} title="Tiếp Nhận Tại Quầy Lễ Tân">
-          <IntakeFlow
-            booking={activeBooking}
-            pet={currentPet}
-            onConfirmIntakeHandoff={() => {
-              handleMilestoneChange(2);
-              setShowIntakeModal(false);
-              setActiveTab('tracking');
-              setActiveFlow('live_tracking');
-            }}
-            onCancel={() => setShowIntakeModal(false)}
-          />
-        </Modal>
-      )}
 
       {/* Giám sát song song 2 bé Modal */}
       <Modal isOpen={showParallelModal} onClose={() => setShowParallelModal(false)} title="Giám Sát Song Song 2 Bé">

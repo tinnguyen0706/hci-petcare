@@ -13,6 +13,7 @@ interface BookingFlowProps {
   onStepChange?: (step: 1 | 2 | 3 | 4 | 5) => void;
   onBookingComplete: (newBooking: Booking) => void;
   onGoToTracking: () => void;
+  onGoToIntake?: () => void;
   onGoHome: () => void;
 }
 
@@ -25,6 +26,7 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({
   onStepChange,
   onBookingComplete,
   onGoToTracking,
+  onGoToIntake,
   onGoHome
 }) => {
   const [internalStep, setInternalStep] = useState<1 | 2 | 3 | 4 | 5>(1);
@@ -905,6 +907,29 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({
           >
             Xem lịch hẹn
           </button>
+
+          {onGoToIntake && (
+            <button
+              onClick={onGoToIntake}
+              style={{
+                width: '100%',
+                height: '56px',
+                borderRadius: '18px',
+                backgroundColor: '#FFFFFF',
+                color: '#0D766E',
+                fontSize: '15px',
+                fontWeight: 800,
+                border: '2px solid #0D766E',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: '10px'
+              }}
+            >
+              Làm thủ tục tiếp nhận tại quầy (Check-in)
+            </button>
+          )}
         </div>
       )}
 

@@ -218,9 +218,52 @@ describe('PetCare Pro HCI — 4 Quy Trình Cốt Lõi & Giao Diện Scannable', 
     // Đóng modal sản phẩm
     fireEvent.click(screen.getByRole('button', { name: /Đóng hộp thoại/i }));
 
-    // Xem Hóa đơn điện tử VAT
-    const invoiceBtns = screen.getAllByRole('button', { name: /Xem hóa đơn điện tử VAT/i });
-    fireEvent.click(invoiceBtns[0]);
-    expect(screen.getByText(/HÓA ĐƠN ĐIỆN TỬ VAT/i)).toBeInTheDocument();
+    // Kiểm tra hóa đơn điện tử
+    const viewInvoiceBtn = screen.getByRole('button', { name: /Hóa đơn điện tử VAT/i });
+    fireEvent.click(viewInvoiceBtn);
+    expect(screen.getByText(/HÓA ĐƠN ĐIỆN TỬ DỊCH VỤ CHĂM SÓC/i)).toBeInTheDocument();
+  });
+
+  it('10. Persona 1 Goal 2: Quy trình tiếp nhận 5 bước chuẩn xác (Quét mã, Cảnh báo đỏ dị ứng, Đối chiếu phương án & Gắn phiếu KTV)', () => {
+    render(<App />);
+
+    // Mở mã QR tiếp nhận quầy từ thẻ Active Card ở Trang chủ
+    const qrBtn = screen.getByRole('button', { name: /Mở mã QR quầy/i });
+    fireEvent.click(qrBtn);
+
+    // Bước 1: Xuất trình mã tiếp nhận
+    expect(screen.getByText(/ĐƯA MÃ CHO LỄ TÂN/i)).toBeInTheDocument();
+    expect(screen.getByText(/BK-8902/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Lễ tân quét mã/i }));
+
+    // Bước 2: Đã quét mã thành công
+    expect(screen.getByText(/Đã quét mã/i)).toBeInTheDocument();
+    expect(screen.getByText(/Đúng hồ sơ Bơ/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Xem lưu ý của Bơ/i }));
+
+    // Bước 3: Lưu ý của Bơ (2 cảnh báo trọng điểm)
+    expect(screen.getByText(/Xà phòng hương liệu/i)).toBeInTheDocument();
+    expect(screen.getByText(/CẢNH BÁO ĐỎ/i)).toBeInTheDocument();
+    expect(screen.getByText(/Sợ tiếng máy sấy/i)).toBeInTheDocument();
+    expect(screen.getByText(/NHÚT NHÁT/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Xem phương án/i }));
+
+    // Bước 4: Đối chiếu 2 phương án giải pháp
+    expect(screen.getByText(/Phương án chăm sóc/i)).toBeInTheDocument();
+    expect(screen.getByText(/ĐÃ ĐỐI CHIẾU/i)).toBeInTheDocument();
+    expect(screen.getByText(/Sữa tắm thảo dược/i)).toBeInTheDocument();
+    expect(screen.getByText(/Buồng sấy êm/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Xác nhận/i }));
+
+    // Bước 5: Gắn phiếu KTV & Cam kết an tâm
+    expect(screen.getByText(/ĐÃ GHI NHẬN/i)).toBeInTheDocument();
+    expect(screen.getByText(/Lưu ý đã được gắn/i)).toBeInTheDocument();
+    expect(screen.getByText(/DỊ ỨNG HƯƠNG LIỆU/i)).toBeInTheDocument();
+    expect(screen.getByText(/SẤY ÊM/i)).toBeInTheDocument();
+    expect(screen.getByText(/Lan có thể an tâm/i)).toBeInTheDocument();
+
+    // Bấm "Theo dõi tiến độ" -> Chuyển sang màn hình Live Tracking
+    fireEvent.click(screen.getByRole('button', { name: /Theo dõi tiến độ/i }));
+    expect(screen.getByText(/Tiến độ trực tiếp/i)).toBeInTheDocument();
   });
 });
