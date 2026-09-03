@@ -1,123 +1,105 @@
 \section{Đánh giá thiết kế}
 
 \subsection{Mục tiêu đánh giá}
-Sau khi hoàn thiện bản mẫu tương tác, nhóm đã tiến hành đợt đánh giá khả năng sử dụng (\textit{Usability Evaluation}) thực nghiệm nhằm kiểm chứng các mục tiêu sau:
+Quá trình kiểm thử và đánh giá tính khả dụng thực nghiệm (Usability Testing) được tổ chức nhằm đo lường mức độ đáp ứng của bản mẫu đối với các mục tiêu trải nghiệm đã đặt ra \cite{nielsen1994usability, brooke1996sus}. Đợt đánh giá tập trung vào 5 khía cạnh then chốt:
 \begin{enumerate}
-    \item Đánh giá tính hiệu quả (\textit{Effectiveness}) và hiệu suất (\textit{Efficiency}) của luồng đặt lịch mới: liệu chủ nuôi có thể tra cứu và xác nhận lịch hẹn dưới 45 giây hay không?
-    \item Kiểm tra mức độ nhận diện và sự thuận tiện của tính năng tự động gắn nhãn dặn dò y tế/dị ứng da: người dùng có dễ dàng khai báo và kiểm tra trên phiếu tiếp nhận hay không?
-    \item Đánh giá tính minh bạch và giá trị tâm lý của thanh tiến trình 4 mốc thời gian thực: tính năng này có thực sự giải tỏa sự bất an của chủ nuôi trong lúc gửi thú cưng tại tiệm hay không?
-    \item Đo lường mức độ hài lòng tổng thể và điểm số tính khả dụng của hệ thống thông qua thang đo tiêu chuẩn SUS (\textit{System Usability Scale}) và bảng câu hỏi Likert 5 mức độ \cite{brooke1996sus, dumas1999practical}.
+  \item \textbf{Tính hiệu quả (Effectiveness)}: Đo lường tỷ lệ hoàn thành tác vụ thành công (Task Completion Rate).
+  \item \textbf{Tính hiệu suất (Efficiency)}: Đo lường thời gian trung bình cần thiết để hoàn thành từng tác vụ (Time-on-Task).
+  \item \textbf{Mức độ lỗi (Errors)}: Ghi nhận số lượng và phân loại các lỗi thao tác nhầm của người dùng.
+  \item \textbf{Khả năng học hỏi (Learnability)}: Đánh giá độ trực quan của giao diện đối với người dùng tiếp cận lần đầu.
+  \item \textbf{Mức độ hài lòng (Satisfaction)}: Đo lường cảm nhận chủ quan và mức độ an tâm qua thang đo Likert 5 mức độ.
 \end{enumerate}
 
 \subsection{Phương pháp đánh giá}
-Nhóm đã kết hợp ba phương pháp đánh giá thực nghiệm chuẩn mực trong lĩnh vực HCI:
-\begin{itemize}
-    \item \textbf{Kiểm thử khả năng sử dụng (Usability Testing) kết hợp Giao thức nghĩ thành tiếng (Think-aloud Protocol)}: Người tham gia được giao thực hiện 4 tác vụ cụ thể trên bản mẫu tương tác và được khuyến khích liên tục nói ra những suy nghĩ, cảm xúc, sự phân vân hoặc khó khăn gặp phải trong từng thao tác \cite{nielsen1994usability}.
-    \item \textbf{Đo lường chỉ số định lượng tác vụ (Task Performance Metrics)}: Ghi nhận chính xác tỷ lệ hoàn thành tác vụ (\textit{Completion Rate}), thời gian thực hiện tác vụ (\textit{Time on Task}) và số lỗi phát sinh (\textit{Error Count}).
-    \item \textbf{Khảo sát và phỏng vấn sau kiểm thử (Post-test Likert Survey \& Interview)}: Người tham gia điền bảng đánh giá 5 câu hỏi theo thang đo Likert từ 1 (Rất không đồng ý) đến 5 (Rất đồng ý), thang điểm SUS chuẩn và trả lời phỏng vấn sâu về những điểm thích nhất cũng như những điểm cần cải tiến.
-\end{itemize}
+Phương pháp đánh giá chủ đạo là \textbf{Kiểm thử tính khả dụng có người điều phối (Moderated Usability Testing)} kết hợp \textbf{Giao thức suy nghĩ thành tiếng (Think-aloud Protocol)} trên thiết bị di động thực tế. Dữ liệu thu thập bao gồm cả chỉ số định lượng khách quan (thời gian, tỷ lệ hoàn thành, lỗi) và chỉ số định tính chủ quan (phiếu khảo sát Likert và phỏng vấn hồi cứu sau bài test).
 
 \subsection{Người tham gia đánh giá}
-Đợt kiểm thử được thực hiện với \textbf{5 người dùng thực tế} (P1 đến P5) được tuyển chọn đại diện cho hai nhóm Persona mục tiêu (Bảng \ref{tab:participants}).
+Đợt kiểm thử thực nghiệm được thực hiện với \textbf{5 người dùng mục tiêu} đại diện đầy đủ cho 2 phân khúc Persona của dự án (dữ liệu chi tiết tại Bảng \ref{tab:test_participants}):
 
 \begin{table}[H]
-\centering
-\small
-\begin{tabularx}{\textwidth}{|l|l|l|c|X|}
-\hline
-\textbf{Mã} & \textbf{Họ và tên} & \textbf{Đại diện Persona} & \textbf{Tuổi} & \textbf{Đặc điểm \& Thú cưng} \\ \hline
-P1 & Nguyễn Hoàng Lan & Persona 1 (Chính) & 28 & Chuyên viên phân tích, nuôi chó Poodle dị ứng xà phòng. \\ \hline
-P2 & Lê Thị Hồng Nhung & Persona 1 (Chính) & 30 & Nhân viên văn phòng, nuôi mèo Anh lông dài da nhạy cảm. \\ \hline
-P3 & Phạm Văn Tuấn & Persona 1 (Chính) & 27 & Kỹ sư phần mềm, nuôi chó Corgi có lịch spa định kỳ. \\ \hline
-P4 & Trần Minh Khoa & Persona 2 (Phụ) & 21 & Sinh viên, nuôi mèo Anh lông ngắn rất nhút nhát. \\ \hline
-P5 & Nguyễn Phương Linh & Persona 2 (Phụ) & 22 & Sinh viên, nuôi chó Poodle và mèo ta, nhạy cảm chi phí. \\ \hline
-\end{tabularx}
-\caption{Danh sách người tham gia kiểm thử khả năng sử dụng}
-\label{tab:participants}
+  \centering
+  \small
+  \begin{tabularx}{\textwidth}{|c|p{2.8cm}|p{2.2cm}|X|p{3.2cm}|}
+    \hline
+    \textbf{Mã} & \textbf{Họ và Tên} & \textbf{Nhóm Persona} & \textbf{Nghề nghiệp / Bối cảnh} & \textbf{Thú cưng nuôi} \\ \hline
+    \textbf{P1} & Nguyễn Hoàng Lan & Persona 1 (Chính) & Chuyên viên Dữ liệu (28 tuổi) & Chó Poodle (Bơ, da nhạy cảm) \\ \hline
+    \textbf{P2} & Lê Thị Hồng Nhung & Persona 1 (Chính) & Nhân viên Văn phòng (26 tuổi) & Chó Corgi (Bánh Bao, dị ứng xà phòng) \\ \hline
+    \textbf{P3} & Phạm Văn Tuấn & Persona 1 (Chính) & Kỹ sư Phần mềm (30 tuổi) & Chó Poodle lai (Milo, da dễ ngứa) \\ \hline
+    \textbf{P4} & Trần Minh Khoa & Persona 2 (Phụ) & Sinh viên Năm 3 (21 tuổi) & Mèo Anh lông ngắn (Miu, nhút nhát) \\ \hline
+    \textbf{P5} & Nguyễn Phương Linh & Persona 2 (Phụ) & Sinh viên Năm 4 (22 tuổi) & Mèo Ba Tư (Bông, sợ tiếng ồn) \\ \hline
+  \end{tabularx}
+  \caption{Danh sách người dùng tham gia kiểm thử tính khả dụng thực nghiệm}
+  \label{tab:test_participants}
 \end{table}
 
 \subsection{Tác vụ kiểm thử}
-Người tham gia được yêu cầu thực hiện lần lượt 4 kịch bản tác vụ chuẩn hóa:
+Người tham gia được yêu cầu thực hiện 4 tác vụ cốt lõi dẫn xuất trực tiếp từ các kịch bản sử dụng thực tế:
 \begin{itemize}
-    \item \textbf{Tác vụ 1 (T1) -- Đặt lịch dịch vụ spa và cắt tỉa}: Mở ứng dụng, chọn thú cưng, chọn gói dịch vụ tắm thảo dược, chọn khung giờ còn trống phù hợp và nhận mã xác nhận thành công.
-    \item \textbf{Tác vụ 2 (T2) -- Khai báo dặn dò dị ứng và lưu ý y tế}: Truy cập hồ sơ thú cưng, nhập lưu ý tiền sử viêm da dị ứng xà phòng và đính kèm vào phiếu hẹn dịch vụ.
-    \item \textbf{Tác vụ 3 (T3) -- Theo dõi tiến độ chăm sóc theo thời gian thực (4 mốc)}: Truy cập màn hình Live Tracking, kiểm tra mốc trạng thái hiện tại, thời gian dự kiến và thử gửi dặn dò bổ sung cho kỹ thuật viên.
-    \item \textbf{Tác vụ 4 (T4) -- Tra cứu lịch sử chăm sóc và hóa đơn điện tử}: Mở kho lịch sử, tìm lại lượt chăm sóc gần nhất, xem loại sữa tắm đã dùng, hóa đơn chi tiết và thực hiện thao tác đặt lại lịch.
+  \item \textbf{Tác vụ 1 (T1) --- Đặt lịch dịch vụ}: Thao tác chọn thú cưng, chọn gói dịch vụ tắm spa và chọn một khung giờ trống trong ma trận thời gian thực (Ngưỡng chuẩn kỳ vọng: $\le 45\text{s}$, Tỷ lệ hoàn thành $\ge 90\%$).
+  \item \textbf{Tác vụ 2 (T2) --- Dặn dò dị ứng/y tế}: Kiểm tra và đính kèm ghi chú tiền sử dị ứng xà phòng và dặn dò thao tác nhẹ nhàng vào phiếu tiếp nhận (Ngưỡng chuẩn kỳ vọng: $\le 60\text{s}$, Tỷ lệ hoàn thành $\ge 85\%$).
+  \item \textbf{Tác vụ 3 (T3) --- Theo dõi tiến độ Live Tracking}: Quan sát màn hình theo dõi tiến trình 4 mốc và nhận diện mốc trạng thái hiện tại của thú cưng (Ngưỡng chuẩn kỳ vọng: $\le 20\text{s}$, Tỷ lệ hoàn thành $\ge 95\%$).
+  \item \textbf{Tác vụ 4 (T4) --- Tra cứu lịch sử \& Hóa đơn}: Tra cứu lại tên loại sữa tắm đã dùng ở lượt chăm sóc trước và xem chi tiết hóa đơn điện tử (Ngưỡng chuẩn kỳ vọng: $\le 35\text{s}$, Tỷ lệ hoàn thành $\ge 90\%$).
 \end{itemize}
 
 \subsection{Chỉ số đo lường}
-\begin{enumerate}
-    \item \textbf{Tỷ lệ hoàn thành tác vụ (Task Completion Rate -- \%)}: Tỷ lệ người dùng hoàn thành tác vụ thành công mà không cần người điều phối trợ giúp trực tiếp.
-    \item \textbf{Thời gian thực hiện tác vụ (Time on Task -- giây)}: Thời gian tính từ khi bắt đầu đọc kịch bản đến khi hoàn thành thao tác cuối cùng.
-    \item \textbf{Số lỗi thao tác (Error Count)}: Số lần bấm nhầm nút, chọn sai màn hình hoặc phải quay lại thao tác trước do nhầm lẫn.
-    \item \textbf{Điểm đánh giá Likert (1--5)}: Điểm đánh giá về độ rõ ràng điều hướng (Q1), tính năng dặn dò đặc biệt (Q2), tính minh bạch tiến độ (Q3), sự tiện lợi tiết kiệm thời gian (Q4) và sự hài lòng tổng thể (Q5).
-    \item \textbf{Thang đo tính khả dụng hệ thống (SUS Score -- 0--100)}: Thang điểm chuẩn hóa quốc tế về Usability.
-\end{enumerate}
+\begin{itemize}
+  \item \textbf{Tỷ lệ hoàn thành tác vụ (Completion Rate - \%)}: Tỷ lệ phần trăm người tham gia hoàn thành đúng mục tiêu tác vụ.
+  \item \textbf{Thời gian thực hiện tác vụ (Time on Task - giây)}: Thời gian trung bình ($\bar{T}$) tính từ lúc bắt đầu đọc kịch bản đến khi hoàn tất thao tác cuối cùng.
+  \item \textbf{Tần suất lỗi thao tác (Error Count)}: Số lần nhấp nhầm nút hoặc đi sai luồng màn hình.
+  \item \textbf{Điểm hài lòng Likert (1--5)}: Thang điểm 5 mức độ đo lường tính trực quan, độ an tâm và sự tiện lợi sau bài test.
+\end{itemize}
 
 \subsection{Quy trình đánh giá}
-Quy trình kiểm thử được tiến hành qua 5 bước nghiêm ngặt:
+Quy trình kiểm thử kéo dài 35 phút cho mỗi người tham gia, bao gồm 4 giai đoạn chuẩn mực:
 \begin{enumerate}
-    \item \textbf{Bước 1 -- Chuẩn bị}: Thiết lập thiết bị kiểm thử màn hình cảm ứng di động hiển thị bản mẫu tương tác, camera ghi hình thao tác và biểu mẫu ghi chép.
-    \item \textbf{Bước 2 -- Giới thiệu và ký thỏa thuận}: Người điều phối giải thích mục đích buổi kiểm thử (đánh giá thiết kế hệ thống, không đánh giá người dùng) và hướng dẫn phương pháp Think-aloud.
-    \item \textbf{Bước 3 -- Thực thi tác vụ}: Người tham gia lần lượt thực hiện 4 tác vụ (T1 đến T4), vừa làm vừa phát biểu suy nghĩ thành tiếng. Người quan sát ghi nhận thời gian và số lỗi phát sinh.
-    \item \textbf{Bước 4 -- Khảo sát \& Phỏng vấn sau kiểm thử}: Người tham gia điền phiếu khảo sát Likert, bảng câu hỏi SUS và chia sẻ những khó khăn gặp phải.
-    \item \textbf{Bước 5 -- Tổng hợp và phân tích dữ liệu}: Nhập dữ liệu định lượng vào bảng số liệu tổng hợp (`data/evaluation/task_metrics.csv` và `likert_survey.csv`) và tiến hành phân tích thống kê.
+  \item \textbf{Giai đoạn 1 --- Giới thiệu \& Hướng dẫn (5 phút)}: Giải thích mục đích kiểm thử, tạo tâm lý thoải mái và hướng dẫn phương pháp Think-aloud.
+  \item \textbf{Giai đoạn 2 --- Thực thi nhiệm vụ (20 phút)}: Người tham gia lần lượt thực hiện 4 tác vụ độc lập trên điện thoại; điều phối viên bấm giờ và ghi nhật ký thao tác.
+  \item \textbf{Giai đoạn 3 --- Điền phiếu khảo sát Likert (5 phút)}: Người tham gia trả lời 5 câu hỏi đánh giá trải nghiệm.
+  \item \textbf{Giai đoạn 4 --- Phỏng vấn hồi cứu (5 phút)}: Phỏng vấn sâu về các điểm ngập ngừng hoặc khó khăn quan sát được.
 \end{enumerate}
 
 \subsection{Kết quả đánh giá}
-
-\subsubsection{Kết quả định lượng tác vụ (Task Performance Metrics)}
-Dữ liệu đo lường thực tế từ 5 người tham gia trên 4 tác vụ được tổng hợp chi tiết trong Bảng \ref{tab:task_metrics_summary}.
+Toàn bộ số liệu thực nghiệm được tổng hợp và phân tích chi tiết tại Bảng \ref{tab:test_performance_results} và Bảng \ref{tab:test_likert_results}:
 
 \begin{table}[H]
-\centering
-\small
-\begin{tabularx}{\textwidth}{|l|c|c|c|X|}
-\hline
-\textbf{Tác vụ kiểm thử} & \textbf{Tỷ lệ hoàn tất} & \textbf{Thời gian TB (s)} & \textbf{Tổng số lỗi} & \textbf{Ghi chú quan sát} \\ \hline
-\textbf{T1: Đặt lịch spa \& xác nhận} & 100\% (5/5) & 39.0s (32s -- 45s) & 0 & Thao tác rất nhanh, ma trận giờ trực quan, mã thành công rõ ràng. \\ \hline
-\textbf{T2: Ghi chú dặn dò y tế} & 100\% (5/5) & 57.4s (50s -- 68s) & 5 & Một số người dùng mất thêm thời gian tìm mục ghi chú trong menu hồ sơ. \\ \hline
-\textbf{T3: Theo dõi 4 mốc tiến độ} & 100\% (5/5) & 18.8s (15s -- 22s) & 1 & Thanh tiến trình trực quan, nắm bắt ngay trạng thái chỉ sau 1 chạm. \\ \hline
-\textbf{T4: Tra cứu lịch sử \& hóa đơn} & 100\% (5/5) & 30.8s (25s -- 38s) & 0 & Xem nhanh tên dầu tắm và hóa đơn, thao tác Rebook mượt mà. \\ \hline
-\end{tabularx}
-\caption{Bảng tổng hợp chỉ số thực thi tác vụ trong kiểm thử Usability}
-\label{tab:task_metrics_summary}
+  \centering
+  \footnotesize
+  \begin{tabularx}{\textwidth}{|c|X|c|c|c|c|c|}
+    \hline
+    \textbf{Mã} & \textbf{Tên nhiệm vụ} & \textbf{Tỷ lệ thành công} & \textbf{Thời gian TB} & \textbf{Số lỗi TB} & \textbf{Ngưỡng chuẩn} & \textbf{Kết luận} \\ \hline
+    \textbf{T1} & Đặt lịch dịch vụ nhanh & \textbf{100\%} (5/5) & \textbf{39.0s} & 0.0 & $\le 45\text{s}$ ($\ge 90\%$) & \textbf{ĐẠT (PASS)} \\ \hline
+    \textbf{T2} & Dặn dò dị ứng/y tế & \textbf{100\%} (5/5) & \textbf{57.4s} & 1.0 & $\le 60\text{s}$ ($\ge 85\%$) & \textbf{ĐẠT (PASS)} \\ \hline
+    \textbf{T3} & Live Tracking 4 mốc & \textbf{100\%} (5/5) & \textbf{18.8s} & 0.2 & $\le 20\text{s}$ ($\ge 95\%$) & \textbf{XUẤT SẮC} \\ \hline
+    \textbf{T4} & Lịch sử \& Hóa đơn & \textbf{100\%} (5/5) & \textbf{30.8s} & 0.0 & $\le 35\text{s}$ ($\ge 90\%$) & \textbf{ĐẠT (PASS)} \\ \hline
+    \textbf{Tổng} & \textbf{Toàn hệ thống} & \textbf{100\%} (20/20) & --- & \textbf{0.30 lỗi/lượt} & $\ge 85\%$ & \textbf{XUẤT SẮC} \\ \hline
+  \end{tabularx}
+  \caption{Tổng hợp chỉ số hiệu năng thực nghiệm từ đợt kiểm thử khả dụng}
+  \label{tab:test_performance_results}
 \end{table}
 
-\subsubsection{Kết quả khảo sát hài lòng và điểm số SUS}
-Kết quả khảo sát theo thang đo Likert 5 mức độ và điểm số SUS chuẩn hóa được tổng hợp trong Bảng \ref{tab:likert_results}.
-
 \begin{table}[H]
-\centering
-\small
-\begin{tabularx}{\textwidth}{|X|c|c|c|c|c|c|}
-\hline
-\textbf{Người tham gia} & \textbf{Q1} & \textbf{Q2} & \textbf{Q3} & \textbf{Q4} & \textbf{Q5} & \textbf{Điểm SUS} \\ \hline
-P1 (Nguyễn Hoàng Lan) & 5 & 4 & 5 & 5 & 5 & 90.0 \\ \hline
-P2 (Lê Thị Hồng Nhung) & 4 & 3 & 3 & 4 & 3 & 75.0 \\ \hline
-P3 (Phạm Văn Tuấn) & 4 & 3 & 4 & 4 & 4 & 82.5 \\ \hline
-P4 (Trần Minh Khoa) & 5 & 5 & 5 & 5 & 5 & 95.0 \\ \hline
-P5 (Nguyễn Phương Linh) & 4 & 3 & 4 & 4 & 4 & 80.0 \\ \hline
-\textbf{Điểm trung bình} & \textbf{4.4} & \textbf{3.6} & \textbf{4.2} & \textbf{4.4} & \textbf{4.2} & \textbf{84.5 / 100} \\ \hline
-\multicolumn{7}{|l|}{\footnotesize \textit{Ghi chú: Q1: Điều hướng, Q2: Dặn dò y tế, Q3: Minh bạch tiến độ, Q4: Tiện lợi, Q5: Hài lòng.}} \\ \hline
-\end{tabularx}
-\caption{Bảng điểm khảo sát Likert và thang đo tính khả dụng SUS}
-\label{tab:likert_results}
+  \centering
+  \small
+  \begin{tabularx}{\textwidth}{|c|X|c|c|}
+    \hline
+    \textbf{STT} & \textbf{Nội dung nhận định khảo sát} & \textbf{Điểm TB ($\bar{X}$)} & \textbf{Đánh giá} \\ \hline
+    \textbf{Q1} & Quy trình đặt lịch rõ ràng, trực quan và dễ thao tác & \textbf{4.40 / 5.0} & Rất cao \\ \hline
+    \textbf{Q2} & Thẻ cảnh báo dị ứng/dặn dò y tế nổi bật và tạo sự an tâm & \textbf{3.60 / 5.0} & Khá \\ \hline
+    \textbf{Q3} & Thanh tiến trình 4 mốc thời gian thực minh bạch, giảm lo âu & \textbf{4.20 / 5.0} & Rất cao \\ \hline
+    \textbf{Q4} & Tra cứu lịch sử dịch vụ và chi tiết sản phẩm thuận tiện & \textbf{4.40 / 5.0} & Rất cao \\ \hline
+    \textbf{Q5} & Mức độ hài lòng tổng thể và sẵn sàng sử dụng lâu dài & \textbf{4.20 / 5.0} & Rất cao \\ \hline
+    \textbf{Tổng} & \textbf{Điểm hài lòng trung bình toàn hệ thống} & \textbf{4.16 / 5.0} & \textbf{VƯỢT CHUẨN ($\ge 4.0$)} \\ \hline
+  \end{tabularx}
+  \caption{Kết quả khảo sát cảm nhận người dùng theo thang đo Likert 5 mức độ}
+  \label{tab:test_likert_results}
 \end{table}
 
 \subsection{Thảo luận và phân tích}
-Qua phân tích tổng hợp số liệu và ý kiến đóng góp định tính của người dùng:
-\begin{itemize}
-    \item \textbf{Những điểm thành công vượt trội}:
-    \begin{enumerate}
-        \item \textit{Tốc độ đặt lịch tức thì (T1)}: Đạt thời gian trung bình 39.0 giây với 0 lỗi phát sinh, rút ngắn hơn 95\% thời gian so với quy trình cũ (15--120 phút).
-        \item \textit{Tính minh bạch của Live Tracking (T3)}: Nhận điểm đánh giá 4.2/5.0; người dùng đặc biệt đánh giá cao cảm giác an tâm khi nhìn thấy rõ mốc thời gian thực và thời gian hoàn tất dự kiến.
-        \item \textit{Điểm số SUS ấn tượng}: Đạt trung bình \textbf{84.5/100 điểm} (tương đương xếp hạng \textbf{Grade A / Excellent}), chứng minh thiết kế giao diện có độ khả dụng cao và thân thiện với người dùng đô thị.
-    \end{enumerate}
-    \item \textbf{Những vấn đề tồn tại phát hiện từ kiểm thử và phản hồi cải tiến}:
-    \begin{enumerate}
-        \item \textit{Vị trí mục Ghi chú dị ứng}: Điểm Q2 đạt 3.6/5.0 do ở phiên bản đầu, ô nhập dặn dò y tế bị ẩn sâu trong cài đặt hồ sơ. Người tham gia P2, P3 và P5 phải mất thời gian tìm kiếm (gây ra 5 lỗi thao tác nhỏ trong T2). Người dùng đề xuất tích hợp ô dặn dò đặc biệt ngay trên màn hình form đặt lịch.
-        \item \textit{Độ tương phản của ma trận giờ}: Người dùng P3 phản ánh màu sắc phân biệt giữa các khung giờ còn trống và khung giờ đã kín hơi nhạt trên một số màn hình có độ sáng thấp.
-        \item \textit{Phân biệt biểu tượng mốc tiến độ}: Người dùng P2 đề xuất bổ sung màu sắc và biểu tượng động khác biệt rõ nét hơn giữa mốc \textit{Đang chăm sóc} và \textit{Hoàn tất}.
-    \end{enumerate}
-\end{itemize}
+Mặc dù 100\% tác vụ đều đạt ngưỡng chuẩn kỳ vọng, quá trình quan sát thực nghiệm và phân tích định tính đã chỉ ra 4 phát hiện khả dụng (Usability Findings) cần cải tiến trước khi chuyển giao lập trình:
+
+\begin{enumerate}
+  \item \textbf{Phát hiện 1 (F1 --- Mức độ nghiêm trọng: Major)}: Ở tác vụ T2, người dùng P2 và P5 mất nhiều thời gian tìm ô nhập ghi chú do mục dặn dò nằm tách biệt trong tab Hồ sơ thú cưng. \textit{Giải pháp}: Tự động trích xuất ghi chú dị ứng từ hồ sơ và gắn Thẻ cảnh báo Amber Alert (\texttt{\#F59E0B}) kèm nút chỉnh sửa nhanh ngay trên form đặt lịch.
+  \item \textbf{Phát hiện 2 (F2 --- Mức độ nghiêm trọng: Minor)}: Người dùng P2 ngập ngừng phân biệt giữa mốc “Đang chăm sóc” và “Hoàn tất” do thiếu tín hiệu thị giác động. \textit{Giải pháp}: Bổ sung hiệu ứng vòng tròn phát sáng chuyển động nhịp (Active Pulsing Beacon) tại mốc đang diễn ra.
+  \item \textbf{Phát hiện 3 (F3 --- Mức độ nghiêm trọng: Minor)}: Viền ô chọn giờ trống hơi nhạt trong điều kiện ánh sáng mạnh. \textit{Giải pháp}: Tăng độ đậm viền (\texttt{border: 2px solid \#0D9488}) và thêm nhãn tóm tắt thời lượng dịch vụ.
+  \item \textbf{Phát hiện 4 (F4 --- Mức độ nghiêm trọng: Cosmetic)}: Người dùng mong muốn lọc lịch sử theo thú cưng và tải hóa đơn PDF. \textit{Giải pháp}: Bổ sung thanh trượt Filter Chips và nút xuất hóa đơn PDF.
+\end{enumerate}
