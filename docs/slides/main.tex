@@ -6,28 +6,28 @@
 \usetheme{Madrid}
 \useinnertheme{rectangles}
 
-% Bảng màu thương hiệu PetCare Pro (Hài hòa giữa Navy HCMUS và Teal hiện đại)
-\definecolor{PetcarePrimary}{RGB}{23, 59, 114}    % #173B72 Deep Navy Blue (HCMUS)
-\definecolor{PetcareSecondary}{RGB}{13, 148, 136} % #0D9488 Vibrant Teal
-\definecolor{PetcareAccent}{RGB}{217, 119, 6}    % #D97706 Warm Amber/Orange
-\definecolor{PetcareAlert}{RGB}{220, 38, 38}     % #DC2626 Medical Alert Red
-\definecolor{PetcareDark}{RGB}{30, 41, 59}       % #1E293B Slate 800
-\definecolor{PetcareLight}{RGB}{248, 250, 252}   % #F8FAFC Slate 50
-\definecolor{PetcareCardBg}{RGB}{241, 245, 249}  % #F1F5F9 Slate 100
-\definecolor{PetcareSuccess}{RGB}{22, 163, 74}   % #16A34A Success Green
+% Bảng màu thương hiệu PetCare (Màu xanh biển đậm chủ đạo chuẩn Theme Madrid)
+\definecolor{PetcarePrimary}{RGB}{24, 65, 135}    % #184187 Madrid Deep Ocean Blue
+\definecolor{PetcareSecondary}{RGB}{41, 105, 176} % #2969B0 Medium Ocean Blue
+\definecolor{PetcareAccent}{RGB}{217, 119, 6}     % #D97706 Warm Amber
+\definecolor{PetcareAlert}{RGB}{220, 38, 38}      % #DC2626 Alert Red
+\definecolor{PetcareDark}{RGB}{15, 35, 75}        % #0F234B Deep Navy Dark
+\definecolor{PetcareLight}{RGB}{248, 250, 252}    % #F8FAFC Light Slate
+\definecolor{PetcareCardBg}{RGB}{240, 244, 250}   % #F0F4FA Soft Blue Tint
+\definecolor{PetcareSuccess}{RGB}{22, 163, 74}    % #16A34A Success Green
 
-% Thiết lập phối màu Beamer Madrid
+% Giữ nguyên màu chủ đạo Madrid (Xanh biển đậm Whale & Orchid)
 \setbeamercolor{structure}{fg=PetcarePrimary}
 \setbeamercolor{palette primary}{bg=PetcarePrimary,fg=white}
-\setbeamercolor{palette secondary}{bg=PetcareSecondary,fg=white}
-\setbeamercolor{palette tertiary}{bg=PetcareDark,fg=white}
-\setbeamercolor{palette quaternary}{bg=PetcarePrimary,fg=white}
+\setbeamercolor{palette secondary}{bg=PetcarePrimary!80!black,fg=white}
+\setbeamercolor{palette tertiary}{bg=PetcarePrimary!60!black,fg=white}
+\setbeamercolor{palette quaternary}{bg=PetcarePrimary!40!black,fg=white}
 
-\setbeamercolor{titlelike}{parent=palette primary,fg=PetcarePrimary}
-\setbeamercolor{frametitle}{bg=PetcarePrimary!8,fg=PetcarePrimary}
-\setbeamercolor{frametitle right}{bg=PetcareSecondary!10}
+% Khung tiêu đề chuẩn Madrid: Nền xanh biển đậm đồng bộ, chữ trắng sáng
+\setbeamercolor{frametitle}{bg=PetcarePrimary,fg=white}
+\setbeamercolor{framesubtitle}{fg=white!85}
 
-% Khối hộp Beamer (Blocks)
+% Khối hộp Beamer (Blocks) chuẩn Madrid
 \setbeamercolor{block title}{bg=PetcarePrimary,fg=white}
 \setbeamercolor{block body}{bg=PetcareCardBg,fg=PetcareDark}
 \setbeamercolor{block title example}{bg=PetcareSecondary,fg=white}
@@ -90,64 +90,56 @@
 \date{Tháng 09 năm 2026}
 
 % ==============================================================================
-% BẮT ĐẦU NỘI DUNG SLIDE
+% NỘI DUNG SLIDES
 % ==============================================================================
 \begin{document}
 
 % Slide 1: Trang bìa
 \input{content/01_trang_bia}
 
-% --- PHẦN DẪN NHẬP: BỐI CẢNH, KHẢO SÁT, VẤN ĐỀ, Ý TƯỞNG ---
 % Slide 2: Bối cảnh đề tài
 \input{content/01b_boi_canh}
 
-% Slide 3: Khảo sát & Nghiên cứu người dùng
+% Slide 3: Khảo sát thực địa
 \input{content/01c_khao_sat}
 
-% Slide 4: Vấn đề cốt lõi & 4 Điểm đau
+% Slide 4: 4 Điểm đau cốt lõi
 \input{content/01d_van_de}
 
-% Slide 5: Ý tưởng giải pháp & 4 Trụ cột số hóa
+% Slide 5: Giải pháp cốt lõi
 \input{content/01e_y_tuong}
 
-% --- NỘI DUNG CHI TIẾT THEO 12 MỤC RUBRIC ĐÁNH GIÁ ---
-% Slide 6: [Rubric Mục 1 - 10%] Persona - Chân Dung Người Dùng
+% Slide 6: Persona khách hàng
 \input{content/02_rubric_01_persona}
 
-% Slide 3: [Rubric Mục 2 - 10%] Value Proposition - Tuyên Ngôn Giá Trị Đối Ứng
+% Slide 7: Tuyên ngôn giá trị
 \input{content/03_rubric_02_value_proposition}
 
-% Slide 4: [Rubric Mục 3 - 5%] Scenario 1 - Kịch Bản Hiện Tại (As-Is)
+% Slide 8: Quy trình hiện tại (As-Is)
 \input{content/04_rubric_03_scenario_1_asis}
 
-% Slide 5: [Rubric Mục 4 - 5%] Scenario 2 - Kịch Bản Mới Đột Phá (To-Be)
+% Slide 9: Quy trình cải tiến (To-Be)
 \input{content/05_rubric_04_scenario_2_tobe}
 
-% Slide 6: [Rubric Mục 5 - 10%] Storyboard - Bảng Phân Cảnh Trực Quan
+% Slide 10: Storyboard trải nghiệm
 \input{content/06_rubric_05_storyboard}
 
-% Slide 7: [Rubric Mục 6 - 10%] Wireframe - Khung Giao Diện Toàn Diện
+% Slide 11: Khung giao diện (Wireframe)
 \input{content/07_rubric_06_wireframe}
 
-% Slide 8: [Rubric Mục 7 - 10%] Prototype - Bản Mẫu Tương Tác Cao
+% Slide 12: Bản mẫu tương tác (Prototype)
 \input{content/08_rubric_07_prototype}
 
-% Slide 9: [Rubric Mục 8 - 10%] Evaluation - Đánh Giá Khả Năng Sử Dụng
+% Slide 13: Đánh giá khả năng sử dụng (Usability)
 \input{content/09_rubric_08_evaluation}
 
-% Slide 10: [Rubric Mục 9 - 10%] Software Product - Sản Phẩm Phần Mềm Thực Thi
+% Slide 14: Sản phẩm phần mềm thực tế
 \input{content/10_rubric_09_software_product}
 
-% Slide 11: [Rubric Mục 10 - 10%] Trình Bày - Phân Vai Thuyết Trình & Phản Biện
-\input{content/11_rubric_10_trinh_bay}
-
-% Slide 12: [Rubric Mục 11 - 10%] Báo Cáo - Chuẩn Mực Học Thuật & Đầy Đủ Quy Định
-\input{content/12_rubric_11_bao_cao}
-
-% Slide 13: [Rubric Mục 12 - 10%] Team Work - Phân Công & Đóng Góp Cân Bằng
+% Slide 15: Phân công đóng góp nhóm
 \input{content/13_rubric_12_teamwork}
 
-% Slide 14: Lời cảm ơn & Phiên thảo luận Q&A
+% Slide 16: Hỏi đáp & Lời cảm ơn
 \input{content/14_loi_cam_on_qa}
 
 \end{document}

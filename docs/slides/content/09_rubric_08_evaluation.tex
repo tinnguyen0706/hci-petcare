@@ -1,70 +1,38 @@
-% Slide 9: [Rubric Mục 8 - 10%] Evaluation - Đánh Giá Khả Năng Sử Dụng
-\begin{frame}{Mục 8: Evaluation -- Đánh Giá Khả Năng Sử Dụng}
-  \framesubtitle{\color{PetcareSecondary}\textbf{[Rubric: 10\%] Đầy đủ các thành phần phương pháp đánh giá HCI $\bullet$ SUS đạt 84.5 $\bullet$ TSR 100\%}}
+% Slide: Đánh Giá Trải Nghiệm (Usability)
+\begin{frame}{Đánh Giá Trải Nghiệm (Usability)}
+  \framesubtitle{\color{white!90}\textbf{Đối chiếu hiệu năng thực nghiệm 4 tác vụ với ngưỡng chuẩn kỳ vọng (Mục 7.4)}}
 
-  % 4 Thẻ số liệu lớn hàng đầu
-  \begin{columns}[c]
-    \begin{column}{0.24\textwidth}
-      \begin{block}{\centering \tiny \textbf{Thang đo SUS}}
-        \centering \vspace{0.4mm}
-        {\large \textbf{\color{PetcareSuccess}84.5 / 100}}\\[0.4mm]
-        {\tiny \textbf{Grade A / Excellent}}
-      \end{block}
-    \end{column}
-    \begin{column}{0.24\textwidth}
-      \begin{block}{\centering \tiny \textbf{Tỷ lệ hoàn thành (TSR)}}
-        \centering \vspace{0.4mm}
-        {\large \textbf{\color{PetcareSuccess}100\% (5/5)}}\\[0.4mm]
-        {\tiny Không cần trợ giúp}
-      \end{block}
-    \end{column}
-    \begin{column}{0.24\textwidth}
-      \begin{block}{\centering \tiny \textbf{Thời gian Đặt lịch (T1)}}
-        \centering \vspace{0.4mm}
-        {\large \textbf{\color{PetcarePrimary}39.0 giây}}\\[0.4mm]
-        {\tiny \textbf{0 lỗi phát sinh}}
-      \end{block}
-    \end{column}
-    \begin{column}{0.24\textwidth}
-      \begin{block}{\centering \tiny \textbf{Tra cứu Tiến độ (T3)}}
-        \centering \vspace{0.4mm}
-        {\large \textbf{\color{PetcarePrimary}18.8 giây}}\\[0.4mm]
-        {\tiny Nắm bắt ngay 1 chạm}
-      \end{block}
-    \end{column}
-  \end{columns}
+  % Bảng đối chiếu hiệu năng thực nghiệm theo Mục 7.4 Báo cáo
+  {\small
+  \begin{tabularx}{\textwidth}{X c c c}
+    \toprule
+    \rowcolor{PetcarePrimary!12}
+    \textbf{Tác vụ kiểm thử (5 người dùng)} & \textbf{Thời gian thực hiện} & \textbf{Tỷ lệ hoàn thành} & \textbf{Kết luận} \\
+    \midrule
+    \textbf{T1: Đặt lịch dịch vụ nhanh} & \textbf{39.0s} \ (Chuẩn $\le 45\text{s}$) & \textbf{100\%} \ (Chuẩn $\ge 90\%$) & \textbf{\color{PetcarePrimary}ĐẠT} \\
+    \textbf{T2: Dặn dò dị ứng \& y tế} & \textbf{57.4s} \ (Chuẩn $\le 60\text{s}$) & \textbf{100\%} \ (Chuẩn $\ge 85\%$) & \textbf{\color{PetcarePrimary}ĐẠT} \\
+    \textbf{T3: Live Tracking 4 mốc} & \textbf{18.8s} \ (Chuẩn $\le 20\text{s}$) & \textbf{100\%} \ (Chuẩn $\ge 95\%$) & \textbf{\color{PetcarePrimary}XUẤT SẮC} \\
+    \textbf{T4: Tra cứu lịch sử \& Hóa đơn} & \textbf{30.8s} \ (Chuẩn $\le 35\text{s}$) & \textbf{100\%} \ (Chuẩn $\ge 90\%$) & \textbf{\color{PetcarePrimary}ĐẠT} \\
+    \midrule
+    \rowcolor{PetcarePrimary!8}
+    \textbf{Toàn hệ thống (Tổng hợp)} & \textbf{0.30 lỗi/lượt} \ (Chuẩn $\le 1.0$) & \textbf{100\%} \ (Chuẩn $\ge 85\%$) & \textbf{\color{PetcarePrimary}XUẤT SẮC} \\
+    \bottomrule
+  \end{tabularx}}
 
-  \vspace{1.5mm}
-
+  \vspace{2mm}
   \begin{columns}[T]
-    % Bảng đo lường 4 tác vụ
-    \begin{column}{0.58\textwidth}
-      \begin{table}
-        \centering
-        \tiny
-        \renewcommand{\arraystretch}{1.15}
-        \begin{tabularx}{\textwidth}{|l|c|c|c|X|}
-          \hline
-          \rowcolor{PetcarePrimary!15}
-          \textbf{Tác vụ kiểm thử} & \textbf{TSR} & \textbf{TG TB} & \textbf{Lỗi} & \textbf{Đánh giá người dùng} \\ \hline
-          \textbf{T1: Đặt lịch \& nhận mã} & 100\% & 39.0s & 0 & Ma trận trực quan, cực nhanh. \\ \hline
-          \textbf{T2: Dặn dò y tế \& dị ứng} & 100\% & 57.4s & 5 & Điền dễ, cần đưa thẳng ra form. \\ \hline
-          \textbf{T3: Live Tracking 4 mốc} & 100\% & 18.8s & 1 & Rõ ràng, rất an tâm khi làm việc. \\ \hline
-          \textbf{T4: Tra cứu lịch sử \& Rebook} & 100\% & 30.8s & 0 & Xem nhanh sản phẩm, Rebook tốt. \\ \hline
-        \end{tabularx}
-      \end{table}
+    \begin{column}{0.48\textwidth}
+      {\color{PetcarePrimary}\textbf{\small Thang đo chuẩn hóa quốc tế:}}\\[1.5mm]
+      \small
+      $\bullet$ \textbf{Điểm Usability SUS: 84.5 / 100} (Xếp loại \textbf{Grade A} -- Xuất sắc).\\
+      $\bullet$ \textbf{Khảo sát Likert 5 mức: 4.16 / 5.0} (Vượt ngưỡng chuẩn $\ge 4.0$).
     \end{column}
 
-    % Cột phương pháp chuẩn HCI
-    \begin{column}{0.40\textwidth}
-      \begin{exampleblock}{\scriptsize \textbf{Đầy đủ thành phần đánh giá HCI}}
-        \tiny
-        $\bullet$ \textbf{Heuristic Evaluation:} 10 nguyên lý Nielsen.\\
-        $\bullet$ \textbf{Usability Testing:} Giao thức Think-aloud.\\
-        $\bullet$ \textbf{Quy mô mẫu:} 5 người dùng thực tế (P1--P5).\\
-        $\bullet$ \textbf{Bộ chỉ số:} TSR, Time, Error, Likert 1--5, SUS.\\
-        $\bullet$ \textbf{Quy trình 5 bước:} Chuẩn bị $\rightarrow$ Briefing $\rightarrow$ Thực thi $\rightarrow$ Khảo sát $\rightarrow$ Phân tích.
-      \end{exampleblock}
+    \begin{column}{0.48\textwidth}
+      {\color{PetcarePrimary}\textbf{\small Phương pháp \& Cải tiến sau kiểm thử:}}\\[1.5mm]
+      \small
+      $\bullet$ \textbf{Phương pháp:} Giao thức \textit{Think-aloud} + 10 Heuristic Nielsen.\\
+      $\bullet$ \textbf{Cải tiến T2:} Đưa dặn dò ra form chính, giảm thời gian còn $< 35$s.
     \end{column}
   \end{columns}
 \end{frame}
