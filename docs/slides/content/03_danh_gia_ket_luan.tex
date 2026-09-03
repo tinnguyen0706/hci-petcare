@@ -1,0 +1,123 @@
+% ==============================================================================
+% PHẦN 3: ĐÁNH GIÁ THỰC NGHIỆM, CẢI TIẾN THIẾT KẾ VÀ KẾT LUẬN
+% ==============================================================================
+
+% Slide 9: Đánh giá thực nghiệm
+\begin{frame}{Chứng thực thực nghiệm: Tỷ lệ hoàn thành 100\% \& Điểm SUS đạt 82.5/100}
+  \begin{columns}[T]
+    \begin{column}{0.24\textwidth}
+      \begin{block}{\centering Tỷ lệ thành công}
+        \vskip 1mm
+        \centering {\Large \textbf{100\%}}\\
+        \footnotesize 20/20 lượt tác vụ hoàn thành xuất sắc.
+        \vskip 1mm
+      \end{block}
+    \end{column}
+
+    \begin{column}{0.24\textwidth}
+      \begin{block}{\centering Thời gian tác vụ}
+        \vskip 1mm
+        \centering {\Large \textbf{36.5s}}\\
+        \footnotesize Nhanh hơn 80\% so với quy trình cũ.
+        \vskip 1mm
+      \end{block}
+    \end{column}
+
+    \begin{column}{0.24\textwidth}
+      \begin{block}{\centering Điểm SUS}
+        \vskip 1mm
+        \centering {\Large \textbf{82.5 / 100}}\\
+        \footnotesize Xếp hạng A (Hảo hạng, Brooke 1996).
+        \vskip 1mm
+      \end{block}
+    \end{column}
+
+    \begin{column}{0.24\textwidth}
+      \begin{block}{\centering Độ hài lòng Likert}
+        \vskip 1mm
+        \centering {\Large \textbf{4.16 / 5.0}}\\
+        \footnotesize Vượt ngưỡng chuẩn kỳ vọng ($\ge 4.0$).
+        \vskip 1mm
+      \end{block}
+    \end{column}
+  \end{columns}
+
+  \vskip 3mm
+  \textbf{Kết quả thực nghiệm trên 4 tác vụ cốt lõi (5 người tham gia P1--P5):}
+  \begin{itemize}
+    \item \textbf{T1 --- Đặt lịch dịch vụ nhanh:} Thời gian TB \textbf{39.0s} (ngưỡng $\le 45\text{s}$), 0 lỗi thao tác.
+    \item \textbf{T2 --- Dặn dò dị ứng/y tế:} Thời gian TB \textbf{57.4s} (ngưỡng $\le 60\text{s}$), tỷ lệ hoàn thành 100\%.
+    \item \textbf{T3 --- Live Tracking 4 mốc:} Thời gian TB \textbf{18.8s} (ngưỡng $\le 20\text{s}$), nhận diện trạng thái trong 3s.
+    \item \textbf{T4 --- Tra cứu lịch sử \& Hóa đơn:} Thời gian TB \textbf{30.8s} (ngưỡng $\le 35\text{s}$), thao tác mượt mà.
+  \end{itemize}
+\end{frame}
+
+% Slide 10: 4 Cải tiến then chốt
+\begin{frame}{Hoàn thiện thiết kế: 4 Cải tiến then chốt giải quyết điểm nghẽn người dùng}
+  \footnotesize
+  \begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{c>{\bfseries}p{2.6cm}X>{\color{PetcarePrimary}}X}
+      \toprule
+      \textbf{Mã} & \textbf{Vấn đề phát hiện} & \textbf{Giải pháp thiết kế cải tiến} & \textbf{Hiệu quả trải nghiệm} \\
+      \midrule
+      F1 & Khó tìm ô dặn dò dị ứng khi đặt lịch (Major). & Tự động trích xuất ghi chú từ hồ sơ và gắn \textbf{Thẻ Amber Alert} trên form đặt lịch. & Người dùng không cần nhập lại; đảm bảo 100\% dặn dò được ghi nhận. \\
+      \addlinespace[1mm]
+      F2 & Mơ hồ giữa mốc ``Đang làm'' và ``Xong'' (Minor). & Bổ sung hiệu ứng vòng tròn phát sáng động (\textbf{Active Pulsing Beacon}) tại mốc hiện tại. & Tăng nhận diện tức thì trạng thái thực tế của thú cưng. \\
+      \addlinespace[1mm]
+      F3 & Viền ô chọn giờ trống hơi mờ (Minor). & Tăng độ đậm viền (\texttt{2px solid \#0D9488}) và hiển thị rõ thời lượng dự kiến. & Giúp chọn khung giờ chính xác ngay cả dưới nắng gắt. \\
+      \addlinespace[1mm]
+      F4 & Muốn lọc theo bé và tải hóa đơn (Cosmetic). & Bổ sung thanh trượt \textbf{Filter Chips} và nút \textbf{Tải hóa đơn PDF}. & Nâng cao tính tiện lợi trong quản lý chi tiêu dài hạn. \\
+      \bottomrule
+    \end{tabularx}
+  \end{table}
+\end{frame}
+
+% Slide 11: Đóng góp & Tầm nhìn tương lai
+\begin{frame}{Tầm nhìn phát triển: Từ giải pháp đồ án đến Hệ sinh thái chăm sóc toàn diện}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{3 Đóng góp thực tiễn của Đề tài}
+        \footnotesize
+        \begin{itemize}
+          \item \textbf{Mô hình trải nghiệm chuẩn mực:} Số hóa thành công chu trình 4 trụ cột phục vụ trọn vẹn nhu cầu chủ nuôi bận rộn.
+          \item \textbf{Cơ sở dữ liệu nghiên cứu sâu sắc:} 6 phỏng vấn sâu, 2 Persona điển hình và khảo sát thực nghiệm minh bạch.
+          \item \textbf{Thiết kế tương tác cao:} Bản mẫu chuẩn Figma đạt độ hoàn thiện cao, bám sát mô hình tinh thần người dùng.
+        \end{itemize}
+      \end{block}
+    \end{column}
+
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{3 Hướng mở rộng trong Tương lai}
+        \footnotesize
+        \begin{itemize}
+          \item \textbf{Ứng dụng chuyên dụng cho Kỹ thuật viên (Staff App):} Hỗ trợ cập nhật mốc tiến độ và gửi ảnh trực tiếp tại bàn chải lông.
+          \item \textbf{Trợ lý nhắc lịch thông minh:} Dự báo chu kỳ tỉa lông và tiêm phòng dựa trên hồ sơ giống loài.
+          \item \textbf{Cổng thanh toán \& Tích điểm (Loyalty):} Tích hợp ví điện tử trả trước và chương trình hội viên thân thiết.
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% Slide 12: Q&A
+\begin{frame}[plain]
+  \vfill
+  \begin{center}
+    {\huge \textbf{\color{PetcarePrimary}XIN TRÂN TRỌNG CẢM ƠN!}}\\[3mm]
+    {\large \textit{Quý Thầy Cô và Các Bạn Sinh Viên đã chú ý lắng nghe}}\\[6mm]
+
+    \colorbox{PetcarePrimary}{%
+      \makebox[0.55\textwidth]{%
+        \rule[-10pt]{0pt}{30pt}%
+        \Large\bfseries\color{white} PHIÊN HỎI \& ĐÁP (Q\&A)%
+      }%
+    }\\[8mm]
+
+    {\normalsize \textbf{Bản mẫu tương tác độ nét cao (Interactive Prototype):}}\\[3mm]
+    {\large \href{https://www.figma.com/design/X92n63gTmwhhI20v7sRqzT/HCI?node-id=0-1&t=5QZaB3diSm5V1LRj-1}{\color{PetcareSecondary}\textbf{\underline{Trải nghiệm trực tiếp trên Figma (Nhấp vào đây)}}}}\\[8mm]
+
+    {\footnotesize \textit{Hội đồng đánh giá: Cô Lê Thị Nhàn -- Thầy Lương Vĩ Minh\\Khoa Công nghệ Thông tin, Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM}}
+  \end{center}
+  \vfill
+\end{frame}

@@ -1,0 +1,69 @@
+\documentclass[aspectratio=169, 10pt]{beamer}
+
+% ==============================================================================
+% GIAO DIỆN THEME VÀ CẤU HÌNH HỆ THỐNG
+% ==============================================================================
+\usetheme{Madrid}
+\usefonttheme{serif}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+% Hệ màu nhận diện Petcare / HCMUS
+\definecolor{PetcarePrimary}{RGB}{23, 59, 114}     % Xanh HCMUS
+\definecolor{PetcareSecondary}{RGB}{46, 117, 182}  % Xanh Slate
+\definecolor{PetcareAccent}{RGB}{220, 108, 43}     % Cam Amber
+\definecolor{PetcareLight}{RGB}{248, 249, 251}
+\definecolor{PetcareGreen}{RGB}{16, 149, 120}
+
+\setbeamercolor{palette primary}{bg=PetcarePrimary,fg=white}
+\setbeamercolor{palette secondary}{bg=PetcareSecondary,fg=white}
+\setbeamercolor{palette tertiary}{bg=PetcarePrimary!85!black,fg=white}
+\setbeamercolor{structure}{fg=PetcarePrimary}
+\setbeamercolor{titlelike}{fg=PetcarePrimary}
+\setbeamercolor{block title}{bg=PetcarePrimary,fg=white}
+\setbeamercolor{block body}{bg=PetcareLight,fg=black}
+\setbeamercolor{block title example}{bg=PetcareGreen,fg=white}
+\setbeamercolor{block body example}{bg=PetcareLight,fg=black}
+\setbeamercolor{block title alerted}{bg=PetcareAccent,fg=white}
+\setbeamercolor{block body alerted}{bg=PetcareLight,fg=black}
+
+% Cấu hình thông tin slide
+\title[Hệ thống chăm sóc thú cưng]{Hệ thống hỗ trợ đặt lịch, gửi yêu cầu và theo dõi quá trình chăm sóc thú cưng}
+\subtitle{Báo cáo Đồ án môn Tương tác Người -- Máy (CSC12106)}
+\author[Nhóm 4]{%
+  Lưu Ngô Quốc Bảo (23127327) \and
+  Nguyễn Quốc Bảo (23127328) \and
+  Nguyễn Trọng Tín (23127498)%
+}
+\institute[HCMUS]{%
+  Khoa Công nghệ Thông tin\\
+  Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM\\[2mm]
+  \textit{Giảng viên hướng dẫn: Cô Lê Thị Nhàn -- Thầy Lương Vĩ Minh}%
+}
+\date[\today]{Học kỳ II, Năm học 2025--2026}
+
+% Tắt icon điều hướng mặc định góc dưới
+\setbeamertemplate{navigation symbols}{}
+
+% ==============================================================================
+% NỘI DUNG SLIDE
+% ==============================================================================
+\begin{document}
+
+% 1. Slide Tiêu đề
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% Nạp các phân hệ nội dung
+\input{content/01_tong_quan}
+\input{content/02_thiet_ke}
+\input{content/03_danh_gia_ket_luan}
+
+\end{document}
