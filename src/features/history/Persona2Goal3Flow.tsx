@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Pet } from '../../types';
-import { 
-  CheckIcon, 
-  ChevronRightIcon, 
-  InvoiceIcon, 
-  CalendarIcon, 
-  ClockIcon,
-  ShieldIcon,
-  StarIcon
-} from '../../components/icons/Icons';
+import { CheckIcon } from '../../components/icons/Icons';
 
 interface Persona2Goal3FlowProps {
   pet: Pet;
@@ -29,6 +21,7 @@ export const Persona2Goal3Flow: React.FC<Persona2Goal3FlowProps> = ({
   const [downloadSuccess, setDownloadSuccess] = useState(false);
   const [shareSuccess, setShareSuccess] = useState(false);
   const [savePlanSuccess, setSavePlanSuccess] = useState(false);
+  const [selectedMonth, setSelectedMonth] = useState<'T1' | 'T2' | 'T3' | 'T4' | 'NAY'>('NAY');
 
   useEffect(() => {
     if (externalStep) {
@@ -61,33 +54,68 @@ export const Persona2Goal3Flow: React.FC<Persona2Goal3FlowProps> = ({
     }, 1200);
   };
 
+  // Dữ liệu chi tiêu các tháng cho biểu đồ đường
+  const expenseData = {
+    T1: { cost: '220.000đ', note: '1 lượt tắm vệ sinh' },
+    T2: { cost: '280.000đ', note: '1 lượt tắm + cắt tỉa móng' },
+    T3: { cost: '250.000đ', note: '1 lượt tắm vệ sinh' },
+    T4: { cost: '320.000đ', note: '1 lượt tắm + dưỡng lông mềm' },
+    NAY: { cost: '250.000đ', note: 'Lượt tắm thảo dược dịu nhẹ' }
+  };
+
   return (
-    <div style={{ paddingTop: '8px', paddingBottom: '32px' }}>
+    <div style={{ paddingTop: '4px', paddingBottom: '32px' }}>
 
       {/* ========================================================= */}
-      {/* BƯỚC 1: LỊCH SỬ CHĂM SÓC CỦA MIU (01_service_history)     */}
+      {/* FLOW PROGRESS: 5 CHẤM TRÒN CHUẨN PROTOTYPE                */}
+      {/* ========================================================= */}
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '10px',
+        marginBottom: '18px'
+      }}>
+        {[1, 2, 3, 4, 5].map((s) => (
+          <div
+            key={s}
+            onClick={() => goToStep(s as 1 | 2 | 3 | 4 | 5)}
+            style={{
+              width: s === step ? '24px' : '8px',
+              height: '8px',
+              borderRadius: '4px',
+              backgroundColor: s === step ? '#0D766E' : s < step ? '#14B8A6' : '#CBD5E1',
+              cursor: 'pointer',
+              transition: 'all 0.25s ease'
+            }}
+          />
+        ))}
+      </div>
+
+      {/* ========================================================= */}
+      {/* MÀN HÌNH 1: LỊCH SỬ CỦA MIU (01_service_history.svg)       */}
       {/* ========================================================= */}
       {step === 1 && (
         <div>
-          {/* Thẻ Hồ Sơ Miu */}
+          {/* Miu_History_Hero */}
           <div style={{
             width: '100%',
             borderRadius: '24px',
             backgroundColor: '#FFFFFF',
-            border: '1.5px solid #E2E8F0',
+            border: '1.5px solid #CCFBF1',
             padding: '18px 20px',
             display: 'flex',
             alignItems: 'center',
             gap: '16px',
             marginBottom: '20px',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)'
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.03)'
           }}>
             <div style={{
-              width: '58px',
-              height: '58px',
+              width: '56px',
+              height: '56px',
               borderRadius: '50%',
               backgroundColor: '#FFFBEB',
-              border: '2.5px solid #D97706',
+              border: '2px solid #D97706',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -100,22 +128,22 @@ export const Persona2Goal3Flow: React.FC<Persona2Goal3FlowProps> = ({
             </div>
 
             <div style={{ flex: 1 }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span style={{ fontSize: '18px', fontWeight: 800, color: '#0F172A' }}>Miu</span>
-                <span style={{
-                  backgroundColor: '#F0FDF4',
-                  color: '#166534',
-                  fontSize: '10px',
-                  fontWeight: 800,
-                  padding: '3px 8px',
-                  borderRadius: '8px'
-                }}>
-                  ĐÃ LƯU TẬP TRUNG
-                </span>
+              <div style={{ fontSize: '18px', fontWeight: 800, color: '#0F172A' }}>
+                Miu
               </div>
-              <div style={{ fontSize: '12px', color: '#64748B', marginTop: '2px' }}>
-                Nhật ký chăm sóc · Mèo Anh lông ngắn
+              <div style={{ fontSize: '11px', color: '#64748B', marginTop: '2px', marginBottom: '6px' }}>
+                Nhật ký chăm sóc
               </div>
+              <span style={{
+                backgroundColor: '#F0FDF4',
+                color: '#166534',
+                fontSize: '9px',
+                fontWeight: 800,
+                padding: '3px 8px',
+                borderRadius: '8px'
+              }}>
+                ĐÃ LƯU TẬP TRUNG
+              </span>
             </div>
           </div>
 
@@ -123,83 +151,82 @@ export const Persona2Goal3Flow: React.FC<Persona2Goal3FlowProps> = ({
             CÁC LƯỢT GẦN ĐÂY
           </div>
 
-          {/* Lượt 1: Mới nhất (Có thể chạm để xem) */}
+          {/* Session_Recent (Lượt gần nhất - tương tác mở chi tiết) */}
           <div 
             onClick={() => goToStep(2)}
             style={{
               width: '100%',
-              borderRadius: '22px',
+              borderRadius: '24px',
               backgroundColor: '#FFFFFF',
               border: '2px solid #0D766E',
               padding: '18px 20px',
               marginBottom: '12px',
               cursor: 'pointer',
-              boxShadow: '0 4px 14px rgba(13, 118, 110, 0.08)'
+              boxShadow: '0 4px 14px rgba(13, 118, 110, 0.08)',
+              transition: 'transform 0.15s ease'
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-              <span style={{ fontSize: '16px', fontWeight: 800, color: '#0F172A' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+              <span style={{ fontSize: '15px', fontWeight: 800, color: '#0F172A' }}>
                 Tắm vệ sinh
               </span>
-              <span style={{ fontSize: '15px', fontWeight: 800, color: '#0D766E' }}>
+              <span style={{ fontSize: '14px', fontWeight: 800, color: '#0D766E' }}>
                 250.000đ
               </span>
             </div>
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '12px', color: '#64748B' }}>
-                Hoàn tất · Hóa đơn đã lưu
-              </span>
-              <span style={{
-                backgroundColor: '#F0FDFA',
-                color: '#0D766E',
-                fontSize: '10px',
-                fontWeight: 800,
-                padding: '3px 8px',
-                borderRadius: '8px'
-              }}>
-                XEM CHI TIẾT ›
-              </span>
+            <div style={{ fontSize: '11px', color: '#64748B', marginBottom: '10px' }}>
+              Hoàn tất · Hóa đơn đã lưu · 28/08/2026
             </div>
+            <span style={{
+              backgroundColor: '#F0FDFA',
+              color: '#0D766E',
+              fontSize: '9px',
+              fontWeight: 800,
+              padding: '4px 10px',
+              borderRadius: '8px',
+              display: 'inline-block'
+            }}>
+              XEM CHI TIẾT ›
+            </span>
           </div>
 
-          {/* Lượt 2: Trước đó */}
+          {/* Session_Older (Lượt chăm sóc trước) */}
           <div style={{
             width: '100%',
             borderRadius: '22px',
             backgroundColor: '#FFFFFF',
             border: '1.5px solid #E2E8F0',
             padding: '18px 20px',
-            marginBottom: '16px',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)'
+            marginBottom: '14px',
+            boxShadow: '0 2px 6px rgba(0, 0, 0, 0.02)'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-              <span style={{ fontSize: '15px', fontWeight: 700, color: '#0F172A' }}>
-                Tắm vệ sinh & Cắt móng
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+              <span style={{ fontSize: '14px', fontWeight: 800, color: '#0F172A' }}>
+                Tắm vệ sinh
               </span>
-              <span style={{ fontSize: '14px', fontWeight: 700, color: '#64748B' }}>
+              <span style={{ fontSize: '13px', fontWeight: 700, color: '#64748B' }}>
                 220.000đ
               </span>
             </div>
-            <div style={{ fontSize: '12px', color: '#64748B' }}>
-              Đã lưu trong hồ sơ · 02/08/2026
+            <div style={{ fontSize: '11px', color: '#64748B' }}>
+              Đã lưu trong hồ sơ · 05/08/2026
             </div>
           </div>
 
-          {/* Banner Không lo thất lạc */}
+          {/* History_Safe (Không lo thất lạc) */}
           <div style={{
             width: '100%',
             backgroundColor: '#F0FDF4',
             borderRadius: '20px',
             border: '1.5px solid #BBF7D0',
-            padding: '16px 20px',
+            padding: '14px 18px',
             marginBottom: '26px'
           }}>
-            <div style={{ fontSize: '14px', fontWeight: 800, color: '#166534', marginBottom: '4px' }}>
+            <div style={{ fontSize: '12px', fontWeight: 800, color: '#166534', marginBottom: '2px' }}>
               Không lo thất lạc
             </div>
-            <div style={{ fontSize: '12px', color: '#64748B' }}>
-              Dữ liệu hóa đơn và chi phí luôn được lưu trữ nguyên vẹn trên hệ thống.
+            <div style={{ fontSize: '10px', color: '#64748B' }}>
+              Dữ liệu vẫn nguyên vẹn · Không bị mờ hay mất như hóa đơn in nhiệt
             </div>
           </div>
 
@@ -228,82 +255,93 @@ export const Persona2Goal3Flow: React.FC<Persona2Goal3FlowProps> = ({
       )}
 
       {/* ========================================================= */}
-      {/* BƯỚC 2: PHÂN TÍCH CHI PHÍ CHĂM SÓC (02_service_cost)      */}
+      {/* MÀN HÌNH 2: PHÂN TÍCH CHI PHÍ (02_service_cost_breakdown)  */}
       {/* ========================================================= */}
       {step === 2 && (
         <div>
-          {/* Hero Banner Tổng Quan */}
+          {/* Cost_Overview (Banner teal đậm) */}
           <div style={{
             width: '100%',
             borderRadius: '24px',
-            background: 'linear-gradient(135deg, #0D766E 0%, #0F4C45 100%)',
+            backgroundColor: '#0D766E',
             padding: '22px 20px',
             color: '#FFFFFF',
             marginBottom: '20px',
             boxShadow: '0 6px 20px rgba(13, 118, 110, 0.2)'
           }}>
-            <div style={{ fontSize: '11px', fontWeight: 800, color: '#CCFBF1', letterSpacing: '0.6px', marginBottom: '6px' }}>
+            <div style={{ fontSize: '11px', fontWeight: 700, color: '#CCFBF1', letterSpacing: '0.6px', marginBottom: '6px' }}>
               TỔNG QUAN
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '8px' }}>
-              <div style={{ fontSize: '22px', fontWeight: 800 }}>Chăm sóc Miu</div>
-              <div style={{ fontSize: '24px', fontWeight: 800, color: '#CCFBF1' }}>250.000đ</div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+              <span style={{ fontSize: '20px', fontWeight: 800 }}>Chăm sóc Miu</span>
+              <span style={{ fontSize: '20px', fontWeight: 800, color: '#CCFBF1' }}>250.000đ</span>
             </div>
-            <div style={{ fontSize: '12px', color: '#CCFBF1' }}>
-              Minh bạch từng hạng mục · Không phát sinh phụ phí
+            <div style={{ fontSize: '11px', color: '#CCFBF1' }}>
+              Minh bạch từng hạng mục · Khớp báo giá tiếp nhận
             </div>
           </div>
 
           <div style={{ fontSize: '11px', fontWeight: 800, color: '#64748B', letterSpacing: '0.6px', marginBottom: '12px' }}>
-            PHÂN BỔ CHI TIẾT
+            PHÂN BỔ
           </div>
 
-          {/* Danh mục chi phí phân bổ */}
+          {/* Cost_Bars: Khối phân bổ 3 dòng thực tế */}
           <div style={{
+            width: '100%',
+            borderRadius: '24px',
             backgroundColor: '#FFFFFF',
-            borderRadius: '22px',
             border: '1.5px solid #E2E8F0',
-            padding: '16px 20px',
+            padding: '20px',
             marginBottom: '16px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '14px'
+            gap: '16px'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #F1F5F9', paddingBottom: '10px' }}>
-              <div>
-                <div style={{ fontSize: '14px', fontWeight: 800, color: '#0F172A' }}>Tắm vệ sinh thảo dược</div>
-                <div style={{ fontSize: '11px', color: '#64748B' }}>Dầu tắm dịu nhẹ chuyên mèo</div>
+            {/* Dòng 1: Tắm vệ sinh */}
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                <span style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A' }}>Tắm vệ sinh</span>
+                <span style={{ fontSize: '13px', fontWeight: 800, color: '#0D766E' }}>180.000đ</span>
               </div>
-              <strong style={{ fontSize: '14px', color: '#0F172A' }}>180.000đ</strong>
+              <div style={{ height: '8px', borderRadius: '4px', backgroundColor: '#F0FDFA', overflow: 'hidden' }}>
+                <div style={{ width: '72%', height: '100%', backgroundColor: '#0D766E', borderRadius: '4px' }} />
+              </div>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #F1F5F9', paddingBottom: '10px' }}>
-              <div>
-                <div style={{ fontSize: '14px', fontWeight: 800, color: '#0F172A' }}>Vệ sinh tai & cắt móng</div>
-                <div style={{ fontSize: '11px', color: '#64748B' }}>Thao tác êm, chống căng thẳng</div>
+            {/* Dòng 2: Chăm sóc nhẹ */}
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                <span style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A' }}>Chăm sóc nhẹ</span>
+                <span style={{ fontSize: '13px', fontWeight: 800, color: '#D97706' }}>50.000đ</span>
               </div>
-              <strong style={{ fontSize: '14px', color: '#0F172A' }}>50.000đ</strong>
+              <div style={{ height: '8px', borderRadius: '4px', backgroundColor: '#FFFBEB', overflow: 'hidden' }}>
+                <div style={{ width: '20%', height: '100%', backgroundColor: '#D97706', borderRadius: '4px' }} />
+              </div>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <div style={{ fontSize: '14px', fontWeight: 800, color: '#0F172A' }}>Buồng sấy êm ái A-02</div>
-                <div style={{ fontSize: '11px', color: '#64748B' }}>Nhiệt độ 24.5°C · Âm lượng 28dB</div>
+            {/* Dòng 3: Hạng mục khác */}
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                <span style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A' }}>Hạng mục khác</span>
+                <span style={{ fontSize: '13px', fontWeight: 700, color: '#64748B' }}>20.000đ</span>
               </div>
-              <strong style={{ fontSize: '14px', color: '#0F172A' }}>20.000đ</strong>
+              <div style={{ height: '8px', borderRadius: '4px', backgroundColor: '#F1F5F9', overflow: 'hidden' }}>
+                <div style={{ width: '8%', height: '100%', backgroundColor: '#94A3B8', borderRadius: '4px' }} />
+              </div>
             </div>
           </div>
 
-          {/* Thẻ Đối Chiếu Dễ Dàng */}
+          {/* Transparent_Note (Đối chiếu dễ dàng) */}
           <div style={{
             width: '100%',
-            backgroundColor: '#F0FDFA',
+            height: '58px',
             borderRadius: '20px',
-            border: '1.5px solid #CCFBF1',
-            padding: '14px 18px',
+            backgroundColor: '#F0FDFA',
+            border: '1.5px solid #99F6E4',
+            padding: '0 18px',
             display: 'flex',
             alignItems: 'center',
-            gap: '10px',
+            gap: '12px',
             marginBottom: '26px'
           }}>
             <span style={{
@@ -316,13 +354,12 @@ export const Persona2Goal3Flow: React.FC<Persona2Goal3FlowProps> = ({
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: '13px',
-              fontWeight: 800,
-              flexShrink: 0
+              fontWeight: 800
             }}>
               ✓
             </span>
-            <span style={{ fontSize: '13px', fontWeight: 700, color: '#0F4C45' }}>
-              Đối chiếu dễ dàng · Khớp 100% với báo giá ban đầu
+            <span style={{ fontSize: '12px', fontWeight: 800, color: '#0F4C45' }}>
+              Đối chiếu dễ dàng
             </span>
           </div>
 
@@ -351,131 +388,151 @@ export const Persona2Goal3Flow: React.FC<Persona2Goal3FlowProps> = ({
       )}
 
       {/* ========================================================= */}
-      {/* BƯỚC 3: HÓA ĐƠN ĐIỆN TỬ CỦA MIU (03_digital_invoice)       */}
+      {/* MÀN HÌNH 3: HÓA ĐƠN ĐIỆN TỬ (03_digital_invoice.svg)       */}
       {/* ========================================================= */}
       {step === 3 && (
         <div>
-          {/* Phiếu Hóa Đơn Điện Tử */}
+          {/* Tờ Hóa Đơn Điện Tử Thực Sự Đầy Đủ Thông Tin */}
           <div style={{
             width: '100%',
+            maxWidth: '360px',
+            margin: '0 auto 18px auto',
             borderRadius: '24px',
             backgroundColor: '#FFFFFF',
             border: '1.5px solid #CBD5E1',
             padding: '22px 20px',
-            marginBottom: '16px',
-            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.06)'
+            boxShadow: '0 6px 18px rgba(0, 0, 0, 0.05)',
+            position: 'relative'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px dashed #CBD5E1', paddingBottom: '12px', marginBottom: '14px' }}>
-              <div>
-                <div style={{ fontSize: '16px', fontWeight: 800, color: '#0F172A' }}>
-                  Phiếu chăm sóc Miu
-                </div>
-                <div style={{ fontSize: '11px', color: '#64748B' }}>
-                  Mã HĐ: #INV-MIU-8902 · 28/08/2026
+            {/* Header phiếu */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px dashed #CBD5E1', paddingBottom: '14px', marginBottom: '14px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '18px' }}>🧾</span>
+                <div>
+                  <div style={{ fontSize: '14px', fontWeight: 800, color: '#0F172A' }}>
+                    Phiếu chăm sóc Miu
+                  </div>
+                  <div style={{ fontSize: '10px', color: '#64748B' }}>
+                    #HD-2026-0828 · 28/08/2026
+                  </div>
                 </div>
               </div>
               <span style={{
                 backgroundColor: '#F0FDF4',
                 color: '#166534',
-                fontSize: '10px',
+                fontSize: '9px',
                 fontWeight: 800,
-                padding: '4px 8px',
+                padding: '3px 8px',
                 borderRadius: '8px'
               }}>
-                HỢP LỆ ✓
+                HỢP LỆ
               </span>
             </div>
 
-            <div style={{ fontSize: '12px', color: '#475569', lineHeight: 1.6, marginBottom: '16px' }}>
+            {/* Chi tiết nội dung hóa đơn thực tế */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '12px', color: '#475569', marginBottom: '16px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span>Khách hàng:</span>
-                <strong>Minh Khoa</strong>
+                <strong style={{ color: '#0F172A' }}>Minh Khoa</strong>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span>Thú cưng:</span>
-                <strong>Miu (Mèo Anh lông ngắn)</strong>
+                <strong style={{ color: '#0F172A' }}>Miu (Mèo Anh lông ngắn)</strong>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>Đơn vị thực hiện:</span>
-                <span>PetCare Pro HCMUS</span>
+                <span>Kỹ thuật viên:</span>
+                <span>Bảo Trâm (Buồng A-02)</span>
               </div>
             </div>
 
-            <div style={{ borderTop: '1px solid #F1F5F9', borderBottom: '1px solid #F1F5F9', padding: '12px 0', marginBottom: '16px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', marginBottom: '6px' }}>
-                <span>Gói dịch vụ chính</span>
-                <span>231.481đ</span>
+            {/* Bảng hạng mục tính tiền */}
+            <div style={{
+              backgroundColor: '#F8FAFC',
+              borderRadius: '14px',
+              padding: '12px 14px',
+              marginBottom: '16px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '6px',
+              fontSize: '12px'
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>1. Tắm vệ sinh thảo dược</span>
+                <strong style={{ color: '#0F172A' }}>180.000đ</strong>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
-                <span>Thuế VAT (8%)</span>
-                <span>18.519đ</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>2. Vệ sinh tai & cắt móng</span>
+                <strong style={{ color: '#0F172A' }}>50.000đ</strong>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>3. Buồng sấy êm ái</span>
+                <strong style={{ color: '#0F172A' }}>20.000đ</strong>
+              </div>
+              <div style={{ borderTop: '1px dashed #E2E8F0', paddingTop: '8px', marginTop: '4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <strong style={{ fontSize: '13px', color: '#0F172A' }}>Tổng cộng:</strong>
+                <strong style={{ fontSize: '17px', color: '#0D766E' }}>250.000đ</strong>
               </div>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-              <span style={{ fontSize: '15px', fontWeight: 800, color: '#0F172A' }}>TỔNG THANH TOÁN</span>
-              <span style={{ fontSize: '20px', fontWeight: 800, color: '#0D766E' }}>250.000đ</span>
-            </div>
-
-            {/* Badge Đã Lưu An Toàn */}
+            {/* Digital_Seal (Con dấu số an toàn) */}
             <div style={{
               backgroundColor: '#F0FDF4',
-              borderRadius: '14px',
-              padding: '10px 14px',
+              borderRadius: '16px',
+              padding: '12px 14px',
               textAlign: 'center',
               border: '1px solid #BBF7D0'
             }}>
-              <div style={{ fontSize: '12px', fontWeight: 800, color: '#166534' }}>
+              <div style={{ fontSize: '12px', fontWeight: 800, color: '#166534', marginBottom: '2px' }}>
                 ĐÃ LƯU AN TOÀN
               </div>
-              <div style={{ fontSize: '11px', color: '#64748B' }}>
-                Không phai mực · Không thất lạc
+              <div style={{ fontSize: '10px', color: '#64748B' }}>
+                Không phai · Không thất lạc
               </div>
             </div>
           </div>
 
-          {/* 2 Nút Tiện Ích: Tải PDF & Chia sẻ */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '24px' }}>
+          {/* 2 Nút Tiện Ích: Tải bản lưu & Chia sẻ */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '24px' }}>
             <button
               type="button"
               onClick={handleDownload}
               style={{
-                height: '46px',
-                borderRadius: '14px',
+                height: '54px',
+                borderRadius: '16px',
                 backgroundColor: '#FFFFFF',
                 border: '1.5px solid #0D766E',
                 color: '#0D766E',
-                fontSize: '13px',
-                fontWeight: 700,
+                fontSize: '12px',
+                fontWeight: 800,
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '6px'
+                boxShadow: '0 2px 6px rgba(13, 118, 110, 0.08)'
               }}
             >
-              <span>{downloadSuccess ? '✓ Đã tải PDF' : '📥 Tải bản lưu (PDF)'}</span>
+              <span>{downloadSuccess ? '✓ Đã tải PDF' : 'Tải bản lưu'}</span>
             </button>
 
             <button
               type="button"
               onClick={handleShare}
               style={{
-                height: '46px',
-                borderRadius: '14px',
+                height: '54px',
+                borderRadius: '16px',
                 backgroundColor: '#FFFFFF',
-                border: '1.5px solid #CBD5E1',
-                color: '#475569',
-                fontSize: '13px',
-                fontWeight: 700,
+                border: '1.5px solid #E2E8F0',
+                color: '#64748B',
+                fontSize: '12px',
+                fontWeight: 800,
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '6px'
+                boxShadow: '0 2px 6px rgba(0, 0, 0, 0.02)'
               }}
             >
-              <span>{shareSuccess ? '✓ Đã sao chép' : '📤 Chia sẻ'}</span>
+              <span>{shareSuccess ? '✓ Đã sao chép' : 'Chia sẻ'}</span>
             </button>
           </div>
 
@@ -504,41 +561,41 @@ export const Persona2Goal3Flow: React.FC<Persona2Goal3FlowProps> = ({
       )}
 
       {/* ========================================================= */}
-      {/* BƯỚC 4: TỔNG CHI TIÊU THÁNG (04_monthly_expense)          */}
+      {/* MÀN HÌNH 4: CHI TIÊU THÁNG (04_monthly_expense_summary)     */}
       {/* ========================================================= */}
       {step === 4 && (
         <div>
-          {/* Thẻ Ngân Sách Miu */}
+          {/* Monthly_Hero */}
           <div style={{
             width: '100%',
             borderRadius: '24px',
             backgroundColor: '#FFFFFF',
-            border: '1.5px solid #E2E8F0',
+            border: '1.5px solid #CCFBF1',
             padding: '18px 20px',
             marginBottom: '16px',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)'
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.03)'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-              <span style={{ fontSize: '17px', fontWeight: 800, color: '#0F172A' }}>
+              <span style={{ fontSize: '16px', fontWeight: 800, color: '#0F172A' }}>
                 Ngân sách của Miu
               </span>
               <span style={{
                 backgroundColor: '#F0FDF4',
                 color: '#166534',
-                fontSize: '10px',
+                fontSize: '9px',
                 fontWeight: 800,
-                padding: '3px 10px',
+                padding: '3px 8px',
                 borderRadius: '8px'
               }}>
                 TRONG KẾ HOẠCH
               </span>
             </div>
-            <div style={{ fontSize: '12px', color: '#64748B' }}>
-              Theo dõi định kỳ · Tháng này: <strong>500.000đ</strong> (2 lượt)
+            <div style={{ fontSize: '11px', color: '#64748B' }}>
+              Theo dõi định kỳ
             </div>
           </div>
 
-          {/* Biểu Đồ Cột Xu Hướng (Chart tương tác sống động) */}
+          {/* Monthly_Chart: BIỂU ĐỒ ĐƯỜNG (LINE / AREA CHART CHUẨN SVG) */}
           <div style={{
             width: '100%',
             borderRadius: '24px',
@@ -547,93 +604,106 @@ export const Persona2Goal3Flow: React.FC<Persona2Goal3FlowProps> = ({
             padding: '20px',
             marginBottom: '16px'
           }}>
-            <div style={{ fontSize: '11px', fontWeight: 800, color: '#64748B', letterSpacing: '0.6px', marginBottom: '18px' }}>
-              XU HƯỚNG CHI TIÊU (5 THÁNG GẦN ĐÂY)
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+              <span style={{ fontSize: '11px', fontWeight: 800, color: '#64748B', letterSpacing: '0.6px' }}>
+                XU HƯỚNG
+              </span>
+              <span style={{ fontSize: '12px', fontWeight: 800, color: '#0D766E' }}>
+                {selectedMonth}: {expenseData[selectedMonth].cost}
+              </span>
             </div>
 
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'flex-end',
-              height: '140px',
-              padding: '0 8px 10px 8px',
-              borderBottom: '1px solid #F1F5F9',
-              marginBottom: '12px'
-            }}>
-              {/* T1 */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <span style={{ fontSize: '10px', color: '#64748B' }}>450k</span>
-                <div style={{ width: '36px', height: '80px', backgroundColor: '#E2E8F0', borderRadius: '8px 8px 0 0' }} />
-                <span style={{ fontSize: '11px', fontWeight: 700, color: '#64748B' }}>T1</span>
-              </div>
+            {/* Biểu đồ SVG đường chuẩn xác theo tọa độ trong prototype */}
+            <div style={{ width: '100%', height: '170px', position: 'relative' }}>
+              <svg viewBox="0 0 390 170" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
+                {/* Lưới tọa độ xám mờ */}
+                <line x1="30" y1="140" x2="360" y2="140" stroke="#CBD5E1" strokeWidth="1" />
+                <line x1="30" y1="20" x2="30" y2="140" stroke="#CBD5E1" strokeWidth="1" />
 
-              {/* T2 */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <span style={{ fontSize: '10px', color: '#64748B' }}>480k</span>
-                <div style={{ width: '36px', height: '90px', backgroundColor: '#E2E8F0', borderRadius: '8px 8px 0 0' }} />
-                <span style={{ fontSize: '11px', fontWeight: 700, color: '#64748B' }}>T2</span>
-              </div>
+                {/* Vùng diện tích mờ dưới đường (Area fill) */}
+                <path
+                  d="M50 110 L 120 75 L 190 95 L 260 30 L 335 50 L 335 140 L 50 140 Z"
+                  fill="#CCFBF1"
+                  opacity="0.6"
+                />
 
-              {/* T3 */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <span style={{ fontSize: '10px', color: '#64748B' }}>450k</span>
-                <div style={{ width: '36px', height: '80px', backgroundColor: '#E2E8F0', borderRadius: '8px 8px 0 0' }} />
-                <span style={{ fontSize: '11px', fontWeight: 700, color: '#64748B' }}>T3</span>
-              </div>
+                {/* Đường biểu đồ (Line chart stroke) */}
+                <path
+                  d="M50 110 L 120 75 L 190 95 L 260 30 L 335 50"
+                  fill="none"
+                  stroke="#0D766E"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
 
-              {/* T4 */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <span style={{ fontSize: '10px', color: '#64748B' }}>520k</span>
-                <div style={{ width: '36px', height: '105px', backgroundColor: '#E2E8F0', borderRadius: '8px 8px 0 0' }} />
-                <span style={{ fontSize: '11px', fontWeight: 700, color: '#64748B' }}>T4</span>
-              </div>
+                {/* 5 Điểm tròn trên đường (Data Points) */}
+                {[
+                  { id: 'T1', cx: 50, cy: 110 },
+                  { id: 'T2', cx: 120, cy: 75 },
+                  { id: 'T3', cx: 190, cy: 95 },
+                  { id: 'T4', cx: 260, cy: 30 },
+                  { id: 'NAY', cx: 335, cy: 50 }
+                ].map((pt) => {
+                  const isSelected = selectedMonth === pt.id;
+                  return (
+                    <g key={pt.id} onClick={() => setSelectedMonth(pt.id as any)} style={{ cursor: 'pointer' }}>
+                      <circle
+                        cx={pt.cx}
+                        cy={pt.cy}
+                        r={isSelected ? 8 : 6}
+                        fill={isSelected ? '#0D766E' : '#FFFFFF'}
+                        stroke="#0D766E"
+                        strokeWidth={isSelected ? 3 : 2}
+                      />
+                      {isSelected && (
+                        <circle cx={pt.cx} cy={pt.cy} r={13} fill="#0D766E" opacity="0.15" />
+                      )}
+                    </g>
+                  );
+                })}
 
-              {/* NAY */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <span style={{ fontSize: '11px', fontWeight: 800, color: '#0D766E' }}>500k</span>
-                <div style={{
-                  width: '36px',
-                  height: '100px',
-                  backgroundColor: '#0D766E',
-                  borderRadius: '8px 8px 0 0',
-                  boxShadow: '0 4px 10px rgba(13, 118, 110, 0.25)'
-                }} />
-                <span style={{ fontSize: '11px', fontWeight: 800, color: '#0D766E' }}>NAY</span>
-              </div>
+                {/* Nhãn trục hoành */}
+                <text x="50" y="160" textAnchor="middle" fill="#64748B" fontSize="11" fontWeight={selectedMonth === 'T1' ? '800' : '500'}>T1</text>
+                <text x="120" y="160" textAnchor="middle" fill="#64748B" fontSize="11" fontWeight={selectedMonth === 'T2' ? '800' : '500'}>T2</text>
+                <text x="190" y="160" textAnchor="middle" fill="#64748B" fontSize="11" fontWeight={selectedMonth === 'T3' ? '800' : '500'}>T3</text>
+                <text x="260" y="160" textAnchor="middle" fill="#64748B" fontSize="11" fontWeight={selectedMonth === 'T4' ? '800' : '500'}>T4</text>
+                <text x="335" y="160" textAnchor="middle" fill="#0D766E" fontSize="12" fontWeight="800">NAY</text>
+              </svg>
             </div>
 
-            <div style={{ fontSize: '11px', color: '#64748B', textAlign: 'center' }}>
-              Mức chi tiêu trung bình: <strong>480.000đ / tháng</strong>
+            <div style={{ textAlign: 'center', marginTop: '10px', fontSize: '11px', color: '#64748B' }}>
+              Chi tiết: <strong>{expenseData[selectedMonth].note}</strong>
             </div>
           </div>
 
-          {/* 2 Ô Giá Trị Song Song */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '26px' }}>
+          {/* Monthly_Insights (2 ô song song: Dễ theo dõi & Chủ động) */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '24px' }}>
             <div style={{
-              backgroundColor: '#F8FAFC',
+              backgroundColor: '#F0FDFA',
               borderRadius: '20px',
-              border: '1.5px solid #E2E8F0',
+              border: '1.5px solid #CCFBF1',
               padding: '16px'
             }}>
-              <div style={{ fontSize: '14px', fontWeight: 800, color: '#0F172A', marginBottom: '4px' }}>
+              <div style={{ fontSize: '11px', fontWeight: 800, color: '#0F172A', marginBottom: '4px' }}>
                 Dễ theo dõi
               </div>
-              <div style={{ fontSize: '11px', color: '#64748B' }}>
-                Phân loại rành mạch theo từng tháng
+              <div style={{ fontSize: '9px', color: '#64748B' }}>
+                Theo từng tháng
               </div>
             </div>
 
             <div style={{
-              backgroundColor: '#F8FAFC',
+              backgroundColor: '#FFF7ED',
               borderRadius: '20px',
-              border: '1.5px solid #E2E8F0',
+              border: '1.5px solid #FED7AA',
               padding: '16px'
             }}>
-              <div style={{ fontSize: '14px', fontWeight: 800, color: '#0F172A', marginBottom: '4px' }}>
+              <div style={{ fontSize: '11px', fontWeight: 800, color: '#0F172A', marginBottom: '4px' }}>
                 Chủ động
               </div>
-              <div style={{ fontSize: '11px', color: '#64748B' }}>
-                Cân đối sinh hoạt tài chính cá nhân
+              <div style={{ fontSize: '9px', color: '#64748B' }}>
+                Cân đối sinh hoạt
               </div>
             </div>
           </div>
@@ -663,111 +733,140 @@ export const Persona2Goal3Flow: React.FC<Persona2Goal3FlowProps> = ({
       )}
 
       {/* ========================================================= */}
-      {/* BƯỚC 5: KẾ HOẠCH THÁNG TỚI (05_next_month_budget_plan)    */}
+      {/* MÀN HÌNH 5: KẾ HOẠCH THÁNG TỚI (05_next_month_budget_plan)  */}
       {/* ========================================================= */}
       {step === 5 && (
         <div>
-          {/* Hero Banner Mục Tiêu */}
+          {/* Plan_Hero (Banner teal) */}
           <div style={{
             width: '100%',
             borderRadius: '24px',
-            background: 'linear-gradient(135deg, #0D766E 0%, #0F4C45 100%)',
-            padding: '22px 20px',
+            backgroundColor: '#0D766E',
+            padding: '24px 20px',
             color: '#FFFFFF',
             marginBottom: '20px',
             boxShadow: '0 6px 20px rgba(13, 118, 110, 0.2)'
           }}>
-            <div style={{ fontSize: '11px', fontWeight: 800, color: '#CCFBF1', letterSpacing: '0.6px', marginBottom: '6px' }}>
+            <div style={{ fontSize: '11px', fontWeight: 700, color: '#CCFBF1', letterSpacing: '0.6px', marginBottom: '6px' }}>
               MỤC TIÊU
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '8px' }}>
-              <div style={{ fontSize: '20px', fontWeight: 800 }}>Chăm Miu chủ động</div>
-              <div style={{ fontSize: '24px', fontWeight: 800, color: '#CCFBF1' }}>550.000đ</div>
+            <div style={{ fontSize: '18px', fontWeight: 800, marginBottom: '6px' }}>
+              Chăm Miu chủ động
             </div>
-            <div style={{ fontSize: '12px', color: '#CCFBF1' }}>
-              Không ảnh hưởng sinh hoạt tài chính cá nhân
+            <div style={{ fontSize: '11px', color: '#CCFBF1' }}>
+              Không ảnh hưởng sinh hoạt
             </div>
           </div>
 
           <div style={{ fontSize: '11px', fontWeight: 800, color: '#64748B', letterSpacing: '0.6px', marginBottom: '12px' }}>
-            PHÂN BỔ DỰ KIẾN (THÁNG 09/2026)
+            PHÂN BỔ DỰ KIẾN
           </div>
 
-          {/* Biểu đồ phân bổ tỷ lệ ngân sách */}
-          <div style={{
-            backgroundColor: '#FFFFFF',
-            borderRadius: '22px',
-            border: '1.5px solid #E2E8F0',
-            padding: '18px 20px',
-            marginBottom: '16px'
-          }}>
-            {/* Thanh thanh tỷ lệ màu */}
-            <div style={{
-              display: 'flex',
-              height: '14px',
-              borderRadius: '7px',
-              overflow: 'hidden',
-              marginBottom: '16px'
-            }}>
-              <div style={{ width: '60%', backgroundColor: '#0D766E' }} title="Định kỳ 60%" />
-              <div style={{ width: '25%', backgroundColor: '#D97706' }} title="Dự phòng 25%" />
-              <div style={{ width: '15%', backgroundColor: '#94A3B8' }} title="Khác 15%" />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#0D766E' }} />
-                  <span>Chăm sóc định kỳ (60%)</span>
-                </div>
-                <strong>330.000đ</strong>
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#D97706' }} />
-                  <span>Khoản dự phòng (25%)</span>
-                </div>
-                <strong>140.000đ</strong>
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#94A3B8' }} />
-                  <span>Phần còn lại (15%)</span>
-                </div>
-                <strong style={{ color: '#64748B' }}>80.000đ</strong>
-              </div>
-            </div>
-          </div>
-
-          {/* Thẻ Cam Kết */}
+          {/* Plan_Allocation: BIỂU ĐỒ TRÒN (DONUT CHART) BÊN TRÁI + CHÚ THÍCH BÊN PHẢI */}
           <div style={{
             width: '100%',
+            borderRadius: '24px',
+            backgroundColor: '#FFFFFF',
+            border: '1.5px solid #E2E8F0',
+            padding: '20px',
+            marginBottom: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '16px'
+          }}>
+            {/* Biểu đồ Donut Chart SVG chuẩn */}
+            <div style={{ width: '130px', height: '130px', position: 'relative', flexShrink: 0 }}>
+              <svg viewBox="0 0 140 140" style={{ width: '100%', height: '100%' }}>
+                {/* Vòng tròn nền xám */}
+                <circle cx="70" cy="70" r="50" fill="none" stroke="#E2E8F0" strokeWidth="16" />
+
+                {/* Cung 1: Chăm sóc định kỳ (60% - màu #0D766E) */}
+                <circle
+                  cx="70"
+                  cy="70"
+                  r="50"
+                  fill="none"
+                  stroke="#0D766E"
+                  strokeWidth="16"
+                  strokeDasharray="188 314"
+                  strokeDashoffset="0"
+                  strokeLinecap="round"
+                />
+
+                {/* Cung 2: Khoản dự phòng (25% - màu #E06236) */}
+                <circle
+                  cx="70"
+                  cy="70"
+                  r="50"
+                  fill="none"
+                  stroke="#E06236"
+                  strokeWidth="16"
+                  strokeDasharray="78 314"
+                  strokeDashoffset="-195"
+                  strokeLinecap="round"
+                />
+
+                {/* Tâm tròn trắng & Dấu checkmark xanh */}
+                <circle cx="70" cy="70" r="28" fill="#FFFFFF" />
+                <path d="M62 70 l6 6 13-14" fill="none" stroke="#166534" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+
+            {/* Chú thích 3 dòng bên phải */}
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#0D766E' }} />
+                  <span style={{ fontSize: '12px', fontWeight: 800, color: '#0F172A' }}>Chăm sóc định kỳ</span>
+                </div>
+                <div style={{ fontSize: '10px', color: '#64748B', marginLeft: '14px' }}>60% · 2 lượt tắm</div>
+              </div>
+
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#E06236' }} />
+                  <span style={{ fontSize: '12px', fontWeight: 800, color: '#0F172A' }}>Khoản dự phòng</span>
+                </div>
+                <div style={{ fontSize: '10px', color: '#64748B', marginLeft: '14px' }}>25% · Dự trữ sức khỏe</div>
+              </div>
+
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#CBD5E1' }} />
+                  <span style={{ fontSize: '12px', fontWeight: 600, color: '#64748B' }}>Phần còn lại</span>
+                </div>
+                <div style={{ fontSize: '10px', color: '#94A3B8', marginLeft: '14px' }}>15% · Linh hoạt</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Plan_Checklist (Kế hoạch cân đối) */}
+          <div style={{
+            width: '100%',
+            borderRadius: '24px',
             backgroundColor: '#F0FDF4',
-            borderRadius: '20px',
             border: '1.5px solid #BBF7D0',
             padding: '16px 20px',
             marginBottom: '26px'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-              <span style={{ fontSize: '15px', fontWeight: 800, color: '#166534' }}>
-                Kế hoạch cân đối
-              </span>
-              <span style={{
-                backgroundColor: '#DCFCE7',
-                color: '#166534',
-                fontSize: '10px',
-                fontWeight: 800,
-                padding: '3px 8px',
-                borderRadius: '8px'
-              }}>
-                SẴN SÀNG CHO THÁNG TỚI
-              </span>
+            <div style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A', marginBottom: '2px' }}>
+              Kế hoạch cân đối
             </div>
-            <div style={{ fontSize: '12px', color: '#64748B' }}>
-              Dựa trên lịch sử chi tiêu thực tế đã lưu của Miu
+            <div style={{ fontSize: '10px', color: '#64748B', marginBottom: '10px' }}>
+              Dựa trên lịch sử đã lưu
             </div>
+            <span style={{
+              backgroundColor: '#DCFCE7',
+              color: '#166534',
+              fontSize: '10px',
+              fontWeight: 800,
+              padding: '4px 10px',
+              borderRadius: '8px',
+              display: 'inline-block'
+            }}>
+              SẴN SÀNG CHO THÁNG TỚI
+            </span>
           </div>
 
           <button
@@ -787,10 +886,10 @@ export const Persona2Goal3Flow: React.FC<Persona2Goal3FlowProps> = ({
               alignItems: 'center',
               justifyContent: 'center',
               boxShadow: '0 4px 14px rgba(13, 118, 110, 0.25)',
-              marginBottom: '12px'
+              marginBottom: '10px'
             }}
           >
-            <span>{savePlanSuccess ? '✓ Đã lưu kế hoạch ngân sách!' : 'Lưu kế hoạch'}</span>
+            <span>{savePlanSuccess ? '✓ Đã lưu kế hoạch!' : 'Lưu kế hoạch'}</span>
           </button>
 
           <button
@@ -802,7 +901,7 @@ export const Persona2Goal3Flow: React.FC<Persona2Goal3FlowProps> = ({
               borderRadius: '14px',
               backgroundColor: '#F8FAFC',
               color: '#64748B',
-              fontSize: '14px',
+              fontSize: '13px',
               fontWeight: 700,
               border: '1px solid #E2E8F0',
               cursor: 'pointer'
