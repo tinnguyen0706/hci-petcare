@@ -1,0 +1,53 @@
+% Slide 7: [Rubric Mục 6 - 10%] Wireframe - Khung Giao Diện Toàn Diện
+\begin{frame}{Mục 6: Wireframe -- Khung Giao Diện Toàn Diện}
+  \framesubtitle{\color{PetcareSecondary}\textbf{[Rubric: 10\%] Giống giao diện thật $\bullet$ Chi tiết \& Màu sắc hài hòa $\bullet$ Bao phủ 5 UI States}}
+
+  \begin{columns}[T]
+    % Cột trái: Kiến trúc thông tin & 5 UI States
+    \begin{column}{0.50\textwidth}
+      \begin{block}{\footnotesize \textbf{Kiến trúc thông tin \& Hệ thống Design Tokens}}
+        \tiny
+        $\bullet$ \textbf{Quy chuẩn Mobile-first:} 32 màn hình vector SVG tỉ lệ chuẩn iPhone 14 Pro Max ($430 \times 932\text{px}$) vẽ bằng công cụ chuyên dụng.\\
+        $\bullet$ \textbf{Màu sắc hài hòa:} Navy \texttt{\#173B72} tin cậy, Teal \texttt{\#0D9488} năng động, Red \texttt{\#DC2626} cảnh báo dị ứng y tế, Amber \texttt{\#D97706} nhắc nhở.\\
+        $\bullet$ \textbf{4 Phân hệ Flat IA:} Trang chủ $\bullet$ Đặt lịch $\bullet$ Tiến độ $\bullet$ Hồ sơ.
+      \end{block}
+
+      \vspace{-1mm}
+      \begin{exampleblock}{\footnotesize \textbf{Bao phủ trọn vẹn 5 Trạng thái giao diện (UI States)}}
+        \tiny
+        \begin{itemize}
+          \setlength\itemsep{0.5mm}
+          \item \textbf{Ideal State:} Ma trận giờ trực quan, dữ liệu hiển thị hoàn chỉnh.
+          \item \textbf{Loading State:} Skeleton Loading chống giật layout khi tải.
+          \item \textbf{Empty State:} Minh họa thân thiện kèm nút CTA bắt đầu đặt lịch.
+          \item \textbf{Error/Conflict State:} Cảnh báo dị ứng \& mã QR cứu hộ offline.
+          \item \textbf{Success State:} Chúc mừng kèm mã đặt lịch và QR tiếp nhận.
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+
+    % Cột phải: 3 Màn hình Wireframe trực quan
+    \begin{column}{0.48\textwidth}
+      \centering
+      \begin{columns}[c]
+        \begin{column}{0.32\textwidth}
+          \centering
+          \includegraphics[height=4.3cm, keepaspectratio]{img/wf_01_home.png}\\[0.5mm]
+          {\tiny \textbf{Trang chủ}}
+        \end{column}
+        \begin{column}{0.32\textwidth}
+          \centering
+          \includegraphics[height=4.3cm, keepaspectratio]{img/wf_05_timeslot.png}\\[0.5mm]
+          {\tiny \textbf{Ma trận giờ}}
+        \end{column}
+        \begin{column}{0.32\textwidth}
+          \centering
+          \includegraphics[height=4.3cm, keepaspectratio]{img/wf_15_tracking.png}\\[0.5mm]
+          {\tiny \textbf{Live Tracking}}
+        \end{column}
+      \end{columns}
+      \vspace{1mm}
+      {\tiny \color{PetcareDark}\textbf{Đánh giá Rubric:} Chi tiết, thẩm mỹ cao, tiện dụng, dùng tool chuyên dụng.}
+    \end{column}
+  \end{columns}
+\end{frame}
