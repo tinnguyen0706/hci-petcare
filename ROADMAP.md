@@ -13,7 +13,7 @@ Tài liệu theo dõi **tiến độ thực tế** và **kế hoạch hành đ�
 | 3 | **Scenario 1 (Hiện tại)** | `01-user-research` | 🟢 Hoàn thành | Mô tả khó khăn của quy trình cũ (`scenario-current/`) |
 | 4 | **Scenario 2 (Mới)** | `01-user-research` | 🟢 Hoàn thành | Sáu Scenario Future theo hai Persona và ba Goal tại `scenario-future/` |
 | 5 | **Storyboard** | `02-interaction-design` | 🟢 Hoàn thành | Hai Storyboard có dữ liệu, chú thích và hình minh họa tại `storyboard/` |
-| 6 | **Wireframe** | `02-interaction-design` | 🟢 Hoàn thành | Toàn bộ 21 màn hình phân hệ và 5 màn hình trạng thái biên SVG cùng tài liệu đặc tả tại `deliverables/02-interaction-design/wireframe/` |
+| 6 | **Wireframe** | `02-interaction-design` | 🟢 Hoàn thành | Bộ 18 màn hình Wireframe bổ trợ (13 màn hình phân hệ và 5 màn hình trạng thái biên) tối giản theo nguyên tắc 'Người dùng không đọc', đồng bộ 100% phong cách với 35 màn hình Prototype tại `deliverables/02-interaction-design/wireframe/` |
 | 7 | **Prototype** | `02-interaction-design` | 🟢 Hoàn thành | Bộ màn hình Interactive Prototype SVG cho kịch bản mục tiêu tại `deliverables/02-interaction-design/prototype/`; người dùng tự import và kết nối trên Figma |
 | 8 | **Evaluation** | `02-interaction-design` | 🟢 Hoàn thành | Báo cáo Usability Testing, phân tích chỉ số thực nghiệm và đề xuất cải tiến tại `deliverables/02-interaction-design/evaluation/` |
 | 9 | **Software Product** | `03-software-product` | 🔴 Chưa bắt đầu | Web App React + TypeScript trong `src/` |
@@ -64,7 +64,7 @@ graph TD
 
 2. **Giai đoạn 2: Thiết kế Tương tác (`02-interaction-design`)**
    - Đã hoàn thành Storyboard cho `persona-1/goal-3` và `persona-2/goal-1`.
-   - Đã hoàn thành hệ thống **Wireframe** toàn diện (21 màn hình phân hệ và 5 màn hình trạng thái biên) cùng tài liệu đặc tả `wireframe-spec.md` dựa trên Storyboard và Scenario Future.
+   - Đã hoàn thành hệ thống **Wireframe** bổ trợ (18 màn hình: 13 màn hình phân hệ và 5 màn hình trạng thái biên) tối giản hóa theo nguyên tắc 'Người dùng không đọc', đồng bộ 100% phong cách thẩm mỹ với 35 Prototype hiện có cùng tài liệu đặc tả `wireframe-spec.md`.
    - Đã hoàn thành bộ **Prototype** SVG tương tác cao cho kịch bản mục tiêu kế thừa cấu trúc Wireframe; người dùng tự import và kết nối tương tác trên Figma.
 
 3. **Giai đoạn 3: Evaluation (`02-interaction-design/evaluation`)**
