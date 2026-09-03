@@ -1,102 +1,51 @@
 \newpage
 \appendix
-\section{Bảng Ma Trận Phân Công Công Việc 11 Giai Đoạn}
+\section{Ma trận Truy vết Bằng chứng}
 
-Bảng \ref{tab:workflow_assignment_matrix} trình bày chi tiết ma trận phân công trách nhiệm, vai trò chủ trì (Lead), phối hợp (Contributor), kiểm thử (Reviewer) và minh chứng artifact tương ứng cho 11 giai đoạn thực hiện đồ án môn học.
+Nhằm đảm bảo tính minh bạch, trung thực và khả năng kiểm chứng học thuật của đồ án, toàn bộ các nhận định (claim), quyết định thiết kế và chỉ số đánh giá trong báo cáo được truy vết trực tiếp về các bằng chứng (evidence) và artifact thực tế đã hoàn thành theo Bảng~\ref{tab:claim_evidence}.
 
 \begin{table}[H]
-  \centering
-  \scriptsize
-  \renewcommand{\arraystretch}{1.15}
-  \begin{tabularx}{\textwidth}{|c|X|c|m{2.2cm}|m{2.2cm}|m{2.2cm}|m{2.6cm}|}
-    \hline
-    \textbf{STT} & \textbf{Giai đoạn / Deliverable} & \textbf{Trọng số} & \textbf{Chủ trì (Lead)} & \textbf{Phối hợp (Contrib.)} & \textbf{Kiểm thử (Review)} & \textbf{Minh chứng Artifact} \\ \hline
-    1 & Khảo sát \& Dữ liệu nghiên cứu & --- & Lưu Ngô Quốc Bảo & Nguyễn Quốc Bảo & Nguyễn Trọng Tín & `data/user-research/` \\ \hline
-    2 & Persona (Chân dung người dùng) & 10\% & Nguyễn Trọng Tín & Lưu Ngô Quốc Bảo & Nguyễn Quốc Bảo & `deliverables/01-user-research/persona/` \\ \hline
-    3 & Value Proposition (Đề xuất giá trị) & 10\% & Nguyễn Quốc Bảo & Nguyễn Trọng Tín & Lưu Ngô Quốc Bảo & `deliverables/01-user-research/value-proposition/` \\ \hline
-    4 & Scenario As-Is (Kịch bản hiện tại) & 5\% & Lưu Ngô Quốc Bảo & Nguyễn Quốc Bảo & Nguyễn Trọng Tín & `deliverables/01-user-research/scenario-current/` \\ \hline
-    5 & Scenario To-Be (Kịch bản mới) & 5\% & Lưu Ngô Quốc Bảo & Nguyễn Trọng Tín & Nguyễn Quốc Bảo & `deliverables/01-user-research/scenario-future/` \\ \hline
-    6 & Storyboard (Bảng phân cảnh) & 10\% & Lưu Ngô Quốc Bảo & Nguyễn Quốc Bảo & Nguyễn Trọng Tín & `deliverables/02-interaction-design/storyboard/` \\ \hline
-    7 & Wireframe (Khung giao diện) & 10\% & Nguyễn Trọng Tín & Lưu Ngô Quốc Bảo & Nguyễn Quốc Bảo & `deliverables/02-interaction-design/wireframe/` \\ \hline
-    8 & Prototype (Bản mẫu tương tác) & 10\% & Nguyễn Quốc Bảo & Lưu Ngô Quốc Bảo & Nguyễn Trọng Tín & `deliverables/02-interaction-design/prototype/` \\ \hline
-    9 & Software Product (Sản phẩm phần mềm) & 10\% & Nguyễn Quốc Bảo & Nguyễn Trọng Tín & Lưu Ngô Quốc Bảo & `src/`, `deliverables/03-software-product/` \\ \hline
-    10 & Usability Evaluation (Đánh giá khả dụng) & 10\% & Nguyễn Trọng Tín & Nguyễn Quốc Bảo & Lưu Ngô Quốc Bảo & `data/evaluation/` \\ \hline
-    11 & Báo cáo \LaTeX{} \& Slide thuyết trình & 20\% & Lưu Ngô Quốc Bảo & Cả nhóm & Cả nhóm & `main.tex`, `appendix.tex`, `docs/` \\ \hline
-    12 & Teamwork (Điều phối \& Đồng thuận nhóm) & 10\% & Cả nhóm & Cả nhóm & Cả nhóm & Biên bản họp, Git graph \\ \hline
-  \end{tabularx}
-  \caption{Bảng Ma Trận Phân Công Công Việc 11 Giai Đoạn}
-  \label{tab:workflow_assignment_matrix}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{|c|>{\raggedright\arraybackslash}p{4.2cm}|>{\raggedright\arraybackslash}X|c|}
+\hline
+\textbf{STT} & \textbf{Nội dung / Luận điểm (Claim)} & \textbf{Nguồn bằng chứng (Artifact)} & \textbf{Trạng thái} \\ \hline
+1 & Phát biểu bài toán \& Bối cảnh đề tài & Tài liệu Proposal (\texttt{docs/proposal.md}) & Đã duyệt \\ \hline
+2 & Dữ liệu phỏng vấn sâu \& Khảo sát & 6 biên bản phỏng vấn (\texttt{data/user-research/}) & Thực tế \\ \hline
+3 & Chân dung người dùng (Persona 1 \& 2) & Bộ hồ sơ Persona (\texttt{01-user-research/persona/}) & Hoàn thành \\ \hline
+4 & Tuyên ngôn giá trị (Value Proposition) & 2 bản Canvas (\texttt{01-user-research/value-proposition/}) & Đối ứng 1--1 \\ \hline
+5 & Kịch bản quy trình hiện tại (As-Is) & 7 kịch bản (\texttt{01-user-research/scenario-current/}) & Hoàn thành \\ \hline
+6 & Kịch bản quy trình cải tiến (To-Be) & 7 kịch bản (\texttt{01-user-research/scenario-future/}) & Hoàn thành \\ \hline
+7 & Bảng phân cảnh trực quan (Storyboard) & 4 kịch bản đồ họa (\texttt{02-interaction-design/storyboard/}) & Hoàn thành \\ \hline
+8 & Bộ khung giao diện đa trạng thái & 32 bản vẽ Wireframe (\texttt{02-interaction-design/wireframe/}) & Hoàn thành \\ \hline
+9 & Bản mẫu tương tác độ nét cao & 20 màn hình Figma (\texttt{prototype/persona-1/}) & Hoàn thành \\ \hline
+10 & Dữ liệu kiểm thử tác vụ người dùng & 20 phiên đo lường (\texttt{data/evaluation/task\_metrics.csv}) & Số liệu thực \\ \hline
+11 & Khảo sát hài lòng Likert \& SUS & 5 bảng khảo sát (\texttt{data/evaluation/likert\_survey.csv}) & Số liệu thực \\ \hline
+12 & Sản phẩm phần mềm Web di động & Mã nguồn React (\texttt{src/}, \texttt{03-software-product/}) & Nghiệm thu \\ \hline
+\end{tabularx}
+\caption{Ma trận truy vết bằng chứng đồ án (Claim -- Evidence Traceability Matrix)}
+\label{tab:claim_evidence}
 \end{table}
 
 \newpage
-\section{Bảng Tổng Hợp Trách Nhiệm \& Tỷ Lệ Đóng Góp}
+\section{Bảng phân công và Đóng góp thành viên}
 
-Bảng \ref{tab:workload_balance_matrix} tổng hợp chi tiết vai trò chính, chi tiết nhiệm vụ chủ trì cụ thể và tỷ lệ đóng góp (Workload Balance) của từng thành viên trong nhóm theo tiêu chí đánh giá Teamwork của môn học.
-
-\begin{table}[H]
-  \centering
-  \footnotesize
-  \renewcommand{\arraystretch}{1.12}
-  \begin{tabularx}{\textwidth}{|l|l|m{3.0cm}|X|c|}
-    \hline
-    \textbf{MSSV} & \textbf{Họ và Tên} & \textbf{Vai trò chính} & \textbf{Chi tiết nhiệm vụ chủ trì} & \textbf{Tỷ lệ} \\ \hline
-    23127327 & Lưu Ngô Quốc Bảo & Lead UX Scenarios \& Documentation &
-    $\bullet$ Khảo sát thực tế \& Quản trị dữ liệu người dùng. \newline
-    $\bullet$ Toàn bộ kịch bản As-Is (6 kịch bản) \& To-Be (6 kịch bản). \newline
-    $\bullet$ Bảng phân cảnh trực quan Storyboard 6 khung tranh. \newline
-    $\bullet$ Tổng hợp Báo cáo học thuật \LaTeX{} 9 chương \& Soạn Slide thuyết trình.
-    & 33.3\% \\ \hline
-    23127328 & Nguyễn Quốc Bảo & Lead UI Styling \& Software Product &
-    $\bullet$ Bản đồ Đề xuất giá trị VPC đối ứng 1--1 với Persona. \newline
-    $\bullet$ Tích hợp công cụ kết xuất đồ họa tự động \& CSS styling. \newline
-    $\bullet$ Thiết kế luồng tương tác Prototype độ chi tiết cao. \newline
-    $\bullet$ Phát triển mã nguồn Sản phẩm phần mềm (React/Mobile-first).
-    & 33.3\% \\ \hline
-    23127498 & Nguyễn Trọng Tín & Lead Architecture \& Usability Testing &
-    $\bullet$ Khởi tạo đề tài Proposal \& Kiến trúc đa tác nhân. \newline
-    $\bullet$ Xây dựng bộ hồ sơ Persona 9 phần chuẩn HCI. \newline
-    $\bullet$ Lập trình công cụ SVG Figma \& Hệ thống 27 Wireframe iPhone. \newline
-    $\bullet$ Xây dựng khung kiểm thử \& Thực nghiệm Usability Evaluation.
-    & 33.4\% \\ \hline
-    \multicolumn{4}{|l|}{\textbf{Tổng cộng}} & \textbf{100\%} \\ \hline
-  \end{tabularx}
-  \caption{Bảng Tổng Hợp Trách Nhiệm \& Tỷ Lệ Đóng Góp (Workload Balance)}
-  \label{tab:workload_balance_matrix}
-\end{table}
-
-\newpage
-\section{Bảng Dữ Liệu Thô Kiểm Thử Khả Năng Sử Dụng}
-
-Bảng \ref{tab:raw_task_data} trình bày toàn bộ dữ liệu thô được ghi nhận trong đợt kiểm thử Usability Testing trên 5 người tham gia.
+Các thành viên trong nhóm đã tham gia tích cực, phối hợp chặt chẽ và đóng góp đồng đều xuyên suốt các giai đoạn từ nghiên cứu người dùng, thiết kế tương tác, hiện thực phần mềm đến đánh giá tính khả dụng và biên soạn tài liệu theo Bảng~\ref{tab:team_contribution}.
 
 \begin{table}[H]
-  \centering
-  \scriptsize
-  \renewcommand{\arraystretch}{1.1}
-  \begin{tabularx}{\textwidth}{|c|c|l|c|c|c|X|}
-    \hline
-    \textbf{ID} & \textbf{Mã Persona} & \textbf{Họ tên người tham gia} & \textbf{Tác vụ} & \textbf{Hoàn thành} & \textbf{Thời gian (s)} & \textbf{Ghi chú quan sát thực tế} \\ \hline
-    P1 & Persona 1 & Nguyễn Hoàng Lan & T1 & Đạt & 32 & Thao tác rất nhanh, mã đặt lịch hiển thị ngay. \\ \hline
-    P1 & Persona 1 & Nguyễn Hoàng Lan & T2 & Đạt & 52 & Tìm mục Lưu ý y tế mất 5s, sau đó điền dễ dàng. \\ \hline
-    P1 & Persona 1 & Nguyễn Hoàng Lan & T3 & Đạt & 18 & Thanh tiến trình trực quan, cập nhật nhanh. \\ \hline
-    P1 & Persona 1 & Nguyễn Hoàng Lan & T4 & Đạt & 28 & Tìm phiên gần nhất trong 2 click, hóa đơn rõ. \\ \hline
-    P2 & Persona 1 & Lê Thị Hồng Nhung & T1 & Đạt & 42 & Quy trình mượt, hơi phân vân giữa các gói. \\ \hline
-    P2 & Persona 1 & Lê Thị Hồng Nhung & T2 & Đạt & 68 & Phải mở rộng menu, quên lưu nên thao tác lại. \\ \hline
-    P2 & Persona 1 & Lê Thị Hồng Nhung & T3 & Đạt & 22 & Cần phân biệt rõ hơn icon Mốc 2 và Mốc 3. \\ \hline
-    P2 & Persona 1 & Lê Thị Hồng Nhung & T4 & Đạt & 38 & Lịch sử đủ, đề xuất thêm bộ lọc theo tháng. \\ \hline
-    P3 & Persona 1 & Phạm Văn Tuấn & T1 & Đạt & 40 & Chọn giờ dễ, slot trống màu hơi nhạt. \\ \hline
-    P3 & Persona 1 & Phạm Văn Tuấn & T2 & Đạt & 55 & Tìm thấy mục ghi chú sau khi cuộn trang. \\ \hline
-    P3 & Persona 1 & Phạm Văn Tuấn & T3 & Đạt & 19 & Mượt, rõ ràng, hình ảnh kiểm tra sức khỏe tốt. \\ \hline
-    P3 & Persona 1 & Phạm Văn Tuấn & T4 & Đạt & 30 & Truy xuất nhanh, chi tiết sản phẩm rõ ràng. \\ \hline
-    P4 & Persona 2 & Trần Minh Khoa & T1 & Đạt & 36 & Thân thiện, xác nhận ngay, rất hài lòng. \\ \hline
-    P4 & Persona 2 & Trần Minh Khoa & T2 & Đạt & 50 & Mục Lưu ý y tế dễ nhập, bàn giao 2 lớp an tâm. \\ \hline
-    P4 & Persona 2 & Trần Minh Khoa & T3 & Đạt & 15 & Theo dõi chi tiết, biết chính xác vị trí bé. \\ \hline
-    P4 & Persona 2 & Trần Minh Khoa & T4 & Đạt & 25 & Xem tất cả trong 1 màn hình, hóa đơn minh bạch. \\ \hline
-    P5 & Persona 2 & Nguyễn Phương Linh & T1 & Đạt & 45 & Cần thêm nút Quay lại nếu chọn nhầm gói. \\ \hline
-    P5 & Persona 2 & Nguyễn Phương Linh & T2 & Đạt & 62 & Mất thời gian tìm ô dị ứng trong cài đặt. \\ \hline
-    P5 & Persona 2 & Nguyễn Phương Linh & T3 & Đạt & 20 & Cập nhật kịp thời, thông báo đẩy tốt. \\ \hline
-    P5 & Persona 2 & Nguyễn Phương Linh & T4 & Đạt & 33 & Danh sách cần xếp mặc định mới nhất lên đầu. \\ \hline
-  \end{tabularx}
-  \caption{Bảng dữ liệu thô đo lường 4 tác vụ kiểm thử khả năng sử dụng}
-  \label{tab:raw_task_data}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{|c|c|l|X|c|}
+\hline
+\textbf{STT} & \textbf{MSSV} & \textbf{Họ và Tên} & \textbf{Nhiệm vụ chính} & \textbf{Đóng góp} \\ \hline
+1 & 23127327 & Lưu Ngô Quốc Bảo & Phụ trách thiết kế tương tác, xây dựng bản mẫu Prototype độ nét cao trên Figma, thiết kế kịch bản Storyboard và tinh chỉnh giao diện người dùng. & 33.3\% \\ \hline
+2 & 23127328 & Nguyễn Quốc Bảo & Phụ trách nghiên cứu người dùng, khảo sát thực tế, xây dựng bộ Persona \& Value Proposition, thiết kế kịch bản kiểm thử và thu thập dữ liệu đánh giá tính khả dụng. & 33.3\% \\ \hline
+3 & 23127498 & Nguyễn Trọng Tín & Trưởng nhóm, phụ trách kiến trúc hệ thống, lập trình sản phẩm phần mềm Web React/TypeScript, phân tích dữ liệu kiểm thử và tổng hợp biên soạn báo cáo cuối kỳ. & 33.4\% \\ \hline
+\end{tabularx}
+\caption{Bảng phân công nhiệm vụ và tỷ lệ đóng góp của thành viên nhóm}
+\label{tab:team_contribution}
 \end{table}

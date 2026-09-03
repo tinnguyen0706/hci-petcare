@@ -1,156 +1,151 @@
 \section{Thiết kế bản mẫu tương tác}
 
 \subsection{Tổng quan bản mẫu}
-Bản mẫu tương tác độ trung thực cao (\textit{High-Fidelity Interactive Prototype}) của hệ thống được xây dựng trên nền tảng vector SVG chuẩn Figma và được triển khai kiểm thử trực tiếp trên môi trường web runtime tương tác.
+Bản mẫu tương tác độ nét cao (High-fidelity Interactive Prototype) của hệ thống được xây dựng trên nền tảng thiết kế Figma, tuân thủ chặt chẽ các quy chuẩn thiết kế giao diện di động hiện đại (Mobile Design Guidelines). Bản mẫu tập trung hiện thực hóa trọn vẹn hành trình tương tác của \textbf{Persona chính (Persona 1 -- Nguyễn Hoàng Lan và thú cưng Poodle Bơ)} thông qua 4 kịch bản mục tiêu.
 
-Cần phân biệt rõ bản chất học thuật giữa hai khái niệm:
-\begin{itemize}
-    \item \textbf{Bản mẫu tương tác (Interactive Prototype)}: Là một mô hình mô phỏng chân thực về mặt thị giác, cấu trúc điều hướng và phản hồi tương tác phía người dùng (\textit{Client-side user experience simulation}). Mục tiêu của bản mẫu là phục vụ việc kiểm chứng mô hình tinh thần, đánh giá tính khả dụng (\textit{Usability Testing}) và thu thập phản hồi của người dùng trước khi triển khai hệ thống toàn diện \cite{cooper2014aboutface, sharp2019interaction}.
-    \item \textbf{Phần mềm hoàn chỉnh toàn diện (Fully Functional Enterprise Software)}: Là hệ thống phần mềm có đầy đủ hạ tầng cơ sở dữ liệu phân tán (Database Backend), máy chủ API thời gian thực, cơ chế mã hóa bảo mật cấp doanh nghiệp và tích hợp phần cứng mạng vật lý.
-\end{itemize}
-
-Bản mẫu của đề tài bao phủ toàn diện 37 màn hình tương tác chi tiết, mô phỏng đầy đủ 4 trụ cột chức năng cốt lõi đã cam kết trong Proposal.
+Cần làm rõ ranh giới học thuật rằng: \textbf{Bản mẫu tương tác (Interactive Prototype) không phải là phần mềm toàn diện đã kết nối cơ sở dữ liệu lớn phía backend}. Mục đích cốt lõi của bản mẫu là mô phỏng chân thực và chính xác các luồng tương tác, độ trễ phản hồi, phản hồi thị giác (visual feedback), hiệu ứng chuyển cảnh và xử lý các trạng thái giao diện (UI States) nhằm phục vụ công tác kiểm thử tính khả dụng với người dùng thực tế trước khi tiến hành lập trình sản phẩm.
 
 \subsection{Các màn hình bản mẫu}
+Bản mẫu của Persona 1 được cấu trúc thành 4 luồng tác vụ tương ứng với 4 mục tiêu lớn:
 
-\subsubsection{Cụm màn hình 1 -- Đặt lịch trực tuyến và nhận xác nhận tức thì}
-Cụm màn hình này hiện thực hóa trụ cột số 1, cho phép người dùng chọn gói dịch vụ, tra cứu ma trận giờ trống và nhận xác nhận giữ chỗ ngay lập tức (Hình \ref{fig:proto_booking}).
-\begin{itemize}
-    \item \textbf{Màn hình chọn dịch vụ}: Hiển thị danh thiếp dịch vụ trực quan, mô tả chi tiết các bước trong gói (tắm thảo dược, sấy chải, cắt tỉa, vệ sinh tai) kèm giá tiền và thời lượng.
-    \item \textbf{Màn hình ma trận giờ trống}: Cho phép chọn ngày theo thanh trượt ngang. Các khung giờ còn trống hiển thị màu xanh kèm số lượng chỗ còn lại; các khung giờ đã kín tự động chuyển màu xám và bị vô hiệu hóa.
-    \item \textbf{Màn hình xác nhận và thành công}: Tóm tắt toàn bộ thông tin lịch hẹn, dịch vụ, chi phí và tự động đính kèm thông tin thú cưng; cấp mã đặt lịch (\textit{Booking ID}) kèm mã QR tiếp nhận tức thì.
-\end{itemize}
+\subsubsection{Mục tiêu 1: Đặt lịch dịch vụ có xác nhận tức thì}
+Luồng màn hình cho phép người dùng chọn thú cưng Bơ, lựa chọn gói dịch vụ spa toàn diện, duyệt lịch biểu trực quan để chọn khung giờ chiều thứ Bảy (14:00) và nhận ngay xác nhận lịch hẹn kèm mã số đặt lịch tự động trong vòng vài giây.
 
 \begin{figure}[H]
 \centering
-\begin{minipage}{0.31\textwidth}
+\begin{minipage}[t]{0.31\textwidth}
     \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/proto_p1_g1_01.png}
-    \caption*{(a) Chọn gói dịch vụ}
-\end{minipage}\hfill
-\begin{minipage}{0.31\textwidth}
-    \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/proto_p1_g1_02.png}
-    \caption*{(b) Ma trận giờ trống}
-\end{minipage}\hfill
-\begin{minipage}{0.31\textwidth}
-    \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/proto_p1_g1_05.png}
-    \caption*{(c) Xác nhận tức thì}
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-1/02_select_service.png}\par
+    \vspace{0.15cm}
+    {\small (a) Chọn gói dịch vụ spa}
 \end{minipage}
-\caption{Bản mẫu tương tác luồng Đặt lịch dịch vụ có xác nhận tức thì}
-\label{fig:proto_booking}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-1/03_choose_saturday_slot.png}\par
+    \vspace{0.15cm}
+    {\small (b) Chọn khung giờ trống}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-1/05_booking_success.png}\par
+    \vspace{0.15cm}
+    {\small (c) Xác nhận đặt lịch tức thì}
+\end{minipage}
+\vspace{0.2cm}
+\caption{Các màn hình bản mẫu luồng Đặt lịch dịch vụ có xác nhận tức thì cho Persona 1}
+\label{fig:proto_goal_1}
 \end{figure}
 
-\subsubsection{Cụm màn hình 2 -- Tiếp nhận an toàn và cảnh báo dặn dò y tế}
-Cụm màn hình này giải quyết triệt để nguy cơ thất lạc thông tin dị ứng da và dặn dò đặc biệt (Hình \ref{fig:proto_intake}).
-\begin{itemize}
-    \item \textbf{Màn hình quét mã QR tiếp nhận}: Khi chủ nuôi đến tiệm, nhân viên quét mã QR trên ứng dụng của khách để mở ngay hồ sơ tiếp nhận điện tử.
-    \item \textbf{Màn hình cảnh báo y tế \& dị ứng}: Hiển thị thẻ cảnh báo đỏ nổi bật: ``Thú cưng có tiền sử viêm da dị ứng với xà phòng nhiều hương liệu -- Chỉ sử dụng sữa tắm thảo dược hữu cơ''.
-    \item \textbf{Biên bản bàn giao 2 lớp}: Nhân viên và chủ nuôi cùng ký xác nhận cam kết quy trình an toàn trên ứng dụng trước khi chuyển thú cưng vào khu vực spa.
-\end{itemize}
+\subsubsection{Mục tiêu 2: Bàn giao và đính kèm dặn dò dị ứng đặc biệt}
+Khi đến cơ sở, chủ nuôi xuất trình mã QR Check-in trên điện thoại. Hệ thống tự động kích hoạt màn hình xác nhận dặn dò y tế 2 lớp, làm nổi bật tiền sử viêm da dị ứng xà phòng của Bơ bằng thẻ màu cảnh báo và yêu cầu nhân viên kỹ thuật nhấn xác nhận đã đọc trước khi chuyển thú cưng vào khu vực spa.
 
 \begin{figure}[H]
 \centering
-\begin{minipage}{0.31\textwidth}
+\begin{minipage}[t]{0.31\textwidth}
     \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/proto_p1_g2_02.png}
-    \caption*{(a) Mã QR tiếp nhận}
-\end{minipage}\hfill
-\begin{minipage}{0.31\textwidth}
-    \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/proto_p1_g2_03.png}
-    \caption*{(b) Cảnh báo dị ứng y tế}
-\end{minipage}\hfill
-\begin{minipage}{0.31\textwidth}
-    \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/proto_p1_g2_05.png}
-    \caption*{(c) Khóa cam kết an toàn}
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-2/01_show_checkin_code.png}\par
+    \vspace{0.15cm}
+    {\small (a) Mã QR Check-in tại quầy}
 \end{minipage}
-\caption{Bản mẫu tương tác luồng Tiếp nhận an toàn và Cảnh báo y tế}
-\label{fig:proto_intake}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-2/03_profile_alerts.png}\par
+    \vspace{0.15cm}
+    {\small (b) Thẻ cảnh báo dị ứng y tế}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-2/05_notes_attached_success.png}\par
+    \vspace{0.15cm}
+    {\small (c) Biên bản bàn giao hoàn tất}
+\end{minipage}
+\vspace{0.2cm}
+\caption{Các màn hình bản mẫu luồng Bàn giao và đính kèm dặn dò y tế cho Persona 1}
+\label{fig:proto_goal_2}
 \end{figure}
 
-\subsubsection{Cụm màn hình 3 -- Theo dõi tiến độ thời gian thực (4 mốc)}
-Cụm màn hình này hiện thực hóa trụ cột số 3, xóa bỏ hoàn toàn trạng thái mù mờ thông tin của chủ nuôi (Hình \ref{fig:proto_tracking}).
-\begin{itemize}
-    \item \textbf{Thanh tiến trình 4 mốc thời gian thực}: Hiển thị trực quan 4 mốc: \textit{Mốc 1 -- Đã nhận thú cưng} (09:00), \textit{Mốc 2 -- Đang chăm sóc} (09:15), \textit{Mốc 3 -- Hoàn tất dịch vụ} (10:15), \textit{Mốc 4 -- Sẵn sàng chờ đón} (10:30).
-    \item \textbf{Chức năng gửi dặn dò bổ sung}: Cho phép chủ nuôi nhập thêm ghi chú trong ca (ví dụ: ``Nhờ thợ cắt ngắn thêm lông vùng tai giúp mình'') và truyền trực tiếp tới kỹ thuật viên.
-    \item \textbf{Thông báo đẩy chủ động}: Hệ thống tự động gửi thông báo đến điện thoại mỗi khi ca chăm sóc chuyển mốc, đặc biệt là thông báo mời đến đón khi hoàn tất.
-\end{itemize}
+\subsubsection{Mục tiêu 3: Theo dõi tiến độ thời gian thực 4 mốc}
+Màn hình Live Tracking hiển thị thanh tiến trình 4 mốc trạng thái chuẩn (\textit{Đã nhận} $\rightarrow$ \textit{Đang chăm sóc} $\rightarrow$ \textit{Hoàn tất} $\rightarrow$ \textit{Chờ đón}). Khi kỹ thuật viên cập nhật tiến độ, hệ thống hiển thị thông báo đẩy nổi bật kèm hình ảnh cập nhật sức khỏe thực tế của Bơ trong quá trình tắm sấy.
 
 \begin{figure}[H]
 \centering
-\begin{minipage}{0.31\textwidth}
+\begin{minipage}[t]{0.31\textwidth}
     \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/proto_p1_g3_01.png}
-    \caption*{(a) Mốc 1: Đã nhận thú cưng}
-\end{minipage}\hfill
-\begin{minipage}{0.31\textwidth}
-    \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/proto_p1_g3_02.png}
-    \caption*{(b) Mốc 2: Đang chăm sóc}
-\end{minipage}\hfill
-\begin{minipage}{0.31\textwidth}
-    \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/proto_p1_g3_05.png}
-    \caption*{(c) Mốc 4: Chờ đón bé}
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-3/01_step1_received_status.png}\par
+    \vspace{0.15cm}
+    {\small (a) Mốc 1: Đã nhận thú cưng}
 \end{minipage}
-\caption{Bản mẫu tương tác phân hệ Theo dõi tiến độ thời gian thực}
-\label{fig:proto_tracking}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-3/02_step2_in_progress_care.png}\par
+    \vspace{0.15cm}
+    {\small (b) Mốc 2: Đang chăm sóc}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-3/05_step4_ready_for_pickup.png}\par
+    \vspace{0.15cm}
+    {\small (c) Mốc 4: Chờ khách đến đón}
+\end{minipage}
+\vspace{0.2cm}
+\caption{Các màn hình bản mẫu luồng Theo dõi tiến độ thời gian thực 4 mốc cho Persona 1}
+\label{fig:proto_goal_3}
 \end{figure}
 
-\subsubsection{Cụm màn hình 4 -- Kho lịch sử chăm sóc và hóa đơn điện tử}
-Cụm màn hình này hiện thực hóa trụ cột số 4, hỗ trợ lưu trữ dài hạn và minh bạch chi phí (Hình \ref{fig:proto_history}).
-\begin{itemize}
-    \item \textbf{Nhật ký chăm sóc chi tiết}: Lưu lại từng lượt chăm sóc kèm hình ảnh kiểm tra sức khỏe trước/sau khi tắm, loại dầu tắm đã sử dụng và đánh giá tình trạng da lông của kỹ thuật viên.
-    \item \textbf{Hóa đơn điện tử \& Báo cáo chi tiêu}: Liệt kê chi tiết từng khoản mục chi phí, tổng tiền đã thanh toán và biểu đồ theo dõi ngân sách chăm sóc thú cưng hàng tháng.
-    \item \textbf{Nút Đặt lại nhanh (Rebook)}: Tự động tải lại gói dịch vụ và các dặn dò cũ, người dùng chỉ cần chọn ngày giờ mới để hoàn tất đặt lịch trong vài giây.
-\end{itemize}
+\subsubsection{Mục tiêu 4: Tra cứu nhật ký chăm sóc cá nhân hóa}
+Màn hình lưu trữ lịch sử dịch vụ hiển thị đầy đủ danh mục các lần chăm sóc trước của Bơ. Người dùng có thể xem chi tiết tên dòng sữa tắm dịu nhẹ đã dùng, ghi chú kiểm tra da tai móng sau dịch vụ và kiểm tra hóa đơn điện tử minh bạch.
 
 \begin{figure}[H]
 \centering
-\begin{minipage}{0.31\textwidth}
+\begin{minipage}[t]{0.31\textwidth}
     \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/proto_p1_g4_02.png}
-    \caption*{(a) Danh sách lịch sử}
-\end{minipage}\hfill
-\begin{minipage}{0.31\textwidth}
-    \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/proto_p1_g4_03.png}
-    \caption*{(b) Chi tiết phiên \& Sản phẩm}
-\end{minipage}\hfill
-\begin{minipage}{0.31\textwidth}
-    \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/proto_p2_g3_04.png}
-    \caption*{(c) Báo cáo ngân sách}
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-4/02_service_history.png}\par
+    \vspace{0.15cm}
+    {\small (a) Danh sách lịch sử dịch vụ}
 \end{minipage}
-\caption{Bản mẫu tương tác phân hệ Lịch sử chăm sóc và Quản lý chi phí}
-\label{fig:proto_history}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-4/03_session_details.png}\par
+    \vspace{0.15cm}
+    {\small (b) Chi tiết phiên chăm sóc}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-4/04_product_skin_notes.png}\par
+    \vspace{0.15cm}
+    {\small (c) Ghi chú sản phẩm \& Da lông}
+\end{minipage}
+\vspace{0.2cm}
+\caption{Các màn hình bản mẫu luồng Nhật ký chăm sóc cá nhân hóa cho Persona 1}
+\label{fig:proto_goal_4}
 \end{figure}
 
 \subsection{Thiết kế tương tác}
-Các thành phần tương tác vi mô (\textit{Micro-interactions}) được thiết kế tỉ mỉ nhằm tối đa hóa khả năng nhận thức và giảm thiểu thao tác thừa cho người dùng:
+Bản mẫu tương tác tích hợp đầy đủ các nguyên tắc tương tác người -- máy nâng cao:
 \begin{itemize}
-    \item \textbf{Phản hồi xúc giác và thị giác của nút bấm}: Mọi nút bấm và thẻ chọn đều có trạng thái phản hồi rõ ràng (\textit{Default}, \textit{Hover}, \textit{Active}, \textit{Disabled}). Khi chọn một khung giờ, viền thẻ chuyển sang màu xanh chủ đạo \texttt{\#173B72} kèm biểu tượng dấu tích xanh.
-    \item \textbf{Hộp thoại xác nhận phòng ngừa lỗi}: Khi người dùng chọn một gói dịch vụ có nguy cơ không phù hợp với tiền sử dị ứng đã lưu trong hồ sơ thú cưng, hệ thống hiển thị hộp thoại cảnh báo (\textit{Modal Dialog}) yêu cầu xác nhận đổi sang gói dịu nhẹ hoặc ghi nhận mang theo dầu tắm riêng.
-    \item \textbf{Điều hướng Back toàn cục an toàn}: Mọi màn hình chi tiết đều tích hợp nút Back bảo toàn lịch sử điều hướng, cho phép quay lại đúng trạng thái trước đó mà không làm mất dữ liệu đã nhập trong form.
+    \item \textbf{Khả năng tương tác của các nút bấm (Affordance \& Signifiers)}: Nút hành động chính (Primary Call-to-Action) sử dụng màu sắc chủ đạo nổi bật, hiệu ứng đổ bóng nhẹ và trạng thái nhấn (Active/Pressed state) rõ rệt để báo hiệu vùng chạm hợp lệ.
+    \item \textbf{Phản hồi trạng thái tức thì (Visibility of System Status)}: Khi chuyển đổi mốc tiến độ trên màn hình Live Tracking, thanh tiến trình hiển thị hiệu ứng đổi màu động từ xám sang xanh lá cây, kết hợp huy hiệu thông báo đẩy nổi bật (Push Notification banner) xuất hiện ở cạnh trên màn hình.
+    \item \textbf{Phòng ngừa sai sót \& Xác nhận thao tác (Error Prevention)}: Các khung giờ đã kín lịch được hiển thị bằng màu xám nhạt kèm biểu tượng khóa và con trỏ vô hiệu hóa, ngăn chặn hoàn toàn việc người dùng nhấp chọn nhầm. Hộp thoại xác nhận cuối cùng hiển thị tóm tắt đầy đủ các dặn dò dị ứng để chủ nuôi rà soát trước khi gửi đơn.
 \end{itemize}
 
 \subsection{Lý giải thiết kế}
-Thiết kế của hệ thống được dẫn dắt chặt chẽ bởi chuỗi logic HCI: \textbf{Phát hiện nghiên cứu / Điểm đau Proposal $\rightarrow$ Quyết định thiết kế $\rightarrow$ Giá trị trải nghiệm mang lại} (Bảng \ref{tab:design_rationale}).
-
-\begin{table}[H]
-\centering
-\small
-\begin{tabularx}{\textwidth}{|X|X|X|}
-\hline
-\textbf{Vấn đề thực tế (Proposal)} & \textbf{Quyết định thiết kế tương tác} & \textbf{Giá trị cải thiện trải nghiệm} \\ \hline
-Chủ nuôi bận rộn chờ phản hồi tin nhắn lâu, dễ lỡ khung giờ. & Ma trận giờ trống tự động cập nhật \& Xác nhận tức thì. & Chủ động 100\% thời gian, hoàn tất đặt lịch dưới 45 giây. \\ \hline
-Tiền sử dị ứng xà phòng dễ bị nhân viên quên khi đổi ca trực. & Hồ sơ sức khỏe tự động gắn nhãn cảnh báo đỏ lên đơn tiếp nhận. & Triệt tiêu hoàn toàn nguy cơ sai sót y tế, an tâm tuyệt đối. \\ \hline
-Mù mờ thông tin trong 2--3 tiếng chăm sóc, ngại gọi điện thoại. & Thanh tiến trình 4 mốc thời gian thực kết hợp Push Notification. & Minh bạch tiến độ từng phút, giải tỏa hoàn toàn lo âu. \\ \hline
-Thất lạc thông tin chăm sóc cũ, không nhớ loại sữa tắm đã dùng. & Kho nhật ký số hóa chi tiết kèm chức năng Đặt lại một chạm. & Tái sử dụng dữ liệu nhanh chóng, quản lý ngân sách hiệu quả. \\ \hline
-\end{tabularx}
-\caption{Bảng lý giải các quyết định thiết kế tương tác cốt lõi}
-\label{tab:design_rationale}
-\end{table}
+Mọi quyết định thiết kế trong bản mẫu đều được xây dựng dựa trên chuỗi liên kết chặt chẽ giữa \textbf{Điểm đau nghiên cứu $\rightarrow$ Quyết định thiết kế $\rightarrow$ Cải thiện trải nghiệm mong đợi}:
+\begin{itemize}
+    \item \textit{Vấn đề nghiên cứu}: 83.3\% chủ nuôi bực bội vì phải chờ đợi tin nhắn phản hồi lịch trống. \\
+    $\rightarrow$ \textit{Quyết định thiết kế}: Xây dựng ma trận khung giờ thời gian thực kết hợp cơ chế xác nhận tức thì trên giao diện ứng dụng. \\
+    $\rightarrow$ \textit{Hiệu quả đạt được}: Rút ngắn thời gian đặt lịch từ 30 phút xuống còn 32 giây, người dùng chủ động 100\% kế hoạch cá nhân.
+    \item \textit{Vấn đề nghiên cứu}: Chủ nuôi luôn nơm nớp lo sợ thú cưng bị dùng nhầm sữa tắm gây viêm da tái phát do nhân viên quên dặn dò miệng. \\
+    $\rightarrow$ \textit{Quyết định thiết kế}: Tạo thẻ cảnh báo y tế màu vàng/đỏ nổi bật tự động đính kèm vào mã QR tiếp nhận và bắt buộc nhân viên phải bấm xác nhận cam kết. \\
+    $\rightarrow$ \textit{Hiệu quả đạt được}: Triệt tiêu 100\% nguy cơ đứt gãy thông tin bàn giao ca, mang lại sự an tâm tuyệt đối cho chủ nuôi.
+    \item \textit{Vấn đề nghiên cứu}: Chủ nuôi bị gián đoạn công việc hoặc bất an vì không biết thú cưng đang được làm gì trong 2--3 tiếng tại tiệm. \\
+    $\rightarrow$ \textit{Quyết định thiết kế}: Thiết kế thanh tiến trình 4 mốc thời gian thực đồng bộ thông báo đẩy chủ động. \\
+    $\rightarrow$ \textit{Hiệu quả đạt được}: Xóa bỏ hoàn toàn nhu cầu phải gọi điện thoại hỏi thăm, nâng cao trải nghiệm minh bạch số hóa.
+\end{itemize}

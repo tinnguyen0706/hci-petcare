@@ -1,226 +1,133 @@
 \section{Quá trình thiết kế}
 
 \subsection{Kiến trúc thông tin}
-Kiến trúc thông tin (\textit{Information Architecture -- IA}) của hệ thống được thiết kế theo cấu trúc phẳng và trực quan, tối ưu hóa cho màn hình di động (\textit{Mobile-first}). Cấu trúc điều hướng chính của ứng dụng sử dụng thanh điều hướng đáy (\textit{Bottom Navigation Bar}) cố định gồm 4 phân hệ chức năng tương ứng trực tiếp với 4 nhu cầu cốt lõi của chủ nuôi (Hình \ref{fig:ia_sitemap}):
-
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[
-    scale=0.90, transform shape,
-    root/.style={rectangle, draw=blue!70!black, fill=blue!10, rounded corners=6pt, very thick, text width=6.2cm, minimum height=1.15cm, align=center, font=\small\bfseries, inner sep=4pt},
-    box/.style={rectangle, draw=teal!75!black, fill=teal!8, rounded corners=4pt, thick, text width=3.2cm, minimum height=1.1cm, align=center, font=\footnotesize\bfseries, inner sep=3pt},
-    subbox/.style={rectangle, draw=gray!50, fill=gray!4, rounded corners=3pt, text width=3.2cm, minimum height=0.75cm, align=center, font=\scriptsize, inner sep=3pt}
-]
-    % Root
-    \node[root] (app) at (0, 4.6) {Ứng dụng Chăm sóc Thú cưng\\{\footnotesize\normalfont (PetCare Pro Mobile App)}};
-
-    % 4 Main Modules
-    \node[box] (m1) at (-5.7, 2.3) {1. Trang chủ\\{\scriptsize\normalfont (Home Dashboard)}};
-    \node[box] (m2) at (-1.9, 2.3) {2. Đặt lịch\\{\scriptsize\normalfont (Online Booking)}};
-    \node[box] (m3) at (1.9, 2.3) {3. Tiến độ\\{\scriptsize\normalfont (Live Tracking)}};
-    \node[box] (m4) at (5.7, 2.3) {4. Hồ sơ \& Lịch sử\\{\scriptsize\normalfont (Profile \& History)}};
-
-    % Connecting bus from root
-    \draw[thick, blue!70!black] (app.south) -- (0, 3.3);
-    \draw[thick, blue!70!black] (-5.7, 3.3) -- (5.7, 3.3);
-    \draw[thick, ->, blue!70!black] (-5.7, 3.3) -- (m1.north);
-    \draw[thick, ->, blue!70!black] (-1.9, 3.3) -- (m2.north);
-    \draw[thick, ->, blue!70!black] (1.9, 3.3) -- (m3.north);
-    \draw[thick, ->, blue!70!black] (5.7, 3.3) -- (m4.north);
-
-    % Sub-nodes for M1
-    \node[subbox] (s11) at (-5.7, 0.95) {Thẻ thú cưng nhanh};
-    \node[subbox] (s12) at (-5.7, -0.1) {Thông báo tiến độ gần};
-    \node[subbox] (s13) at (-5.7, -1.15) {Phím tắt đặt lịch nhanh};
-    \draw[->, gray!70!black] (m1) -- (s11);
-    \draw[->, gray!70!black] (s11) -- (s12);
-    \draw[->, gray!70!black] (s12) -- (s13);
-
-    % Sub-nodes for M2
-    \node[subbox] (s21) at (-1.9, 0.95) {Chọn thú cưng / Gói DV};
-    \node[subbox] (s22) at (-1.9, -0.1) {Ma trận giờ trống};
-    \node[subbox] (s23) at (-1.9, -1.15) {Xác nhận \& Mã QR};
-    \draw[->, gray!70!black] (m2) -- (s21);
-    \draw[->, gray!70!black] (s21) -- (s22);
-    \draw[->, gray!70!black] (s22) -- (s23);
-
-    % Sub-nodes for M3
-    \node[subbox] (s31) at (1.9, 0.95) {Thanh 4 mốc thời gian};
-    \node[subbox] (s32) at (1.9, -0.1) {Ảnh kiểm tra sức khỏe};
-    \node[subbox] (s33) at (1.9, -1.15) {Gửi dặn dò bổ sung};
-    \draw[->, gray!70!black] (m3) -- (s31);
-    \draw[->, gray!70!black] (s31) -- (s32);
-    \draw[->, gray!70!black] (s32) -- (s33);
-
-    % Sub-nodes for M4
-    \node[subbox] (s41) at (5.7, 0.95) {Hồ sơ y tế \& dị ứng};
-    \node[subbox] (s42) at (5.7, -0.1) {Nhật ký dịch vụ cũ};
-    \node[subbox] (s43) at (5.7, -1.15) {Hóa đơn \& Đặt lại};
-    \draw[->, gray!70!black] (m4) -- (s41);
-    \draw[->, gray!70!black] (s41) -- (s42);
-    \draw[->, gray!70!black] (s42) -- (s43);
-\end{tikzpicture}
-\caption{Sơ đồ Kiến trúc thông tin tổng thể của hệ thống}
-\label{fig:ia_sitemap}
-\end{figure}
+Nhằm tối ưu hóa khả năng định hướng và giảm thiểu độ sâu thao tác cho người dùng bận rộn, hệ thống áp dụng cấu trúc Kiến trúc thông tin (Information Architecture -- IA) dạng phẳng (Flat Hierarchy), tập trung xung quanh thanh điều hướng đáy (Bottom Navigation Bar) gồm \textbf{4 phân hệ chức năng chính}:
+\begin{enumerate}
+    \item \textbf{Trang chủ (Home / Dashboard)}: Tổng quan trạng thái hiện tại, hiển thị thẻ lịch hẹn sắp tới (Upcoming Appointment Card), lối tắt đặt lịch nhanh và các gói dịch vụ nổi bật.
+    \item \textbf{Đặt lịch (Booking Hub)}: Phân hệ điều hướng từng bước gồm chọn thú cưng, chọn gói dịch vụ, ma trận chọn ngày \& khung giờ trống theo thời gian thực, xem lại chi phí và nhận xác nhận tức thì.
+    \item \textbf{Theo dõi trực tiếp (Live Tracking)}: Màn hình giám sát tiến độ theo thời gian thực với thanh tiến trình 4 mốc, bộ đếm ngược thời gian dự kiến đón và trung tâm thông báo đẩy.
+    \item \textbf{Hồ sơ \& Lịch sử (Pet Profile \& History)}: Quản lý lý lịch y tế của từng thú cưng, hồ sơ cảnh báo dị ứng/thuốc, nhật ký các lần chăm sóc trước và hóa đơn điện tử.
+\end{enumerate}
 
 \subsection{Luồng thao tác người dùng}
-Nhằm thay thế triệt để các đứt gãy trong quy trình thủ công cũ, nhóm đã thiết kế lại toàn diện \textbf{Luồng thao tác người dùng đề xuất (Quy trình To-Be)} bao gồm 6 bước tương tác liền mạch theo đúng Proposal:
-
+Bám sát quy trình đề xuất cải tiến (To-Be Process) trong Proposal và tập trung vào trải nghiệm của \textbf{Persona chính (Persona 1 -- Nguyễn Hoàng Lan)}, nhóm đã xây dựng 4 luồng thao tác tương tác liền mạch:
 \begin{enumerate}
-    \item \textbf{Bước 1 -- Chọn thú cưng, dịch vụ và khung giờ khả dụng}: Chủ nuôi mở ứng dụng, chọn hồ sơ thú cưng, chọn gói spa mong muốn và chọn khung giờ còn trống trực quan trên ma trận thời gian thực.
-    \item \textbf{Bước 2 -- Xác nhận tức thì và tự động đính kèm cảnh báo y tế}: Hệ thống tự động trích xuất các dặn dò dị ứng xà phòng và lưu ý tính cách từ hồ sơ để đính kèm vào lịch hẹn, đồng thời cấp mã xác nhận giữ chỗ ngay trên ứng dụng mà không cần chờ duyệt thủ công.
-    \item \textbf{Bước 3 -- Bàn giao an toàn tại cơ sở bằng mã QR tiếp nhận}: Khi đến tiệm, nhân viên quét mã QR trên điện thoại của chủ nuôi. Màn hình tiếp nhận tự động kích hoạt cảnh báo y tế nổi bật, hai bên xác nhận biên bản bàn giao 2 lớp nhanh chóng dưới 1 phút.
-    \item \textbf{Bước 4 -- Theo dõi tiến độ từ xa theo thời gian thực (4 mốc)}: Trong suốt quá trình chăm sóc, ứng dụng cập nhật liên tục 4 mốc trạng thái (\textit{Đã nhận} $\rightarrow$ \textit{Đang chăm sóc} $\rightarrow$ \textit{Hoàn tất} $\rightarrow$ \textit{Chờ đón}) kèm thông báo đẩy tự động. Chủ nuôi có thể gửi thêm dặn dò hoặc xem ảnh kiểm tra sức khỏe mà không cần gọi điện.
-    \item \textbf{Bước 5 -- Nhận thông báo đón và nhận thú cưng đúng hẹn}: Khi dịch vụ hoàn tất, chủ nuôi nhận thông báo đẩy đến tiệm đón bé. Nhân viên quét mã QR đối soát trả thú cưng an toàn.
-    \item \textbf{Bước 6 -- Tự động lưu trữ lịch sử, hóa đơn điện tử và ghi chú}: Toàn bộ thông tin về lượt chăm sóc (loại sữa tắm đã dùng, tình trạng da lông, hóa đơn chi tiết) được tự động lưu vào hồ sơ cá nhân hóa của thú cưng để phục vụ cho các lần chăm sóc tiếp theo.
+    \item \textbf{Luồng Đặt lịch dịch vụ có xác nhận tức thì (Goal 1)}:
+    Chủ nuôi mở ứng dụng $\rightarrow$ Chọn thú cưng (Poodle Bơ) $\rightarrow$ Chọn dịch vụ (Combo Tắm \& Cắt tỉa tạo kiểu) $\rightarrow$ Xem bảng giờ trống ngày thứ Bảy và chọn slot 14:00 $\rightarrow$ Kiểm tra tóm tắt đơn và tổng chi phí $\rightarrow$ Nhấn ``Xác nhận đặt lịch'' $\rightarrow$ Hệ thống lập tức ghi nhận, cấp mã đặt lịch và hiển thị màn hình thành công.
+    \item \textbf{Luồng Tiếp nhận \& Đính kèm dặn dò đặc biệt (Goal 2)}:
+    Khi đưa Bơ đến tiệm $\rightarrow$ Mở mã QR Check-in trên ứng dụng $\rightarrow$ Nhân viên quét mã, hệ thống tự động hiển thị thẻ cảnh báo: \textit{``Poodle Bơ: Viêm da dị ứng xà phòng nhiều hương liệu -- Yêu cầu dùng dầu tắm chuyên dụng Hypoallergenic dịu nhẹ''} $\rightarrow$ Nhân viên nhấn xác nhận cam kết thực hiện đúng phác đồ chăm sóc.
+    \item \textbf{Luồng Theo dõi tiến độ thời gian thực 4 mốc (Goal 3)}:
+    Trong giờ làm việc tại công ty, Lan nhận thông báo đẩy khi Bơ chuyển sang trạng thái \textit{``Đang chăm sóc''} $\rightarrow$ Mở ứng dụng xem thanh tiến trình trực quan $\rightarrow$ Nhận thông báo hoàn tất khi thợ hoàn thành cắt tỉa $\rightarrow$ Trạng thái chuyển sang \textit{``Chờ đón''} kèm hướng dẫn nhận thú cưng đúng giờ.
+    \item \textbf{Luồng Tra cứu lịch sử chăm sóc cá nhân hóa (Goal 4)}:
+    Vào mục Hồ sơ của Bơ $\rightarrow$ Chọn phiên dịch vụ gần nhất $\rightarrow$ Xem chi tiết loại sữa tắm thảo dược đã sử dụng, độ dài tỉa lông, ghi chú kiểm tra da của kỹ thuật viên và xem hóa đơn điện tử minh bạch.
 \end{enumerate}
 
 \subsection{Phác thảo và phát triển ý tưởng}
-Quá trình phác thảo ý tưởng (\textit{Ideation \& Sketching}) được thực hiện dựa trên phương pháp thiết kế lấy người dùng làm trung tâm (UCD) kết hợp chuẩn hóa hệ thống \textbf{Design Tokens} nhằm bảo đảm tính nhất quán trên toàn bộ giao diện:
-
+Trong giai đoạn đầu, nhóm đã tiến hành các buổi phác thảo nhanh trên giấy (Crazy 8s \& Paper Sketching) nhằm thử nghiệm nhiều cách bố trí thanh tiến trình theo dõi và lưới ma trận chọn giờ. Các quyết định thiết kế cốt lõi được thống nhất:
 \begin{itemize}
-    \item \textbf{Hệ thống màu sắc ngữ nghĩa (Color System)}:
-    \begin{itemize}
-        \item \textit{Màu chủ đạo (Primary)}: Xanh hải quân \texttt{\#173B72} thể hiện sự tin cậy, chuyên nghiệp và vững chắc.
-        \item \textit{Màu điểm nhấn (Accent)}: Xanh lục mòng két \texttt{\#0D9488} thể hiện sự tươi mới, sạch sẽ và năng động.
-        \item \textit{Màu cảnh báo (Warning)}: Vàng hổ phách \texttt{\#D97706} dùng cho các lưu ý về tính cách và nhắc nhở thời gian.
-        \item \textit{Màu nguy hiểm / Dị ứng (Danger / Medical Alert)}: Đỏ tươi \texttt{\#DC2626} với độ tương phản cao, dùng riêng cho cảnh báo dị ứng xà phòng và tiền sử bệnh lý nguy hiểm.
-        \item \textit{Màu thành công (Success)}: Xanh lá \texttt{\#16A34A} thể hiện trạng thái hoàn thành và xác nhận thành công.
-    \end{itemize}
-    \item \textbf{Hệ thống kiểu chữ (Typography)}: Sử dụng bộ phông chuẩn \textit{Times New Roman / Inter} với thang kích thước phân cấp rõ ràng: Tiêu đề lớn (22--24pt), Tiêu đề phụ (16--18pt), Thân văn bản (13--14pt), Chú thích nhỏ (11--12pt).
-    \item \textbf{Quy chuẩn tương tác cảm ứng}: Mọi nút bấm, thẻ chọn và ô nhập liệu đều có kích thước tối thiểu $44 \times 44\text{px}$ với khoảng cách an toàn tối thiểu $8\text{px}$ nhằm ngăn ngừa hiện tượng bấm nhầm trên màn hình cảm ứng di động \cite{norman2013design}.
+    \item \textbf{Mobile-first Design}: Tối ưu hoàn toàn cho tỷ lệ màn hình điện thoại thông minh hiện đại (chuẩn 430 $\times$ 932 px), đảm bảo ngón tay cái có thể chạm tới các nút hành động chính (Thumb Zone).
+    \item \textbf{Trực quan hóa trạng thái khung giờ}: Khung giờ trống được tô nền sáng rõ nét, khung giờ đã kín được làm mờ và gắn nhãn cảnh báo khóa chọn, giúp người dùng nhận diện ngay trong 1 giây mà không cần bấm thử.
+    \item \textbf{Tối giản hóa biểu mẫu nhập liệu}: Thông tin thú cưng và dị ứng chỉ nhập một lần duy nhất trong hồ sơ, mọi đơn đặt lịch sau đó tự động kế thừa dữ liệu để đạt tốc độ hoàn tất nhanh nhất.
 \end{itemize}
 
 \subsection{Bảng phân cảnh}
-Để trực quan hóa câu chuyện trải nghiệm của người dùng trong bối cảnh thực tế đời sống, nhóm đã xây dựng các \textbf{Bảng phân cảnh (Storyboard)} 6 khung hình cho cả hai Persona theo từng Goal cụ thể.
+Để trực quan hóa câu chuyện trải nghiệm thực tế của Persona 1 (Nguyễn Hoàng Lan) cùng chú chó Poodle Bơ, nhóm đã thiết kế 4 kịch bản Bảng phân cảnh trực quan (Storyboard) tương ứng với 4 mục tiêu cốt lõi.
 
-\subsubsection{Bảng phân cảnh cho Chân dung người dùng 1 (Nguyễn Hoàng Lan)}
-\begin{itemize}
-    \item \textbf{Mục tiêu 1 -- Đặt lịch nhanh có xác nhận tức thì} (Hình \ref{fig:sb_p1_g1}): Minh họa tình huống chị Lan bận rộn tại văn phòng, mở app chọn dịch vụ tắm sấy cho Poodle Bơ, chọn khung giờ trống sáng thứ Bảy và nhận ngay xác nhận thành công mà không phải chờ đợi tin nhắn.
-    \item \textbf{Mục tiêu 2 -- Tiếp nhận an toàn với cảnh báo dị ứng y tế} (Hình \ref{fig:sb_p1_g2}): Minh họa việc chị Lan đưa Bơ đến tiệm, nhân viên quét mã QR và màn hình tiếp nhận lập tức hiển thị cảnh báo dị ứng xà phòng màu đỏ nổi bật, cam kết sử dụng đúng sữa tắm thảo dược dịu nhẹ.
-    \item \textbf{Mục tiêu 3 -- Theo dõi tiến độ 4 mốc thời gian thực} (Hình \ref{fig:sb_p1_g3}): Minh họa chị Lan đang làm việc tại công ty, nhận thông báo đẩy khi Bơ chuyển qua mốc \textit{Đang chăm sóc} và \textit{Hoàn tất}, giúp chị hoàn toàn an tâm làm việc.
-    \item \textbf{Mục tiêu 4 -- Tra cứu lịch sử chăm sóc và sản phẩm} (Hình \ref{fig:sb_p1_g4}): Minh họa chị Lan mở lại hồ sơ để xem loại sữa tắm thảo dược đã dùng trong lần trước và bấm nút đặt lại lịch chỉ trong 1 chạm.
-\end{itemize}
+\subsubsection{Phân cảnh 1: Đặt lịch nhanh có xác nhận tức thì}
+Kịch bản mô tả tình huống Lan bận rộn với báo cáo phân tích dữ liệu tại văn phòng vào chiều thứ Sáu nhưng cần đặt lịch tắm cho Bơ vào cuối tuần. Lan mở ứng dụng, thấy ngay các khung giờ trống chiều thứ Bảy, chọn slot 14:00 và nhận xác nhận lịch hẹn tức thì trong vòng 30 giây mà không cần gọi điện.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.86\textwidth, keepaspectratio]{img/storyboard-p1-g1.png}
-\caption{Bảng phân cảnh Persona 1 -- Mục tiêu 1: Đặt lịch có xác nhận tức thì}
-\label{fig:sb_p1_g1}
+\includegraphics[width=0.88\textwidth, keepaspectratio]{img/storyboard/storyboard-p1-g1.png}
+\caption{Bảng phân cảnh cho Mục tiêu 1 của Persona 1: Đặt lịch nhanh có xác nhận tức thì}
+\label{fig:storyboard_p1_g1}
 \end{figure}
 
+\subsubsection{Phân cảnh 2: Bàn giao và bảo vệ thú cưng có tiền sử dị ứng}
+Kịch bản thể hiện quá trình Lan đưa Bơ đến cửa hàng vào chiều thứ Bảy. Lan đưa mã QR tiếp nhận cho nhân viên quầy quét mã. Ứng dụng lập tức làm nổi bật cảnh báo dị ứng xà phòng thơm của Bơ trên màn hình tiếp nhận, giúp kỹ thuật viên nắm rõ ngay và chọn đúng dòng sữa tắm hữu cơ dịu nhẹ cho da nhạy cảm.
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.86\textwidth, keepaspectratio]{img/storyboard-p1-g2.png}
-\caption{Bảng phân cảnh Persona 1 -- Mục tiêu 2: Bàn giao an toàn với cảnh báo dị ứng y tế}
-\label{fig:sb_p1_g2}
+\includegraphics[width=0.88\textwidth, keepaspectratio]{img/storyboard/storyboard-p1-g2.png}
+\caption{Bảng phân cảnh cho Mục tiêu 2 của Persona 1: Tiếp nhận và bảo vệ thú cưng dị ứng}
+\label{fig:storyboard_p1_g2}
 \end{figure}
 
+\subsubsection{Phân cảnh 3: Theo dõi tiến độ 4 mốc thời gian thực}
+Trong khi Bơ đang được làm spa, Lan quay trở lại quán cà phê gần đó tiếp tục xử lý công việc trên máy tính. Ứng dụng chủ động gửi thông báo đẩy khi Bơ chuyển qua từng mốc: từ \textit{``Đã nhận''} sang \textit{``Đang chăm sóc''}, và cuối cùng là \textit{``Chờ đón''}. Lan hoàn toàn an tâm làm việc và đến đón Bơ đúng giờ mà không cần gọi điện hỏi han.
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.86\textwidth, keepaspectratio]{img/storyboard-p1-g3.png}
-\caption{Bảng phân cảnh Persona 1 -- Mục tiêu 3: Theo dõi tiến độ 4 mốc thời gian thực}
-\label{fig:sb_p1_g3}
+\includegraphics[width=0.88\textwidth, keepaspectratio]{img/storyboard/storyboard-p1-g3.png}
+\caption{Bảng phân cảnh cho Mục tiêu 3 của Persona 1: Theo dõi tiến độ 4 mốc từ xa}
+\label{fig:storyboard_p1_g3}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.86\textwidth, keepaspectratio]{img/storyboard-p1-g4.png}
-\caption{Bảng phân cảnh Persona 1 -- Mục tiêu 4: Tra cứu lịch sử chăm sóc và sản phẩm}
-\label{fig:sb_p1_g4}
-\end{figure}
-
-\subsubsection{Bảng phân cảnh cho Chân dung người dùng 2 (Trần Minh Khoa)}
-\begin{itemize}
-    \item \textbf{Mục tiêu 1 -- Chọn khung giờ vắng khách cho mèo nhút nhát} (Hình \ref{fig:sb_p2_g1}): Minh họa bạn Khoa mở ma trận thời gian, chủ động chọn khung giờ 13:30 vắng vẻ để tránh mèo Miu bị hoảng loạn.
-    \item \textbf{Mục tiêu 2 -- Theo dõi trạng thái an toàn trong phòng cách ly} (Hình \ref{fig:sb_p2_g2}): Minh họa Khoa theo dõi trạng thái Miu được bố trí trong buồng cách ly riêng và nhận thông báo đón ngay khi dịch vụ hoàn tất.
-    \item \textbf{Mục tiêu 3 -- Quản lý chi phí và hóa đơn điện tử} (Hình \ref{fig:sb_p2_g3}): Minh họa Khoa tra cứu bảng giá chi tiết, xem hóa đơn điện tử minh bạch và theo dõi biểu đồ chi tiêu hàng tháng.
-\end{itemize}
+\subsubsection{Phân cảnh 4: Tra cứu lịch sử chăm sóc và sản phẩm sử dụng}
+Sau buổi spa, Lan mở ứng dụng để kiểm tra nhật ký chăm sóc của Bơ. Hệ thống lưu lại chi tiết tên dầu tắm dịu nhẹ đã dùng, tình trạng da không bị kích ứng và hóa đơn thanh toán điện tử minh bạch. Lan lưu cấu hình này làm tùy chọn mặc định cho những lần làm dịch vụ tiếp theo.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.86\textwidth, keepaspectratio]{img/storyboard-p2-g1.png}
-\caption{Bảng phân cảnh Persona 2 -- Mục tiêu 1: Chọn khung giờ vắng khách cho mèo nhút nhát}
-\label{fig:sb_p2_g1}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.86\textwidth, keepaspectratio]{img/storyboard-p2-g2.png}
-\caption{Bảng phân cảnh Persona 2 -- Mục tiêu 2: Theo dõi trạng thái an toàn cách ly}
-\label{fig:sb_p2_g2}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.86\textwidth, keepaspectratio]{img/storyboard-p2-g3.png}
-\caption{Bảng phân cảnh Persona 2 -- Mục tiêu 3: Quản lý chi phí và hóa đơn điện tử}
-\label{fig:sb_p2_g3}
+\includegraphics[width=0.88\textwidth, keepaspectratio]{img/storyboard/storyboard-p1-g4.png}
+\caption{Bảng phân cảnh cho Mục tiêu 4 của Persona 1: Nhật ký chăm sóc cá nhân hóa}
+\label{fig:storyboard_p1_g4}
 \end{figure}
 
 \subsection{Khung giao diện}
-Dựa trên kiến trúc thông tin và các bảng phân cảnh, nhóm đã xây dựng bộ \textbf{Khung giao diện (Wireframes)} toàn diện gồm 32 màn hình chuẩn vector SVG, bao phủ trọn vẹn 5 trạng thái giao diện chuẩn UX:
-
-\begin{enumerate}
-    \item \textbf{Trạng thái lý tưởng (Ideal State)}: Hiển thị đầy đủ dữ liệu đặt lịch, ma trận thời gian, các mốc tiến độ hoạt động bình thường và danh sách lịch sử.
-    \item \textbf{Trạng thái đang tải (Loading State)}: Sử dụng hiệu ứng Skeleton Loading và Spinner mượt mà trong khi nạp danh sách lịch hẹn hoặc tải dữ liệu theo dõi thời gian thực.
-    \item \textbf{Trạng thái trống (Empty State)}: Hiển thị minh họa trực quan kèm nút kêu gọi hành động (\textit{Call-to-Action}) khi người dùng chưa có thú cưng, chưa có lịch hẹn hoặc chưa có lịch sử chăm sóc.
-    \item \textbf{Trạng thái lỗi / Xung đột (Error / Conflict State)}: Xử lý các tình huống mất kết nối mạng (cung cấp mã QR offline) hoặc cảnh báo xung đột y tế khi chọn dịch vụ chứa chất gây dị ứng cho thú cưng.
-    \item \textbf{Trạng thái thành công (Success State)}: Màn hình chúc mừng với mã đặt lịch rõ ràng, tóm tắt thông tin và nút điều hướng nhanh về trang theo dõi tiến độ.
-\end{enumerate}
-
-Hình \ref{fig:wf_booking_flow} và Hình \ref{fig:wf_tracking_history} minh họa các khung giao diện tiêu biểu của hệ thống.
+Trong khuôn khổ đồ án, nhằm đảm bảo tính đồng bộ, nhất quán và bám sát trực tiếp nhu cầu thao tác của \textbf{Persona chính (Persona 1)}, bộ khung giao diện (Wireframe) của hệ thống được trích xuất và chuẩn hóa trực tiếp từ các màn hình cấu trúc của bản mẫu tương tác Prototype. Cách tiếp cận này giúp thể hiện trực quan bố cục thành phần giao diện (UI Components), hệ thống lưới (Layout Grid) và thứ bậc thị giác (Visual Hierarchy) của 4 màn hình tác vụ trọng yếu:
 
 \begin{figure}[H]
 \centering
-\begin{minipage}{0.31\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
     \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/wf_01_home.png}
-    \caption*{(a) Trang chủ \& Phím tắt}
-\end{minipage}\hfill
-\begin{minipage}{0.31\textwidth}
-    \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/wf_04_service.png}
-    \caption*{(b) Chọn gói dịch vụ}
-\end{minipage}\hfill
-\begin{minipage}{0.31\textwidth}
-    \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/wf_05_timeslot.png}
-    \caption*{(c) Ma trận giờ trống}
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-1/03_choose_saturday_slot.png}\par
+    \vspace{0.15cm}
+    {\small (a) Màn hình chọn ngày \& khung giờ trống}
 \end{minipage}
-\caption{Khung giao diện luồng Đặt lịch dịch vụ trực tuyến}
-\label{fig:wf_booking_flow}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-2/03_profile_alerts.png}\par
+    \vspace{0.15cm}
+    {\small (b) Màn hình cảnh báo dị ứng y tế}
+\end{minipage}
+\vspace{0.2cm}
+\caption{Khung giao diện cấu trúc phân hệ Đặt lịch và Cảnh báo y tế cho Persona 1}
+\label{fig:wireframe_part1}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\begin{minipage}{0.31\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
     \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/wf_07_confirmation.png}
-    \caption*{(a) Xác nhận \& Dị ứng}
-\end{minipage}\hfill
-\begin{minipage}{0.31\textwidth}
-    \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/wf_15_tracking.png}
-    \caption*{(b) Theo dõi tiến độ 4 mốc}
-\end{minipage}\hfill
-\begin{minipage}{0.31\textwidth}
-    \centering
-    \includegraphics[width=\linewidth, keepaspectratio]{img/wf_24_history.png}
-    \caption*{(c) Chi tiết lịch sử \& Hóa đơn}
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-3/02_step2_in_progress_care.png}\par
+    \vspace{0.15cm}
+    {\small (a) Màn hình theo dõi tiến độ 4 mốc thời gian thực}
 \end{minipage}
-\caption{Khung giao diện luồng Xác nhận, Theo dõi tiến độ và Tra cứu lịch sử}
-\label{fig:wf_tracking_history}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{img/proto-p1/goal-4/03_session_details.png}\par
+    \vspace{0.15cm}
+    {\small (b) Màn hình chi tiết phiên dịch vụ và sản phẩm}
+\end{minipage}
+\vspace{0.2cm}
+\caption{Khung giao diện cấu trúc phân hệ Theo dõi thời gian thực và Nhật ký dịch vụ cho Persona 1}
+\label{fig:wireframe_part2}
 \end{figure}
+
+Các màn hình trên thể hiện rõ giải pháp bố cục thông tin:
+\begin{itemize}
+    \item \textbf{Màn hình chọn khung giờ (Hình~\ref{fig:wireframe_part1}a)}: Bố trí thanh chọn ngày ngang dễ vuốt, bên dưới là lưới khung giờ chia ca sáng -- chiều rõ rệt. Trạng thái còn trống được làm nổi bật với nút chọn trực quan.
+    \item \textbf{Màn hình cảnh báo dị ứng y tế (Hình~\ref{fig:wireframe_part1}b)}: Bố trí thẻ cảnh báo màu vàng/đỏ ngay dưới thông tin thú cưng với các nhãn tag nổi bật (``Dị ứng xà phòng hương liệu'', ``Sợ máy sấy''), đảm bảo không bị che khuất.
+    \item \textbf{Màn hình theo dõi tiến độ (Hình~\ref{fig:wireframe_part2}a)}: Thanh tiến trình 4 mốc được đặt ở vị trí trung tâm trang trọng nhất với các chấm chỉ thị màu xanh và đường nối tiến trình, đi kèm hình ảnh cập nhật sức khỏe thực tế.
+    \item \textbf{Màn hình chi tiết phiên dịch vụ (Hình~\ref{fig:wireframe_part2}b)}: Phân tách rõ ràng các nhóm thông tin: thông tin dịch vụ, danh mục sản phẩm chuyên dụng đã sử dụng, đánh giá da lông và hóa đơn điện tử.
+\end{itemize}
 
 \subsection{Các phương án thiết kế}
-Trong quá trình phát triển đồ án, nhóm đã nghiên cứu kỹ lưỡng các khả năng bố cục và cấu trúc tương tác. Căn cứ trên thực tế nghiên cứu người dùng và cam kết trong Proposal:
-\begin{itemize}
-    \item \textbf{Phương án thiết kế tối ưu duy nhất}: Nhóm đã tập trung toàn bộ nguồn lực để xây dựng và hoàn thiện \textbf{một phương án thiết kế giao diện tối ưu duy nhất} lấy chuẩn \textit{Mobile-first Navigation} làm nòng cốt. Phương án này tích hợp luồng Stepper trực quan cho phân hệ Đặt lịch, thanh Timeline Stepper đồng bộ cho phân hệ Theo dõi tiến độ và hệ thống Thẻ dòng thời gian cho phân hệ Lịch sử.
-    \item \textbf{Lý do tập trung vào một phương án duy nhất}:
-    \begin{enumerate}
-        \item \textit{Bám sát trực tiếp 4 trụ cột Proposal}: Phương án được tối ưu hóa chuyên sâu để giải quyết dứt điểm 4 điểm đau lớn nhất đã được xác thực (xác nhận tức thì, chống quên dị ứng, theo dõi 4 mốc minh bạch và lưu trữ lịch sử cá nhân hóa).
-        \item \textit{Đảm bảo tính vững chắc và khả thi cao trong triển khai}: Việc tập trung vào một kiến trúc thông tin thống nhất giúp nhóm kiểm soát chặt chẽ toàn bộ 32 màn hình Wireframe, 37 màn hình Prototype và hiện thực hóa trọn vẹn 100\% quy trình nghiệp vụ trên nền tảng phần mềm React + TypeScript mà không bị phân tán nguồn lực vào các nhánh thiết kế giả định kém tối ưu.
-    \end{enumerate}
-\end{itemize}
+Trong quá trình triển khai đồ án, nhóm quyết định \textbf{tập trung nghiên cứu và phát triển chuyên sâu một phương án thiết kế tối ưu duy nhất} lấy chủ nuôi làm trung tâm (User-Centered Design) thay vì phân tán nguồn lực vào các phương án giả định thiếu khả thi. Quyết định này dựa trên các cơ sở thực tiễn vững chắc:
+\begin{enumerate}
+    \item \textbf{Bám sát trực tiếp giải pháp đã cam kết trong Proposal}: Phương án thiết kế này được xây dựng đối ứng chính xác với 4 trụ cột giải pháp cốt lõi và khắc phục dứt điểm 5 điểm đau đã được phê duyệt trong Proposal, không làm loãng phạm vi nghiên cứu.
+    \item \textbf{Tối ưu hóa nguồn lực cho chất lượng tương tác cao}: Thay vì tạo ra các biến thể giao diện bề nổi (như thay đổi màu sắc hoặc vị trí nút không mang tính bản chất), nhóm dành toàn bộ thời gian để hoàn thiện chi tiết từng micro-interaction, đảm bảo độ bao phủ của 5 trạng thái giao diện (Loading, Empty, Error, Success, Ideal State) và chuẩn bị cho giai đoạn kiểm thử người dùng thực tế.
+    \item \textbf{Tính nhất quán về mô hình tinh thần (Mental Model)}: Phương án tối ưu áp dụng chuẩn điều hướng Mobile-first quen thuộc của các ứng dụng dịch vụ hiện đại, giúp người dùng bận rộn như Persona 1 có thể sử dụng thành thạo ngay từ lần đầu tiên mà không gặp bất kỳ xung đột nhận thức nào.
+\end{enumerate}

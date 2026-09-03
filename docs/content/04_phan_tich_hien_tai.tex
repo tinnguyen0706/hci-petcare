@@ -1,57 +1,55 @@
 \section{Phân tích hệ thống và trải nghiệm hiện tại}
 
 \subsection{Hệ thống và quy trình hiện tại}
-Hiện nay, hầu hết các cơ sở spa và chăm sóc thú cưng quy mô vừa và nhỏ tại Việt Nam chưa áp dụng hệ thống phần mềm chuyên biệt phục vụ trải nghiệm của khách hàng. Quy trình tương tác giữa chủ nuôi và cơ sở chủ yếu diễn ra qua ba kênh phân mảnh:
+Hiện nay, phần lớn các cơ sở chăm sóc thú cưng quy mô vừa và nhỏ tại Việt Nam chưa sở hữu một hệ thống tương tác số chuyên biệt dành cho khách hàng. Quy trình vận hành và giao tiếp giữa chủ nuôi và cửa hàng chủ yếu được thực hiện thông qua các kênh phân tán:
 \begin{itemize}
-    \item \textbf{Kênh gọi điện thoại trực tiếp}: Khách hàng gọi điện tới số hotline của cơ sở để hỏi giờ trống và đặt lịch. Nhân viên tiếp tân phải vừa nghe máy vừa tra cứu sổ tay hoặc lịch bàn thủ công.
-    \item \textbf{Kênh nhắn tin qua mạng xã hội (Facebook Fanpage, Zalo, Instagram)}: Khách hàng gửi tin nhắn văn bản hỏi dịch vụ. Do nhân viên tiếp tân thường phải kiêm nhiệm nhiều công việc tại cửa hàng, tin nhắn thường không được phản hồi ngay lập tức.
-    \item \textbf{Ghi chép tiếp nhận tại chỗ (Sổ tay giấy, bảng trắng)}: Khi khách mang thú cưng đến tiệm, thông tin về gói dịch vụ và các dặn dò đặc biệt được ghi chép vội vàng lên sổ tiếp nhận hoặc giấy dán ghi chú (\textit{post-it}) dán lên lồng thú cưng.
+    \item \textbf{Kênh liên lạc trực tiếp}: Gọi điện thoại qua số hotline của cửa hàng.
+    \item \textbf{Kênh ứng dụng nhắn tin OTT / Mạng xã hội}: Nhắn tin qua Zalo cá nhân của chủ tiệm hoặc hộp thư đến Facebook Fanpage của cửa hàng.
+    \item \textbf{Kênh quản lý tại quầy (On-site)}: Tiếp nhận trực tiếp tại bàn lễ tân, ghi chép thông tin dịch vụ vào sổ tay hoặc bảng tính Excel nội bộ.
 \end{itemize}
 
-Đặc tính chung của các kênh này là tính \textbf{bất đồng bộ, thiếu liên kết dữ liệu và phụ thuộc hoàn toàn vào trí nhớ cá nhân của nhân viên tiếp nhận}.
+Quy trình giao tiếp thủ công này đặt toàn bộ gánh nặng ghi nhớ và phối hợp thông tin lên con người, không có sự liên kết tự động giữa khâu đặt hẹn của khách với khâu thực hiện dịch vụ của kỹ thuật viên.
 
 \subsection{Phân tích tác vụ}
-Dựa trên tài liệu đề xuất đề tài (\textit{Proposal}), quy trình chăm sóc thú cưng hiện tại (Quy trình As-Is) bao gồm 6 bước tác vụ tuần tự:
-
+Theo tài liệu Proposal đã duyệt, quy trình trải nghiệm hiện tại (As-Is Process) bao gồm \textbf{6 bước tuần tự thủ công} với nhiều điểm nghẽn tương tác nghiêm trọng:
 \begin{enumerate}
-    \item \textbf{Bước 1 -- Chủ nuôi gọi điện hoặc nhắn tin hỏi lịch trống}: Khi có nhu cầu, chủ nuôi phải chủ động mở ứng dụng nhắn tin hoặc gọi điện cho tiệm để hỏi xem khung giờ mong muốn (ví dụ: sáng thứ Bảy lúc 09:00) còn nhận thú cưng hay không.
-    \item \textbf{Bước 2 -- Chủ nuôi chờ phản hồi và chịu sự thiếu chắc chắn}: Chủ nuôi rơi vào trạng thái chờ đợi tin nhắn phản hồi. Trong nhiều trường hợp, nhân viên trả lời chậm dẫn đến việc khung giờ đó đã kín, hoặc lịch hẹn bị ghi nhận sai lệch do trao đổi qua lại nhiều lần.
-    \item \textbf{Bước 3 -- Chủ nuôi khai báo lại tiền sử dị ứng và dặn dò đặc biệt}: Chủ nuôi phải tự mình gõ lại tin nhắn hoặc nói miệng các lưu ý quan trọng (như thú cưng bị dị ứng xà phòng có mùi nồng, da dễ mẩn đỏ, sợ tiếng sấy hoặc nhút nhát với chó dữ).
-    \item \textbf{Bước 4 -- Chủ nuôi trực tiếp bàn giao thú cưng tại cơ sở}: Khi đến tiệm, chủ nuôi phải nhắc lại một lần nữa các lưu ý cho nhân viên tiếp tân và hy vọng nhân viên này sẽ truyền đạt đầy đủ cho kỹ thuật viên tắm sấy bên trong.
-    \item \textbf{Bước 5 -- Khoảng thời gian chờ đợi mù mờ thông tin}: Trong suốt 2--3 tiếng thú cưng ở tiệm, chủ nuôi hoàn toàn không có bất kỳ cập nhật nào về tiến độ. Nếu muốn biết tình trạng bé, chủ nuôi buộc phải gọi điện chen ngang công việc của tiệm.
-    \item \textbf{Bước 6 -- Cơ sở thông báo khi hoàn tất và kết thúc rời rạc}: Cơ sở gọi điện hoặc nhắn tin báo chủ nuôi đến đón. Sau khi thanh toán tiền mặt/chuyển khoản, hóa đơn giấy dễ bị vứt bỏ, thông tin về loại sữa tắm trị liệu đã sử dụng và ghi chú của thợ không được lưu trữ thành lịch sử nhất quán.
+    \item \textbf{Bước 1 -- Chủ nuôi liên hệ hỏi lịch trống}: Chủ nuôi mở ứng dụng tin nhắn hoặc gọi điện cho tiệm để hỏi các khung giờ còn trống vào ngày mong muốn (ví dụ chiều thứ Bảy). Tác vụ này phụ thuộc hoàn toàn vào tốc độ phản hồi của nhân viên trực tổng đài/fanpage.
+    \item \textbf{Bước 2 -- Chủ nuôi chờ phản hồi trong trạng thái bất an}: Chủ nuôi phải chờ đợi từ vài phút đến hàng giờ. Nếu khung giờ mong muốn đã kín, hai bên phải nhắn tin trao đổi qua lại nhiều lượt để thương lượng đổi giờ, gây lãng phí thời gian và làm gián đoạn công việc của chủ nuôi.
+    \item \textbf{Bước 3 -- Khai báo lại thông tin và dặn dò dị ứng}: Sau khi chốt giờ, chủ nuôi phải gõ lại thông tin tên bé, giống loài, cân nặng và nhắc lại các tiền sử dị ứng sữa tắm hoặc bệnh da liễu. Nhân viên tiếp nhận đọc tin nhắn nhưng thường không ghi chú chi tiết vào phiếu phân công kỹ thuật.
+    \item \textbf{Bước 4 -- Bàn giao thú cưng tại cơ sở}: Chủ nuôi đưa thú cưng đến cửa hàng vào giờ hẹn, tiếp tục phải nhắc miệng dặn dò một lần nữa với nhân viên lễ tân. Tuy nhiên, nhân viên lễ tân và kỹ thuật viên tắm cắt lại là hai nhân sự khác nhau, dẫn đến nguy cơ đứt gãy thông tin bàn giao ca.
+    \item \textbf{Bước 5 -- Khoảng trống thông tin trong thời gian chờ đợi}: Trong 2--3 giờ thú cưng được chăm sóc, chủ nuôi hoàn toàn không nhận được bất kỳ cập nhật nào. Nếu muốn biết tình trạng thú cưng, chủ nuôi buộc phải gọi điện làm phiền tiệm hoặc phải chịu đựng tâm lý lo lắng, sốt ruột.
+    \item \textbf{Bước 6 -- Thông báo đón và kết thúc dịch vụ rời rạc}: Cơ sở gọi điện hoặc nhắn tin thông báo khi dịch vụ hoàn tất. Chủ nuôi đến thanh toán bằng tiền mặt/chuyển khoản, nhận biên lai giấy dễ rách. Toàn bộ thông tin về loại dầu tắm đã dùng, tình trạng da sau khi cạo lông không được lưu lại, khiến lần chăm sóc tiếp theo lại phải lặp lại chu kỳ thủ công từ đầu.
 \end{enumerate}
 
 \subsection{Luồng người dùng và quy trình tác vụ}
-Sơ đồ luồng tương tác hiện tại (Quy trình As-Is) bộc lộ nhiều điểm nghẽn nghiêm trọng (\textit{Bottlenecks}) làm đứt gãy trải nghiệm người dùng (Bảng \ref{tab:flow_bottlenecks}).
+Nhằm làm rõ các rào cản và điểm nghẽn trong hành trình trải nghiệm hiện tại, Bảng~\ref{tab:as_is_workflow} thể hiện phân tích chi tiết từng bước tác vụ cùng các điểm nghẽn tương tác (interaction bottlenecks).
 
 \begin{table}[H]
 \centering
 \small
-\begin{tabularx}{\textwidth}{|l|l|X|l|}
+\begin{tabularx}{\textwidth}{|c|l|X|l|}
 \hline
-\textbf{Bước tác vụ} & \textbf{Kênh tương tác} & \textbf{Điểm nghẽn trải nghiệm (Bottleneck)} & \textbf{Thời gian trễ} \\ \hline
-1. Hỏi lịch & Nhắn tin / Gọi điện & Chờ nhân viên mở sổ đối soát thủ công. & 15--120 phút \\ \hline
-2. Xác nhận lịch & Tin nhắn xác nhận & Dễ trùng lịch, ghi sai giờ hoặc lỡ khung giờ đẹp. & Không xác định \\ \hline
-3. Khai báo dặn dò & Lời nói / Chat & Phải nhắc đi nhắc lại nhiều lần, thông tin phân mảnh. & 5--10 phút \\ \hline
-4. Bàn giao tại tiệm & Trao đổi trực tiếp & Bàn giao qua trung gian tiếp tân, dễ quên khi đổi ca. & 10--15 phút \\ \hline
-5. Chăm sóc tại tiệm & Không có kênh cập nhật & Mù mờ thông tin, lo âu, gọi điện làm phiền hai bên. & 120--180 phút \\ \hline
-6. Trả bé \& Lưu trữ & Gọi điện đón / Tiền mặt & Thất lạc chi tiết sản phẩm, không có lịch sử tra cứu. & Mất dấu dữ liệu \\ \hline
+\textbf{Bước} & \textbf{Hành động của chủ nuôi} & \textbf{Điểm nghẽn tương tác (Bottlenecks)} & \textbf{Mức độ nghiêm trọng} \\ \hline
+1 & Nhắn tin/gọi điện hỏi lịch & Không biết trước lịch trống; phải chủ động hỏi. & Trung bình (Medium) \\ \hline
+2 & Chờ đợi tiệm xác nhận & Phản hồi chậm; thương lượng đổi giờ nhiều lần; dễ mất lịch. & Cao (High) \\ \hline
+3 & Khai báo dặn dò dị ứng & Nhập liệu thủ công lặp lại; nguy cơ thất lạc thông tin y tế. & Rất cao (Critical) \\ \hline
+4 & Bàn giao thú cưng tại quầy & Nhắc miệng tại quầy; thông tin không truyền đến thợ cắt. & Rất cao (Critical) \\ \hline
+5 & Chờ đợi trong giờ chăm sóc & ``Hố đen thông tin''; lo lắng nhưng ngại gọi hỏi thăm. & Cao (High) \\ \hline
+6 & Nhận thông báo đón \& trả phí & Hóa đơn giấy rời rạc; không lưu nhật ký da lông định kỳ. & Trung bình (Medium) \\ \hline
 \end{tabularx}
-\caption{Bảng phân tích điểm nghẽn trong luồng tác vụ hiện tại (As-Is)}
-\label{tab:flow_bottlenecks}
+\caption{Phân tích các bước tác vụ và điểm nghẽn trong quy trình hiện tại (As-Is)}
+\label{tab:as_is_workflow}
 \end{table}
 
 \subsection{Các vấn đề về trải nghiệm người dùng}
-Dưới góc độ khoa học Tương tác Người -- Máy (HCI), các hạn chế của quy trình hiện tại được phân tích thành 4 vấn đề trải nghiệm cốt lõi:
-
+Dưới góc độ lý thuyết Tương tác Người -- Máy (HCI)~\cite{Norman2013}, các điểm nghẽn trên dẫn đến 4 vấn đề trải nghiệm cốt lõi:
 \begin{enumerate}
-    \item \textbf{Vấn đề 1 -- Tải trọng nhận thức cao và sự bất định (High Cognitive Load \& Uncertainty)}:
-    Việc không thể nhìn thấy trực quan các khung giờ trống khiến người dùng phải liên tục suy đoán, trao đổi đàm phán nhiều vòng qua tin nhắn. Sự chậm trễ trong phản hồi vi phạm nguyên tắc phản hồi tức thì trong tương tác, gây ức chế tâm lý và làm lãng phí thời gian của chủ nuôi bận rộn.
-    \item \textbf{Vấn đề 2 -- Nguy cơ sai sót y tế do đứt gãy truyền thông (Communication Breakdown \& Medical Risk)}:
-    Dặn dò y tế (dị ứng, bệnh lý, tính cách) là thông tin sinh mệnh đối với thú cưng nhưng lại được truyền đạt qua các kênh phi cấu trúc (lời nói, tin nhắn chat). Khi nhân viên tiếp tân chuyển giao cho kỹ thuật viên tắm sấy, hoặc khi tiệm thay ca trực, thông tin này có xác suất thất lạc lên tới hơn 80\%. Điều này vi phạm nghiêm trọng nguyên tắc an toàn trong thiết kế hệ thống (\textit{Safety \& Error Prevention}) \cite{norman2013design}.
-    \item \textbf{Vấn đề 3 -- Vi phạm nguyên lý minh bạch trạng thái hệ thống (Violation of Visibility of System Status)}:
-    Theo nguyên lý Heuristic kinh điển của Nielsen \cite{nielsen10heuristics}, hệ thống phải luôn cung cấp phản hồi kịp thời cho người dùng về những gì đang diễn ra. Trong quy trình cũ, khoảng trống thông tin 2--3 tiếng đẩy chủ nuôi vào trạng thái lo lắng tột độ nhưng lại bị ngăn cản liên lạc vì sợ làm phiền. Đây là một điểm mù trải nghiệm (\textit{experience black-box}) nghiêm trọng.
-    \item \textbf{Vấn đề 4 -- Thiếu tính cá nhân hóa và khả năng nhận biết thay vì nhớ lại (Violation of Recognition over Recall)}:
-    Do không có hệ thống lưu trữ lịch sử có cấu trúc, mỗi lần đến tiệm là một lần người dùng phải bắt đầu lại từ con số không (\textit{cold-start}): tự nhớ lại loại sữa tắm lần trước bé dùng có bị ngứa không, giá tiền bao nhiêu, ngày nào nên đi tắm lại. Việc ép người dùng phải nhớ lại toàn bộ thông tin thay vì hệ thống tự nhận diện và gợi ý vi phạm nguyên lý thiết kế tương tác chuẩn mực \cite{sharp2019interaction}.
+    \item \textbf{Khoảng cách giữa Đánh giá và Thực thi (Gulf of Evaluation \& Gulf of Execution)}: 
+    Khi chủ nuôi muốn đặt lịch hoặc theo dõi thú cưng, hệ thống hiện tại không cung cấp bất kỳ trạng thái hiển thị nào (Lack of Visibility of System Status). Chủ nuôi không biết hệ thống đã tiếp nhận lịch chưa, kỹ thuật viên đã bắt đầu tắm chưa. Để thu hẹp khoảng cách này, người dùng phải bỏ thêm nỗ lực gọi điện hỏi thăm -- một hành động gây tốn kém nhận thức và tâm lý ngại ngùng.
+    \item \textbf{Gánh nặng nhận thức và Rủi ro thao tác nhớ lại (High Cognitive Load \& Recall over Recognition)}: 
+    Quy trình cũ buộc người dùng phải nhớ và nhập lại toàn bộ thông tin thú cưng và tiền sử bệnh lý mỗi lần đặt hẹn, vi phạm nguyên tắc ``Nhận diện thay vì nhớ lại'' (Recognition rather than Recall) của Nielsen~\cite{Nielsen1994}. Hơn nữa, việc phụ thuộc vào trí nhớ của nhân viên cửa hàng là nguyên nhân hàng đầu gây nên các tai nạn dị ứng da cho thú cưng.
+    \item \textbf{Thiếu cơ chế phản hồi tức thì (Lack of Immediate Feedback)}: 
+    Trong tương tác người -- máy, sự chậm trễ phản hồi quá vài giây đã gây ra cảm giác mất kiểm soát (Loss of Control). Việc phải chờ đợi phản hồi tin nhắn từ 15 đến 45 phút tạo ra sự ức chế cao đối với người dùng bận rộn.
+    \item \textbf{Đứt gãy chuỗi giá trị trải nghiệm (Fragmented Experience Chain)}: 
+    Quy trình bị phân mảnh thành nhiều kênh độc lập (gọi điện, Zalo, giấy tờ quầy tiếp tân, chuyển khoản ngân hàng). Người dùng không có một điểm chạm số thống nhất (Unified Touchpoint) để quản lý toàn diện hành trình chăm sóc sức khỏe cho thú cưng của mình.
 \end{enumerate}
