@@ -6,49 +6,59 @@ Kiến trúc thông tin (\textit{Information Architecture -- IA}) của hệ th�
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[
-    scale=0.85, transform shape,
-    box/.style={rectangle, draw=black!80, fill=blue!8, rounded corners=4pt, thick, text width=2.8cm, minimum height=1.1cm, align=center, font=\footnotesize\bfseries},
-    root/.style={rectangle, draw=black!90, fill=blue!20, rounded corners=5pt, very thick, text width=5cm, minimum height=1.2cm, align=center, font=\small\bfseries},
-    subbox/.style={rectangle, draw=black!60, fill=white, rounded corners=3pt, text width=2.6cm, minimum height=0.9cm, align=center, font=\scriptsize}
+    scale=0.90, transform shape,
+    root/.style={rectangle, draw=blue!70!black, fill=blue!10, rounded corners=6pt, very thick, text width=6.2cm, minimum height=1.15cm, align=center, font=\small\bfseries, inner sep=4pt},
+    box/.style={rectangle, draw=teal!75!black, fill=teal!8, rounded corners=4pt, thick, text width=3.2cm, minimum height=1.1cm, align=center, font=\footnotesize\bfseries, inner sep=3pt},
+    subbox/.style={rectangle, draw=gray!50, fill=gray!4, rounded corners=3pt, text width=3.2cm, minimum height=0.75cm, align=center, font=\scriptsize, inner sep=3pt}
 ]
     % Root
-    \node[root] (app) at (0, 3.8) {Ứng dụng Chăm sóc Thú cưng\\(PetCare Pro Mobile App)};
+    \node[root] (app) at (0, 4.6) {Ứng dụng Chăm sóc Thú cưng\\{\footnotesize\normalfont (PetCare Pro Mobile App)}};
 
     % 4 Main Modules
-    \node[box] (m1) at (-5.1, 2.0) {1. Trang chủ\\(Home Dashboard)};
-    \node[box] (m2) at (-1.7, 2.0) {2. Đặt lịch\\(Online Booking)};
-    \node[box] (m3) at (1.7, 2.0) {3. Tiến độ\\(Live Tracking)};
-    \node[box] (m4) at (5.1, 2.0) {4. Hồ sơ \& Lịch sử\\(Profile \& History)};
+    \node[box] (m1) at (-5.7, 2.3) {1. Trang chủ\\{\scriptsize\normalfont (Home Dashboard)}};
+    \node[box] (m2) at (-1.9, 2.3) {2. Đặt lịch\\{\scriptsize\normalfont (Online Booking)}};
+    \node[box] (m3) at (1.9, 2.3) {3. Tiến độ\\{\scriptsize\normalfont (Live Tracking)}};
+    \node[box] (m4) at (5.7, 2.3) {4. Hồ sơ \& Lịch sử\\{\scriptsize\normalfont (Profile \& History)}};
 
-    % Connections from root
-    \draw[thick, ->] (app.south) -- ++(0,-0.4) -| (m1.north);
-    \draw[thick, ->] (app.south) -- ++(0,-0.4) -| (m2.north);
-    \draw[thick, ->] (app.south) -- ++(0,-0.4) -| (m3.north);
-    \draw[thick, ->] (app.south) -- ++(0,-0.4) -| (m4.north);
+    % Connecting bus from root
+    \draw[thick, blue!70!black] (app.south) -- (0, 3.3);
+    \draw[thick, blue!70!black] (-5.7, 3.3) -- (5.7, 3.3);
+    \draw[thick, ->, blue!70!black] (-5.7, 3.3) -- (m1.north);
+    \draw[thick, ->, blue!70!black] (-1.9, 3.3) -- (m2.north);
+    \draw[thick, ->, blue!70!black] (1.9, 3.3) -- (m3.north);
+    \draw[thick, ->, blue!70!black] (5.7, 3.3) -- (m4.north);
 
     % Sub-nodes for M1
-    \node[subbox] (s11) at (-5.1, 0.7) {Thẻ thú cưng nhanh};
-    \node[subbox] (s12) at (-5.1, -0.4) {Thông báo tiến độ gần};
-    \node[subbox] (s13) at (-5.1, -1.5) {Phím tắt đặt lịch nhanh};
-    \draw[->] (m1) -- (s11); \draw[->] (s11) -- (s12); \draw[->] (s12) -- (s13);
+    \node[subbox] (s11) at (-5.7, 0.95) {Thẻ thú cưng nhanh};
+    \node[subbox] (s12) at (-5.7, -0.1) {Thông báo tiến độ gần};
+    \node[subbox] (s13) at (-5.7, -1.15) {Phím tắt đặt lịch nhanh};
+    \draw[->, gray!70!black] (m1) -- (s11);
+    \draw[->, gray!70!black] (s11) -- (s12);
+    \draw[->, gray!70!black] (s12) -- (s13);
 
     % Sub-nodes for M2
-    \node[subbox] (s21) at (-1.7, 0.7) {Chọn thú cưng/Gói DV};
-    \node[subbox] (s22) at (-1.7, -0.4) {Ma trận giờ trống};
-    \node[subbox] (s23) at (-1.7, -1.5) {Xác nhận \& Mã QR};
-    \draw[->] (m2) -- (s21); \draw[->] (s21) -- (s22); \draw[->] (s22) -- (s23);
+    \node[subbox] (s21) at (-1.9, 0.95) {Chọn thú cưng / Gói DV};
+    \node[subbox] (s22) at (-1.9, -0.1) {Ma trận giờ trống};
+    \node[subbox] (s23) at (-1.9, -1.15) {Xác nhận \& Mã QR};
+    \draw[->, gray!70!black] (m2) -- (s21);
+    \draw[->, gray!70!black] (s21) -- (s22);
+    \draw[->, gray!70!black] (s22) -- (s23);
 
     % Sub-nodes for M3
-    \node[subbox] (s31) at (1.7, 0.7) {Thanh 4 mốc thời gian};
-    \node[subbox] (s32) at (1.7, -0.4) {Ảnh kiểm tra sức khỏe};
-    \node[subbox] (s33) at (1.7, -1.5) {Gửi dặn dò bổ sung};
-    \draw[->] (m3) -- (s31); \draw[->] (s31) -- (s32); \draw[->] (s32) -- (s33);
+    \node[subbox] (s31) at (1.9, 0.95) {Thanh 4 mốc thời gian};
+    \node[subbox] (s32) at (1.9, -0.1) {Ảnh kiểm tra sức khỏe};
+    \node[subbox] (s33) at (1.9, -1.15) {Gửi dặn dò bổ sung};
+    \draw[->, gray!70!black] (m3) -- (s31);
+    \draw[->, gray!70!black] (s31) -- (s32);
+    \draw[->, gray!70!black] (s32) -- (s33);
 
     % Sub-nodes for M4
-    \node[subbox] (s41) at (5.1, 0.7) {Hồ sơ y tế \& dị ứng};
-    \node[subbox] (s42) at (5.1, -0.4) {Nhật ký dịch vụ cũ};
-    \node[subbox] (s43) at (5.1, -1.5) {Hóa đơn \& Đặt lại};
-    \draw[->] (m4) -- (s41); \draw[->] (s41) -- (s42); \draw[->] (s42) -- (s43);
+    \node[subbox] (s41) at (5.7, 0.95) {Hồ sơ y tế \& dị ứng};
+    \node[subbox] (s42) at (5.7, -0.1) {Nhật ký dịch vụ cũ};
+    \node[subbox] (s43) at (5.7, -1.15) {Hóa đơn \& Đặt lại};
+    \draw[->, gray!70!black] (m4) -- (s41);
+    \draw[->, gray!70!black] (s41) -- (s42);
+    \draw[->, gray!70!black] (s42) -- (s43);
 \end{tikzpicture}
 \caption{Sơ đồ Kiến trúc thông tin tổng thể của hệ thống}
 \label{fig:ia_sitemap}
