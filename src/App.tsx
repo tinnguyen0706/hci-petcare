@@ -43,6 +43,8 @@ import { ProductNotesDetail } from './features/history/ProductNotesDetail';
 import { DigitalInvoiceView } from './features/history/DigitalInvoiceView';
 import { BudgetPlanView } from './features/history/BudgetPlanView';
 import { OneClickRebookModal } from './features/history/OneClickRebookModal';
+import { CareHistoryFlow } from './features/history/CareHistoryFlow';
+import { Persona2Goal3Flow } from './features/history/Persona2Goal3Flow';
 import { EdgeStatesModal, EdgeStateType } from './features/edge-states/EdgeStatesModal';
 import './styles/global.css';
 
@@ -123,6 +125,8 @@ export const App: React.FC = () => {
   const [edgeStateType, setEdgeStateType] = useState<EdgeStateType>(null);
   const [bookingStep, setBookingStep] = useState<1 | 2 | 3 | 4 | 5>(1);
   const [intakeStep, setIntakeStep] = useState<1 | 2 | 3 | 4 | 5>(1);
+  const [historyStep, setHistoryStep] = useState<1 | 2 | 3 | 4 | 5>(1);
+  const [p2Goal3Step, setP2Goal3Step] = useState<1 | 2 | 3 | 4 | 5>(1);
 
   // Switch between Persona 1 (Lan & Bơ) and Persona 2 (Khoa & Miu)
   const handleSwitchPersona = () => {
@@ -149,6 +153,26 @@ export const App: React.FC = () => {
       } else {
         setActiveFlow('dashboard');
         setActiveTab('home');
+        return;
+      }
+    }
+    if (activeFlow === 'care_history_flow') {
+      if (historyStep > 1) {
+        setHistoryStep((prev) => (prev - 1) as 1 | 2 | 3 | 4 | 5);
+        return;
+      } else {
+        setActiveFlow('pet_list');
+        setActiveTab('pets');
+        return;
+      }
+    }
+    if (activeFlow === 'p2_goal3_flow') {
+      if (p2Goal3Step > 1) {
+        setP2Goal3Step((prev) => (prev - 1) as 1 | 2 | 3 | 4 | 5);
+        return;
+      } else {
+        setActiveFlow('pet_list');
+        setActiveTab('pets');
         return;
       }
     }
@@ -285,6 +309,36 @@ export const App: React.FC = () => {
       }
       return { title: 'Tiếp nhận tại quầy', subtitle: 'Bảo an y tế CareGuard' };
     }
+    if (activeFlow === 'care_history_flow') {
+      switch (historyStep) {
+        case 1:
+          return { title: `Hồ sơ của ${currentPet.name}`, subtitle: 'Quản lý thông tin & lịch sử' };
+        case 2:
+          return { title: `Lịch sử của ${currentPet.name}`, subtitle: 'Lượt chăm sóc gần nhất' };
+        case 3:
+          return { title: 'Chi tiết lượt chăm sóc', subtitle: 'Ngày 28/08/2026 • Hoàn tất' };
+        case 4:
+          return { title: 'Thông tin đã dùng', subtitle: `Chăm sóc của ${currentPet.name}` };
+        case 5:
+          return { title: `Lựa chọn của ${currentPet.name}`, subtitle: 'Đã lưu lựa chọn thành công' };
+      }
+      return { title: 'Lịch sử chăm sóc', subtitle: 'Chi tiết sản phẩm & ghi chú' };
+    }
+    if (activeFlow === 'p2_goal3_flow') {
+      switch (p2Goal3Step) {
+        case 1:
+          return { title: `Lịch sử của ${currentPet.name}`, subtitle: 'Nhật ký chăm sóc đã lưu' };
+        case 2:
+          return { title: 'Phân tích chi phí', subtitle: 'Minh bạch từng hạng mục' };
+        case 3:
+          return { title: 'Hóa đơn điện tử', subtitle: 'Hợp lệ & Lưu trữ an toàn' };
+        case 4:
+          return { title: 'Chi tiêu tháng', subtitle: 'Xu hướng ngân sách định kỳ' };
+        case 5:
+          return { title: 'Kế hoạch tháng tới', subtitle: 'Cân đối sinh hoạt chủ động' };
+      }
+      return { title: 'Chi phí & Ngân sách', subtitle: 'Quản lý tài chính thú cưng' };
+    }
     if (activeTab === 'booking') {
       switch (bookingStep) {
         case 1:
@@ -299,13 +353,26 @@ export const App: React.FC = () => {
           return { title: 'HOÀN TẤT', subtitle: 'Đã đặt lịch thành công' };
       }
     }
+    if (activeTab === 'tracking' || activeFlow === 'live_tracking') {
+      const milestoneSubtitle = activeBooking
+        ? activeBooking.status === 1
+          ? 'Mốc 1: Đã nhận bé'
+          : activeBooking.status === 2
+          ? 'Mốc 2: Đang chăm sóc'
+          : activeBooking.status === 3
+          ? 'Mốc 3: Chăm sóc hoàn tất'
+          : 'Mốc 4: Sẵn sàng đón bé'
+        : 'Cập nhật 4 mốc thời gian thực';
+      return { 
+        title: `Tiến độ của ${currentPet.name}`, 
+        subtitle: milestoneSubtitle 
+      };
+    }
     switch (activeFlow) {
       case 'dashboard':
         return { title: 'PetCare Pro', subtitle: `Chào mừng ${currentPersona === 'persona-1' ? 'Hoàng Lan' : 'Minh Khoa'}` };
       case 'booking_multi_pet':
         return { title: 'Đặt lịch gộp 2 bé', subtitle: 'Ưu đãi combo -10% • Song song' };
-      case 'live_tracking':
-        return { title: 'Tiến độ trực tiếp', subtitle: 'Cập nhật 4 mốc thời gian thực' };
       case 'pet_list':
         return { title: 'Hồ sơ thú cưng', subtitle: 'Sổ tiêm phòng & Y tế điện tử' };
       default:
@@ -355,9 +422,16 @@ export const App: React.FC = () => {
             }}
             onNavigateToIsolationCam={() => setShowCameraModal(true)}
             onNavigateToRebook={() => {
-              if (careHistory.length > 0) {
-                setSelectedHistoryRecord(careHistory[0]);
-                setShowRebookModal(true);
+              if (currentPersona === 'persona-2') {
+                setSelectedPetId('pet-miu');
+                setActiveTab('pets');
+                setActiveFlow('p2_goal3_flow');
+                setP2Goal3Step(1);
+              } else {
+                setSelectedPetId('pet-bo');
+                setActiveTab('pets');
+                setActiveFlow('care_history_flow');
+                setHistoryStep(1);
               }
             }}
             onNavigateToIntakeQr={() => {
@@ -448,49 +522,65 @@ export const App: React.FC = () => {
           </div>
         )}
 
-        {/* TAB 4: QUẢN LÝ HỒ SƠ THÚ CƯNG & LỊCH SỬ */}
+        {/* TAB 4: QUẢN LÝ HỒ SƠ THÚ CƯNG (WIREFRAME 08) & LỊCH SỬ (PROTOTYPE GOAL 4) */}
         {activeTab === 'pets' && activeFlow === 'pet_list' && (
-          <div>
-            <PetProfilesManagement
-              pets={pets}
-              onSelectPet={(id) => setSelectedPetId(id)}
-              onOpenMedicalProfile={(id) => {
-                setSelectedPetId(id);
-                setShowMedicalProfileModal(true);
-              }}
-              onOpenVaccinationBook={(id) => {
-                setSelectedPetId(id);
-                setShowVaccinationModal(true);
-              }}
-              onBookForPet={(id) => {
-                setSelectedPetId(id);
-                setActiveTab('booking');
-                setActiveFlow('booking_pet_select');
-              }}
-              onOpenAddPet={() => setShowAddPetModal(true)}
-            />
+          <PetProfilesManagement
+            pets={pets}
+            selectedPetId={selectedPetId}
+            onSelectPet={(id) => setSelectedPetId(id)}
+            onOpenPetProfile={(id) => {
+              setSelectedPetId(id);
+              if (id === 'pet-miu') {
+                setActiveFlow('p2_goal3_flow');
+                setP2Goal3Step(1);
+              } else {
+                setActiveFlow('care_history_flow');
+                setHistoryStep(1);
+              }
+            }}
+            onBookForPet={(id) => {
+              setSelectedPetId(id);
+              setActiveTab('booking');
+              setActiveFlow('booking_pet_select');
+              setBookingStep(1);
+            }}
+            onOpenAddPet={() => setShowAddPetModal(true)}
+          />
+        )}
 
-            {/* Lịch sử các lần chăm sóc cũ */}
-            <div style={{ marginTop: '20px' }}>
-              <CareHistory
-                historyRecords={careHistory}
-                pets={pets}
-                onOpenSessionDetail={(rec) => {
-                  setSelectedHistoryRecord(rec);
-                  setShowProductDetailModal(true);
-                }}
-                onOpenInvoice={(rec) => {
-                  setSelectedHistoryRecord(rec);
-                  setShowInvoiceModal(true);
-                }}
-                onOpenBudgetPlan={() => setShowBudgetModal(true)}
-                onOpenRebookModal={(rec) => {
-                  setSelectedHistoryRecord(rec);
-                  setShowRebookModal(true);
-                }}
-              />
-            </div>
-          </div>
+        {/* QUY TRÌNH LỊCH SỬ CHĂM SÓC CÁ NHÂN HÓA (Persona 1 Goal 4 - PROTOTYPE 01 ĐẾN 05) */}
+        {activeFlow === 'care_history_flow' && (
+          <CareHistoryFlow
+            pet={currentPet}
+            step={historyStep}
+            onStepChange={(newStep) => setHistoryStep(newStep)}
+            onRebook={() => {
+              setActiveTab('booking');
+              setActiveFlow('booking_pet_select');
+              setBookingStep(1);
+            }}
+            onBackToPetList={() => {
+              setActiveTab('pets');
+              setActiveFlow('pet_list');
+            }}
+          />
+        )}
+
+        {/* QUY TRÌNH HÓA ĐƠN ĐIỆN TỬ & KẾ HOẠCH NGÂN SÁCH (Persona 2 Goal 3 - PROTOTYPE 01 ĐẾN 05) */}
+        {activeFlow === 'p2_goal3_flow' && (
+          <Persona2Goal3Flow
+            pet={currentPet}
+            step={p2Goal3Step}
+            onStepChange={(newStep) => setP2Goal3Step(newStep)}
+            onFinish={() => {
+              setActiveTab('home');
+              setActiveFlow('dashboard');
+            }}
+            onBackToPetList={() => {
+              setActiveTab('pets');
+              setActiveFlow('pet_list');
+            }}
+          />
         )}
 
       </div>

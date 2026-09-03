@@ -140,6 +140,8 @@ export type ActiveFlow =
   | 'medical_profile'
   | 'vaccination_book'
   | 'care_history'
+  | 'care_history_flow'
+  | 'p2_goal3_flow'
   | 'history_session_detail'
   | 'digital_invoice'
   | 'monthly_budget_plan';

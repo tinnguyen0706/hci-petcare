@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { Booking, Pet, MilestoneStep } from '../../types';
 import { TimelineStepper } from '../../components/common/TimelineStepper';
 import { 
-  ClockIcon, 
-  ShieldIcon, 
-  CameraIcon, 
   QrCodeIcon, 
   CheckIcon, 
   StarIcon, 
-  PawIcon 
+  BellIcon
 } from '../../components/icons/Icons';
-import { Modal } from '../../components/common/Modal';
+import boPhoto from '../../assets/bo.png';
 
 interface LiveTrackingProps {
   booking: Booking;
@@ -35,178 +32,357 @@ export const LiveTracking: React.FC<LiveTrackingProps> = ({
   onOpenServiceReview,
   onAddCustomInstruction
 }) => {
-  const [showInstructionModal, setShowInstructionModal] = useState(false);
-  const [instructionText, setInstructionText] = useState('');
-  const [instructionSuccess, setInstructionSuccess] = useState(false);
+  // Trạng thái hiển thị Banner Mô phỏng Push Notification (Màn hình 4 Prototype)
+  const [showPushNotification, setShowPushNotification] = useState(false);
 
-  const handleSendInstruction = () => {
-    if (instructionText.trim()) {
-      onAddCustomInstruction(instructionText.trim());
-      setInstructionSuccess(true);
-      setTimeout(() => {
-        setInstructionSuccess(false);
-        setShowInstructionModal(false);
-        setInstructionText('');
-      }, 800);
-    }
-  };
-
-  const getMilestoneData = (step: MilestoneStep) => {
-    switch (step) {
+  // Dữ liệu tối giản chuẩn scannable theo từng mốc (khớp Prototype Persona 1 Goal 3)
+  const getMilestoneConfig = () => {
+    switch (booking.status) {
       case 1:
         return {
-          badge: '[MỐC 1: TIẾP NHẬN QUẦY]',
-          title: 'Đã hoàn tất tiếp nhận bé',
-          detail: 'Thể trạng 4.5kg • Đã khóa dặn dò dị ứng xà phòng hương liệu',
-          timeEstimate: '09:02'
+          title: `Đã nhận ${pet.name}`,
+          subtitle: 'Hồ sơ và lưu ý đã bàn giao',
+          badgeText: 'MỐC 1 HOÀN TẤT',
+          badgeBg: '#F0FDF4',
+          badgeColor: '#166534',
+          ctaText: 'Xem cập nhật (Mốc 2)',
+          nextMilestone: 2 as MilestoneStep,
+          iconBg: '#F0FDF4',
+          iconBorder: '#166534',
+          heroIcon: <CheckIcon size={44} color="#166534" />
         };
       case 2:
         return {
-          badge: '[MỐC 2: ĐANG TẮM BỒN DƯỢC LIỆU]',
-          title: 'Đang ngâm bồn sục Derma-Care',
-          detail: 'Cân bằng pH 6.5 làm dịu da • KTV Hoàng Mai',
-          timeEstimate: 'Dự kiến: 09:30'
+          title: 'Đang chăm sóc',
+          subtitle: `Tắm và cắt tỉa cho ${pet.name}`,
+          badgeText: 'ĐANG THỰC HIỆN',
+          badgeBg: '#F0FDFA',
+          badgeColor: '#0D766E',
+          ctaText: 'Xem cập nhật (Mốc 3)',
+          nextMilestone: 3 as MilestoneStep,
+          iconBg: '#F0FDFA',
+          iconBorder: '#0D766E',
+          heroIcon: <span style={{ fontSize: '36px' }}>🛁</span>
         };
       case 3:
         return {
-          badge: '[MỐC 3: HOÀN TẤT CHĂM SÓC]',
-          title: 'Đã sấy chuốt lông sạch thơm',
-          detail: 'Sấy lồng êm nhiệt độ 32°C • Da dịu sạch 10/10',
-          timeEstimate: 'Hoàn tất lúc 09:40'
+          title: 'Chăm sóc hoàn tất',
+          subtitle: `${pet.name} đã hoàn thành dịch vụ`,
+          badgeText: 'MỐC 3 HOÀN TẤT',
+          badgeBg: '#FEF3C7',
+          badgeColor: '#B45309',
+          ctaText: 'Xem thông báo đẩy',
+          nextMilestone: 4 as MilestoneStep,
+          iconBg: '#FEF3C7',
+          iconBorder: '#D97706',
+          heroIcon: <span style={{ fontSize: '36px' }}>✨</span>
         };
       case 4:
         return {
-          badge: '[MỐC 4: SẴN SÀNG ĐÓN BÉ]',
-          title: 'Bé đang thư giãn tại sảnh chờ',
-          detail: 'Mời bạn đến quầy số 01 xuất trình QR nhận bé',
-          timeEstimate: 'Sẵn sàng đón'
+          title: `${pet.name} đang chờ đón`,
+          subtitle: 'Lan có thể sang tiệm ngay',
+          badgeText: 'MỐC 4 SẴN SÀNG',
+          badgeBg: '#F0FDF4',
+          badgeColor: '#166534',
+          ctaText: 'Đến đón bé',
+          nextMilestone: null,
+          iconBg: '#F0FDF4',
+          iconBorder: '#166534',
+          heroIcon: pet.id === 'pet-bo' ? (
+            <img src={boPhoto} alt="Bơ" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          ) : (
+            <span style={{ fontSize: '32px', fontWeight: 800, color: '#0D766E' }}>{pet.avatarText}</span>
+          )
         };
     }
   };
 
-  const currentInfo = getMilestoneData(booking.status);
+  const config = getMilestoneConfig();
 
   return (
-    <div style={{ paddingTop: '8px' }}>
-      
-      {/* Thẻ chính Live Tracking — Glanceable & Tối giản (Wireframe 18) */}
-      <section className="card" style={{ border: '2px solid #0D766E', backgroundColor: '#FFFFFF', padding: '16px', marginBottom: '12px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-          <span className="badge badge-teal">{currentInfo.badge}</span>
-          <span style={{ fontSize: '12px', color: '#0D766E', fontWeight: 800 }}>{currentInfo.timeEstimate}</span>
-        </div>
+    <div style={{ paddingTop: '8px', paddingBottom: '32px' }}>
 
-        <h2 className="text-h2" style={{ fontSize: '18px', color: '#0F172A', marginBottom: '4px' }}>
-          {currentInfo.title}
-        </h2>
-
-        <p style={{ fontSize: '12px', color: '#64748B', marginBottom: '12px' }}>
-          {currentInfo.detail}
-        </p>
-
-        {/* Stepper 4 mốc */}
-        <div style={{ margin: '10px 0' }}>
-          <TimelineStepper
-            currentStep={booking.status}
-            onStepClick={onMilestoneChange}
-          />
-        </div>
-
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#F8FAFC', borderRadius: '8px', padding: '8px 10px', fontSize: '12px' }}>
-          <span>Phụ trách: <strong>{booking.technicianName}</strong></span>
-          <span style={{ color: '#0D766E', fontWeight: 700 }}>{booking.stationOrRoom}</span>
-        </div>
-
-        {booking.customInstructions && (
-          <div style={{ marginTop: '8px', backgroundColor: '#FFFBEB', border: '1px solid #FDE68A', borderRadius: '8px', padding: '6px 10px', fontSize: '11px', color: '#92400E' }}>
-            <strong>Dặn dò của bạn:</strong> {booking.customInstructions}
+      {/* ========================================================= */}
+      {/* BANNER MÔ PHỎNG PUSH NOTIFICATION (04_push_notification)  */}
+      {/* ========================================================= */}
+      {showPushNotification && (
+        <div style={{
+          position: 'fixed',
+          top: '20px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: 'calc(100% - 32px)',
+          maxWidth: '400px',
+          backgroundColor: '#FFFFFF',
+          borderRadius: '24px',
+          border: '1.5px solid #0D766E',
+          padding: '16px 18px',
+          boxShadow: '0 12px 36px rgba(0, 0, 0, 0.22)',
+          zIndex: 9999,
+          animation: 'slideDown 0.3s ease-out'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{ fontSize: '14px' }}>🐾</span>
+              <span style={{ fontSize: '11px', fontWeight: 800, color: '#0D766E', letterSpacing: '0.6px' }}>
+                PETCARE · VỪA XONG
+              </span>
+            </div>
+            <button
+              onClick={() => setShowPushNotification(false)}
+              style={{ background: 'none', border: 'none', fontSize: '16px', color: '#64748B', cursor: 'pointer', padding: 0 }}
+              aria-label="Đóng thông báo"
+            >
+              ✕
+            </button>
           </div>
-        )}
-      </section>
 
-      {/* Lưới thao tác bổ trợ — Scannable 4 ô */}
-      <section style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px', marginBottom: '14px' }}>
-        <button
-          className="btn-outline"
-          onClick={() => setShowInstructionModal(true)}
-          style={{ height: '40px', fontSize: '12px' }}
-        >
-          <span>Gửi dặn dò KTV</span>
-        </button>
+          <div style={{ fontSize: '16px', fontWeight: 800, color: '#0F172A', marginBottom: '4px' }}>
+            {pet.name} đã hoàn tất
+          </div>
+          <div style={{ fontSize: '13px', color: '#475569', marginBottom: '12px' }}>
+            Sẵn sàng chuyển sang chờ đón
+          </div>
 
-        <button
-          className="btn-outline"
-          onClick={onOpenParallelTracking}
-          style={{ height: '40px', fontSize: '12px' }}
-        >
-          <PawIcon size={14} color="#0D766E" />
-          <span>Tiến độ 2 bé</span>
-        </button>
+          <div style={{
+            backgroundColor: '#F8FAFC',
+            borderRadius: '12px',
+            padding: '8px 12px',
+            fontSize: '11px',
+            color: '#64748B',
+            marginBottom: '12px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}>
+            <span>⚡</span>
+            <span>Thông báo tức thì · Không cần gọi điện hỏi tiệm</span>
+          </div>
 
-        <button
-          className="btn-outline"
-          onClick={onOpenIsolationCam}
-          style={{ height: '40px', fontSize: '12px' }}
-        >
-          <CameraIcon size={14} color="#0D766E" />
-          <span>Buồng riêng A-02</span>
-        </button>
-
-        <button
-          className="btn-outline"
-          onClick={onOpenInspectionReport}
-          style={{ height: '40px', fontSize: '12px' }}
-        >
-          <ShieldIcon size={14} color="#0D766E" />
-          <span>Nghiệm thu da 10/10</span>
-        </button>
-      </section>
-
-      {/* 1 Primary Action Button ở đáy màn hình (Quy tắc 1 CTA chính) */}
-      {booking.status === 4 ? (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px' }}>
-          <button className="btn-primary" onClick={onOpenDischargeQR} aria-label="Mở mã QR xuất viện để nhận bé">
-            <QrCodeIcon size={20} />
-            <span>Mở QR đón bé (#{booking.dischargeCode})</span>
-          </button>
-          <button className="btn-secondary" onClick={onOpenServiceReview} aria-label="Đánh giá dịch vụ">
-            <StarIcon size={16} />
-            <span>Đánh giá 5 sao ca chăm sóc</span>
+          <button
+            type="button"
+            onClick={() => {
+              setShowPushNotification(false);
+              onMilestoneChange(4);
+            }}
+            style={{
+              width: '100%',
+              height: '46px',
+              borderRadius: '14px',
+              backgroundColor: '#0D766E',
+              color: '#FFFFFF',
+              fontSize: '14px',
+              fontWeight: 800,
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            Mở tiến độ
           </button>
         </div>
-      ) : (
-        <button
-          className="btn-primary"
-          onClick={() => onMilestoneChange(((booking.status % 4) + 1) as MilestoneStep)}
-          style={{ marginBottom: '16px' }}
-        >
-          <span>
-            {booking.status === 1 && 'Bắt đầu ngâm bồn Derma-Care (Mốc 2)'}
-            {booking.status === 2 && 'Hoàn tất tắm & Chuyển sang sấy (Mốc 3)'}
-            {booking.status === 3 && 'Chuyển bé ra sảnh sẵn sàng đón (Mốc 4)'}
-          </span>
-        </button>
       )}
 
-      {/* Modal gửi dặn dò */}
-      <Modal isOpen={showInstructionModal} onClose={() => setShowInstructionModal(false)} title="Dặn Dò Kỹ Thuật Viên">
-        <textarea
-          value={instructionText}
-          onChange={(e) => setInstructionText(e.target.value)}
-          placeholder="Nhập lưu ý nhanh cho KTV..."
-          rows={2}
-          style={{ width: '100%', padding: '8px', borderRadius: '8px', border: '1px solid #CBD5E1', outline: 'none', fontSize: '13px', marginBottom: '10px' }}
+      {/* ========================================================= */}
+      {/* 1. THANH STEPPER 4 MỐC TRỰC QUAN                          */}
+      {/* ========================================================= */}
+      <div style={{
+        backgroundColor: '#FFFFFF',
+        borderRadius: '24px',
+        padding: '16px 14px',
+        marginBottom: '16px',
+        border: '1px solid #E2E8F0',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)'
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+          <span style={{ fontSize: '12px', fontWeight: 800, color: '#64748B', letterSpacing: '0.6px' }}>
+            TIẾN ĐỘ THỜI GIAN THỰC
+          </span>
+          <span style={{ fontSize: '12px', fontWeight: 800, color: '#0D766E' }}>
+            Mốc {booking.status}/4
+          </span>
+        </div>
+
+        <TimelineStepper
+          currentStep={booking.status}
+          onStepClick={onMilestoneChange}
         />
-        {instructionSuccess ? (
-          <div className="badge badge-success" style={{ width: '100%', height: '40px', justifyContent: 'center' }}>
-            <span>✓ Đã gửi tới KTV!</span>
-          </div>
-        ) : (
-          <button className="btn-primary" onClick={handleSendInstruction}>
-            Gửi dặn dò ngay
+      </div>
+
+      {/* ========================================================= */}
+      {/* 2. HERO STATUS CARD — TỐI GIẢN CHUẨN PROTOTYPE            */}
+      {/* ========================================================= */}
+      <div style={{
+        backgroundColor: '#FFFFFF',
+        borderRadius: '28px',
+        border: '2px solid #CCFBF1',
+        padding: '24px 20px',
+        textAlign: 'center',
+        marginBottom: '20px',
+        boxShadow: '0 4px 18px rgba(13, 118, 110, 0.08)'
+      }}>
+        {/* Badge mốc */}
+        <div style={{ marginBottom: '16px' }}>
+          <span style={{
+            backgroundColor: config.badgeBg,
+            color: config.badgeColor,
+            fontSize: '11px',
+            fontWeight: 800,
+            padding: '4px 14px',
+            borderRadius: '12px'
+          }}>
+            {config.badgeText}
+          </span>
+        </div>
+
+        {/* Biểu tượng Hero trạng thái */}
+        <div style={{
+          width: '96px',
+          height: '96px',
+          borderRadius: '50%',
+          backgroundColor: config.iconBg,
+          border: `3px solid ${config.iconBorder}`,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          margin: '0 auto 18px auto',
+          boxShadow: '0 6px 20px rgba(13, 118, 110, 0.12)',
+          overflow: 'hidden'
+        }}>
+          {config.heroIcon}
+        </div>
+
+        <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#0F172A', margin: '0 0 6px 0' }}>
+          {config.title}
+        </h2>
+        <div style={{ fontSize: '14px', color: '#64748B', marginBottom: '18px' }}>
+          {config.subtitle}
+        </div>
+
+        {/* Thẻ phụ ngắn gọn: KTV & Phòng chăm sóc */}
+        <div style={{
+          backgroundColor: '#F8FAFC',
+          borderRadius: '16px',
+          border: '1px solid #E2E8F0',
+          padding: '12px 16px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          fontSize: '12px',
+          color: '#334155'
+        }}>
+          <span>KTV phụ trách: <strong>{booking.technicianName}</strong></span>
+          <span style={{ color: '#0D766E', fontWeight: 700 }}>{booking.stationOrRoom}</span>
+        </div>
+      </div>
+
+      {/* ========================================================= */}
+      {/* 3. NÚT CTA CHÍNH (SINGLE PRIMARY CTA Ở ĐÁY)               */}
+      {/* ========================================================= */}
+      {booking.status === 4 ? (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
+          <button
+            type="button"
+            onClick={onOpenDischargeQR}
+            style={{
+              width: '100%',
+              height: '60px',
+              borderRadius: '18px',
+              backgroundColor: '#0D766E',
+              color: '#FFFFFF',
+              fontSize: '15px',
+              fontWeight: 800,
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              boxShadow: '0 4px 14px rgba(13, 118, 110, 0.25)'
+            }}
+          >
+            <QrCodeIcon size={20} />
+            <span>Đến đón bé (Mã #{booking.dischargeCode})</span>
           </button>
-        )}
-      </Modal>
+
+          <button
+            type="button"
+            onClick={onOpenServiceReview}
+            style={{
+              width: '100%',
+              height: '48px',
+              borderRadius: '14px',
+              backgroundColor: '#F8FAFC',
+              color: '#0F172A',
+              fontSize: '13px',
+              fontWeight: 700,
+              border: '1px solid #E2E8F0',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px'
+            }}
+          >
+            <StarIcon size={16} />
+            <span>Đánh giá dịch vụ</span>
+          </button>
+        </div>
+      ) : booking.status === 3 ? (
+        <button
+          type="button"
+          onClick={() => setShowPushNotification(true)}
+          style={{
+            width: '100%',
+            height: '60px',
+            borderRadius: '18px',
+            backgroundColor: '#0D766E',
+            color: '#FFFFFF',
+            fontSize: '15px',
+            fontWeight: 800,
+            border: 'none',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            boxShadow: '0 4px 14px rgba(13, 118, 110, 0.25)',
+            marginBottom: '20px'
+          }}
+        >
+          <BellIcon size={20} />
+          <span>Xem thông báo đẩy</span>
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={() => {
+            if (config.nextMilestone) {
+              onMilestoneChange(config.nextMilestone);
+            }
+          }}
+          style={{
+            width: '100%',
+            height: '60px',
+            borderRadius: '18px',
+            backgroundColor: '#0D766E',
+            color: '#FFFFFF',
+            fontSize: '15px',
+            fontWeight: 800,
+            border: 'none',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 4px 14px rgba(13, 118, 110, 0.25)',
+            marginBottom: '20px'
+          }}
+        >
+          <span>{config.ctaText}</span>
+        </button>
+      )}
 
     </div>
   );
